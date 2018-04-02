@@ -1,56 +1,71 @@
-# city-map
+# [Labs Starter App]
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+{This is a collection of boilerplate files for Labs repos. Replace this with a description of the application, customer, purpose, etc.}
 
-## Prerequisites
+{Replace this with a screenshot of the app.}
+
+## How we work
+
+[NYC Planning Labs](https://planninglabs.nyc) takes on a single project at a time, working closely with our customers from concept to delivery in a matter of weeks.  We conduct regular maintenance between larger projects.  
+
+Take a look at our sprint planning board {link to waffle} to get an idea of our current priorities for this project.
+
+## How you can help
+
+In the spirit of free software, everyone is encouraged to help improve this project.  Here are some ways you can contribute.
+
+- Comment on or clarify [issues](link to issues)
+- Report [bugs](link to bugs)
+- Suggest new features
+- Write or edit documentation
+- Write code (no patch is too small)
+  - Fix typos
+  - Add comments
+  - Clean up code
+  - Add new features
+
+**[Read more about contributing.](CONTRIBUTING.md)**
+
+## Requirements
 
 You will need the following things properly installed on your computer.
 
-* [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (with npm)
-* [Ember CLI](https://ember-cli.com/)
-* [Google Chrome](https://google.com/chrome/)
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/) (with NPM)
+- [Ember CLI](https://ember-cli.com/)
+- {Replace this list with the app's dependencies.}
 
-## Installation
+## Local development
 
-* `git clone <repository-url>` this repository
-* `cd city-map`
-* `npm install`
+- Clone this repo `command`
+- Install Dependencies `command`
+- Start the server `command`
 
-## Running / Development
+## Architecture
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-* Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
+{"Lay of the land" structure of the codebase, components...}
 
-### Code Generators
+## Backend services
 
-Make use of the many generators for code, try `ember help generate` for more details
+- **Carto** - Description of this service
+- **github static content** - Description of this service
+- **mapzen api** - Description of this service
+- {Replace this list with the app's backend service dependencies.}
 
-### Running Tests
+## Testing and checks
 
-* `ember test`
-* `ember test --server`
+- **ESLint** - We use ESLint with Airbnb's rules for JavaScript projects
+  - Add an ESLint plugin to your text editor to highlight broken rules while you code
+  - You can also run `eslint` at the command line with the `--fix` flag to automatically fix some errors.
 
-### Linting
+- **Testing**
+  - run `ember test --serve`
+  - Before creating a Pull Request, make sure your branch is updated with the latest `develop` and passes all tests
 
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
+## Deployment
 
-### Building
+{Description of what type of hosting environmen is required, and steps for how Labs deploys -- e.g `git push dokku master`.}
 
-* `ember build` (development)
-* `ember build --environment production` (production)
+## Contact us
 
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](https://emberjs.com/)
-* [ember-cli](https://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+You can find us on Twitter at [@nycplanninglabs](https://twitter.com/nycplanninglabs), or comment on issues and we'll follow up as soon as we can. If you'd like to send an email, use [labs_dl@planning.nyc.gov](mailto:labs_dl@planning.nyc.gov)
