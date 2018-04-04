@@ -16,4 +16,16 @@ module('Acceptance | user can navigate with site header', function(hooks) {
     const menu = await find('#responsive-menu.show-for-large');
     assert.equal(!!menu, true);
   });
+
+  test('it hides the menu after site title is clicked', async function(assert) {
+    await visit('/');
+
+    // click site title button that appears on small screens
+    await click('.responsive-nav-toggler');
+
+    // click site title, close menu small screens, nav to index
+    await click('.branding .site-name');
+    const menu = await find('#responsive-menu.show-for-large');
+    assert.equal(!!menu, true);
+  });
 });
