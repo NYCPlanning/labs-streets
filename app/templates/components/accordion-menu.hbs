@@ -1,0 +1,9 @@
+<div {{action 'toggleAccordion'}} class="switch" role="button">
+</div>
+
+{{#if visible}}
+  <div class="accordion-content">
+  </div>
+{{/if}}
+
+{{yield}}
