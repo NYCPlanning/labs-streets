@@ -11,6 +11,5 @@ module('Acceptance | visit index', function(hooks) {
 
     assert.equal(!!node, true);
     assert.equal(currentURL(), '/');
-
   });
 });

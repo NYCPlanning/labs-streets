@@ -1,0 +1,261 @@
+// --------------------------------------------------
+// Module: Maps
+// --------------------------------------------------
+
+#map {
+  height: 100%;
+  width: 100%;
+
+  z-index: 1;
+}
+
+.mapboxgl-canvas {
+  left: 0;
+}
+
+.mapboxgl-popup {}
+
+.mapboxgl-popup-content {
+  padding: $global-margin $global-margin/2;
+  background-color: $white;
+  color: $body-font-color;
+  font-size: rem-calc(12);
+  line-height: $global-lineheight;
+}
+
+.mapboxgl-popup-close-button {
+  padding: 0 rem-calc(6) rem-calc(2);
+  color: $lu-red;
+  font-weight: $global-weight-bold;
+  font-size: 1rem;
+
+  &:hover {
+    background-color: transparent;
+    color: darken($lu-red, 10%);
+  }
+}
+
+.mapboxgl-ctrl-group > button {
+  border-radius: 0;
+}
+
+.find-me {
+  position: absolute;
+  top: 108px;
+  left: 40px;
+  z-index: 9;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  overflow: hidden;
+  padding: 2px 2px 2px 0;
+
+  button {
+    float: left;
+    height: 30px;
+    position: relative;
+    border-width: 0;
+
+    &:first-child {
+      z-index: 2;
+      font-weight: bold;
+      line-height: 30px;
+      color: #1a2a2a;
+      background-color: #fff;
+      padding: 0 0.75em;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      box-shadow: -2px -2px 0 rgba(0,0,0,0.1), -2px 2px 0 rgba(0,0,0,0.1);
+
+      &:hover {
+        background-color: #F2F2F2;
+        color: #1a2a2a;
+      }
+    }
+
+    &:last-child {
+      z-index: 1;
+      font-size: 20px;
+      line-height: 20px;
+      color: $warning-color;
+      background-color: #fafafa;
+      padding: 0 0.6em 0.2em 0.5em;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      border-left: 1px solid $medium-gray;
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+
+      &:hover {
+        color: darken($warning-color,10%);
+      }
+    }
+  }
+}
+
+// Geography Selector
+.geography-selector {
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  left: 50px;
+
+  font-size: rem-calc(11);
+  font-weight: $global-weight-bold;
+  overflow: hidden;
+
+  background-color: $light-gray;
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+
+  li:not(:last-child) {
+    border-right: 1px solid rgba(0,0,0,0.1);
+  }
+
+  li:hover {
+    background-color: rgba(0,0,0,0.03);
+  }
+}
+
+// Map Meta Box
+.map-meta-box {
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  left: 50px;
+  float: left;
+
+  max-width: calc(100% - 100px);
+  margin-top: calc(1.4rem + 0.6875rem + 10px);
+
+  @include breakpoint(medium) {
+    max-width: calc(100% - 130px);
+    font-size: rem-calc(25);
+  }
+
+  .map-title {
+    // display: inline-block;
+    float: left;
+    margin: 0 0 rem-calc(10);
+    padding: 0.3rem 0.6rem 0.4rem;
+    border-radius: 4px;
+    font-size: rem-calc(20);
+    background-color: rgba(255,255,255,0.9);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.07);
+  }
+
+  .call-to-action {
+    float: left;
+    clear: left;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: rem-calc(10);
+    background-color: rgba(255,255,255,0.9);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.07);
+    color: $dark-gray;
+  }
+}
+
+// Map Legend
+.legend {
+  position: absolute;
+  z-index: 2;
+  bottom: 40px;
+  right: 10px;
+  font-size: rem-calc(10);
+  background-color: rgba(255,255,255,0.9);
+  padding: rem-calc(6) rem-calc(10);
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+  max-width: calc(50% - 10px);
+
+  @include breakpoint(medium) {
+    bottom: 30px;
+    max-width: rem-calc(160);
+  }
+
+  .legend-title {
+    font-size: rem-calc(11);
+    margin-bottom: rem-calc(4);
+  }
+
+  .legend-item:not(:first-child) {
+    border-top: 1px solid rgba(235,235,235,0.7);
+    padding: 0;
+
+    .legend-color {
+      margin: 0 rem-calc(4) 0 0;
+      opacity: 0.6;
+      text-shadow: 0 0 1px $black, 0 0 1px $black, 0 0 1px $black,
+                   0 0 1px $black, 0 0 1px $black, 0 0 1px $black,
+                   0 0 1px $black, 0 0 1px $black, 0 0 1px $black;
+    }
+  }
+  .legend-title + .legend-item:first-child {
+    border-top: 1px solid rgba(235,235,235,0.7);
+  }
+}
+
+.supporting-layers {
+  position: absolute;
+  z-index: 2;
+  bottom: 70px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  background-color: $white;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  text-align: center;
+
+  @include breakpoint(large) {
+    box-shadow: none;
+  }
+
+  .supporting-layers-list {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    list-style: none;
+    text-align: left;
+    line-height: $paragraph-lineheight;
+    margin: 0;
+    background-color: $white;
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    padding: rem-calc(6) rem-calc(10);
+
+    @include breakpoint(large) {
+      display: block;
+    }
+
+    li {
+      white-space: nowrap;
+
+      &:hover {
+        cursor: pointer;
+        color: $primary-color;
+      }
+    }
+  }
+
+  &:hover {
+    box-shadow: none;
+
+    .supporting-layers-list {
+      display: block;
+    }
+  }
+}
+
+// Map Tooltip
+.map-tooltip {
+  position: absolute;
+  background-color: $white;
+  z-index: 1000;
+  padding: rem-calc(2) rem-calc(6);
+  color: $dark-gray;
+  font-size: rem-calc(11);
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+  border-radius: 2px;
+}
