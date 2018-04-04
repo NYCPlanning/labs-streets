@@ -26,7 +26,8 @@ module.exports = {
     'no-underscore-dangle': 0,
     'camelcase': 0,
     'max-len': 0,
-    'array-callback-return': 0
+    'array-callback-return': 0,
+    'react/prefer-stateless-function': 0
   },
   overrides: [
     // node files
