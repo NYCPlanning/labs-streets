@@ -1,18 +1,21 @@
 {{labs-site-header}}
 
-<div class="site-main">
+<div class="site-main grid-x">
 
-  <div class="search"></div>
+  <div class="search-container">
+  </div>
 
-  {{#mapbox-gl
-    id='main-map'
-    initOptions=(hash style='//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json'
-                      zoom=9.7
-                      center=(array 40.712 -73.9022))}}
-    
-  {{/mapbox-gl}}
+  <div class="map-container cell medium-auto large-order-2">
+    {{#mapbox-gl
+      id='main-map'
+      initOptions=(hash style='//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json'
+                        zoom=9.7
+                        center=(array 40.712 -73.9022))}}
 
-  <div class="layer-menu">
+    {{/mapbox-gl}}
+  </div>
+
+  <div class="layer-menu cell medium-3 large-order-1">
     {{#accordion-menu title='City Map Layers'}}
       {{#layer-menu-item title='Foo'}}
         hi
@@ -26,7 +29,7 @@
   </div>
 
   <div class="content-close-button"></div>
-  <div class="content">
+  <div class="content-area cell large-4 large-order-3">
     {{outlet}}
   </div>
 </div>
