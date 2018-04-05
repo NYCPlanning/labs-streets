@@ -15,7 +15,7 @@
     {{/mapbox-gl}}
   </div>
 
-  <div class="layer-menu cell medium-3 large-order-1">
+  <div class="layer-menu cell large-order-1">
     {{#accordion-menu title='City Map Layers'}}
       {{#layer-menu-item title='Foo'}}
         hi
@@ -28,8 +28,10 @@
     {{/accordion-menu}}
   </div>
 
-  <div class="content-close-button"></div>
-  <div class="content-area cell large-4 large-order-3">
+  <div class="content-close-button-container">
+    <button class="content-close-button">×</button>
+  </div>
+  <div class="content-area cell large-5 large-order-3 xxlarge-4">
     {{outlet}}
   </div>
 </div>
