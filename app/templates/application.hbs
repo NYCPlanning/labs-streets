@@ -6,13 +6,11 @@
   </div>
 
   <div class="map-container cell medium-auto large-order-2">
-    {{#mapbox-gl
+    {{mapbox-gl
       id='main-map'
       initOptions=(hash style='//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json'
                         zoom=9.7
                         center=(array 40.712 -73.9022))}}
-
-    {{/mapbox-gl}}
   </div>
 
   <div class="layer-menu cell large-order-1">
