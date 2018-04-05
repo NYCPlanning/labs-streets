@@ -1,0 +1,7 @@
+<div {{action 'toggle'}} class="layer-menu-item-title" role="button">
+</div>
+{{#if active}}
+  <div class="layer-menu-item-content">
+    {{yield}}
+  </div>
+{{/if}}

@@ -8,7 +8,7 @@ module('Integration | Component | accordion-menu', function(hooks) {
 
   test('it toggles closed', async function(assert) {
     await render(hbs`{{accordion-menu title='Foo'}}`);
-    await click('.switch');
+    await click('.accordion-title');
     const accordionContent = await find('.accordion-content');
 
     assert.equal(!!accordionContent, false);
@@ -16,7 +16,7 @@ module('Integration | Component | accordion-menu', function(hooks) {
 
   test('it toggles open', async function(assert) {
     await render(hbs`{{accordion-menu title='Foo' open=false}}`);
-    await click('.switch');
+    await click('.accordion-title');
     const accordionContent = await find('.accordion-content');
 
     assert.equal(!!accordionContent, true);
@@ -34,5 +34,9 @@ module('Integration | Component | accordion-menu', function(hooks) {
     const accordionContent = await find('.accordion-content').textContent.trim();
 
     assert.equal(accordionContent, 'Bar');
+  });
+
+  skip('it shows a count of active children', async function(assert) {
+
   });
 });
