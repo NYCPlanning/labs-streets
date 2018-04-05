@@ -1,11 +1,11 @@
-<div {{action 'toggle'}} class="layer-menu-item-title" role="button">
+<div class="layer-menu-item-header">
   <div class="switch tiny float-left">
     <input class="switch-input" type="checkbox" checked={{if active 'checked'}}>
-    <label class="switch-paddle">
+    <label {{action 'toggle'}} class="switch-paddle">
       <span class="show-for-sr">Toggle Layer Group</span>
     </label>
   </div>
-  {{title}}
+  <span {{action 'toggle'}} class="layer-menu-item-title" role="button">{{title}}</span>
 </div>
 {{#if active}}
   <div class="layer-menu-item-content">
