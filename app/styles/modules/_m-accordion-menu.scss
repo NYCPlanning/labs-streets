@@ -4,6 +4,10 @@
 
 .accordion-menu {
   border-bottom: 1px solid darken($light-gray, 20%);
+
+  &:hover {
+    background-color: rgba(107,113,123,.06);
+  }
 }
 
 .accordion-title {
@@ -11,6 +15,11 @@
   padding: rem-calc(6);
   padding-right: 1em;
   position: relative;
+
+  &:hover {
+    background-color: rgba(107,113,123,.06);
+    cursor: pointer;
+  }
 
   &::after {
     @include css-triangle(0.4em, $primary-color, up);
