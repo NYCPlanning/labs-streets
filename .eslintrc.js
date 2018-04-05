@@ -28,7 +28,8 @@ module.exports = {
     'camelcase': 0,
     'max-len': 0,
     'array-callback-return': 0,
-    'react/prefer-stateless-function': 0
+    'react/prefer-stateless-function': 0,
+    'class-methods-use-this': 0
   },
   overrides: [
     // node files
