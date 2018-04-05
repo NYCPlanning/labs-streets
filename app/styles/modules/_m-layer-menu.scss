@@ -9,17 +9,22 @@
   border-top: 1px solid $white;
 }
 
-.layer-menu-item-title {
+.layer-menu-item-header {
   font-size: rem-calc(12);
-  padding: rem-calc(6);
 
   &:hover {
     background-color: rgba(107,113,123,.06);
     cursor: pointer;
   }
 
+  .layer-menu-item-title {
+    padding: rem-calc(6);
+    display: block;
+    padding-left: rem-calc(30); // switch's width (20) + margin (10)
+  }
+
   .switch {
-    margin: 0 rem-calc(4) 0 0;
+    margin: rem-calc(6) rem-calc(4) 0 rem-calc(6);
 
     &.tiny .switch-paddle {
       width: 1.25rem;
