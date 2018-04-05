@@ -1,10 +1,32 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{!-- {{welcome-page}} --}}
-{{!-- Feel free to remove this! --}}
 {{labs-site-header}}
-{{mapbox-gl
-  id='main-map'
-  initOptions=(hash style='//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json'
-                    zoom=9.7
-                    center=(array 40.712 -73.9022))}}
-{{outlet}}
+
+<div class="site-main">
+
+  <div class="search"></div>
+
+  {{#mapbox-gl
+    id='main-map'
+    initOptions=(hash style='//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json'
+                      zoom=9.7
+                      center=(array 40.712 -73.9022))}}
+    
+  {{/mapbox-gl}}
+
+  <div class="layer-menu">
+    {{#accordion-menu title='City Map Layers'}}
+      {{#layer-menu-item title='Foo'}}
+        hi
+      {{/layer-menu-item}}
+    {{/accordion-menu}}
+    {{#accordion-menu title='Other Layers' open=false}}
+      {{#layer-menu-item title='Foo'}}
+        hi
+      {{/layer-menu-item}}
+    {{/accordion-menu}}
+  </div>
+
+  <div class="content-close-button"></div>
+  <div class="content">
+    {{outlet}}
+  </div>
+</div>
