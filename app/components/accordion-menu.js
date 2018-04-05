@@ -5,6 +5,8 @@ import { type } from '@ember-decorators/argument/type';
 import { required } from '@ember-decorators/argument/validation';
 
 export default class AccordionMenuComponent extends Component {
+  classNames=['accordion-menu'];
+
   @argument
   open = true;
 

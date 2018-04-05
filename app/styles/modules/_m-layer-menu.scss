@@ -1,0 +1,36 @@
+// --------------------------------------------------
+// Module: Layer Menu
+// --------------------------------------------------
+
+.layer-menu {
+}
+
+.layer-menu-item {
+  border-top: 1px solid $white;
+}
+
+.layer-menu-item-title {
+  font-size: rem-calc(12);
+  padding: rem-calc(6);
+
+  &:hover {
+    background-color: rgba(107,113,123,.06);
+    cursor: pointer;
+  }
+
+  .switch {
+    margin: 0 rem-calc(4) 0 0;
+
+    &.tiny .switch-paddle {
+      width: 1.25rem;
+    }
+
+    &.tiny .switch-paddle::after {
+      width: 0.5rem;
+    }
+
+    &.tiny input:checked ~ .switch-paddle::after {
+      left: 0.625rem;
+    }
+  }
+}

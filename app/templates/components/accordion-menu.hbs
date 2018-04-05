@@ -1,4 +1,4 @@
-<div {{action 'toggleAccordion'}} class="accordion-title" role="button">
+<div {{action 'toggleAccordion'}} class="accordion-title {{unless open 'closed'}}" role="button">
   {{title}}
 </div>
 {{#if open}}
