@@ -19,8 +19,8 @@ export default class LookupLayerGroupComponent extends Component {
 
   @service store;
 
-  @argument
   @required
+  @argument
   @type('string')
   for = '';
 }

@@ -1,5 +1,7 @@
 {{#if glSupported}}
+
   {{#if map}}
+
     {{yield (hash
       call=(component 'mapbox-gl-call' obj=map)
       control=(component 'mapbox-gl-control' map=map)
@@ -11,6 +13,7 @@
       source=(component 'mapbox-gl-source' map=map)
     )}}
 
+    {{!-- Bind layer groups' layers --}}
     {{#each model.layerGroups key='id' as |layerGroup|}}
       {{#if layerGroup.visible}}
         {{#each layerGroup.layers as |layerObject|}}
@@ -20,6 +23,15 @@
         {{/each}}
       {{/if}}
     {{/each}}
+
+    {{#if highlightedFeature}}
+      {{#mapbox-gl-source map=map options=(hash type='geojson' data=highlightedFeature) as |source|}}
+        {{mapbox-gl-layer map=map layer=highlightedFeatureLayer before='waterway-label'}}
+      {{/mapbox-gl-source}}
+    {{/if}}
+
+    {{mapbox-gl-on 'click' (action 'handleMouseClick') eventSource=map}}
+
   {{/if}}
 {{else}}
   {{yield to='inverse'}}
