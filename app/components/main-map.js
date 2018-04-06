@@ -36,8 +36,8 @@ export default class MainMapComponent extends mapboxGlMap {
     const map = this.get('map');
     const model = this.get('model');
     if (map && model) {
-      const layers = this.get('localLayers').mapBy('style.id');
-      const [feature] = map.queryRenderedFeatures(e.point, { layers });
+      // const layers = this.get('localLayers').mapBy('style.id');
+      const [feature] = map.queryRenderedFeatures(e.point, { layers: ['citymap-amendments-fill'] });
       const { layer: { id: layerId } } = feature;
 
       if (layerId === 'citymap-amendments-fill') {
