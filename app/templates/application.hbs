@@ -1,6 +1,4 @@
 {{labs-site-header}}
-{{log model.sources}}
-{{log model.layerGroups}}
 <div class="site-main grid-x">
 
   <div class="search-container">
@@ -10,21 +8,26 @@
     {{main-map 
       id='main-map'
       initOptions=(hash style='//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json'
-                    zoom=13
+                    zoom=10
                     center=(array -74.1197636 40.6976637))
       mapLoaded=(action 'handleMapLoad')}}
   </div>
 
   <div class="layer-menu cell large-order-1">
     {{#accordion-menu title='City Map Layers'}}
-      {{#layer-menu-item title='Foo'}}
-        hi
-      {{/layer-menu-item}}
+      {{#lookup-layer-group for='amendments' as |amendments|}}
+        {{#layer-menu-item title=amendments.model.title}}
+          Layer
+        {{/layer-menu-item}}
+      {{/lookup-layer-group}}
     {{/accordion-menu}}
     {{#accordion-menu title='Other Layers' open=false}}
-      {{#layer-menu-item title='Foo'}}
-        hi
-      {{/layer-menu-item}}
+      {{#lookup-layer-group for='arterials' as |arterials|}}
+        {{log arterials}}
+        {{#layer-menu-item title=arterials.model.title}}
+          Layer
+        {{/layer-menu-item}}
+      {{/lookup-layer-group}}
     {{/accordion-menu}}
   </div>
 
