@@ -1,128 +1,321 @@
-[{
-		"id": "pierhead-bulkhead-lines",
-		"title": "Pierhead and Bulkhead Lines",
-		"legendIcon": "admin-line",
-		"legendColor": "",
-		"visible": "true",
-		"meta": {
-			"description": "NYC Department of City Planning Technical Review Division",
-			"updated_at": "6 April 2018"
-		},
-		"layers": [{
-				"style": {
-					"id": "pierhead-line",
-					"type": "line",
-					"source": "digital-citymap",
-					"source-layer": "pierhead-lines",
-					"paint": {
-						"line-color": "#000",
-						"line-width": 4
-					}
-				}
-			},
-			{
-				"style": {
-					"id": "bulkhead-line",
-					"type": "line",
-					"source": "digital-citymap",
-					"source-layer": "bulkhead-lines",
-					"paint": {
-						"line-color": "#000",
-						"line-width": 4
-					}
-				}
-			}
-		]
-	},
-	{
-		"id": "citymap",
-		"title": "City Map",
-		"legendIcon": "admin-line",
-		"legendColor": "",
-		"visible": "true",
-		"meta": {
-			"description": "NYC Department of City Planning Technical Review Division",
-			"updated_at": "6 April 2018"
-		},
-		"layers": [{
-			"style": {
-				"id": "citymap-fill",
-				"type": "fill",
-				"source": "digital-citymap",
-				"source-layer": "citymap",
-				"paint": {
-					"fill-color": "#000"
-				}
-			}
-		}]
-	},
-	{
-		"id": "arterials",
-		"title": "Arterials",
-		"legendIcon": "admin-line",
-		"legendColor": "",
-		"visible": "true",
-		"meta": {
-			"description": "NYC Department of City Planning Technical Review Division",
-			"updated_at": "6 April 2018"
-		},
-		"layers": [{
-			"style": {
-				"id": "arterials-line",
-				"type": "line",
-				"source": "digital-citymap",
-				"source-layer": "arterials",
-				"paint": {
-					"line-color": "#000",
-					"line-width": 4
-				}
-			}
-		}]
-	},
-	{
-		"id": "amendments",
-		"title": "Amendments",
-		"legendIcon": "admin-line",
-		"legendColor": "",
-		"visible": "true",
-		"meta": {
-			"description": "NYC Department of City Planning Technical Review Division",
-			"updated_at": "6 April 2018"
-		},
-		"layers": [{
-			"style": {
-				"id": "amendments-line",
-				"type": "line",
-				"source": "digital-citymap",
-				"source-layer": "arterials",
-				"paint": {
-					"line-color": "#000",
-					"line-width": 4
-				}
-			}
-		}]
-	},
-	{
-		"id": "street-centerlines",
-		"title": "Street Centerlines",
-		"legendIcon": "admin-line",
-		"legendColor": "",
-		"visible": "true",
-		"meta": {
-			"description": "NYC Department of City Planning Technical Review Division",
-			"updated_at": "6 April 2018"
-		},
-		"layers": [{
-			"style": {
-				"id": "street-centerlines-line",
-				"type": "line",
-				"source": "digital-citymap",
-				"source-layer": "street-centerlines",
-				"paint": {
-					"line-color": "#000",
-					"line-width": 4
-				}
-			}
-		}]
-	}
+[
+  {
+    "id":"pierhead-bulkhead-lines",
+    "title":"Pierhead and Bulkhead Lines",
+    "legendIcon":"admin-line",
+    "legendColor":"",
+    "visible":"true",
+    "meta":{
+      "description":"NYC Department of City Planning Technical Review Division",
+      "updated_at":"6 April 2018"
+    },
+    "layers":[
+      {
+        "style":{
+          "id":"citymap-pierhead-line",
+          "type":"line",
+          "source":"digital-citymap",
+          "source-layer":"pierhead-lines",
+          "paint":{
+            "line-color":"rgba(30, 135, 187, 1)",
+            "line-width":{
+              "stops":[
+                [
+                  10,
+                  0.5
+                ],
+                [
+                  14,
+                  3
+                ]
+              ]
+            },
+            "line-opacity":0.7,
+            "line-dasharray":[
+              6,
+              2
+            ]
+          }
+        }
+      },
+      {
+        "style":{
+          "id":"citymap-bulkhead-line",
+          "type":"line",
+          "source":"digital-citymap",
+          "source-layer":"bulkhead-lines",
+          "paint":{
+            "line-color":"rgba(160, 101, 230, 1)",
+            "line-width":{
+              "stops":[
+                [
+                  10,
+                  0.5
+                ],
+                [
+                  14,
+                  3
+                ]
+              ]
+            },
+            "line-dasharray":[
+              6,
+              2
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id":"citymap",
+    "title":"City Map",
+    "legendIcon":"admin-line",
+    "legendColor":"",
+    "visible":"true",
+    "meta":{
+      "description":"NYC Department of City Planning Technical Review Division",
+      "updated_at":"6 April 2018"
+    },
+    "layers":[
+      {
+        "style":{
+          "id":"citymap-citymap-line",
+          "type":"line",
+          "source":"digital-citymap",
+          "source-layer":"citymap",
+          "paint":{
+            "line-color":"rgba(51, 51, 51, 1)",
+            "line-width":{
+              "stops":[
+                [
+                  10,
+                  0.1
+                ],
+                [
+                  13,
+                  1
+                ],
+                [
+                  15,
+                  3
+                ]
+              ]
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id":"arterials",
+    "title":"Arterials",
+    "legendIcon":"admin-line",
+    "legendColor":"",
+    "visible":"true",
+    "meta":{
+      "description":"NYC Department of City Planning Technical Review Division",
+      "updated_at":"6 April 2018"
+    },
+    "layers":[
+      {
+        "style":{
+          "id":"citymap-arterials-line",
+          "type":"line",
+          "source":"digital-citymap",
+          "source-layer":"arterials",
+          "paint":{
+            "line-color":"rgba(245, 147, 80, 1)",
+            "line-width":{
+              "stops":[
+                [
+                  10,
+                  1.5
+                ],
+                [
+                  14,
+                  10
+                ]
+              ]
+            },
+            "line-opacity":0.3
+          },
+          "layout":{
+            "visibility":"visible"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id":"amendments",
+    "title":"Amendments",
+    "legendIcon":"admin-line",
+    "legendColor":"",
+    "visible":"true",
+    "meta":{
+      "description":"NYC Department of City Planning Technical Review Division",
+      "updated_at":"6 April 2018"
+    },
+    "layers":[
+      {
+        "style":{
+          "id":"citymap-amendments-fill",
+          "type":"fill",
+          "source":"digital-citymap",
+          "source-layer":"amendments",
+          "paint":{
+            "fill-opacity":0.2,
+            "fill-color":"rgba(60, 133, 210, 1)"
+          },
+          "layout":{
+
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id":"street-centerlines",
+    "title":"Street Centerlines",
+    "legendIcon":"admin-line",
+    "legendColor":"",
+    "visible":"true",
+    "meta":{
+      "description":"NYC Department of City Planning Technical Review Division",
+      "updated_at":"6 April 2018"
+    },
+    "layers":[
+      {
+        "style":{
+          "id":"citymap-street-centerlines-line",
+          "type":"line",
+          "source":"digital-citymap",
+          "source-layer":"street-centerlines",
+          "paint":{
+            "line-color":"#000",
+            "line-width":0.5,
+            "line-dasharray":{
+              "stops":[
+                [
+                  15,
+                  [
+                    15,
+                    7.5
+                  ]
+                ],
+                [
+                  17,
+                  [
+                    30,
+                    15
+                  ]
+                ]
+              ]
+            },
+            "line-opacity":{
+              "stops":[
+                [
+                  14,
+                  0
+                ],
+                [
+                  15,
+                  1
+                ]
+              ]
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id":"name-changes",
+    "title":"Name Changes",
+    "legendIcon":"admin-line",
+    "legendColor":"",
+    "visible":"true",
+    "meta":{
+      "description":"NYC Department of City Planning Technical Review Division",
+      "updated_at":"6 April 2018"
+    },
+    "layers":[
+      {
+        "style":{
+          "id":"citymap-name-changes-circle",
+          "type":"circle",
+          "source":"digital-citymap",
+          "source-layer":"name-changes-points",
+          "layout":{
+            "visibility":"visible"
+          },
+          "paint":{
+            "circle-stroke-color":"rgba(49, 49, 49, 1)",
+            "circle-color":"rgba(228, 72, 192, 1)",
+            "circle-stroke-width":{
+              "stops":[
+                [
+                  10,
+                  0.5
+                ],
+                [
+                  14,
+                  1.5
+                ]
+              ]
+            },
+            "circle-radius":{
+              "stops":[
+                [
+                  10,
+                  1
+                ],
+                [
+                  14,
+                  5
+                ]
+              ]
+            }
+          }
+        }
+      },
+      {
+        "style":{
+          "id":"citymap-name-changes-line",
+          "type":"line",
+          "source":"digital-citymap",
+          "source-layer":"name-changes-lines",
+          "paint":{
+            "line-color":"rgba(228, 72, 192, 1)",
+            "line-width":{
+              "stops":[
+                [
+                  10,
+                  1
+                ],
+                [
+                  16,
+                  19
+                ]
+              ]
+            },
+            "line-opacity":0.5
+          }
+        }
+      },
+      {
+        "style":{
+          "id":"citymap-name-changes-fill",
+          "type":"fill",
+          "source":"digital-citymap",
+          "source-layer":"name-changes-areas",
+          "paint":{
+            "fill-color":"rgba(228, 72, 192, 1)",
+            "fill-opacity":0.5
+          }
+        }
+      }
+    ]
+  }
 ]
