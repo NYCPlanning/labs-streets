@@ -3,8 +3,8 @@
   <div class="grid-x grid-padding-x">
     <div class="branding cell shrink large-auto">
       <a class="dcp-link" href="http://www1.nyc.gov/site/planning/index.page"><img class="dcp-logo" src="https://raw.githubusercontent.com/NYCPlanning/logo/master/dcp_logo_772.png" alt="NYC Planning"></a>
-      {{link-to 
-        'City Map' 'application' 
+      {{link-to
+        'City Map' 'application'
         click=(action (mut closed) true) class="site-name"}}
     </div>
     <div class="cell auto hide-for-large text-right">
@@ -14,7 +14,7 @@
       <nav role="navigation">
         <ul class="menu">
           <li class="menu-list-item">
-            {{link-to 'About' 'application' click=(action (mut closed) true) class="menu-list-item-link"}}
+            {{link-to 'About' 'about' click=(action (mut closed) true) class="menu-list-item-link"}}
           </li>
           <li class="menu-list-item">
             <a class="menu-list-item-link">Data</a>
