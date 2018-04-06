@@ -10,7 +10,7 @@ export default DS.Model.extend({
   @attr('string') title: null,
   @attr('string') legendIcon: null,
   @attr('string') legendColor: null,
-  @attr('boolean') visible: null,
+  @attr('boolean') visible: false,
   @attr('string') meta: null,
   @attr() layers: null,
 });

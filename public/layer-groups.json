@@ -3,7 +3,7 @@
 		"title": "Pierhead and Bulkhead Lines",
 		"legendIcon": "admin-line",
 		"legendColor": "",
-		"visible": "true",
+		"visible": true,
 		"meta": {
 			"description": "NYC Department of City Planning Technical Review Division",
 			"updated_at": "6 April 2018"
@@ -39,7 +39,7 @@
 		"title": "City Map",
 		"legendIcon": "admin-line",
 		"legendColor": "",
-		"visible": "true",
+		"visible": false,
 		"meta": {
 			"description": "NYC Department of City Planning Technical Review Division",
 			"updated_at": "6 April 2018"
@@ -61,7 +61,7 @@
 		"title": "Arterials",
 		"legendIcon": "admin-line",
 		"legendColor": "",
-		"visible": "true",
+		"visible": false,
 		"meta": {
 			"description": "NYC Department of City Planning Technical Review Division",
 			"updated_at": "6 April 2018"
@@ -84,7 +84,7 @@
 		"title": "Amendments",
 		"legendIcon": "admin-line",
 		"legendColor": "",
-		"visible": "true",
+		"visible": false,
 		"meta": {
 			"description": "NYC Department of City Planning Technical Review Division",
 			"updated_at": "6 April 2018"
@@ -107,7 +107,7 @@
 		"title": "Street Centerlines",
 		"legendIcon": "admin-line",
 		"legendColor": "",
-		"visible": "true",
+		"visible": false,
 		"meta": {
 			"description": "NYC Department of City Planning Technical Review Division",
 			"updated_at": "6 April 2018"

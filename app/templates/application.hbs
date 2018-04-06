@@ -10,21 +10,26 @@
       model=model
       initOptions=(hash style='//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json'
                     zoom=10
-                    center=(array -74.1197636 40.6976637))
+                    center=(array -74.1197 40.6976))
       mapLoaded=(action 'handleMapLoad')}}
   </div>
 
   <div class="layer-menu cell large-order-1">
     {{#accordion-menu title='City Map Layers'}}
       {{#lookup-layer-group for='amendments' as |amendments|}}
-        {{#layer-menu-item title=amendments.model.title}}
+        {{#layer-menu-item 
+          title=amendments.model.title 
+          active=amendments.model.visible}}
           Layer
         {{/layer-menu-item}}
       {{/lookup-layer-group}}
     {{/accordion-menu}}
+
     {{#accordion-menu title='Other Layers' open=false}}
       {{#lookup-layer-group for='arterials' as |arterials|}}
-        {{#layer-menu-item title=arterials.model.title}}
+        {{#layer-menu-item 
+          title=arterials.model.title
+          active=arterials.model.visible}}
           Layer
         {{/layer-menu-item}}
       {{/lookup-layer-group}}
