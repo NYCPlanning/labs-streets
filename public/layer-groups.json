@@ -4,7 +4,7 @@
     "title":"Pierhead and Bulkhead Lines",
     "legendIcon":"admin-line",
     "legendColor":"",
-    "visible": true,
+    "visible":true,
     "meta":{
       "description":"NYC Department of City Planning Technical Review Division",
       "updated_at":"6 April 2018"
@@ -112,7 +112,7 @@
     "title":"Arterials",
     "legendIcon":"admin-line",
     "legendColor":"",
-    "visible": true,
+    "visible":false,
     "meta":{
       "description":"NYC Department of City Planning Technical Review Division",
       "updated_at":"6 April 2018"
@@ -152,7 +152,7 @@
     "title":"Amendments",
     "legendIcon":"admin-line",
     "legendColor":"",
-    "visible":true,
+    "visible":false,
     "meta":{
       "description":"NYC Department of City Planning Technical Review Division",
       "updated_at":"6 April 2018"
@@ -235,7 +235,7 @@
     "title":"Name Changes",
     "legendIcon":"admin-line",
     "legendColor":"",
-    "visible":true,
+    "visible":false,
     "meta":{
       "description":"NYC Department of City Planning Technical Review Division",
       "updated_at":"6 April 2018"
@@ -313,6 +313,99 @@
           "paint":{
             "fill-color":"rgba(228, 72, 192, 1)",
             "fill-opacity":0.5
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id":"zoning-districts",
+    "title":"Zoning Districts",
+    "visible":false,
+    "titleTooltip":"A zoning district is a residential, commercial or manufac­turing area of the city within which zoning regulations govern land use and building bulk.",
+    "meta":{
+      "description":"NYC GIS Zoning Features March 2018, Bytes of the Big Apple",
+      "url":[
+        "https://www1.nyc.gov/site/planning/data-maps/open-data.page"
+      ],
+      "updated_at":"April 5th, 2018"
+    },
+    "layers":[
+      {
+        "style":{
+          "id":"zd-lines",
+          "type":"line",
+          "source":"zoning-districts",
+          "source-layer":"zoning-districts",
+          "paint":{
+            "line-opacity":0.8,
+            "line-width":{
+              "stops":[
+                [
+                  13,
+                  1
+                ],
+                [
+                  14,
+                  3
+                ]
+              ]
+            },
+            "line-color":"rgba(255, 0, 5, 1)"
+          }
+        },
+        "before":"place_other"
+      },
+      {
+        "style":{
+          "id":"zd_labels",
+          "type":"symbol",
+          "source":"zoning-districts",
+          "source-layer":"zoning-districts",
+          "layout":{
+            "symbol-placement":"point",
+            "text-field":"{zonedist}",
+            "text-size":{
+              "stops":[
+                [
+                  10,
+                  8
+                ],
+                [
+                  14,
+                  16
+                ]
+              ]
+            }
+          },
+          "paint":{
+            "text-color":{
+              "stops":[
+                [
+                  15,
+                  "rgba(255, 0, 5, 1)"
+                ],
+                [
+                  16,
+                  "rgba(255, 0, 5, 1)"
+                ]
+              ]
+            },
+            "text-halo-color":"#FFFFFF",
+            "text-halo-width":2,
+            "text-halo-blur":2,
+            "text-opacity":{
+              "stops":[
+                [
+                  12,
+                  0
+                ],
+                [
+                  13,
+                  1
+                ]
+              ]
+            }
           }
         }
       }

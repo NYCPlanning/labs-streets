@@ -5,7 +5,7 @@
   </div>
 
   <div class="map-container cell medium-auto large-order-2">
-    {{main-map 
+    {{main-map
       id='main-map'
       model=model
       initOptions=(hash style='//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json'
@@ -15,31 +15,61 @@
   </div>
 
   <div class="layer-menu cell large-order-1">
+    {{!-- City Map Layers --}}
     {{#accordion-menu title='City Map Layers'}}
-      {{#lookup-layer-group for='amendments' as |amendments|}}
-        {{#layer-menu-item 
-          title=amendments.model.title 
-          active=amendments.model.visible}}
-          Layer
+      {{#lookup-layer-group for='citymap' as |layerGroup|}}
+        {{#layer-menu-item
+          title=layerGroup.model.title
+          active=layerGroup.model.visible}}
+        {{/layer-menu-item}}
+      {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='street-centerlines' as |layerGroup|}}
+        {{#layer-menu-item
+          title=layerGroup.model.title
+          active=layerGroup.model.visible}}
+        {{/layer-menu-item}}
+      {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='pierhead-bulkhead-lines' as |layerGroup|}}
+        {{#layer-menu-item
+          title=layerGroup.model.title
+          active=layerGroup.model.visible}}
+        {{/layer-menu-item}}
+      {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='arterials' as |layerGroup|}}
+        {{#layer-menu-item
+          title=layerGroup.model.title
+          active=layerGroup.model.visible}}
+        {{/layer-menu-item}}
+      {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='amendments' as |layerGroup|}}
+        {{#layer-menu-item
+          title=layerGroup.model.title
+          active=layerGroup.model.visible}}
+        {{/layer-menu-item}}
+      {{/lookup-layer-group}}
+      {{#lookup-layer-group for='name-changes' as |layerGroup|}}
+        {{#layer-menu-item
+          title=layerGroup.model.title
+          active=layerGroup.model.visible}}
         {{/layer-menu-item}}
       {{/lookup-layer-group}}
     {{/accordion-menu}}
 
+    {{!-- Other Layers --}}
     {{#accordion-menu title='Other Layers' open=false}}
-      {{#lookup-layer-group for='arterials' as |arterials|}}
-        {{#layer-menu-item 
-          title=arterials.model.title
-          active=arterials.model.visible}}
-          Layer
+      {{#lookup-layer-group for='zoning-districts' as |layerGroup|}}
+        {{#layer-menu-item
+          title=layerGroup.model.title
+          active=layerGroup.model.visible}}
         {{/layer-menu-item}}
       {{/lookup-layer-group}}
     {{/accordion-menu}}
   </div>
 
-  <div class="content-close-button-container">
-    <button class="content-close-button">×</button>
-  </div>
-  <div class="content-area cell large-5 large-order-3 xxlarge-4">
-    {{outlet}}
-  </div>
+  {{outlet}}
+
 </div>

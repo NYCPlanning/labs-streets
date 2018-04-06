@@ -1,42 +1,53 @@
-[{
-	"id": "digital-citymap",
-	"type": "cartovector",
-	"source-layers": [{
-			"id": "bulkhead-lines",
-			"sql": "SELECT the_geom_webmercator FROM citymap_bulkheadlines_v0"
-		},
-		{
-			"id": "arterials",
-			"sql": "SELECT the_geom_webmercator FROM citymap_arterials_v0"
-		},
-		{
-			"id": "pierhead-lines",
-			"sql": "SELECT the_geom_webmercator FROM citymap_pierheadlines_v0"
-		},
-		{
-			"id": "amendments",
-			"sql": "SELECT the_geom_webmercator, altmappdf FROM citymap_amendments_v0"
-		},
-		{
-			"id": "street-centerlines",
-			"sql": "SELECT the_geom_webmercator FROM citymap_streetcenterlines_v0"
-		},
-		{
-			"id": "citymap",
-			"sql": "SELECT the_geom_webmercator FROM citymap_citymap_v0"
-		},
-		{
-			"id": "name-changes-points",
-			"sql": "SELECT the_geom_webmercator FROM citymap_streetnamechanges_points_v0"
-		},
-		{
-			"id": "name-changes-lines",
-			"sql": "SELECT the_geom_webmercator FROM citymap_streetnamechanges_streets_v0"
-		},
-		{
-			"id": "name-changes-areas",
-			"sql": "SELECT the_geom_webmercator FROM citymap_streetnamechanges_areas_v0"
-		}
-
-	]
-}]
+[
+	{
+		"id": "digital-citymap",
+		"type": "cartovector",
+		"source-layers": [{
+				"id": "bulkhead-lines",
+				"sql": "SELECT the_geom_webmercator FROM citymap_bulkheadlines_v0"
+			},
+			{
+				"id": "arterials",
+				"sql": "SELECT the_geom_webmercator FROM citymap_arterials_v0"
+			},
+			{
+				"id": "pierhead-lines",
+				"sql": "SELECT the_geom_webmercator FROM citymap_pierheadlines_v0"
+			},
+			{
+				"id": "amendments",
+				"sql": "SELECT the_geom_webmercator FROM citymap_amendments_v0"
+			},
+			{
+				"id": "street-centerlines",
+				"sql": "SELECT the_geom_webmercator FROM citymap_streetcenterlines_v0"
+			},
+			{
+				"id": "citymap",
+				"sql": "SELECT the_geom_webmercator FROM citymap_citymap_v0"
+			},
+			{
+				"id": "name-changes-points",
+				"sql": "SELECT the_geom_webmercator FROM citymap_streetnamechanges_points_v0"
+			},
+			{
+				"id": "name-changes-lines",
+				"sql": "SELECT the_geom_webmercator FROM citymap_streetnamechanges_streets_v0"
+			},
+			{
+				"id": "name-changes-areas",
+				"sql": "SELECT the_geom_webmercator FROM citymap_streetnamechanges_areas_v0"
+			}
+		]
+	},
+	{
+	  "id": "zoning-districts",
+	  "type": "cartovector",
+	  "source-layers": [
+    	{
+	      "id": "zoning-districts",
+	      "sql": "SELECT *, CASE WHEN SUBSTRING(zonedist, 3, 1) = '-' THEN LEFT(zonedist, 2) WHEN SUBSTRING(zonedist, 3, 1) ~ E'[A-Z]' THEN LEFT(zonedist, 2) WHEN SUBSTRING(zonedist, 3, 1) ~ E'[0-9]' THEN LEFT(zonedist, 3) ELSE zonedist END as primaryzone FROM zoning_districts_v201803"
+	    }
+	  ]
+	}
+]
