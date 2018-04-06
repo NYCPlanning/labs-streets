@@ -16,7 +16,7 @@
 			},
 			{
 				"id": "amendments",
-				"sql": "SELECT the_geom_webmercator FROM citymap_amendments_v0"
+				"sql": "SELECT the_geom_webmercator, altmappdf FROM citymap_amendments_v0"
 			},
 			{
 				"id": "street-centerlines",
