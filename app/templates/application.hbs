@@ -15,25 +15,8 @@
   </div>
 
   <div class="layer-menu cell large-order-1">
-    {{#accordion-menu title='City Map Layers'}}
-      {{#lookup-layer-group for='amendments' as |amendments|}}
-        {{#layer-menu-item 
-          title=amendments.model.title 
-          active=amendments.model.visible}}
-          Layer
-        {{/layer-menu-item}}
-      {{/lookup-layer-group}}
-    {{/accordion-menu}}
-
-    {{#accordion-menu title='Other Layers' open=false}}
-      {{#lookup-layer-group for='arterials' as |arterials|}}
-        {{#layer-menu-item 
-          title=arterials.model.title
-          active=arterials.model.visible}}
-          Layer
-        {{/layer-menu-item}}
-      {{/lookup-layer-group}}
-    {{/accordion-menu}}
+    {{layer-palette
+      layerGroups=model.layerGroups}}
   </div>
 
   <div class="content-close-button-container">
