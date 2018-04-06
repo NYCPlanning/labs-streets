@@ -5,17 +5,18 @@ export default class ApplicationController extends Controller {
   @action
   handleMapLoad(map) {
     const sources = this.get('model.sources');
-    const layerGroups = this.get('model.layerGroups');
+    // const layerGroups = this.get('model.layerGroups');
+
     sources.forEach((source) => {
       map.addSource(source.id, source);
     });
 
-    layerGroups.forEach((layerGroup) => {
-      const layers = layerGroup.get('layers');
+    // layerGroups.forEach((layerGroup) => {
+    //   const layers = layerGroup.get('layers');
 
-      layers.forEach(({ style }) => {
-        map.addLayer(style);
-      });
-    });
+    //   layers.forEach(({ style }) => {
+    //     map.addLayer(style);
+    //   });
+    // });
   }
 }
