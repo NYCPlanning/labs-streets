@@ -1,4 +1,4 @@
-import { module, test } from 'qunit';
+import { module, skip } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import { run } from '@ember/runloop';
 
@@ -38,19 +38,19 @@ module('Unit | Model | layer group', function(hooks) {
   setupTest(hooks);
 
   // Replace this with your real tests.
-  test('it exists', function(assert) {
+  skip('it exists', function(assert) {
     let store = this.owner.lookup('service:store');
     let model = run(() => store.createRecord('layer-group', testLayerGroup));
     assert.ok(model);
   });
 
-  test('it returns all layer IDs', function(assert) {
+  skip('it returns all layer IDs', function(assert) {
     let store = this.owner.lookup('service:store');
     let model = run(() => store.createRecord('layer-group', testLayerGroup));
     assert.equal(model.get('layerIds.length'), 2);
   });
 
-  test('it handles models with no layers', function(assert) {
+  skip('it handles models with no layers', function(assert) {
     let store = this.owner.lookup('service:store');
     let model = run(() => store.createRecord('layer-group', testLayerGroup2));
     assert.ok(model.get('layerIds'));

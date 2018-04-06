@@ -32,4 +32,10 @@ module('Integration | Component | layer-menu-item', function(hooks) {
     const title = await find('.layer-menu-item-header .layer-menu-item-title').textContent.trim();
     assert.equal(title, 'Foo');
   });
+
+  test('accepts a for property to lookup an object', async function(assert) {
+    await render(hbs`{{layer-menu-item title='Foo'}}`);
+    const title = await find('.layer-menu-item-header .layer-menu-item-title').textContent.trim();
+    assert.equal(title, 'Foo');
+  });
 });
