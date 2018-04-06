@@ -5,7 +5,7 @@
   </div>
 
   <div class="map-container cell medium-auto large-order-2">
-    {{main-map 
+    {{main-map
       id='main-map'
       model=model
       initOptions=(hash style='//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json'
@@ -17,8 +17,8 @@
   <div class="layer-menu cell large-order-1">
     {{#accordion-menu title='City Map Layers'}}
       {{#lookup-layer-group for='amendments' as |amendments|}}
-        {{#layer-menu-item 
-          title=amendments.model.title 
+        {{#layer-menu-item
+          title=amendments.model.title
           active=amendments.model.visible}}
           Layer
         {{/layer-menu-item}}
@@ -27,7 +27,7 @@
 
     {{#accordion-menu title='Other Layers' open=false}}
       {{#lookup-layer-group for='arterials' as |arterials|}}
-        {{#layer-menu-item 
+        {{#layer-menu-item
           title=arterials.model.title
           active=arterials.model.visible}}
           Layer
@@ -36,10 +36,6 @@
     {{/accordion-menu}}
   </div>
 
-  <div class="content-close-button-container">
-    <button class="content-close-button">×</button>
-  </div>
-  <div class="content-area cell large-5 large-order-3 xxlarge-4">
-    {{outlet}}
-  </div>
+  {{outlet}}
+
 </div>

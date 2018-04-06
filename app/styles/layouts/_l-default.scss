@@ -94,6 +94,7 @@ body {
 .content-close-button {
   color: $dark-gray;
   font-size: rem-calc(32);
+  line-height: 1;
   position: relative;
   margin: 0;
   width: 1em;
@@ -122,6 +123,7 @@ body {
   z-index: 3;
   background-color: $body-background;
   min-height: calc(50vh - 6rem);
+  padding: $global-margin;
 
   @include breakpoint(large) {
     height: 100%;
