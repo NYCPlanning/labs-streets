@@ -1,0 +1,29 @@
+[{
+	"id": "digital-citymap",
+	"type": "cartovector",
+	"source-layers": [{
+			"id": "bulkhead-lines",
+			"sql": "SELECT the_geom_webmercator FROM citymap_bulkheadlines_v0"
+		},
+		{
+			"id": "arterials",
+			"sql": "SELECT the_geom_webmercator FROM citymap_arterials_v0"
+		},
+		{
+			"id": "pierhead-lines",
+			"sql": "SELECT the_geom_webmercator FROM citymap_pierheadlines_v0"
+		},
+		{
+			"id": "amendments",
+			"sql": "SELECT the_geom_webmercator FROM citymap_amendments_v0"
+		},
+		{
+			"id": "street-centerlines",
+			"sql": "SELECT the_geom_webmercator FROM citymap_streetcenterlines_v0"
+		},
+		{
+			"id": "citymap",
+			"sql": "SELECT the_geom_webmercator FROM citymap_citymap_v0"
+		}
+	]
+}]

@@ -1,0 +1,128 @@
+[{
+		"id": "pierhead-bulkhead-lines",
+		"title": "Pierhead and Bulkhead Lines",
+		"legendIcon": "admin-line",
+		"legendColor": "",
+		"visible": "true",
+		"meta": {
+			"description": "NYC Department of City Planning Technical Review Division",
+			"updated_at": "6 April 2018"
+		},
+		"layers": [{
+				"style": {
+					"id": "pierhead-line",
+					"type": "line",
+					"source": "digital-citymap",
+					"source-layer": "pierhead-lines",
+					"paint": {
+						"line-color": "#000",
+						"line-width": 4
+					}
+				}
+			},
+			{
+				"style": {
+					"id": "bulkhead-line",
+					"type": "line",
+					"source": "digital-citymap",
+					"source-layer": "bulkhead-lines",
+					"paint": {
+						"line-color": "#000",
+						"line-width": 4
+					}
+				}
+			}
+		]
+	},
+	{
+		"id": "citymap",
+		"title": "City Map",
+		"legendIcon": "admin-line",
+		"legendColor": "",
+		"visible": "true",
+		"meta": {
+			"description": "NYC Department of City Planning Technical Review Division",
+			"updated_at": "6 April 2018"
+		},
+		"layers": [{
+			"style": {
+				"id": "citymap-fill",
+				"type": "fill",
+				"source": "digital-citymap",
+				"source-layer": "citymap",
+				"paint": {
+					"fill-color": "#000"
+				}
+			}
+		}]
+	},
+	{
+		"id": "arterials",
+		"title": "Arterials",
+		"legendIcon": "admin-line",
+		"legendColor": "",
+		"visible": "true",
+		"meta": {
+			"description": "NYC Department of City Planning Technical Review Division",
+			"updated_at": "6 April 2018"
+		},
+		"layers": [{
+			"style": {
+				"id": "arterials-line",
+				"type": "line",
+				"source": "digital-citymap",
+				"source-layer": "arterials",
+				"paint": {
+					"line-color": "#000",
+					"line-width": 4
+				}
+			}
+		}]
+	},
+	{
+		"id": "amendments",
+		"title": "Amendments",
+		"legendIcon": "admin-line",
+		"legendColor": "",
+		"visible": "true",
+		"meta": {
+			"description": "NYC Department of City Planning Technical Review Division",
+			"updated_at": "6 April 2018"
+		},
+		"layers": [{
+			"style": {
+				"id": "amendments-line",
+				"type": "line",
+				"source": "digital-citymap",
+				"source-layer": "arterials",
+				"paint": {
+					"line-color": "#000",
+					"line-width": 4
+				}
+			}
+		}]
+	},
+	{
+		"id": "street-centerlines",
+		"title": "Street Centerlines",
+		"legendIcon": "admin-line",
+		"legendColor": "",
+		"visible": "true",
+		"meta": {
+			"description": "NYC Department of City Planning Technical Review Division",
+			"updated_at": "6 April 2018"
+		},
+		"layers": [{
+			"style": {
+				"id": "street-centerlines-line",
+				"type": "line",
+				"source": "digital-citymap",
+				"source-layer": "street-centerlines",
+				"paint": {
+					"line-color": "#000",
+					"line-width": 4
+				}
+			}
+		}]
+	}
+]
