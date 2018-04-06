@@ -24,6 +24,19 @@
 		{
 			"id": "citymap",
 			"sql": "SELECT the_geom_webmercator FROM citymap_citymap_v0"
+		},
+		{
+			"id": "name-changes-points",
+			"sql": "SELECT the_geom_webmercator FROM citymap_streetnamechanges_points_v0"
+		},
+		{
+			"id": "name-changes-lines",
+			"sql": "SELECT the_geom_webmercator FROM citymap_streetnamechanges_streets_v0"
+		},
+		{
+			"id": "name-changes-areas",
+			"sql": "SELECT the_geom_webmercator FROM citymap_streetnamechanges_areas_v0"
 		}
+
 	]
 }]
