@@ -1,16 +1,16 @@
-import DS from 'ember-data';
-import { computed } from '@ember/object';
-import { attr } from 'ember-decorators/data';
+import Model from 'ember-data/model';
+import { attr, hasMany } from 'ember-decorators/data';
+import { mapBy } from 'ember-decorators/object/computed';
 
-export default DS.Model.extend({
-  layerIds: computed('layers.@each', function() {
-    const layers = this.get('layers');
-    return layers.mapBy('style.id');
-  }),
-  @attr('string') title: null,
-  @attr('string') legendIcon: null,
-  @attr('string') legendColor: null,
-  @attr('boolean') visible: false,
-  @attr('string') meta: null,
-  @attr() layers: null,
-});
+export default class LayerGroupModel extends Model {
+  @hasMany('layer') layers = null;
+
+  @attr('string') title = null;
+  @attr('string') legendIcon = null;
+  @attr('string') legendColor = null;
+  @attr('boolean') visible = false;
+  @attr('string') meta = null;
+  @attr() layers = null;
+
+  @mapBy('layers.@each', 'style.id') layerIds;
+}

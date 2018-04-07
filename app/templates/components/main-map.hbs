@@ -24,12 +24,6 @@
       {{/if}}
     {{/each}}
 
-    {{#if highlightedFeature}}
-      {{#mapbox-gl-source map=map options=(hash type='geojson' data=highlightedFeature) as |source|}}
-        {{mapbox-gl-layer map=map layer=highlightedFeatureLayer before='waterway-label'}}
-      {{/mapbox-gl-source}}
-    {{/if}}
-
     {{mapbox-gl-on 'click' (action 'handleMouseClick') eventSource=map}}
 
   {{/if}}
