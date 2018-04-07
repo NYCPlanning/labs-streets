@@ -16,7 +16,7 @@
     {{!-- Bind layer groups' layers --}}
     {{#each model.layerGroups key='id' as |layerGroup|}}
       {{#if layerGroup.visible}}
-        {{#each layerGroup.layers as |layerObject|}}
+        {{#each layerGroup.layers key='id' as |layerObject|}}
           {{component 'mapbox-gl-layer' 
               map=map 
               layer=layerObject.style}}
@@ -24,7 +24,8 @@
       {{/if}}
     {{/each}}
 
-    {{mapbox-gl-on 'click' (action 'handleMouseClick') eventSource=map}}
+    {{mapbox-gl-on 'click' (action 'handleMouseClick') 
+      eventSource=map}}
 
   {{/if}}
 {{else}}

@@ -4,7 +4,6 @@ import { attr, belongsTo } from 'ember-decorators/data';
 const { Model } = DS;
 
 export default class LayerModel extends Model {
-  @belongsTo('layer-group') layerGroups = null;
-
-  @attr() style = null;
+  @belongsTo('layer-group') layerGroups
+  @attr() style
 }

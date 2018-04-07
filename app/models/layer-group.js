@@ -3,14 +3,13 @@ import { attr, hasMany } from 'ember-decorators/data';
 import { mapBy } from 'ember-decorators/object/computed';
 
 export default class LayerGroupModel extends Model {
-  @hasMany('layer') layers = null;
+  @hasMany('layer') layers
 
-  @attr('string') title = null;
-  @attr('string') legendIcon = null;
-  @attr('string') legendColor = null;
-  @attr('boolean') visible = false;
-  @attr('string') meta = null;
-  @attr() layers = null;
+  @attr('string') title
+  @attr('string') legendIcon
+  @attr('string') legendColor
+  @attr('boolean') visible = false
+  @attr('string') meta
 
-  @mapBy('layers.@each', 'style.id') layerIds;
+  @mapBy('layers.@each', 'style.id') layerIds
 }
