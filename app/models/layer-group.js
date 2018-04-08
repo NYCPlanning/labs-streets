@@ -8,7 +8,7 @@ export default class LayerGroupModel extends Model {
   @attr('string') title
   @attr('string') legendIcon
   @attr('string') legendColor
-  @attr('boolean') visible = false
+  @attr('boolean') visible = true
   @attr('string') meta
 
   @mapBy('layers.@each', 'style.id') layerIds

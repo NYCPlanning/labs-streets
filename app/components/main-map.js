@@ -1,19 +1,34 @@
 import mapboxGlMap from 'ember-mapbox-gl/components/mapbox-gl';
-import { action } from '@ember-decorators/object';
+import { action, computed } from '@ember-decorators/object';
 import { argument } from '@ember-decorators/argument';
+import { alias } from 'ember-decorators/object/computed';
 
 export default class MainMapComponent extends mapboxGlMap {
   @argument
   model = null;
 
+  @alias('model.layerGroups')
+  layerGroups;
+
+  @alias('model.layers')
+  layers;
+
+  @computed('layers.@each.visible')
+  get visibleLayers() {
+    return this.get('layers')
+      .filterBy('visible', true);
+  }
+
   @action
   handleMouseClick(e) {
     const map = this.get('map');
-    const model = this.get('model');
-    if (map && model) {
-      const [feature] = map.queryRenderedFeatures(e.point, { layers: ['citymap-amendments-fill'] });
+    if (map) {
+      // must be clickable and visible layers
+      const visibleLayers = this.get('visibleLayers').mapBy('id');
+      const [feature] = map.queryRenderedFeatures(e.point, { layers: visibleLayers });
       const { layer: { id: layerId } } = feature;
 
+      // there will be many of these
       if (layerId === 'citymap-amendments-fill') {
         const { properties: { altmappdf = '' } } = feature;
         const clean = altmappdf.split('/').pop();
@@ -21,21 +36,4 @@ export default class MainMapComponent extends mapboxGlMap {
       }
     }
   }
-
-  // @action
-  // handleMouseMove(e) {
-  //   const layers = this.get('localLayers').mapBy('style.id');
-  //   const feature = e.target.queryRenderedFeatures(e.point, { layers })[0];
-  //   const map = this.get('map');
-
-  //   if (feature) {
-  //     // set the highlighted feature
-  //     this.set('highlightedFeature', feature);
-  //     map.getSource('highlighted-feature').setData(feature);
-  //   } else {
-  //     this.set('highlightedFeature', null);
-  //   }
-
-  //   map.getCanvas().style.cursor = feature ? 'pointer' : '';
-  // }
 }

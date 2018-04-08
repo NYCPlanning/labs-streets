@@ -29,7 +29,8 @@ module.exports = {
     'max-len': 0,
     'array-callback-return': 0,
     'react/prefer-stateless-function': 0,
-    'class-methods-use-this': 0
+    'class-methods-use-this': 0,
+    'ember-best-practices/require-dependent-keys': 0
   },
   overrides: [
     // node files

@@ -7,6 +7,7 @@ export default class ApplicationRoute extends Route {
     return hash({
       sources: this.store.findAll('source')
         .then(sources => normalizeCartoVectors(sources.toArray())),
+      layers: this.store.peekAll('layer'),
       layerGroups: this.store.findAll('layer-group'),
     });
   }

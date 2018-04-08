@@ -1,9 +1,13 @@
-import DS from 'ember-data';
+import Model from 'ember-data/model';
 import { attr, belongsTo } from 'ember-decorators/data';
-
-const { Model } = DS;
+import { alias } from 'ember-decorators/object/computed';
 
 export default class LayerModel extends Model {
-  @belongsTo('layer-group') layerGroups
+  @belongsTo('layer-group') layerGroup
   @attr() style
+
+  @alias('layerGroup.visible')
+  get visible() {
+    return true;
+  }
 }
