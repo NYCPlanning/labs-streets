@@ -3,6 +3,9 @@ import { action } from '@ember-decorators/object';
 
 export default class ApplicationController extends Controller {
   @action
+  handleLayerClick(/* layer */) {}
+
+  @action
   handleMapLoad(map) {
     window.map = map;
 

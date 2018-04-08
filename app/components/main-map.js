@@ -20,7 +20,7 @@ export default class MainMapComponent extends mapboxGlMap {
   @immutable
   @argument
   @type(Action)
-  onClick;
+  onLayerClick;
 
   @computed('layers.@each.visible')
   get visibleLayers() {

@@ -8,6 +8,7 @@
     {{main-map
       id='main-map'
       model=model
+      onLayerClick=(action 'handleLayerClick')
       initOptions=(hash style='//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json'
                     zoom=10
                     center=(array -74.1197 40.6976))
