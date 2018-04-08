@@ -2,6 +2,9 @@ import mapboxGlMap from 'ember-mapbox-gl/components/mapbox-gl';
 import { action, computed } from '@ember-decorators/object';
 import { argument } from '@ember-decorators/argument';
 import { alias } from 'ember-decorators/object/computed';
+import { Action } from '@ember-decorators/argument/types';
+import { type } from '@ember-decorators/argument/type';
+import { required, immutable } from '@ember-decorators/argument/validation';
 
 export default class MainMapComponent extends mapboxGlMap {
   @argument
@@ -12,6 +15,12 @@ export default class MainMapComponent extends mapboxGlMap {
 
   @alias('model.layers')
   layers;
+
+  @required
+  @immutable
+  @argument
+  @type(Action)
+  onClick;
 
   @computed('layers.@each.visible')
   get visibleLayers() {

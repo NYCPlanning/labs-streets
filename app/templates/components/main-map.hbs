@@ -17,7 +17,7 @@
     {{#each model.layerGroups key='id' as |layerGroup|}}
       {{#if layerGroup.visible}}
         {{#each layerGroup.layers key='id' as |layerObject|}}
-          {{component 'mapbox-gl-layer' 
+          {{mapbox-gl-layer 
               map=map 
               layer=layerObject.style}}
         {{/each}}
