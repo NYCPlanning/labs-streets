@@ -26,6 +26,10 @@
 
     {{mapbox-gl-on 'click' (action 'handleMouseClick') 
       eventSource=map}}
+    {{mapbox-gl-on 'mousemove' (action 'handleMouseMove')
+      eventSource=map}}
+    {{mapbox-gl-on 'mouseout' (action 'handleMouseLeave')
+      eventSource=map}}
 
   {{/if}}
 {{else}}

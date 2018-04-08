@@ -27,20 +27,17 @@ export default class MainMapComponent extends mapboxGlMap {
   @type(Action)
   onLayerClick;
 
-  // TODO:
-  // onLayerHover;
-
   @computed('layers.@each.visible')
   get visibleLayers() {
     return this.get('layers')
-      .filterBy('visible', true);
+      .filterBy('visible', true)
+      .mapBy('id');
   }
 
   @action
   handleMouseClick(e) {
     const map = this.get('map');
-    // must be clickable and visible layers
-    const visibleLayers = this.get('visibleLayers').mapBy('id');
+    const visibleLayers = this.get('visibleLayers');
     const [feature] = map.queryRenderedFeatures(e.point, { layers: visibleLayers });
 
     const layerClickEvent = this.get('onLayerClick');
