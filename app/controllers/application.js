@@ -1,11 +1,17 @@
 import Controller from '@ember/controller';
 import { action } from '@ember-decorators/object';
+import QueryParams from 'ember-parachute';
 
-export default class ApplicationController extends Controller {
-  queryParams = ['amendments']
+export const LayerVisibilityParams = new QueryParams({
+  amendments: {
+    defaultValue: false,
+    refresh: true,
+  },
+});
 
-  amendments = true;
+const ParachuteController = Controller.extend(LayerVisibilityParams.Mixin);
 
+export default class ApplicationController extends ParachuteController {
   initMapOptions = {
     style: '//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json',
     zoom: 10,
@@ -44,5 +50,27 @@ export default class ApplicationController extends Controller {
     ];
 
     basemapLayersToHide.forEach(layer => map.removeLayer(layer));
+  }
+
+  // runs on controller setup and calls
+  // function to overwrite layer-groups'
+  // visibility state with QP state
+  setup({ queryParams }) {
+    this.fetchData(queryParams);
+  }
+
+  queryParamsDidChange({ shouldRefresh, queryParams }) {
+    if (shouldRefresh) {
+      this.fetchData(queryParams);
+    }
+  }
+
+  fetchData(queryParams) {
+    this.get('model.layerGroups').forEach((group) => {
+      const groupId = group.get('id');
+      if (queryParams[groupId] !== undefined) {
+        group.set('visible', queryParams[groupId]);
+      }
+    });
   }
 }
