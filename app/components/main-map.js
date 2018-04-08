@@ -7,9 +7,10 @@ import { type } from '@ember-decorators/argument/type';
 import { required, immutable } from '@ember-decorators/argument/validation';
 
 export default class MainMapComponent extends mapboxGlMap {
+  @required
   @argument
   @type('object')
-  model = null;
+  model = {};
 
   @alias('model.layerGroups')
   layerGroups;
@@ -25,6 +26,9 @@ export default class MainMapComponent extends mapboxGlMap {
   @argument
   @type(Action)
   onLayerClick;
+
+  // TODO:
+  // onLayerHover;
 
   @computed('layers.@each.visible')
   get visibleLayers() {
