@@ -21,28 +21,28 @@
       {{#lookup-layer-group for='citymap' as |layerGroup|}}
         {{#layer-menu-item
           title=layerGroup.model.title
-          active=layerGroup.model.visible}}
+          active=citymap}}
         {{/layer-menu-item}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='street-centerlines' as |layerGroup|}}
         {{#layer-menu-item
           title=layerGroup.model.title
-          active=layerGroup.model.visible}}
+          active=street-centerlines}}
         {{/layer-menu-item}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='pierhead-bulkhead-lines' as |layerGroup|}}
         {{#layer-menu-item
           title=layerGroup.model.title
-          active=layerGroup.model.visible}}
+          active=pierhead-bulkhead-lines}}
         {{/layer-menu-item}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='arterials' as |layerGroup|}}
         {{#layer-menu-item
           title=layerGroup.model.title
-          active=layerGroup.model.visible}}
+          active=arterials}}
         {{/layer-menu-item}}
       {{/lookup-layer-group}}
 
@@ -55,7 +55,7 @@
       {{#lookup-layer-group for='name-changes' as |layerGroup|}}
         {{#layer-menu-item
           title=layerGroup.model.title
-          active=layerGroup.model.visible}}
+          active=name-changes}}
         {{/layer-menu-item}}
       {{/lookup-layer-group}}
     {{/accordion-menu}}
@@ -65,7 +65,7 @@
       {{#lookup-layer-group for='zoning-districts' as |layerGroup|}}
         {{#layer-menu-item
           title=layerGroup.model.title
-          active=layerGroup.model.visible}}
+          active=zoning-districts}}
         {{/layer-menu-item}}
       {{/lookup-layer-group}}
     {{/accordion-menu}}

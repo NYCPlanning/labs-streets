@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { action, computed } from '@ember-decorators/object';
 import { argument } from '@ember-decorators/argument';
-import { required, immutable } from '@ember-decorators/argument/validation';
+import { required } from '@ember-decorators/argument/validation';
 import { alias } from 'ember-decorators/object/computed';
 import { Action } from '@ember-decorators/argument/types';
 import { type } from '@ember-decorators/argument/type';

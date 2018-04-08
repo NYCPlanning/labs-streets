@@ -3,7 +3,31 @@ import { action } from '@ember-decorators/object';
 import QueryParams from 'ember-parachute';
 
 export const LayerVisibilityParams = new QueryParams({
+  'pierhead-bulkhead-lines': {
+    defaultValue: true,
+    refresh: true,
+  },
+  citymap: {
+    defaultValue: true,
+    refresh: true,
+  },
+  arterials: {
+    defaultValue: false,
+    refresh: true,
+  },
   amendments: {
+    defaultValue: false,
+    refresh: true,
+  },
+  'street-centerlines': {
+    defaultValue: true,
+    refresh: true,
+  },
+  'name-changes': {
+    defaultValue: false,
+    refresh: true,
+  },
+  'zoning-districts': {
     defaultValue: false,
     refresh: true,
   },
@@ -56,7 +80,7 @@ export default class ApplicationController extends ParachuteController {
   // function to overwrite layer-groups'
   // visibility state with QP state
   setup({ queryParams }) {
-    this.fetchData(queryParams);
+    this.fetchData(queryParams, true);
   }
 
   queryParamsDidChange({ shouldRefresh, queryParams }) {
@@ -65,10 +89,14 @@ export default class ApplicationController extends ParachuteController {
     }
   }
 
-  fetchData(queryParams) {
+  fetchData(queryParams, setDefaults = false) {
     this.get('model.layerGroups').forEach((group) => {
       const groupId = group.get('id');
       if (queryParams[groupId] !== undefined) {
+        if (setDefaults) {
+          this.setDefaultQueryParamValue(groupId, group.get('visible'));
+          console.log(groupId, group.get('visible'));
+        }
         group.set('visible', queryParams[groupId]);
       }
     });
