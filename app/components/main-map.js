@@ -8,6 +8,7 @@ import { required, immutable } from '@ember-decorators/argument/validation';
 
 export default class MainMapComponent extends mapboxGlMap {
   @argument
+  @type('object')
   model = null;
 
   @alias('model.layerGroups')
@@ -15,6 +16,9 @@ export default class MainMapComponent extends mapboxGlMap {
 
   @alias('model.layers')
   layers;
+
+  @alias('model.sources')
+  sources;
 
   @required
   @immutable
@@ -31,18 +35,23 @@ export default class MainMapComponent extends mapboxGlMap {
   @action
   handleMouseClick(e) {
     const map = this.get('map');
-    if (map) {
-      // must be clickable and visible layers
-      const visibleLayers = this.get('visibleLayers').mapBy('id');
-      const [feature] = map.queryRenderedFeatures(e.point, { layers: visibleLayers });
-      const { layer: { id: layerId } } = feature;
+    // must be clickable and visible layers
+    const visibleLayers = this.get('visibleLayers').mapBy('id');
+    const [feature] = map.queryRenderedFeatures(e.point, { layers: visibleLayers });
 
-      // there will be many of these
-      if (layerId === 'citymap-amendments-fill') {
-        const { properties: { altmappdf = '' } } = feature;
-        const clean = altmappdf.split('/').pop();
-        window.open(`https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/${clean}`);
-      }
+    const layerClickEvent = this.get('onLayerClick');
+    if (layerClickEvent && feature) {
+      layerClickEvent(feature);
     }
+  }
+
+  // preload all sources
+  _onLoad(map) {
+    super._onLoad(map);
+
+    const sources = this.get('sources');
+    sources.forEach((source) => {
+      map.addSource(source.id, source);
+    });
   }
 }

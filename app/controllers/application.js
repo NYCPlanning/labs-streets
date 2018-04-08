@@ -3,7 +3,16 @@ import { action } from '@ember-decorators/object';
 
 export default class ApplicationController extends Controller {
   @action
-  handleLayerClick(/* layer */) {}
+  handleLayerClick(feature = { layer: {} }) {
+    const { layer: { id: layerId } } = feature;
+
+    // there will be many of these
+    if (layerId === 'citymap-amendments-fill') {
+      const { properties: { altmappdf = '' } } = feature;
+      const clean = altmappdf.split('/').pop();
+      window.open(`https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/${clean}`);
+    }
+  }
 
   @action
   handleMapLoad(map) {
@@ -25,20 +34,5 @@ export default class ApplicationController extends Controller {
     ];
 
     basemapLayersToHide.forEach(layer => map.removeLayer(layer));
-
-    const sources = this.get('model.sources');
-    // const layerGroups = this.get('model.layerGroups');
-
-    sources.forEach((source) => {
-      map.addSource(source.id, source);
-    });
-
-    // layerGroups.forEach((layerGroup) => {
-    //   const layers = layerGroup.get('layers');
-
-    //   layers.forEach(({ style }) => {
-    //     map.addLayer(style);
-    //   });
-    // });
   }
 }
