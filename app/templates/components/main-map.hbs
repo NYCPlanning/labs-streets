@@ -17,6 +17,8 @@
     {{#each model.layerGroups key='id' as |layerGroup|}}
       {{#if layerGroup.visible}}
         {{#each layerGroup.layers key='id' as |layerObject|}}
+          {{mapbox-gl-on 'mousemove' layerObject.style.id (action 'handleMouseMove') 
+            eventSource=map}}
           {{mapbox-gl-layer 
               map=map 
               layer=layerObject.style}}
@@ -26,11 +28,13 @@
 
     {{mapbox-gl-on 'click' (action 'handleMouseClick') 
       eventSource=map}}
-    {{mapbox-gl-on 'mousemove' (action 'handleMouseMove')
-      eventSource=map}}
-    {{mapbox-gl-on 'mouseout' (action 'handleMouseLeave')
-      eventSource=map}}
 
+    {{!-- Highlighted Layer Handling --}}
+    {{#if highlightedFeature}}
+      {{mapbox-gl-layer 
+        map=map 
+        layer=highlightedFeatureLayer}}
+    {{/if}}
   {{/if}}
 {{else}}
   {{yield to='inverse'}}

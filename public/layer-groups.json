@@ -177,6 +177,21 @@
 
           }
         }
+      },
+      {
+        "id": "citymap-amendments-hover",
+        "style":{
+          "id":"citymap-amendments-hover",
+          "type":"fill",
+          "source":"digital-citymap",
+          "source-layer":"amendments",
+          "paint":{
+            "fill-color": "#627BC1",
+            "fill-opacity": 1
+          },
+          "layout":{},
+          "filter": ["==", "id", ""]
+        }
       }
     ]
   },

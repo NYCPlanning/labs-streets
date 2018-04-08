@@ -27,6 +27,32 @@ export default class MainMapComponent extends mapboxGlMap {
   @type(Action)
   onLayerClick;
 
+  highlightedFeature = null;
+  highlightedFeatureLayer = {
+    id: 'highlighted-feature',
+    type: 'line',
+    source: 'highlighted-feature',
+    paint: {
+      'line-color': '#555555',
+      'line-opacity': 0.8,
+      'line-width': {
+        stops: [
+          [8, 2],
+          [11, 4],
+        ],
+      },
+    },
+  }
+
+  @computed('highlightedFeature')
+  get highlightedFeatureSource() {
+    const feature = this.get('highlightedFeature');
+    return {
+      type: 'geojson',
+      data: feature,
+    };
+  }
+
   @computed('layers.@each.visible')
   get visibleLayers() {
     return this.get('layers')
@@ -46,6 +72,22 @@ export default class MainMapComponent extends mapboxGlMap {
     }
   }
 
+  @action
+  handleMouseMove(e) {
+    const [feature] = e.features;
+    const map = this.get('map');
+
+    if (feature) {
+      // set the highlighted feature
+      this.set('highlightedFeature', feature);
+      map.getSource('highlighted-feature').setData(feature);
+    } else {
+      this.set('highlightedFeature', null);
+    }
+
+    map.getCanvas().style.cursor = (feature) ? 'pointer' : '';
+  }
+
   // preload all sources
   _onLoad(map) {
     super._onLoad(map);
@@ -54,5 +96,7 @@ export default class MainMapComponent extends mapboxGlMap {
     sources.forEach((source) => {
       map.addSource(source.id, source);
     });
+
+    map.addSource('highlighted-feature', this.get('highlightedFeatureSource'));
   }
 }
