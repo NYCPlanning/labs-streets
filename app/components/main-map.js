@@ -61,10 +61,8 @@ export default class MainMapComponent extends mapboxGlMap {
   }
 
   @action
-  handleMouseClick(e) {
-    const map = this.get('map');
-    const visibleLayers = this.get('visibleLayers');
-    const [feature] = map.queryRenderedFeatures(e.point, { layers: visibleLayers });
+  handleLayerMouseClick(e) {
+    const [feature] = e.features;
 
     const layerClickEvent = this.get('onLayerClick');
     if (layerClickEvent && feature) {
@@ -73,7 +71,7 @@ export default class MainMapComponent extends mapboxGlMap {
   }
 
   @action
-  handleMouseMove(e) {
+  handleLayerMouseMove(e) {
     const [feature] = e.features;
     const map = this.get('map');
 

@@ -17,7 +17,9 @@
     {{#each model.layerGroups key='id' as |layerGroup|}}
       {{#if layerGroup.visible}}
         {{#each layerGroup.layers key='id' as |layerObject|}}
-          {{mapbox-gl-on 'mousemove' layerObject.style.id (action 'handleMouseMove') 
+          {{mapbox-gl-on 'mousemove' layerObject.style.id (action 'handleLayerMouseMove') 
+            eventSource=map}}
+          {{mapbox-gl-on 'click' layerObject.style.id (action 'handleLayerMouseClick') 
             eventSource=map}}
           {{mapbox-gl-layer 
               map=map 
@@ -25,9 +27,6 @@
         {{/each}}
       {{/if}}
     {{/each}}
-
-    {{mapbox-gl-on 'click' (action 'handleMouseClick') 
-      eventSource=map}}
 
     {{!-- Highlighted Layer Handling --}}
     {{#if highlightedFeature}}
