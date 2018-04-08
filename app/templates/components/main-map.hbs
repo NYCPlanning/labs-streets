@@ -11,29 +11,9 @@
       on=(component 'mapbox-gl-on' eventSource=map)
       popup=(component 'mapbox-gl-popup' map=map)
       source=(component 'mapbox-gl-source' map=map)
+      labs-layers=(component '-main-map-layers' map=map)
     )}}
 
-    {{!-- Bind layer groups' layers --}}
-    {{#each model.layerGroups key='id' as |layerGroup|}}
-      {{#if layerGroup.visible}}
-        {{#each layerGroup.layers key='id' as |layerObject|}}
-          {{mapbox-gl-on 'mousemove' layerObject.style.id (action 'handleLayerMouseMove') 
-            eventSource=map}}
-          {{mapbox-gl-on 'click' layerObject.style.id (action 'handleLayerMouseClick') 
-            eventSource=map}}
-          {{mapbox-gl-layer 
-              map=map 
-              layer=layerObject.style}}
-        {{/each}}
-      {{/if}}
-    {{/each}}
-
-    {{!-- Highlighted Layer Handling --}}
-    {{#if highlightedFeature}}
-      {{mapbox-gl-layer 
-        map=map 
-        layer=highlightedFeatureLayer}}
-    {{/if}}
   {{/if}}
 {{else}}
   {{yield to='inverse'}}

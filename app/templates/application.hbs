@@ -5,14 +5,14 @@
   </div>
 
   <div class="map-container cell medium-auto large-order-2">
-    {{main-map
+    {{#main-map
       id='main-map'
-      model=model
-      onLayerClick=(action 'handleLayerClick')
-      initOptions=(hash style='//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json'
-                    zoom=10
-                    center=(array -74.1197 40.6976))
-      mapLoaded=(action 'handleMapLoad')}}
+      initOptions=initMapOptions
+      mapLoaded=(action 'handleMapLoad') as |map|}}
+      {{map.labs-layers
+        model=model
+        onLayerClick=(action 'handleLayerClick')}}
+    {{/main-map}}
   </div>
 
   <div class="layer-menu cell large-order-1">
@@ -49,7 +49,7 @@
       {{#lookup-layer-group for='amendments' as |layerGroup|}}
         {{#layer-menu-item
           title=layerGroup.model.title
-          active=layerGroup.model.visible}}
+          active=amendments}}
         {{/layer-menu-item}}
       {{/lookup-layer-group}}
       {{#lookup-layer-group for='name-changes' as |layerGroup|}}

@@ -2,6 +2,16 @@ import Controller from '@ember/controller';
 import { action } from '@ember-decorators/object';
 
 export default class ApplicationController extends Controller {
+  queryParams = ['amendments']
+
+  amendments = true;
+
+  initMapOptions = {
+    style: '//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json',
+    zoom: 10,
+    center: [-74.1197, 40.6976],
+  }
+
   @action
   handleLayerClick(feature = { layer: {} }) {
     const { layer: { id: layerId } } = feature;
