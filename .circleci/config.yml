@@ -31,7 +31,6 @@ jobs:
 
       - run: yarn install
       - run: sudo yarn global add bower
-      - run: bower install
 
       - save_cache:
           paths:
