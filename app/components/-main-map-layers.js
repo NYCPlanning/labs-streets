@@ -81,12 +81,12 @@ export default class MainMapLayersComponent extends Component {
     type: 'line',
     source: 'hovered-feature',
     paint: {
-      'line-color': '#555555',
-      'line-opacity': 0.8,
+      'line-color': '#ffff00',
+      'line-opacity': 0.3,
       'line-width': {
         stops: [
-          [8, 2],
-          [11, 4],
+          [8, 4],
+          [11, 7],
         ],
       },
     },
