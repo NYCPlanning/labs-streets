@@ -12,10 +12,12 @@
 {{/each}}
 
 {{!-- Highlighted Layer Handling --}}
-{{#if highlightedFeature}}
+{{#if hoveredFeature}}
   {{mapbox-gl-layer 
     map=map 
     layer=highlightedFeatureLayer}}
 {{/if}}
+
+{{component toolTipComponent}}
 
 {{yield}}
