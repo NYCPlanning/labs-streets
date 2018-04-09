@@ -11,6 +11,7 @@
     },
     "layers":[
       {
+        "id": "citymap-pierhead-line",
         "style":{
           "id":"citymap-pierhead-line",
           "type":"line",
@@ -39,6 +40,7 @@
         }
       },
       {
+        "id": "citymap-bulkhead-line",
         "style":{
           "id":"citymap-bulkhead-line",
           "type":"line",
@@ -79,6 +81,7 @@
     },
     "layers":[
       {
+        "id": "citymap-citymap-line",
         "style":{
           "id":"citymap-citymap-line",
           "type":"line",
@@ -119,6 +122,7 @@
     },
     "layers":[
       {
+        "id": "citymap-arterials-line",
         "style":{
           "id":"citymap-arterials-line",
           "type":"line",
@@ -159,6 +163,7 @@
     },
     "layers":[
       {
+        "id": "citymap-amendments-fill",
         "style":{
           "id":"citymap-amendments-fill",
           "type":"fill",
@@ -171,6 +176,21 @@
           "layout":{
 
           }
+        }
+      },
+      {
+        "id": "citymap-amendments-hover",
+        "style":{
+          "id":"citymap-amendments-hover",
+          "type":"fill",
+          "source":"digital-citymap",
+          "source-layer":"amendments",
+          "paint":{
+            "fill-color": "#627BC1",
+            "fill-opacity": 1
+          },
+          "layout":{},
+          "filter": ["==", "id", ""]
         }
       }
     ]
@@ -187,6 +207,7 @@
     },
     "layers":[
       {
+        "id": "citymap-street-centerlines-line",
         "style":{
           "id":"citymap-street-centerlines-line",
           "type":"line",
@@ -242,6 +263,7 @@
     },
     "layers":[
       {
+        "id": "citymap-name-changes-circle",
         "style":{
           "id":"citymap-name-changes-circle",
           "type":"circle",
@@ -281,6 +303,7 @@
         }
       },
       {
+        "id": "citymap-name-changes-line",
         "style":{
           "id":"citymap-name-changes-line",
           "type":"line",
@@ -305,6 +328,7 @@
         }
       },
       {
+        "id": "citymap-name-changes-fill",
         "style":{
           "id":"citymap-name-changes-fill",
           "type":"fill",
@@ -332,6 +356,7 @@
     },
     "layers":[
       {
+        "id": "zd-lines",
         "style":{
           "id":"zd-lines",
           "type":"line",
@@ -357,6 +382,7 @@
         "before":"place_other"
       },
       {
+        "id": "zd_labels",
         "style":{
           "id":"zd_labels",
           "type":"symbol",

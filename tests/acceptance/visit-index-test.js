@@ -1,11 +1,11 @@
-import { module, test } from 'qunit';
+import { module, test, skip } from 'qunit';
 import { visit, find, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 module('Acceptance | visit index', function(hooks) {
   setupApplicationTest(hooks);
 
-  test('user visits index and sees a map', async function(assert) {
+  skip('user visits index and sees a map', async function(assert) {
     await visit('/');
     const node = await find('.mapboxgl-canvas-container canvas');
 
