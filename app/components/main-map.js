@@ -23,7 +23,7 @@ export default class MainMapComponent extends mapboxGlMap {
   highlightedFeatureLayer = highlightedFeatureLayer;
   highlightedFeature = null;
 
-  @computed('model.layerGroups.@each')
+  @computed('model.layerGroups.@each', '')
   get localLayers() {
     const layerGroups = this.get('model.layerGroups');
     return layerGroups
