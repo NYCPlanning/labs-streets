@@ -12,10 +12,20 @@
 {{/each}}
 
 {{!-- Highlighted Layer Handling --}}
-{{#if highlightedFeature}}
+{{#if hoveredFeature}}
   {{mapbox-gl-layer 
     map=map 
     layer=highlightedFeatureLayer}}
+
 {{/if}}
 
-{{yield}}
+{{yield (hash 
+  tooltip=(if hoveredFeature 
+    (component toolTipComponent 
+      feature=hoveredFeature 
+      layer=hoveredLayer 
+      top=mousePosition.y 
+      left=mousePosition.x
+    )
+  )
+)}}

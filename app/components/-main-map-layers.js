@@ -14,7 +14,7 @@ export default class MainMapLayersComponent extends Component {
 
     // add source for highlighted-feature
     map
-      .addSource('highlighted-feature', this.get('highlightedFeatureSource'));
+      .addSource('hovered-feature', this.get('hoveredFeatureSource'));
 
     const sources = this.get('sources');
     sources.forEach((source) => {
@@ -22,18 +22,32 @@ export default class MainMapLayersComponent extends Component {
     });
   }
 
-  @required
   @argument
   @type(Action)
-  onLayerClick;
+  onLayerClick = () => {};
 
-  @computed('highlightedFeature')
-  get highlightedFeatureSource() {
-    const feature = this.get('highlightedFeature');
+  @argument
+  @type(Action)
+  onLayerMouseMove = () => {};
+
+  @argument
+  @type(Action)
+  onLayerMouseLeave = () => {};
+
+  @computed('hoveredFeature')
+  get hoveredFeatureSource() {
+    const feature = this.get('hoveredFeature');
     return {
       type: 'geojson',
       data: feature,
     };
+  }
+
+  @computed('hoveredFeature')
+  get hoveredLayer() {
+    const feature = this.get('hoveredFeature');
+    return this.get('layers')
+      .findBy('id', feature.layer.id);
   }
 
   @computed('layers.@each.visible')
@@ -56,20 +70,23 @@ export default class MainMapLayersComponent extends Component {
   @alias('model.sources')
   sources;
 
-  highlightedFeature = null;
+  @argument
+  toolTipComponent = 'labs-layers-tooltip';
+  hoveredFeature = null;
+  mousePosition = null;
 
   @argument
   highlightedFeatureLayer = {
     id: 'highlighted-feature',
     type: 'line',
-    source: 'highlighted-feature',
+    source: 'hovered-feature',
     paint: {
-      'line-color': '#555555',
-      'line-opacity': 0.8,
+      'line-color': '#ffff00',
+      'line-opacity': 0.3,
       'line-width': {
         stops: [
-          [8, 2],
-          [11, 4],
+          [8, 4],
+          [11, 7],
         ],
       },
     },
@@ -90,16 +107,35 @@ export default class MainMapLayersComponent extends Component {
     const [feature] = e.features;
     const map = this.get('map');
 
-    // set the highlighted feature
-    this.set('highlightedFeature', feature);
-    map.getSource('highlighted-feature').setData(feature);
+    // set the hovered feature
+    this.setProperties({
+      hoveredFeature: feature,
+      mousePosition: e.point,
+    });
+
+    map.getSource('hovered-feature').setData(feature);
     map.getCanvas().style.cursor = 'pointer';
+
+    const mouseMoveEvent = this.get('onLayerMouseMove');
+    if (mouseMoveEvent && feature) {
+      mouseMoveEvent(e);
+    }
   }
 
   @action
   handleLayerMouseLeave() {
     const map = this.get('map');
-    this.set('highlightedFeature', null);
+    this.set('hoveredFeature', null);
     map.getCanvas().style.cursor = '';
+
+    this.setProperties({
+      hoveredFeature: null,
+      mousePosition: null,
+    });
+
+    const mouseLeaveEvent = this.get('onLayerMouseLeave');
+    if (mouseLeaveEvent) {
+      mouseLeaveEvent();
+    }
   }
 }
