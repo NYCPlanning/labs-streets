@@ -14,5 +14,5 @@ export default class LayerGroupModel extends Model {
   @attr('boolean') highlightable = true
   @attr('boolean') tooltipable = true
 
-  @mapBy('layers.@each', 'style.id') layerIds
+  @mapBy('layers', 'style') layerIds
 }

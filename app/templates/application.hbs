@@ -5,7 +5,7 @@
   </div>
 
   <div class="map-container cell medium-auto large-order-2">
-    {{#main-map
+    {{#labs-map
       id='main-map'
       initOptions=initMapOptions
       mapLoaded=(action 'handleMapLoad') as |map|}}
@@ -16,7 +16,7 @@
           {{tooltip.layer.id}}
         {{/layers.tooltip}}
       {{/map.labs-layers}}
-    {{/main-map}}
+    {{/labs-map}}
   </div>
 
   <div class="layer-menu cell large-order-1">
