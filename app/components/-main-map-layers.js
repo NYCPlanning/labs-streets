@@ -57,6 +57,8 @@ export default class MainMapLayersComponent extends Component {
   sources;
 
   highlightedFeature = null;
+
+  @argument
   highlightedFeatureLayer = {
     id: 'highlighted-feature',
     type: 'line',
@@ -91,7 +93,6 @@ export default class MainMapLayersComponent extends Component {
     // set the highlighted feature
     this.set('highlightedFeature', feature);
     map.getSource('highlighted-feature').setData(feature);
-
     map.getCanvas().style.cursor = 'pointer';
   }
 

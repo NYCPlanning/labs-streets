@@ -9,18 +9,30 @@ module('Integration | Component | main-map-layers', function(hooks) {
   test('it renders', async function(assert) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
+    this.set('initOptions', {
+      style: '//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json',
+      zoom: 10,
+      center: [-74.1197, 40.6976],
+    });
 
-    await render(hbs`{{-main-map-layers}}`);
+    this.set('onLayerClick', (e) => {
 
-    assert.equal(this.element.textContent.trim(), '');
+    });
 
-    // Template block usage:
+    this.set('handleMapLoad', (map) => {
+      console.log(map);
+    });
+
     await render(hbs`
-      {{#-main-map-layers}}
-        template block text
-      {{/-main-map-layers}}
+      {{#main-map 
+        initOptions=initMapOptions
+        mapLoaded=(action handleMapLoad) as |map|}}
+        {{map.labs-layers
+          onLayerClick=(action onLayerClick)}}
+      {{/main-map}}
     `);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.equal(this.element.textContent.trim(), 'Missing Mapbox GL JS CSS');
+
   });
 });
