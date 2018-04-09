@@ -95,8 +95,16 @@ export default class ApplicationController extends ParachuteController {
       'highway_motorway_subtle',
       'highway_motorway_bridge_casing',
       'highway_motorway_bridge_inner',
-      // 'highway_name_other',
-      // 'highway_name_motorway',
+      'highway_name_other',
+      'highway_name_motorway',
+      'tunnel_motorway_casing',
+      'tunnel_motorway_inner',
+      'railway_transit',
+      'railway_transit_dashline',
+      'railway_service',
+      'railway_service_dashline',
+      'railway',
+      'railway_dashline',
     ];
 
     basemapLayersToHide.forEach(layer => map.removeLayer(layer));
