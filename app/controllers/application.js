@@ -95,7 +95,6 @@ export default class ApplicationController extends ParachuteController {
       if (queryParams[groupId] !== undefined) {
         if (setDefaults) {
           this.setDefaultQueryParamValue(groupId, group.get('visible'));
-          console.log(groupId, group.get('visible'));
         }
         group.set('visible', queryParams[groupId]);
       }
