@@ -16,8 +16,16 @@
   {{mapbox-gl-layer 
     map=map 
     layer=highlightedFeatureLayer}}
+
 {{/if}}
 
-{{component toolTipComponent}}
-
-{{yield}}
+{{yield (hash 
+  tooltip=(if hoveredFeature 
+    (component 'labs-layers-tooltip' 
+      feature=hoveredFeature 
+      layer=hoveredLayer 
+      top=mousePosition.y 
+      left=mousePosition.x
+    )
+  )
+)}}

@@ -9,9 +9,13 @@
       id='main-map'
       initOptions=initMapOptions
       mapLoaded=(action 'handleMapLoad') as |map|}}
-      {{map.labs-layers
+      {{#map.labs-layers
         model=model
-        onLayerClick=(action 'handleLayerClick')}}
+        onLayerClick=(action 'handleLayerClick') as |layers|}}
+        {{#layers.tooltip as |tooltip|}}
+          {{tooltip.layer.id}}
+        {{/layers.tooltip}}
+      {{/map.labs-layers}}
     {{/main-map}}
   </div>
 

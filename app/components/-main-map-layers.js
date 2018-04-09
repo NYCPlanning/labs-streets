@@ -43,6 +43,13 @@ export default class MainMapLayersComponent extends Component {
     };
   }
 
+  @computed('hoveredFeature')
+  get hoveredLayer() {
+    const feature = this.get('hoveredFeature');
+    return this.get('layers')
+      .findBy('id', feature.layer.id);
+  }
+
   @computed('layers.@each.visible')
   get visibleLayers() {
     return this.get('layers')
@@ -63,8 +70,10 @@ export default class MainMapLayersComponent extends Component {
   @alias('model.sources')
   sources;
 
+  @argument
   toolTipComponent = 'labs-layers-tooltip';
   hoveredFeature = null;
+  mousePosition = null;
 
   @argument
   highlightedFeatureLayer = {
@@ -99,7 +108,11 @@ export default class MainMapLayersComponent extends Component {
     const map = this.get('map');
 
     // set the hovered feature
-    this.set('hoveredFeature', feature);
+    this.setProperties({
+      hoveredFeature: feature,
+      mousePosition: e.point,
+    });
+
     map.getSource('hovered-feature').setData(feature);
     map.getCanvas().style.cursor = 'pointer';
 
@@ -114,6 +127,11 @@ export default class MainMapLayersComponent extends Component {
     const map = this.get('map');
     this.set('hoveredFeature', null);
     map.getCanvas().style.cursor = '';
+
+    this.setProperties({
+      hoveredFeature: null,
+      mousePosition: null,
+    });
 
     const mouseLeaveEvent = this.get('onLayerMouseLeave');
     if (mouseLeaveEvent) {
