@@ -24,7 +24,7 @@ module('Integration | Component | main-map', function(hooks) {
   //   assert.equal(this.element.textContent.trim(), 'template block text');
   // });
 
-  test('it shows a map', async function(assert) {
+  skip('it shows a map', async function(assert) {
     await render(hbs`{{main-map}}`);
     const node = await find('.mapboxgl-canvas-container canvas');
 
