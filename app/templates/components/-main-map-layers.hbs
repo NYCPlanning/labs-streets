@@ -21,7 +21,7 @@
 
 {{yield (hash 
   tooltip=(if hoveredFeature 
-    (component 'labs-layers-tooltip' 
+    (component toolTipComponent 
       feature=hoveredFeature 
       layer=hoveredLayer 
       top=mousePosition.y 
