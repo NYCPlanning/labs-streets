@@ -20,11 +20,11 @@
 			},
 			{
 				"id": "street-centerlines",
-				"sql": "SELECT the_geom_webmercator FROM citymap_streetcenterlines_v0"
+				"sql": "SELECT the_geom_webmercator, official_s AS streetname, streetwidt AS streetwidth FROM citymap_streetcenterlines_v0"
 			},
 			{
 				"id": "citymap",
-				"sql": "SELECT the_geom_webmercator FROM citymap_citymap_v0"
+				"sql": "SELECT the_geom_webmercator, type FROM citymap_citymap_v0"
 			},
 			{
 				"id": "name-changes-points",
