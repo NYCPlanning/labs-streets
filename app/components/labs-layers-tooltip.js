@@ -5,11 +5,14 @@ import { required } from '@ember-decorators/argument/validation';
 import { type } from '@ember-decorators/argument/type';
 
 export default class LabsLayersTooltipComponent extends Component {
-  @computed('top', 'left')
+  @computed('top', 'left', 'offset')
   get style() {
-    const position = this.getProperties('top', 'left');
-    return `top: ${position.top + 20}px; left: ${position.left + 20}px; pointer-events: none;`;
+    const position = this.getProperties('top', 'left', 'offset');
+    return `top: ${position.top + position.offset}px; left: ${position.left + position.offset}px; pointer-events: none;`;
   }
+
+  @argument
+  offset = 20;
 
   @required
   @argument
