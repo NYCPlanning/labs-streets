@@ -16,7 +16,13 @@
           {{tooltip.layer.id}}
         {{/layers.tooltip}}
       {{/map.labs-layers}}
+      
+      {{map.on 'zoomend' (action 'handleZoomend')}}
+      {{map.on 'dragend' (action 'handleDragend')}}
     {{/labs-map}}
+
+
+
   </div>
 
   <div class="layer-menu cell large-order-1">

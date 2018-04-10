@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import { action } from '@ember-decorators/object';
+import { action, computed } from '@ember-decorators/object';
 import QueryParams from 'ember-parachute';
 
 export const LayerVisibilityParams = new QueryParams({
@@ -31,15 +31,29 @@ export const LayerVisibilityParams = new QueryParams({
     defaultValue: false,
     refresh: true,
   },
+  lat: {
+    defaultValue: -74.1197,
+  },
+  lng: {
+    defaultValue: 40.6976,
+  },
+  zoom: {
+    defaultValue: 10,
+  },
 });
 
 const ParachuteController = Controller.extend(LayerVisibilityParams.Mixin);
 
 export default class ApplicationController extends ParachuteController {
-  initMapOptions = {
-    style: '//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json',
-    zoom: 10,
-    center: [-74.1197, 40.6976],
+  @computed('lat', 'lng', 'zoom')
+  get initMapOptions() {
+    const { lat, lng, zoom } = this.getProperties('lat', 'lng', 'zoom');
+
+    return {
+      style: '//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json',
+      zoom,
+      center: [lat, lng],
+    };
   }
 
   @action
@@ -52,6 +66,18 @@ export default class ApplicationController extends ParachuteController {
       const clean = altmappdf.split('/').pop();
       window.open(`https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/${clean}`);
     }
+  }
+
+  @action
+  handleZoomend(e) {
+    const zoom = e.target.getZoom();
+    this.setProperties({ zoom });
+  }
+
+  @action
+  handleDragend(e) {
+    const { lat: lng, lng: lat } = e.target.getCenter();
+    this.setProperties({ lat, lng });
   }
 
   @action
