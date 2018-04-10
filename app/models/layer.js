@@ -5,7 +5,7 @@ import { alias, oneWay } from 'ember-decorators/object/computed';
 
 export default class LayerModel extends Model {
   @belongsTo('layer-group') layerGroup
-  @attr() style
+  @attr('mapbox-gl-layer') style
 
   @oneWay('style') originalStyle
   @alias('layerGroup.visible') visible
