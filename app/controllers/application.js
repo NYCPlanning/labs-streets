@@ -1,9 +1,8 @@
 import Controller from '@ember/controller';
 import { action, computed } from '@ember-decorators/object';
 import { argument } from '@ember-decorators/argument';
-import { required } from '@ember-decorators/argument/validation';
-import { type } from '@ember-decorators/argument/type';
 import { htmlSafe } from '@ember/string';
+import mapboxgl from 'mapbox-gl';
 import QueryParams from 'ember-parachute';
 import carto from 'carto-promises-utility/utils/carto';
 
@@ -73,20 +72,26 @@ export default class ApplicationController extends ParachuteController {
   }
 
   @argument
+  popup = new mapboxgl.Popup({
+    closeOnClick: false,
+  });
+
+  @argument
   popupFeatures = [];
 
-  @argument
-  popupOffset = 20;
+  @computed('popupFeatures')
+  get popupContent() {
+    const features = this.get('popupFeatures');
 
-  @required
-  @argument
-  @type('number')
-  popupTop = 0;
+    if (features.length === 0) return 'No Amendments here!';
 
-  @required
-  @argument
-  @type('number')
-  popupLeft = 0;
+    const rows = features.map((feature) => {
+      const { altmappdf, effective } = feature.properties;
+      return `<div>Map: ${altmappdf} Effective: ${effective}</div>`;
+    });
+
+    return rows.join('<br>');
+  }
 
   @action
   handleLayerClick(feature = { layer: {} }) {
@@ -144,11 +149,12 @@ export default class ApplicationController extends ParachuteController {
 
   @action
   handleMapClick(e) {
-    // set position of popup
-    const { x, y } = e.point;
 
-    this.set('popupTop', y);
-    this.set('popupLeft', x);
+    const map = e.target;
+    const popup = this.get('popup');
+    popup.setLngLat(e.lngLat)
+      .setHTML('<i aria-hidden="true" class="fa fa-spinner fa-spin medium-gray fa-3x fa-fw"></i>')
+      .addTo(map);
 
     // get citymap amendments that intersect with this lngLat
     const { lng, lat } = e.lngLat;
@@ -170,6 +176,7 @@ export default class ApplicationController extends ParachuteController {
     carto.SQL(SQL, 'geojson')
       .then((FC) => {
         this.set('popupFeatures', FC.features);
+        popup.setHTML(this.get('popupContent'));
       });
   }
 

@@ -17,16 +17,6 @@
         {{/layers.tooltip}}
       {{/map.labs-layers}}
 
-      {{#if (gt popupFeatures.length 0)}}
-        <div class='map-tooltip' style={{style}}>
-          {{#each popupFeatures as |feature|}}
-            Map: {{feature.properties.altmappdf}}
-            Effective: {{feature.properties.effective}}
-            <br>
-          {{/each}}
-        </div>
-      {{/if}}
-
       {{map.on 'click' (action 'handleMapClick')}}
       {{map.on 'zoomend' (action 'handleZoomend')}}
       {{map.on 'dragend' (action 'handleDragend')}}
