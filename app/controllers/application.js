@@ -1,5 +1,9 @@
 import Controller from '@ember/controller';
 import { action, computed } from '@ember-decorators/object';
+import { argument } from '@ember-decorators/argument';
+import { required } from '@ember-decorators/argument/validation';
+import { type } from '@ember-decorators/argument/type';
+import { htmlSafe } from '@ember/string';
 import QueryParams from 'ember-parachute';
 import carto from 'carto-promises-utility/utils/carto';
 
@@ -58,6 +62,32 @@ export default class ApplicationController extends ParachuteController {
     };
   }
 
+  @computed('popupTop', 'popupLeft', 'popupOffset')
+  get style() {
+    const position = this.getProperties('popupTop', 'popupLeft', 'popupOffset');
+    return htmlSafe(`
+      top: ${position.popupTop + position.popupOffset}px;
+      left: ${position.popupLeft + position.popupOffset}px;
+      pointer-events: none;
+    `);
+  }
+
+  @argument
+  popupFeatures = [];
+
+  @argument
+  popupOffset = 20;
+
+  @required
+  @argument
+  @type('number')
+  popupTop = 0;
+
+  @required
+  @argument
+  @type('number')
+  popupLeft = 0;
+
   @action
   handleLayerClick(feature = { layer: {} }) {
     // const { layer: { id: layerId } } = feature;
@@ -114,9 +144,15 @@ export default class ApplicationController extends ParachuteController {
 
   @action
   handleMapClick(e) {
-    const { lng, lat } = e.lngLat;
+    // set position of popup
+    const { x, y } = e.point;
+
+    this.set('popupTop', y);
+    this.set('popupLeft', x);
 
     // get citymap amendments that intersect with this lngLat
+    const { lng, lat } = e.lngLat;
+
     const SQL = `
     SELECT the_geom, altmappdf, effective
       FROM citymap_amendments_v0
@@ -132,8 +168,8 @@ export default class ApplicationController extends ParachuteController {
     `;
 
     carto.SQL(SQL, 'geojson')
-      .then((data) => {
-        console.log(data)
+      .then((FC) => {
+        this.set('popupFeatures', FC.features);
       });
   }
 
