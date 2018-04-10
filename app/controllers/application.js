@@ -79,14 +79,29 @@ export default class ApplicationController extends ParachuteController {
   get popupContent() {
     const features = this.get('popupFeatures');
 
-    if (features.length === 0) return 'No Amendments here!';
+    if (features.length === 0) return 'There are no City Map Amendments here.';
 
     const rows = features.map((feature) => {
       const { altmappdf, effective } = feature.properties;
-      return `<div>Map: ${altmappdf} Effective: ${effective}</div>`;
+      const cleanAltmappdf = altmappdf.split('/').pop();
+
+      return `
+        <li class="dark-gray">
+          <strong><a href="https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/${cleanAltmappdf}" target="_blank">
+            <i aria-hidden="true" class="fa fa-external-link"></i>
+            ${cleanAltmappdf}
+          </a></strong> <small>Effective: ${effective}</small>
+        </li>
+      `;
     });
 
-    return rows.join('<br>');
+    const allRows = rows.join('');
+    return `
+      <div class="popup-content">
+        <h4 class="popup-header">Map Amendments</h4>
+        <ul class="no-bullet no-margin">${allRows}</ul>
+      </div>
+    `;
   }
 
   @action
@@ -145,16 +160,15 @@ export default class ApplicationController extends ParachuteController {
 
   @action
   handleMapClick(e) {
-
     const map = e.target;
     const popup = this.get('popup');
+
     popup.setLngLat(e.lngLat)
       .setHTML('<i aria-hidden="true" class="fa fa-spinner fa-spin medium-gray fa-3x fa-fw"></i>')
       .addTo(map);
 
     // get citymap amendments that intersect with this lngLat
     const { lng, lat } = e.lngLat;
-
     const SQL = `
     SELECT the_geom, altmappdf, effective
       FROM citymap_amendments_v0
