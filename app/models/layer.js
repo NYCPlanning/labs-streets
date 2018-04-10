@@ -8,6 +8,11 @@ export default class LayerModel extends Model {
 
   @alias('layerGroup.visible')
   get visible() {
-    return true;
+    return this.get('layerGroup.visible');
+  }
+
+  @alias('layerGroup.highlightable')
+  get highlightable() {
+    return this.get('layerGroup.highlightable');
   }
 }
