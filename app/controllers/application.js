@@ -1,6 +1,8 @@
 import Controller from '@ember/controller';
 import { action, computed } from '@ember-decorators/object';
 import QueryParams from 'ember-parachute';
+import carto from 'carto-promises-utility/utils/carto';
+
 
 export const LayerVisibilityParams = new QueryParams({
   'pierhead-bulkhead-lines': {
@@ -58,14 +60,14 @@ export default class ApplicationController extends ParachuteController {
 
   @action
   handleLayerClick(feature = { layer: {} }) {
-    const { layer: { id: layerId } } = feature;
-
-    // there will be many of these
-    if (layerId === 'citymap-amendments-fill') {
-      const { properties: { altmappdf = '' } } = feature;
-      const clean = altmappdf.split('/').pop();
-      window.open(`https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/${clean}`);
-    }
+    // const { layer: { id: layerId } } = feature;
+    //
+    // // there will be many of these
+    // if (layerId === 'citymap-amendments-fill') {
+    //   const { properties: { altmappdf = '' } } = feature;
+    //   const clean = altmappdf.split('/').pop();
+    //   window.open(`https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/${clean}`);
+    // }
   }
 
   @action
@@ -108,6 +110,31 @@ export default class ApplicationController extends ParachuteController {
     ];
 
     basemapLayersToHide.forEach(layer => map.removeLayer(layer));
+  }
+
+  @action
+  handleMapClick(e) {
+    const { lng, lat } = e.lngLat;
+
+    // get citymap amendments that intersect with this lngLat
+    const SQL = `
+    SELECT the_geom, altmappdf, effective
+      FROM citymap_amendments_v0
+      WHERE ST_Intersects(
+        the_geom,
+        ST_SetSRID(
+          ST_MakePoint(
+            ${lng},
+            ${lat}
+          ),4326
+        )
+      )
+    `;
+
+    carto.SQL(SQL, 'geojson')
+      .then((data) => {
+        console.log(data)
+      });
   }
 
   // runs on controller setup and calls

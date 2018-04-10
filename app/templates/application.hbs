@@ -16,7 +16,8 @@
           {{tooltip.layer.id}}
         {{/layers.tooltip}}
       {{/map.labs-layers}}
-      
+
+      {{map.on 'click' (action 'handleMapClick')}}
       {{map.on 'zoomend' (action 'handleZoomend')}}
       {{map.on 'dragend' (action 'handleDragend')}}
     {{/labs-map}}
