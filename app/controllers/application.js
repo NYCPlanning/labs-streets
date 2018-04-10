@@ -37,10 +37,10 @@ export const LayerVisibilityParams = new QueryParams({
     refresh: true,
   },
   lat: {
-    defaultValue: -74.1197,
+    defaultValue: -73.92,
   },
   lng: {
-    defaultValue: 40.6976,
+    defaultValue: 40.7,
   },
   zoom: {
     defaultValue: 10,
@@ -58,17 +58,13 @@ export default class ApplicationController extends ParachuteController {
       style: '//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json',
       zoom,
       center: [lat, lng],
+      maxZoom: 19,
+      minZoom: 9,
+      maxBounds: [
+        [-74.80302612305675, 40.23665579357652],
+        [-73.03697387696565, 41.16014354995025],
+      ],
     };
-  }
-
-  @computed('popupTop', 'popupLeft', 'popupOffset')
-  get style() {
-    const position = this.getProperties('popupTop', 'popupLeft', 'popupOffset');
-    return htmlSafe(`
-      top: ${position.popupTop + position.popupOffset}px;
-      left: ${position.popupLeft + position.popupOffset}px;
-      pointer-events: none;
-    `);
   }
 
   @argument
