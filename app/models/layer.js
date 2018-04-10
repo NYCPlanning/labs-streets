@@ -4,6 +4,12 @@ import { attr, belongsTo } from 'ember-decorators/data';
 import { alias, oneWay } from 'ember-decorators/object/computed';
 
 export default class LayerModel extends Model {
+  constructor(...args) {
+    super(...args);
+    this.delegateVisibility();
+    this.addObserver('visible', this, 'delegateVisibility');
+  }
+
   @belongsTo('layer-group') layerGroup
   @attr('mapbox-gl-layer') style
 
@@ -19,6 +25,13 @@ export default class LayerModel extends Model {
   @alias('style.filter') filter
   @alias('style.layout') layout
   @alias('style.paint') paint
+
+  delegateVisibility() {
+    const visible = this.get('visible');
+    this.set('layout', {
+      visibility: (visible ? 'visible' : 'none'),
+    });
+  }
 
   resetStyle() {
     this.set('style', this.get('originalStyle'));

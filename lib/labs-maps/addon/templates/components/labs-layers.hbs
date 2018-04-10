@@ -1,5 +1,5 @@
 {{!-- Bind layer groups' layers --}}
-{{#each visibleLayers key='id' as |layerObject|}}
+{{#each layers key='id' as |layerObject|}}
 
   {{!-- if the layer is hightlightable or tooltipable, bind events --}}
   {{#if (or layerObject.highlightable layerObject.tooltipable)}}
