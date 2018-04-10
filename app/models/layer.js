@@ -28,8 +28,10 @@ export default class LayerModel extends Model {
 
   delegateVisibility() {
     const visible = this.get('visible');
+    const visibility = (visible ? 'visible' : 'none');
+
     this.set('layout', {
-      visibility: (visible ? 'visible' : 'none'),
+      visibility,
     });
   }
 
