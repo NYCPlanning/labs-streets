@@ -5,7 +5,7 @@ import { htmlSafe } from '@ember/string';
 import mapboxgl from 'mapbox-gl';
 import QueryParams from 'ember-parachute';
 import carto from 'carto-promises-utility/utils/carto';
-
+import moment from 'moment';
 
 export const LayerVisibilityParams = new QueryParams({
   'pierhead-bulkhead-lines': {
@@ -81,19 +81,30 @@ export default class ApplicationController extends ParachuteController {
 
     if (features.length === 0) return 'There are no City Map Amendments here.';
 
-    const rows = features.map((feature) => {
-      let { altmappdf, effective } = feature.properties;
-      const pdfStorage = 'https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/';
+    // add a timestamp property to sort by
+    features.map((feature) => {
+      const newFeature = feature;
+      const { effective } = newFeature.properties;
+      newFeature.properties.timestamp = parseInt(moment(effective).format('X'), 10);
 
-      altmappdf = altmappdf.split('/').pop();
-      effective = effective ? `<small>${effective}</small>` : '';
+      return newFeature;
+    });
+
+    features.sort((a, b) => a.properties.timestamp < b.properties.timestamp);
+
+
+    const rows = features.map((feature) => {
+      const { altmappdf, effective } = feature.properties;
+      const pdfStorage = 'https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/';
+      const cleanAltmappdf = altmappdf.split('/').pop();
+      const cleanEffective = effective ? `<small>${moment(effective).format('MMM D, YYYY')}</small>` : '';
 
       return `
         <li class="dark-gray">
-          <strong><a href="${pdfStorage}${altmappdf}" target="_blank">
+          <strong><a href="${pdfStorage}${cleanAltmappdf}" target="_blank">
             <i aria-hidden="true" class="fa fa-external-link"></i>
-            ${altmappdf}
-          </a></strong> ${effective}
+            ${cleanAltmappdf}
+          </a></strong> ${cleanEffective}
         </li>
       `;
     });
@@ -175,15 +186,16 @@ export default class ApplicationController extends ParachuteController {
     const SQL = `
     SELECT the_geom, altmappdf, effective
       FROM citymap_amendments_v0
-      WHERE ST_Intersects(
-        the_geom,
-        ST_SetSRID(
-          ST_MakePoint(
-            ${lng},
-            ${lat}
-          ),4326
+      WHERE effective IS NOT NULL
+        AND ST_Intersects(
+          the_geom,
+          ST_SetSRID(
+            ST_MakePoint(
+              ${lng},
+              ${lat}
+            ),4326
+          )
         )
-      )
     `;
 
     carto.SQL(SQL, 'geojson')

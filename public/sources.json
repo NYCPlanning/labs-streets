@@ -16,7 +16,7 @@
 			},
 			{
 				"id": "amendments",
-				"sql": "SELECT the_geom_webmercator, cartodb_id as id, altmappdf FROM citymap_amendments_v0"
+				"sql": "SELECT the_geom_webmercator, cartodb_id as id, altmappdf FROM citymap_amendments_v0 WHERE effective IS NOT NULL"
 			},
 			{
 				"id": "street-centerlines",
