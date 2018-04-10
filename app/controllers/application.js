@@ -82,15 +82,18 @@ export default class ApplicationController extends ParachuteController {
     if (features.length === 0) return 'There are no City Map Amendments here.';
 
     const rows = features.map((feature) => {
-      const { altmappdf, effective } = feature.properties;
-      const cleanAltmappdf = altmappdf.split('/').pop();
+      let { altmappdf, effective } = feature.properties;
+      const pdfStorage = 'https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/';
+
+      altmappdf = altmappdf.split('/').pop();
+      effective = effective ? `<small>${effective}</small>` : '';
 
       return `
         <li class="dark-gray">
-          <strong><a href="https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/${cleanAltmappdf}" target="_blank">
+          <strong><a href="${pdfStorage}${altmappdf}" target="_blank">
             <i aria-hidden="true" class="fa fa-external-link"></i>
-            ${cleanAltmappdf}
-          </a></strong> <small>Effective: ${effective}</small>
+            ${altmappdf}
+          </a></strong> ${effective}
         </li>
       `;
     });
