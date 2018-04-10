@@ -70,7 +70,8 @@
   },
   "ember-addon": {
     "paths": [
-      "lib/carto-promises-utility"
+      "lib/carto-promises-utility",
+      "lib/labs-maps"
     ]
   }
 }

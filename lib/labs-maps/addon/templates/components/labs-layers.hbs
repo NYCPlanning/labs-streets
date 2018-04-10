@@ -1,14 +1,21 @@
 {{!-- Bind layer groups' layers --}}
 {{#each visibleLayers key='id' as |layerObject|}}
-  {{mapbox-gl-on 'mousemove' layerObject.style.id (action 'handleLayerMouseMove') 
-    eventSource=map}}
-  {{mapbox-gl-on 'mouseleave' layerObject.style.id (action 'handleLayerMouseLeave') 
-    eventSource=map}}
+
+  {{!-- if the layer is hightlightable or tooltipable, bind events --}}
+  {{#if (or layerObject.highlightable layerObject.tooltipable)}}
+    {{mapbox-gl-on 'mousemove' layerObject.style.id (action 'handleLayerMouseMove') 
+      eventSource=map}}
+    {{mapbox-gl-on 'mouseleave' layerObject.style.id (action 'handleLayerMouseLeave') 
+      eventSource=map}}
+  {{/if}}
+
   {{mapbox-gl-on 'click' layerObject.style.id (action 'handleLayerMouseClick') 
     eventSource=map}}
+
   {{mapbox-gl-layer 
       map=map 
       layer=layerObject.style}}
+
 {{/each}}
 
 {{!-- Highlighted Layer Handling --}}
@@ -16,7 +23,6 @@
   {{mapbox-gl-layer 
     map=map 
     layer=highlightedFeatureLayer}}
-
 {{/if}}
 
 {{yield (hash 
