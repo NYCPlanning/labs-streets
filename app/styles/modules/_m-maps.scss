@@ -15,7 +15,7 @@
 .mapboxgl-popup {}
 
 .mapboxgl-popup-content {
-  padding: $global-margin $global-margin/2;
+  padding: 1rem 0.5rem;
   background-color: $white;
   color: $body-font-color;
   font-size: rem-calc(12);
@@ -100,4 +100,20 @@
   font-size: rem-calc(11);
   box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
   border-radius: 2px;
+}
+
+.popup-header {
+  font-size: rem-calc(14);
+  margin-bottom: rem-calc(6);
+}
+
+.popup-content {
+  max-height: calc(50vh - 10rem);
+  overflow: auto;
+  margin: -1rem -0.5rem;
+  padding: 1rem 0.5rem;
+
+  @include breakpoint(large) {
+    max-height: calc(80vh - 10rem);
+  }
 }

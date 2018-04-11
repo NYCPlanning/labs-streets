@@ -1,0 +1,26 @@
+<div class="popup-content">
+  {{#if (eq cleanFeatures null)}}
+    {{fa-icon 'spinner' class='fa-spin medium-gray fa-3x fa-fw'}}
+  {{else}}
+
+    {{#if cleanFeatures}}
+      <h4 class="popup-header">Map Amendments</h4>
+      <ul class="popup-list no-bullet no-margin">
+        {{#each cleanFeatures as |feature|}}
+          <li class="dark-gray">
+            <strong>
+              <a href="{{feature.pdflink}}" target="_blank" rel="noopener">
+                <i aria-hidden="true" class="fa fa-external-link"></i>
+                {{feature.pdf}}
+              </a>
+            </strong> <span class="date">{{feature.effective}}</span>
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      There are no map amendments here.
+    {{/if}}
+
+  {{/if}}
+  {{yield}}
+</div>
