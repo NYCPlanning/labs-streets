@@ -20,9 +20,6 @@
       {{map.on 'zoomend' (action 'handleZoomend')}}
       {{map.on 'dragend' (action 'handleDragend')}}
     {{/labs-map}}
-
-
-
   </div>
 
   <div class="layer-menu cell large-order-1">
@@ -60,6 +57,7 @@
         {{#layer-menu-item
           title=layerGroup.model.title
           active=amendments}}
+          {{slider-filter layer=model.amendmentsFill}}
         {{/layer-menu-item}}
       {{/lookup-layer-group}}
       {{#lookup-layer-group for='name-changes' as |layerGroup|}}

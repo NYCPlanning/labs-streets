@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import { merge } from '@ember/polyfills';
+import { assign } from '@ember/polyfills';
 
 const { Transform } = DS;
 
@@ -10,9 +10,10 @@ export default class MapboxGlStyleTransform extends Transform {
         visibility: 'visible',
       },
       paint: {},
+      filter: ['all'],
     };
 
-    return merge(layerSpec, serialized);
+    return assign(layerSpec, serialized);
   }
 
   serialize(deserialized) {

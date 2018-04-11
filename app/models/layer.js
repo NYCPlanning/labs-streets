@@ -10,17 +10,19 @@ export default class LayerModel extends Model {
     this.addObserver('visible', this, 'delegateVisibility');
   }
 
-  @belongsTo('layer-group') layerGroup
-  @attr('mapbox-gl-layer') style
-
-  @oneWay('style') originalStyle
-  @alias('layerGroup.visible') visible
-  @alias('layerGroup.highlightable') highlightable
-
   @computed('style.{paint,layout,filter}')
   get mapboxGlStyle() {
     return this.get('style');
   }
+
+  @belongsTo('layer-group') layerGroup
+  @attr('mapbox-gl-layer', {
+    defaultValue: () => ({}),
+  }) style
+
+  @oneWay('style') originalStyle
+  @alias('layerGroup.visible') visible
+  @alias('layerGroup.highlightable') highlightable
 
   @alias('style.filter') filter
   @alias('style.layout') layout
