@@ -1,4 +1,3 @@
-
 <div class="popup-content">
   {{#if (eq cleanFeatures null)}}
     {{fa-icon 'spinner' class='fa-spin medium-gray fa-3x fa-fw'}}
@@ -6,13 +5,15 @@
 
     {{#if cleanFeatures}}
       <h4 class="popup-header">Map Amendments</h4>
-      <ul class="no-bullet no-margin">
+      <ul class="popup-list no-bullet no-margin">
         {{#each cleanFeatures as |feature|}}
           <li class="dark-gray">
-            <strong><a href="{{feature.pdflink}}" target="_blank">
-              <i aria-hidden="true" class="fa fa-external-link"></i>
-              {{feature.pdf}}
-            </a></strong> {{feature.effective}}
+            <strong>
+              <a href="{{feature.pdflink}}" target="_blank" rel="noopener">
+                <i aria-hidden="true" class="fa fa-external-link"></i>
+                {{feature.pdf}}
+              </a>
+            </strong> <span class="date">{{feature.effective}}</span>
           </li>
         {{/each}}
       </ul>
@@ -21,6 +22,5 @@
     {{/if}}
 
   {{/if}}
+  {{yield}}
 </div>
-
-{{yield}}
