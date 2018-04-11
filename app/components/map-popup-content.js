@@ -2,7 +2,6 @@ import Component from '@ember/component';
 import { argument } from '@ember-decorators/argument';
 import { computed } from '@ember-decorators/object';
 import moment from 'moment';
-import mapboxgl from 'mapbox-gl';
 
 export default class MapPopupContent extends Component {
   @computed('features')
@@ -28,25 +27,5 @@ export default class MapPopupContent extends Component {
   }
 
   @argument
-  popup = new mapboxgl.Popup({
-    closeOnClick: false,
-  }).addTo(this.get('map'));
-
-  @argument
   features = [];
-
-  @argument
-  location = {};
-
-  @argument
-  map = {};
-
-  didUpdate() {
-    const popup = this.get('popup');
-    const map = this.get('map');
-
-    popup.setDOMContent(this.element);
-    popup.setLngLat(this.get('location'));
-    popup.addTo(map);
-  }
 }
