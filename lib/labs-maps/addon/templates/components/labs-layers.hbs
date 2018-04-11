@@ -1,5 +1,5 @@
 {{!-- Bind layer groups' layers --}}
-{{#each layers key='id' as |layerObject|}}
+{{#each layers key='style' as |layerObject|}}
 
   {{!-- if the layer is hightlightable or tooltipable, bind events --}}
   {{#if (or layerObject.highlightable layerObject.tooltipable)}}
@@ -13,7 +13,7 @@
     eventSource=map}}
 
   {{mapbox-gl-layer 
-      map=map 
+      map=map
       layer=layerObject.mapboxGlStyle}}
 
 {{/each}}
