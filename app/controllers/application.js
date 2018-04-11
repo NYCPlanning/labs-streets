@@ -68,55 +68,13 @@ export default class ApplicationController extends ParachuteController {
   }
 
   @argument
-  popup = new mapboxgl.Popup({
-    closeOnClick: false,
-  });
+  popupLocation = {
+    lng: 0,
+    lat: 0,
+  };
 
   @argument
   popupFeatures = [];
-
-  @computed('popupFeatures')
-  get popupContent() {
-    const features = this.get('popupFeatures');
-
-    if (features.length === 0) return 'There are no City Map Amendments here.';
-
-    // add a timestamp property to sort by
-    features.map((feature) => {
-      const newFeature = feature;
-      const { effective } = newFeature.properties;
-      newFeature.properties.timestamp = parseInt(moment(effective).format('X'), 10);
-
-      return newFeature;
-    });
-
-    features.sort((a, b) => a.properties.timestamp < b.properties.timestamp);
-
-
-    const rows = features.map((feature) => {
-      const { altmappdf, effective } = feature.properties;
-      const pdfStorage = 'https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/';
-      const cleanAltmappdf = altmappdf.split('/').pop();
-      const cleanEffective = effective ? `<small>${moment(effective).format('MMM D, YYYY')}</small>` : '';
-
-      return `
-        <li class="dark-gray">
-          <strong><a href="${pdfStorage}${cleanAltmappdf}" target="_blank">
-            <i aria-hidden="true" class="fa fa-external-link"></i>
-            ${cleanAltmappdf}
-          </a></strong> ${cleanEffective}
-        </li>
-      `;
-    });
-
-    const allRows = rows.join('');
-    return `
-      <div class="popup-content">
-        <h4 class="popup-header">Map Amendments</h4>
-        <ul class="no-bullet no-margin">${allRows}</ul>
-      </div>
-    `;
-  }
 
   @action
   handleLayerClick(feature = { layer: {} }) {
@@ -145,6 +103,7 @@ export default class ApplicationController extends ParachuteController {
   @action
   handleMapLoad(map) {
     window.map = map;
+    this.set('map', map);
 
     const basemapLayersToHide = [
       'highway_path',
@@ -174,14 +133,6 @@ export default class ApplicationController extends ParachuteController {
 
   @action
   handleMapClick(e) {
-    const map = e.target;
-    const popup = this.get('popup');
-
-    popup.setLngLat(e.lngLat)
-      .setHTML('<i aria-hidden="true" class="fa fa-spinner fa-spin medium-gray fa-3x fa-fw"></i>')
-      .addTo(map);
-
-    // get citymap amendments that intersect with this lngLat
     const { lng, lat } = e.lngLat;
     const SQL = `
     SELECT the_geom, altmappdf, effective
@@ -198,10 +149,12 @@ export default class ApplicationController extends ParachuteController {
         )
     `;
 
+    this.set('popupLocation', e.lngLat);
+    this.set('popupFeatures', null);
+
     carto.SQL(SQL, 'geojson')
       .then((FC) => {
         this.set('popupFeatures', FC.features);
-        popup.setHTML(this.get('popupContent'));
       });
   }
 

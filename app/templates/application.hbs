@@ -21,9 +21,13 @@
       {{map.on 'zoomend' (action 'handleZoomend')}}
       {{map.on 'dragend' (action 'handleDragend')}}
     {{/labs-map}}
-
-
-
+    {{#if map}}
+      {{map-popup-content
+        map=map
+        features=popupFeatures 
+        location=popupLocation
+      }}
+    {{/if}}
   </div>
 
   <div class="layer-menu cell large-order-1">
