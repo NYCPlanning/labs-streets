@@ -1,11 +1,8 @@
 import Controller from '@ember/controller';
 import { action, computed } from '@ember-decorators/object';
 import { argument } from '@ember-decorators/argument';
-import { htmlSafe } from '@ember/string';
-import mapboxgl from 'mapbox-gl';
 import QueryParams from 'ember-parachute';
 import carto from 'carto-promises-utility/utils/carto';
-import moment from 'moment';
 
 export const LayerVisibilityParams = new QueryParams({
   'pierhead-bulkhead-lines': {
