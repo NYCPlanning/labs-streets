@@ -74,16 +74,17 @@ export default class ApplicationController extends ParachuteController {
   popupFeatures = [];
 
   @action
-  handleLayerClick(feature = { layer: {} }) {
-    // const { layer: { id: layerId } } = feature;
-    //
-    // // there will be many of these
-    // if (layerId === 'citymap-amendments-fill') {
-    //   const { properties: { altmappdf = '' } } = feature;
-    //   const clean = altmappdf.split('/').pop();
-    //   window.open(`https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/${clean}`);
-    // }
-  }
+  handleLayerClick() {}
+  // handleLayerClick(feature = { layer: {} }) {
+  //   const { layer: { id: layerId } } = feature;
+  //
+  //   // there will be many of these
+  //   if (layerId === 'citymap-amendments-fill') {
+  //     const { properties: { altmappdf = '' } } = feature;
+  //     const clean = altmappdf.split('/').pop();
+  //     window.open(`https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/${clean}`);
+  //   }
+  // }
 
   @action
   handleZoomend(e) {
