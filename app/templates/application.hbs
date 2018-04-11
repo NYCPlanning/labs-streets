@@ -17,13 +17,13 @@
         {{/layers.tooltip}}
       {{/map.labs-layers}}
 
-      {{#unless (eq popupFeatures null)}}
+      {{#if (not-eq popupFeatures null)}}
         {{#map.popup
           lngLat=popupLocation}}
           {{map-popup-content
             features=popupFeatures}}
         {{/map.popup}}
-      {{/unless}}
+      {{/if}}
 
       {{map.on 'click' (action 'handleMapClick')}}
       {{map.on 'zoomend' (action 'handleZoomend')}}
