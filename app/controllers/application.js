@@ -1,6 +1,8 @@
 import Controller from '@ember/controller';
 import { action, computed } from '@ember-decorators/object';
+import { argument } from '@ember-decorators/argument';
 import QueryParams from 'ember-parachute';
+import carto from 'carto-promises-utility/utils/carto';
 
 export const LayerVisibilityParams = new QueryParams({
   'pierhead-bulkhead-lines': {
@@ -32,10 +34,10 @@ export const LayerVisibilityParams = new QueryParams({
     refresh: true,
   },
   lat: {
-    defaultValue: -74.1197,
+    defaultValue: -73.92,
   },
   lng: {
-    defaultValue: 40.6976,
+    defaultValue: 40.7,
   },
   zoom: {
     defaultValue: 10,
@@ -53,20 +55,36 @@ export default class ApplicationController extends ParachuteController {
       style: '//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json',
       zoom,
       center: [lat, lng],
+      maxZoom: 19,
+      minZoom: 9,
+      maxBounds: [
+        [-74.80302612305675, 40.23665579357652],
+        [-73.03697387696565, 41.16014354995025],
+      ],
     };
   }
 
-  @action
-  handleLayerClick(feature = { layer: {} }) {
-    const { layer: { id: layerId } } = feature;
+  @argument
+  popupLocation = {
+    lng: 0,
+    lat: 0,
+  };
 
-    // there will be many of these
-    if (layerId === 'citymap-amendments-fill') {
-      const { properties: { altmappdf = '' } } = feature;
-      const clean = altmappdf.split('/').pop();
-      window.open(`https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/${clean}`);
-    }
-  }
+  @argument
+  popupFeatures = [];
+
+  @action
+  handleLayerClick() {}
+  // handleLayerClick(feature = { layer: {} }) {
+  //   const { layer: { id: layerId } } = feature;
+  //
+  //   // there will be many of these
+  //   if (layerId === 'citymap-amendments-fill') {
+  //     const { properties: { altmappdf = '' } } = feature;
+  //     const clean = altmappdf.split('/').pop();
+  //     window.open(`https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/${clean}`);
+  //   }
+  // }
 
   @action
   handleZoomend(e) {
@@ -83,6 +101,7 @@ export default class ApplicationController extends ParachuteController {
   @action
   handleMapLoad(map) {
     window.map = map;
+    this.set('map', map);
 
     const basemapLayersToHide = [
       'highway_path',
@@ -108,6 +127,33 @@ export default class ApplicationController extends ParachuteController {
     ];
 
     basemapLayersToHide.forEach(layer => map.removeLayer(layer));
+  }
+
+  @action
+  handleMapClick(e) {
+    const { lng, lat } = e.lngLat;
+    const SQL = `
+    SELECT the_geom, altmappdf, effective
+      FROM citymap_amendments_v0
+      WHERE effective IS NOT NULL
+        AND ST_Intersects(
+          the_geom,
+          ST_SetSRID(
+            ST_MakePoint(
+              ${lng},
+              ${lat}
+            ),4326
+          )
+        )
+    `;
+
+    this.set('popupLocation', e.lngLat);
+    this.set('popupFeatures', null);
+
+    carto.SQL(SQL, 'geojson')
+      .then((FC) => {
+        this.set('popupFeatures', FC.features);
+      });
   }
 
   // runs on controller setup and calls
