@@ -33,6 +33,14 @@ export const LayerVisibilityParams = new QueryParams({
     defaultValue: false,
     refresh: true,
   },
+  'commercial-overlays': {
+    defaultValue: false,
+    refresh: true,
+  },
+  'special-purpose-districts': {
+    defaultValue: false,
+    refresh: true,
+  },
   'tax-lots': {
     defaultValue: false,
     refresh: true,

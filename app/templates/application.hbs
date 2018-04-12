@@ -85,6 +85,21 @@
         {{/layer-menu-item}}
       {{/lookup-layer-group}}
 
+      {{#lookup-layer-group for='commercial-overlays' as |layerGroup|}}
+        {{#layer-menu-item
+          title=layerGroup.model.title
+          active=commercial-overlays}}
+        {{/layer-menu-item}}
+      {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='special-purpose-districts' as |layerGroup|}}
+        {{#layer-menu-item
+          title=layerGroup.model.title
+          active=special-purpose-districts}}
+        {{/layer-menu-item}}
+      {{/lookup-layer-group}}
+
+
       {{#lookup-layer-group for='tax-lots' as |layerGroup|}}
         {{#layer-menu-item
           title=layerGroup.model.title
