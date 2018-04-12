@@ -1,7 +1,9 @@
 {{input type='text'
   placeholder='Search...'
   class='map-search-input'
-  value=searchTerms}}
+  value=searchTerms
+  focus-in=(action 'handleFocusIn')
+  focus-out=(action 'handleFocusOut')}}
 
 {{#if searchTerms}}
   <button class="clear-button" aria-label="Clear Search" type="button" {{action 'clear'}}>
