@@ -129,12 +129,19 @@
 
   position: absolute;
   z-index: 2;
-  top: 10px;
-  right: 10px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 0.5em 0.75em;
+  margin: 0;
   font-size: rem-calc(11);
-  border-radius: 4px;
+  border-radius: 4px 4px 0 0;
   box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+
+  @include breakpoint(medium only) {
+    left: 130px;
+    transform: none;
+  }
 
   small {
     display: block;
