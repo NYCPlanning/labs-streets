@@ -122,3 +122,21 @@
 .mapboxgl-user-location-dot {
   box-sizing: initial;
 }
+
+// "See this area in ZoLa" button
+.zola-map-area-button {
+  @include button(false, $white, #F2F2F2, $primary-color, solid);
+
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  right: 10px;
+  padding: 0.5em 0.75em;
+  font-size: rem-calc(11);
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+
+  small {
+    display: block;
+  }
+}

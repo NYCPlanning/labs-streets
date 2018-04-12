@@ -65,6 +65,13 @@ export default class ApplicationController extends ParachuteController {
     };
   }
 
+  // TODO: Change once ZoLa preserves map pan/zoom state w/ query params
+  @computed('lat', 'lng', 'zoom')
+  get mapLatLngZoomHash() {
+    const { lat, lng, zoom } = this.getProperties('lat', 'lng', 'zoom');
+    return `#${zoom}/${lng}/${lat}`;
+  }
+
   @argument
   popupLocation = {
     lng: 0,
@@ -105,17 +112,18 @@ export default class ApplicationController extends ParachuteController {
     this.set('map', map);
 
     const navigationControl = new mapboxgl.NavigationControl();
+    map.addControl(navigationControl, 'top-left');
+
     const geoLocateControl = new mapboxgl.GeolocateControl({
       positionOptions: {
         enableHighAccuracy: true,
       },
       trackUserLocation: true,
     });
-    const scaleControl = new mapboxgl.ScaleControl({ unit: 'imperial' });
-
-    map.addControl(navigationControl, 'top-left');
-    map.addControl(scaleControl, 'bottom-left');
     map.addControl(geoLocateControl, 'top-left');
+
+    const scaleControl = new mapboxgl.ScaleControl({ unit: 'imperial' });
+    map.addControl(scaleControl, 'bottom-left');
 
     const basemapLayersToHide = [
       'highway_path',
