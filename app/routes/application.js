@@ -4,13 +4,20 @@ import normalizeCartoVectors from 'carto-promises-utility/utils/normalize-carto-
 
 export default class ApplicationRoute extends Route {
   model = async function() {
-    const mapboxGlConfigs = await hash({
-      sources: this.store.findAll('source')
-        .then(sources => normalizeCartoVectors(sources.toArray())),
-      layers: this.store.peekAll('layer'),
-      layerGroups: this.store.findAll('layer-group'),
-    });
+    const sources = await this.store.findAll('source')
+      .then(sourceModels => normalizeCartoVectors(sourceModels.toArray()));
+    const layers =
+      await this.store.peekAll('layer');
+    const layerGroups =
+      await this.store.findAll('layer-group');
+    const amendmentsFill =
+      await this.store.peekRecord('layer', 'citymap-amendments-fill');
 
-    return mapboxGlConfigs;
+    return hash({
+      sources,
+      layers,
+      layerGroups,
+      amendmentsFill,
+    });
   }
 }
