@@ -33,6 +33,21 @@ export const LayerVisibilityParams = new QueryParams({
     defaultValue: false,
     refresh: true,
   },
+  'tax-lots': {
+    defaultValue: false,
+    refresh: true,
+  },
+
+  'floodplain-pfirm2015': {
+    defaultValue: false,
+    refresh: true,
+  },
+
+  'floodplain-efirm2007': {
+    defaultValue: false,
+    refresh: true,
+  },
+
   lat: {
     defaultValue: -73.92,
   },

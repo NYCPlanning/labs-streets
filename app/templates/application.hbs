@@ -91,6 +91,20 @@
           active=tax-lots}}
         {{/layer-menu-item}}
       {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='floodplain-pfirm2015' as |layerGroup|}}
+        {{#layer-menu-item
+          title=layerGroup.model.title
+          active=floodplain-pfirm2015}}
+        {{/layer-menu-item}}
+      {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='floodplain-efirm2007' as |layerGroup|}}
+        {{#layer-menu-item
+          title=layerGroup.model.title
+          active=floodplain-efirm2007}}
+        {{/layer-menu-item}}
+      {{/lookup-layer-group}}
     {{/accordion-menu}}
   </div>
 
