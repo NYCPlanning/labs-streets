@@ -30,6 +30,10 @@
       {{map.on 'zoomend' (action 'handleZoomend')}}
       {{map.on 'dragend' (action 'handleDragend')}}
     {{/labs-map}}
+    <a class="zola-map-area-button" href="https://zola.planning.nyc.gov/{{mapLatLngZoomHash}}" target="_blank" rel="noopener">
+      <strong>View <span class="show-for-medium">this area</span> in ZoLa</strong>
+      <small class="show-for-medium">NYC’s Zoning &amp; Land Use Map</small>
+    </a>
   </div>
 
   <div class="layer-menu cell large-order-1">
