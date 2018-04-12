@@ -1,13 +1,42 @@
 import Model from 'ember-data/model';
-// import { computed } from '@ember-decorators/object';
+import { computed } from '@ember-decorators/object';
 import { attr, belongsTo } from 'ember-decorators/data';
 import { alias } from 'ember-decorators/object/computed';
 
 export default class LayerModel extends Model {
-  @belongsTo('layer-group') layerGroup
-  @attr() style
+  constructor(...args) {
+    super(...args);
+    this.delegateVisibility();
+    this.addObserver('visible', this, 'delegateVisibility');
+  }
 
-  @alias('layerGroup.visible') visible
+  @computed('style.{paint,layout,filter}')
+  get mapboxGlStyle() {
+    return this.get('style');
+  }
+
+  @belongsTo('layer-group') layerGroup
+
+  @attr('mapbox-gl-layer', {
+    defaultValue: () => ({}),
+  }) style
+
+  @alias('layerGroup.visible') visible;
 
   @alias('layerGroup.highlightable') highlightable;
+
+  @alias('style.filter.[]') filter;
+
+  @alias('style.layout') layout;
+
+  @alias('style.paint') paint;
+
+  delegateVisibility() {
+    const visible = this.get('visible');
+    const visibility = (visible ? 'visible' : 'none');
+
+    this.set('layout', {
+      visibility,
+    });
+  }
 }
