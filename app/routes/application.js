@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import { hash } from 'rsvp';
-import normalizeCartoVectors from '../utils/normalize-carto-vectors';
+import normalizeCartoVectors from 'carto-promises-utility/utils/normalize-carto-vectors';
 
 export default class ApplicationRoute extends Route {
   model = async function() {
