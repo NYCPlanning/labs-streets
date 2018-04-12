@@ -6,8 +6,6 @@ import { required } from '@ember-decorators/argument/validation';
 import moment from 'moment';
 
 const defaultFormat = 'YYYY-MM-DD';
-const defaultMax = new Date();
-const defaultStart = [1032370151000, defaultMax.getTime()];
 
 const fromEpoch = function(number, format = defaultFormat) {
   return moment(number).format(format);
@@ -26,6 +24,13 @@ export default class SliderFilterComponent extends Component {
     return max;
   }
 
+  @computed('startMin', 'startMax')
+  get start() {
+    const { min, max } =
+      this.getProperties('min', 'max');
+    return [min, max];
+  }
+
   @required
   @argument
   layer;
@@ -41,16 +46,8 @@ export default class SliderFilterComponent extends Component {
   @oneWay('max')
   startMax
 
-  @computed('startMin', 'startMax')
-  get start() {
-    const { min, max } =
-      this.getProperties('min', 'max');
-    return [min, max];
-  }
-
   @action
   update([min, max]) {
-    console.log(min, max);
     const filter = this.generateExpression(min, max);
     this.set('layer.filter', filter);
   }
