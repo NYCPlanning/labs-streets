@@ -48,19 +48,24 @@ body {
   position: relative;
   z-index: 3;
   width: 100%;
-  box-shadow: 0 2px 0 rgba(0,0,0,0.1);
+  height: 3.375rem;
   overflow: visible;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.1);
 
   @include breakpoint(medium) {
-    position: fixed;
-    top: 6rem;
+    position: absolute;
+    top: 0;
     right: 0;
     width: 15rem;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.1), -4px 0 0 rgba(0,0,0,0.1);
   }
 
   @include breakpoint(large) {
+    position: fixed;
+    top: 6rem;
     right: auto;
     left: 0;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.1), 2px 0 0 rgba(0,0,0,0.1);
   }
 
   @include breakpoint(xlarge) {
@@ -89,15 +94,15 @@ body {
   @include breakpoint(medium) {
     min-height: none;
     max-height: 50vh;
-    height: 50vh;
+    height: calc(50vh - 3.375rem);
     width: 15rem;
     box-shadow: -4px 0 0 rgba(0,0,0,0.1);
     overflow: scroll;
-    padding-top: 3.25rem;
+    margin-top: 3.375rem;
   }
 
   @include breakpoint(large) {
-    height: 100%;
+    height: calc(100% - 3.375rem);
     box-shadow: 2px 0 0 rgba(0,0,0,0.1);
   }
 
