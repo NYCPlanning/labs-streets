@@ -129,11 +129,12 @@ module('Integration | Component | labs-layers', {
       'paint property was set',
     );
 
-    this.layer.set('paint', { 'circle-color': 'black' });
-
     // TODO: this should not be here but there's some race conditions for some reason... 
-    await waitUntil(() => {
-      return this.map.getLayer(this.layer.get('style.id')).getPaintProperty('circle-color') === 'black'
+    // EDIT: This new promise pattern might help, beware rrace conditions
+    await new Promise((resolve, reject) => {
+      this.map.once('styledata', resolve);
+      this.map.once('error', reject);
+      this.layer.set('paint', { 'circle-color': 'black' });
     });
 
     assert.equal(
