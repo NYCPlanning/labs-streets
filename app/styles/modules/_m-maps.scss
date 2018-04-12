@@ -117,3 +117,8 @@
     max-height: calc(80vh - 10rem);
   }
 }
+
+// HACK: dot and pulse misalign without this.
+.mapboxgl-user-location-dot {
+  box-sizing: initial;
+}

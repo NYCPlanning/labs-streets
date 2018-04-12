@@ -3,6 +3,7 @@ import { action, computed } from '@ember-decorators/object';
 import { argument } from '@ember-decorators/argument';
 import QueryParams from 'ember-parachute';
 import carto from 'carto-promises-utility/utils/carto';
+import mapboxgl from 'mapbox-gl';
 
 export const LayerVisibilityParams = new QueryParams({
   'pierhead-bulkhead-lines': {
@@ -100,8 +101,21 @@ export default class ApplicationController extends ParachuteController {
 
   @action
   handleMapLoad(map) {
-    window.map = map;
+    window.map = map; // for Maputnik Dev Server
     this.set('map', map);
+
+    const navigationControl = new mapboxgl.NavigationControl();
+    const geoLocateControl = new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true,
+      },
+      trackUserLocation: true,
+    });
+    const scaleControl = new mapboxgl.ScaleControl({ unit: 'imperial' });
+
+    map.addControl(navigationControl, 'top-left');
+    map.addControl(scaleControl, 'bottom-left');
+    map.addControl(geoLocateControl, 'top-left');
 
     const basemapLayersToHide = [
       'highway_path',
