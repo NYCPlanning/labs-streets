@@ -208,15 +208,14 @@ export default class ApplicationController extends ParachuteController {
     //   });
     // }
 
-    if (result.type === 'address') {
-      const center = result.coordinates;
+    if (result.type === 'lot') {
+      const center = result.geometry.coordinates;
 
       if (map) {
         map.flyTo({
           center,
           zoom: 15,
         });
-        map.once('moveend', () => { this.transitionTo('index'); });
       }
     }
 
