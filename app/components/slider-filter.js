@@ -8,7 +8,7 @@ const fromEpoch = function(number, format) {
   return moment(number).format(format);
 };
 
-const defaultStart = [-2082931200000, 1518825600000];
+const defaultStart = [-2082931200, 1518825600];
 
 export default class SliderFilterComponent extends Component {
   @required

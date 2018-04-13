@@ -16,7 +16,7 @@
 			},
 			{
 				"id": "amendments",
-				"sql": "SELECT the_geom_webmercator, cartodb_id as id, altmappdf, extract(epoch from effective) * 1000 as effective FROM citymap_amendments_v0 WHERE effective IS NOT NULL"
+				"sql": "SELECT the_geom_webmercator, cartodb_id as id, altmappdf, extract(epoch from effective) as effective FROM citymap_amendments_v0 WHERE effective IS NOT NULL"
 			},
 			{
 				"id": "street-centerlines",
