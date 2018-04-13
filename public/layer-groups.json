@@ -2,7 +2,7 @@
 
   {
     "id": "pierhead-bulkhead-lines",
-    "title": "Pierhead and Bulkhead Lines",
+    "title": "Pierhead & Bulkhead Lines",
     "legendIcon": "admin-line",
     "legendColor": "",
     "visible": true,
@@ -88,7 +88,7 @@
 
   {
     "id": "citymap",
-    "title": "City Map",
+    "title": "Street Lines",
     "legendIcon": "admin-line",
     "legendColor": "",
     "visible": true,
@@ -454,7 +454,7 @@
 
   {
     "id": "street-centerlines",
-    "title": "Street Centerlines",
+    "title": "Street Names",
     "legendIcon": "admin-line",
     "legendColor": "",
     "visible": true,
