@@ -111,6 +111,35 @@ body {
   }
 }
 
+.route-index {
+
+  @include breakpoint(small) {
+    .map-container,
+    .layer-menu {
+      height: calc(100vh - 12rem);
+    }
+  }
+
+  @include breakpoint(medium) {
+    .map-container {
+      height: 100%;
+      max-height: none;
+    }
+
+    .layer-menu {
+      height: calc(100% - 3.375rem);
+      max-height: none;
+    }
+  }
+
+  @include breakpoint(large) {
+    .map-container,
+    .layer-menu {
+      height: 100%;
+    }
+  }
+}
+
 .content-close-button-container {
   position: relative;
   z-index: 4;
