@@ -81,8 +81,8 @@
       {{/lookup-layer-group}}
     {{/accordion-menu}}
 
-    {{!-- Other Layers --}}
-    {{#accordion-menu title='Other Layers' open=false}}
+    {{!-- Supporting Layers --}}
+    {{#accordion-menu title='Supporting Layers' open=true}}
       {{#lookup-layer-group for='zoning-districts' as |layerGroup|}}
         {{#layer-menu-item
           title=layerGroup.model.title
