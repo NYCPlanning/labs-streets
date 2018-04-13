@@ -27,7 +27,7 @@ export default class LayerModel extends Model {
 
   @alias('layerGroup.highlightable') highlightable;
 
-  @alias('style.filter.[]') filter;
+  @alias('style.filter') filter;
 
   @alias('style.layout') layout;
 

@@ -3203,6 +3203,14 @@ ember-cli-normalize-entity-name@^1.0.0:
   dependencies:
     silent-error "^1.0.0"
 
+ember-cli-nouislider@^0.14.1:
+  version "0.14.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-nouislider/-/ember-cli-nouislider-0.14.1.tgz#40d6ac0b8c77e64ef46121b9823c5b6e13998d71"
+  dependencies:
+    ember-cli-babel "^6.3.0"
+    ember-cli-htmlbars "^2.0.1"
+    nouislider "^10.1.0"
+
 ember-cli-path-utils@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-cli-path-utils/-/ember-cli-path-utils-1.0.0.tgz#4e39af8b55301cddc5017739b77a804fba2071ed"
@@ -6860,6 +6868,10 @@ normalize-url@2.0.1:
     prepend-http "^2.0.0"
     query-string "^5.0.1"
     sort-keys "^2.0.0"
+
+nouislider@^10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/nouislider/-/nouislider-10.1.0.tgz#7bdd0411fd62d4584bfe88cb92bb8d06e64c6b47"
 
 npm-git-info@^1.0.0:
   version "1.0.3"

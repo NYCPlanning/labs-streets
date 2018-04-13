@@ -1,58 +1,47 @@
 import Component from '@ember/component';
 import { argument } from '@ember-decorators/argument';
-import { action, computed } from '@ember-decorators/object';
-import { oneWay } from 'ember-decorators/object/computed';
+import { action } from '@ember-decorators/object';
 import { required } from '@ember-decorators/argument/validation';
 import moment from 'moment';
 
-const defaultFormat = 'YYYY-MM-DD';
-
-const fromEpoch = function(number, format = defaultFormat) {
-  return moment(number).format(format);
+const fromEpoch = function(number, format) {
+  return moment(number, 'X').format(format);
 };
 
+const defaultStart = [-2082931200, 1518825600];
+
 export default class SliderFilterComponent extends Component {
-  @computed('layer.filter')
-  get min() {
-    const [, [,, min] = []] = this.get('layer.filter');
-    return min;
-  }
-
-  @computed('layer.filter')
-  get max() {
-    const [,, [,, max] = []] = this.get('layer.filter');
-    return max;
-  }
-
-  @computed('startMin', 'startMax')
-  get start() {
-    const { min, max } =
-      this.getProperties('min', 'max');
-    return [min, max];
-  }
+  @required
+  @argument
+  map;
 
   @required
   @argument
   layer;
 
+  start = defaultStart
+  min = defaultStart[0]
+  max = defaultStart[1]
+
   format = {
-    to: number => fromEpoch(number, 'YYYY-MM'),
-    from: number => fromEpoch(number, 'YYYY-MM'),
+    to: number => fromEpoch(number, 'YYYY'),
+    from: number => fromEpoch(number, 'YYYY'),
   }
 
-  @oneWay('min')
-  startMin
-
-  @oneWay('max')
-  startMax
-
   @action
-  update([min, max]) {
+  sliderChanged([min, max]) {
     const filter = this.generateExpression(min, max);
-    this.set('layer.filter', filter);
+    const map = this.get('map');
+
+    // const layer = this.get('layer');
+    // layer.set('filter', filter);
+
+    // TODO: fix in ember-mapbox-gl, where filters do not trigger
+    // updates in the data
+    map.setFilter(this.get('layer.id'), filter); // <-- this works, but uses map directly
   }
 
   generateExpression(min, max) {
-    return ['all', ['>=', 'id', min], ['<=', 'id', max]];
+    return ['all', ['>=', 'effective', min], ['<=', 'effective', max]];
   }
 }
