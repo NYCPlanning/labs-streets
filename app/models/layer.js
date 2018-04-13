@@ -19,7 +19,7 @@ export default class LayerModel extends Model {
 
   @belongsTo('layer-group') layerGroup
 
-  @attr('mapbox-gl-layer', {
+  @attr({
     defaultValue: () => ({}),
   }) style
 
