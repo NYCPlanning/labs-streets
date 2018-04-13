@@ -59,13 +59,6 @@
         {{/layer-menu-item}}
       {{/lookup-layer-group}}
 
-      {{#lookup-layer-group for='arterials' as |layerGroup|}}
-        {{#layer-menu-item
-          title=layerGroup.model.title
-          active=arterials}}
-        {{/layer-menu-item}}
-      {{/lookup-layer-group}}
-
       {{#lookup-layer-group for='amendments' as |layerGroup|}}
         {{#layer-menu-item
           title=layerGroup.model.title
@@ -73,6 +66,14 @@
           {{slider-filter layer=model.amendmentsFill map=map}}
         {{/layer-menu-item}}
       {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='arterials' as |layerGroup|}}
+        {{#layer-menu-item
+          title=layerGroup.model.title
+          active=arterials}}
+        {{/layer-menu-item}}
+      {{/lookup-layer-group}}
+
       {{#lookup-layer-group for='name-changes' as |layerGroup|}}
         {{#layer-menu-item
           title=layerGroup.model.title
