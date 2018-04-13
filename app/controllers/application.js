@@ -180,6 +180,8 @@ export default class ApplicationController extends ParachuteController {
 
   @action
   handleSearchSelect(result) {
+    const map = this.get('map');
+
     // if (type === 'lot') {
     //   const { boro, block, lot } = bblDemux(result.bbl);
     //   this.set('searchTerms', result.label);
@@ -205,21 +207,17 @@ export default class ApplicationController extends ParachuteController {
     //   });
     // }
 
-    // if (type === 'address') {
-    //   const center = result.coordinates;
-    //   mainMap.set('currentAddress', center);
+    if (result.type === 'address') {
+      const center = result.coordinates;
 
-    //   this.set('searchTerms', result.label);
-    //   this.saveAddress({ address: result.label, coordinates: result.coordinates });
-
-    //   if (mapInstance) {
-    //     mapInstance.flyTo({
-    //       center,
-    //       zoom: 15,
-    //     });
-    //     mapInstance.once('moveend', () => { this.transitionTo('index'); });
-    //   }
-    // }
+      if (map) {
+        map.flyTo({
+          center,
+          zoom: 15,
+        });
+        map.once('moveend', () => { this.transitionTo('index'); });
+      }
+    }
 
     // if (type === 'special-purpose-district') {
     //   this.set('searchTerms', result.sdname);
