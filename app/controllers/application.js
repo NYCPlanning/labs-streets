@@ -201,6 +201,58 @@ export default class ApplicationController extends ParachuteController {
       });
   }
 
+  @action
+  handleSearchSelect(result) {
+    const map = this.get('map');
+    console.log(result);
+
+    // if (type === 'lot') {
+    //   const { boro, block, lot } = bblDemux(result.bbl);
+    //   this.set('searchTerms', result.label);
+    //   this.transitionTo('lot', boro, block, lot);
+    // }
+
+    // if (type === 'zma') {
+    //   this.set('searchTerms', result.label);
+    //   this.transitionTo('zma', result.ulurpno);
+    // }
+
+    // if (type === 'zoning-district') {
+    //   mainMap.set('shouldFitBounds', true);
+    //   this.transitionTo('zoning-district', result.label);
+    // }
+
+    // if (type === 'neighborhood') {
+    //   this.set('searchTerms', result.neighbourhood);
+    //   const center = result.coordinates;
+    //   mapInstance.flyTo({
+    //     center,
+    //     zoom: 13,
+    //   });
+    // }
+
+    if (result.type === 'lot') {
+      const center = result.geometry.coordinates;
+
+      if (map) {
+        map.flyTo({
+          center,
+          zoom: 15,
+        });
+      }
+    }
+
+    // if (type === 'special-purpose-district') {
+    //   this.set('searchTerms', result.sdname);
+    //   this.transitionTo('special-purpose-district', result.cartodb_id);
+    // }
+
+    // if (type === 'commercial-overlay') {
+    //   this.set('searchTerms', result.label);
+    //   this.transitionTo('commercial-overlay', result.overlay);
+    // }
+  }
+
   // runs on controller setup and calls
   // function to overwrite layer-groups'
   // visibility state with QP state
