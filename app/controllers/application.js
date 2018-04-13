@@ -181,6 +181,7 @@ export default class ApplicationController extends ParachuteController {
   @action
   handleSearchSelect(result) {
     const map = this.get('map');
+    console.log(result);
 
     // if (type === 'lot') {
     //   const { boro, block, lot } = bblDemux(result.bbl);
