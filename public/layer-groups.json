@@ -1,683 +1,1021 @@
 [
-  {
-    "id":"pierhead-bulkhead-lines",
-    "title":"Pierhead and Bulkhead Lines",
-    "legendIcon":"admin-line",
-    "legendColor":"",
-    "visible":true,
-    "meta":{
-      "description":"NYC Department of City Planning Technical Review Division",
-      "updated_at":"6 April 2018"
-    },
-    "layers":[
-      {
-        "id": "citymap-pierhead-line",
-        "style":{
-          "id":"citymap-pierhead-line",
-          "type":"line",
-          "source":"digital-citymap",
-          "source-layer":"pierhead-lines",
-          "paint": {
-            "line-color": "rgba(50, 120, 200, 1)",
-            "line-width": {
-              "stops": [
-                [
-                  10,
-                  0.5
-                ],
-                [
-                  14,
-                  3
-                ]
-              ]
-            },
-            "line-opacity": 1,
-            "line-dasharray": [
-              5,
-              2,
-              0,
-              1.5,
-              0,
-              1.5,
-              0,
-              2
-            ]
-          },
-          "layout": {
-            "line-cap": "round"
-          }
-        }
+   {
+      "id": "pierhead-bulkhead-lines",
+      "title": "Pierhead and Bulkhead Lines",
+      "legendIcon": "admin-line",
+      "legendColor": "",
+      "visible": true,
+      "meta": {
+         "description": "NYC Department of City Planning Technical Review Division",
+         "updated_at": "6 April 2018"
       },
-      {
-        "id": "citymap-bulkhead-line",
-        "style":{
-          "id":"citymap-bulkhead-line",
-          "type":"line",
-          "source":"digital-citymap",
-          "source-layer":"bulkhead-lines",
-          "paint": {
-            "line-color": "rgba(50, 120, 200, 1)",
-            "line-width": {
-              "stops": [
-                [
-                  10,
-                  0.5
-                ],
-                [
-                  14,
-                  3
-                ]
-              ]
-            },
-            "line-opacity": 1,
-            "line-dasharray": [
-              5,
-              2.5,
-              0,
-              2,
-              0,
-              2.5
-            ]
-          },
-          "layout": {
-            "line-cap": "round"
-          }
-        }
-      }
-    ]
-  },
-  {
-    "id":"citymap",
-    "title":"City Map",
-    "legendIcon":"admin-line",
-    "legendColor":"",
-    "visible":true,
-    "meta":{
-      "description":"NYC Department of City Planning Technical Review Division",
-      "updated_at":"6 April 2018"
-    },
-    "layers":[
-      {
-        "id": "citymap-mapped-streets-line",
-        "style":{
-          "id": "citymap-mapped-streets-line",
-          "type": "line",
-          "source": "digital-citymap",
-          "source-layer": "citymap",
-          "paint": {
-            "line-color": "rgba(51, 51, 51, 1)",
-            "line-width": {
-              "stops": [
-                [
-                  10,
-                  0.1
-                ],
-                [
-                  13,
-                  1
-                ],
-                [
-                  15,
-                  3
-                ]
-              ]
-            }
-          },
-          "filter": [
-            "all",
-            [
-              "==",
-              "type",
-              "Mapped Street"
-            ]
-          ]
-        }
-      },
-      {
-        "id": "citymap-record-streets-line",
-        "style":{
-          "id": "citymap-record-streets-line",
-          "type": "line",
-          "source": "digital-citymap",
-          "source-layer": "citymap",
-          "filter": [
-            "all",
-            [
-              "==",
-              "type",
-              "Record Street"
-            ]
-          ],
-          "paint": {
-            "line-color": "rgba(0, 0, 0, 1)",
-            "line-width": {
-              "stops": [
-                [
-                  10,
-                  0.1
-                ],
-                [
-                  13,
-                  0.5
-                ],
-                [
-                  15,
-                  2
-                ]
-              ]
-            },
-            "line-dasharray": {
-              "stops": [
-                [
-                  10,
-                  [
-                    6,
-                    4
+      "layers": [
+         {
+            "style": {
+               "id": "citymap-pierhead-line",
+               "type": "line",
+               "source": "digital-citymap",
+               "source-layer": "pierhead-lines",
+               "paint": {
+                  "line-color": "rgba(50, 120, 200, 1)",
+                  "line-width": {
+                     "stops": [
+                        [
+                           10,
+                           0.5
+                        ],
+                        [
+                           14,
+                           3
+                        ]
+                     ]
+                  },
+                  "line-opacity": 1,
+                  "line-dasharray": [
+                     5,
+                     2,
+                     0,
+                     1.5,
+                     0,
+                     1.5,
+                     0,
+                     2
                   ]
-                ],
-                [
-                  15,
-                  [
-                    3,
-                    1
+               },
+               "layout": {
+                  "line-cap": "round"
+               }
+            }
+         },
+         {
+            "style": {
+               "id": "citymap-bulkhead-line",
+               "type": "line",
+               "source": "digital-citymap",
+               "source-layer": "bulkhead-lines",
+               "paint": {
+                  "line-color": "rgba(50, 120, 200, 1)",
+                  "line-width": {
+                     "stops": [
+                        [
+                           10,
+                           0.5
+                        ],
+                        [
+                           14,
+                           3
+                        ]
+                     ]
+                  },
+                  "line-opacity": 1,
+                  "line-dasharray": [
+                     5,
+                     2.5,
+                     0,
+                     2,
+                     0,
+                     2.5
                   ]
-                ]
-              ]
+               },
+               "layout": {
+                  "line-cap": "round"
+               }
             }
-          }
-        }
+         }
+      ]
+   },
+   {
+      "id": "citymap",
+      "title": "City Map",
+      "legendIcon": "admin-line",
+      "legendColor": "",
+      "visible": true,
+      "meta": {
+         "description": "NYC Department of City Planning Technical Review Division",
+         "updated_at": "6 April 2018"
       },
-      {
-        "id": "citymap-street-treatments-line",
-        "style":{
-          "id": "citymap-street-treatments-line",
-          "type": "line",
-          "source": "digital-citymap",
-          "source-layer": "citymap",
-          "filter": [
-            "all",
-            [
-              "==",
-              "type",
-              "street_treatment"
-            ]
-          ],
-          "paint": {
-            "line-color": "rgba(84, 84, 84, 1)",
-            "line-width": {
-              "stops": [
-                [
-                  10,
-                  0.1
-                ],
-                [
-                  13,
-                  0.25
-                ],
-                [
-                  15,
-                  1
-                ]
-              ]
-            }
-          }
-        }
-      },
-      {
-        "id": "citymap-underpass-tunnel-line",
-        "style":{
-          "id": "citymap-underpass-tunnel-line",
-          "type": "line",
-          "source": "digital-citymap",
-          "source-layer": "citymap",
-          "filter": [
-            "all",
-            [
-              "==",
-              "type",
-              "Underpass or Tunnel"
-            ]
-          ],
-          "paint": {
-            "line-color": "rgba(150, 150, 150, 1)",
-            "line-width": {
-              "stops": [
-                [
-                  10,
-                  0.1
-                ],
-                [
-                  13,
-                  0.25
-                ],
-                [
-                  15,
-                  1
-                ]
-              ]
-            },
-            "line-dasharray": {
-              "stops": [
-                [
-                  10,
+      "layers": [
+         {
+            "style": {
+               "id": "citymap-mapped-streets-line",
+               "type": "line",
+               "source": "digital-citymap",
+               "source-layer": "citymap",
+               "paint": {
+                  "line-color": "rgba(51, 51, 51, 1)",
+                  "line-width": {
+                     "stops": [
+                        [
+                           10,
+                           0.1
+                        ],
+                        [
+                           13,
+                           1
+                        ],
+                        [
+                           15,
+                           3
+                        ]
+                     ]
+                  }
+               },
+               "filter": [
+                  "all",
                   [
-                    6,
-                    4
+                     "==",
+                     "type",
+                     "Mapped Street"
                   ]
-                ],
-                [
-                  15,
+               ]
+            }
+         },
+         {
+            "style": {
+               "id": "citymap-record-streets-line",
+               "type": "line",
+               "source": "digital-citymap",
+               "source-layer": "citymap",
+               "filter": [
+                  "all",
                   [
-                    10,
-                    6
+                     "==",
+                     "type",
+                     "Record Street"
                   ]
-                ]
-              ]
+               ],
+               "paint": {
+                  "line-color": "rgba(0, 0, 0, 1)",
+                  "line-width": {
+                     "stops": [
+                        [
+                           10,
+                           0.1
+                        ],
+                        [
+                           13,
+                           0.5
+                        ],
+                        [
+                           15,
+                           2
+                        ]
+                     ]
+                  },
+                  "line-dasharray": {
+                     "stops": [
+                        [
+                           10,
+                           [
+                              6,
+                              4
+                           ]
+                        ],
+                        [
+                           15,
+                           [
+                              3,
+                              1
+                           ]
+                        ]
+                     ]
+                  }
+               }
             }
-          }
-        }
-      },
-      {
-        "id": "citymap-non-z-boundary-line",
-        "style":{
-          "id": "citymap-non-z-boundary-line",
-          "type": "line",
-          "source": "digital-citymap",
-          "source-layer": "citymap",
-          "filter": [
-            "all",
-            [
-              "==",
-              "type",
-              "non_z_boundary"
-            ]
-          ],
-          "paint": {
-            "line-color": "rgba(26, 150, 26, 1)",
-            "line-dasharray": [
-              5,
-              1,
-              2,
-              1
-            ],
-            "line-blur": 0,
-            "line-width": {
-              "stops": [
-                [
-                  10,
-                  0.1
-                ],
-                [
-                  13,
-                  1
-                ],
-                [
-                  15,
-                  3
-                ]
-              ]
-            },
-            "line-opacity": 1,
-            "line-offset": 2
-          },
-          "layout": {
-            "line-cap": "butt"
-          }
-        }
-      },
-      {
-        "id": "citymap-street-not-mapped-line",
-        "style":{
-          "id": "citymap-street-not-mapped-line",
-          "type": "line",
-          "source": "digital-citymap",
-          "source-layer": "citymap",
-          "filter": [
-            "all",
-            [
-              "==",
-              "type",
-              "Street not mapped"
-            ]
-          ],
-          "paint": {
-            "line-color": "rgba(175, 175, 175, 1)",
-            "line-width": {
-              "stops": [
-                [
-                  10,
-                  0.1
-                ],
-                [
-                  13,
-                  0.25
-                ],
-                [
-                  15,
-                  2
-                ]
-              ]
-            },
-            "line-dasharray": [
-              0,
-              2
-            ]
-          },
-          "layout": {
-            "line-cap": "round"
-          }
-        }
-      }
-    ]
-  },
-  {
-    "id":"arterials",
-    "title":"Arterials",
-    "legendIcon":"admin-line",
-    "legendColor":"",
-    "visible":false,
-    "meta":{
-      "description":"NYC Department of City Planning Technical Review Division",
-      "updated_at":"6 April 2018"
-    },
-    "layers":[
-      {
-        "id": "citymap-arterials-line",
-        "style":{
-          "id":"citymap-arterials-line",
-          "type":"line",
-          "source":"digital-citymap",
-          "source-layer":"arterials",
-          "paint":{
-            "line-color":"rgba(245, 147, 80, 1)",
-            "line-width":{
-              "stops":[
-                [
-                  10,
-                  1.5
-                ],
-                [
-                  14,
-                  10
-                ]
-              ]
-            },
-            "line-opacity":0.3
-          },
-          "layout":{
-            "visibility":"visible"
-          }
-        }
-      }
-    ]
-  },
-  {
-    "id":"amendments",
-    "title":"Amendments",
-    "legendIcon":"admin-line",
-    "legendColor":"",
-    "visible":false,
-    "highlightable": true,
-    "meta":{
-      "description":"NYC Department of City Planning Technical Review Division",
-      "updated_at":"6 April 2018"
-    },
-    "layers":[
-      {
-        "id": "citymap-amendments-fill",
-        "style":{
-          "id":"citymap-amendments-fill",
-          "type":"fill",
-          "source":"digital-citymap",
-          "source-layer":"amendments",
-          "paint":{
-            "fill-opacity":0.2,
-            "fill-color":"rgba(60, 133, 210, 1)"
-          },
-          "layout":{
-
-          },
-          "filter": [">=", "effective", -2082931200]
-        }
-      },
-      {
-        "id": "citymap-amendments-hover",
-        "style":{
-          "id":"citymap-amendments-hover",
-          "type":"fill",
-          "source":"digital-citymap",
-          "source-layer":"amendments",
-          "paint":{
-            "fill-color": "#627BC1",
-            "fill-opacity": 1
-          },
-          "layout":{},
-          "filter": ["==", "id", ""]
-        }
-      }
-    ]
-  },
-  {
-    "id":"street-centerlines",
-    "title":"Street Centerlines",
-    "legendIcon":"admin-line",
-    "legendColor":"",
-    "visible":true,
-    "meta":{
-      "description":"NYC Department of City Planning Technical Review Division",
-      "updated_at":"6 April 2018"
-    },
-    "layers":[
-      {
-        "id": "citymap-street-centerlines-symbol",
-        "style":{
-          "id": "citymap-street-centerlines-symbol",
-          "type": "symbol",
-          "source": "digital-citymap",
-          "source-layer": "street-centerlines",
-          "layout": {
-            "text-field": "{streetname} - ({streetwidth} ft)",
-            "text-keep-upright": true,
-            "symbol-placement": "line",
-            "text-size": 12  },
-          "paint": {
-            "text-color": "rgba(37, 37, 37, 1)",
-            "text-halo-color": "#fff",
-            "text-translate": [
-              0,
-              0
-            ],
-            "text-halo-width": 2,
-            "text-halo-blur": 1
-          }
-        }
-      }
-    ]
-  },
-  {
-    "id":"name-changes",
-    "title":"Name Changes",
-    "legendIcon":"admin-line",
-    "legendColor":"",
-    "visible":false,
-    "meta":{
-      "description":"NYC Department of City Planning Technical Review Division",
-      "updated_at":"6 April 2018"
-    },
-    "layers":[
-      {
-        "id": "citymap-name-changes-circle",
-        "style":{
-          "id":"citymap-name-changes-circle",
-          "type":"circle",
-          "source":"digital-citymap",
-          "source-layer":"name-changes-points",
-          "layout":{
-            "visibility":"visible"
-          },
-          "paint":{
-            "circle-stroke-color":"rgba(49, 49, 49, 1)",
-            "circle-color":"rgba(228, 72, 192, 1)",
-            "circle-stroke-width":{
-              "stops":[
-                [
-                  10,
-                  0.5
-                ],
-                [
-                  14,
-                  1.5
-                ]
-              ]
-            },
-            "circle-radius":{
-              "stops":[
-                [
-                  10,
-                  1
-                ],
-                [
-                  14,
-                  5
-                ]
-              ]
+         },
+         {
+            "style": {
+               "id": "citymap-street-treatments-line",
+               "type": "line",
+               "source": "digital-citymap",
+               "source-layer": "citymap",
+               "filter": [
+                  "all",
+                  [
+                     "==",
+                     "type",
+                     "street_treatment"
+                  ]
+               ],
+               "paint": {
+                  "line-color": "rgba(84, 84, 84, 1)",
+                  "line-width": {
+                     "stops": [
+                        [
+                           10,
+                           0.1
+                        ],
+                        [
+                           13,
+                           0.25
+                        ],
+                        [
+                           15,
+                           1
+                        ]
+                     ]
+                  }
+               }
             }
-          }
-        }
-      },
-      {
-        "id": "citymap-name-changes-line",
-        "style":{
-          "id":"citymap-name-changes-line",
-          "type":"line",
-          "source":"digital-citymap",
-          "source-layer":"name-changes-lines",
-          "paint":{
-            "line-color":"rgba(228, 72, 192, 1)",
-            "line-width":{
-              "stops":[
-                [
-                  10,
-                  1
-                ],
-                [
-                  16,
-                  19
-                ]
-              ]
-            },
-            "line-opacity":0.5
-          }
-        }
-      },
-      {
-        "id": "citymap-name-changes-fill",
-        "style":{
-          "id":"citymap-name-changes-fill",
-          "type":"fill",
-          "source":"digital-citymap",
-          "source-layer":"name-changes-areas",
-          "paint":{
-            "fill-color":"rgba(228, 72, 192, 1)",
-            "fill-opacity":0.5
-          }
-        }
-      }
-    ]
-  },
-  {
-    "id":"zoning-districts",
-    "title":"Zoning Districts",
-    "visible":false,
-    "titleTooltip":"A zoning district is a residential, commercial or manufac­turing area of the city within which zoning regulations govern land use and building bulk.",
-    "meta":{
-      "description":"NYC GIS Zoning Features March 2018, Bytes of the Big Apple",
-      "url":[
-        "https://www1.nyc.gov/site/planning/data-maps/open-data.page"
-      ],
-      "updated_at":"April 5th, 2018"
-    },
-    "layers":[
-      {
-        "id": "zd-lines",
-        "style":{
-          "id":"zd-lines",
-          "type":"line",
-          "source":"zoning-districts",
-          "source-layer":"zoning-districts",
-          "paint":{
-            "line-opacity":0.8,
-            "line-width":{
-              "stops":[
-                [
-                  13,
-                  1
-                ],
-                [
-                  14,
-                  3
-                ]
-              ]
-            },
-            "line-color":"rgba(255, 0, 5, 1)"
-          }
-        },
-        "before":"place_other"
-      },
-      {
-        "id": "zd_labels",
-        "style":{
-          "id":"zd_labels",
-          "type":"symbol",
-          "source":"zoning-districts",
-          "source-layer":"zoning-districts",
-          "layout":{
-            "symbol-placement":"point",
-            "text-field":"{zonedist}",
-            "text-size":{
-              "stops":[
-                [
-                  10,
-                  8
-                ],
-                [
-                  14,
-                  16
-                ]
-              ]
+         },
+         {
+            "style": {
+               "id": "citymap-underpass-tunnel-line",
+               "type": "line",
+               "source": "digital-citymap",
+               "source-layer": "citymap",
+               "filter": [
+                  "all",
+                  [
+                     "==",
+                     "type",
+                     "Underpass or Tunnel"
+                  ]
+               ],
+               "paint": {
+                  "line-color": "rgba(150, 150, 150, 1)",
+                  "line-width": {
+                     "stops": [
+                        [
+                           10,
+                           0.1
+                        ],
+                        [
+                           13,
+                           0.25
+                        ],
+                        [
+                           15,
+                           1
+                        ]
+                     ]
+                  },
+                  "line-dasharray": {
+                     "stops": [
+                        [
+                           10,
+                           [
+                              6,
+                              4
+                           ]
+                        ],
+                        [
+                           15,
+                           [
+                              10,
+                              6
+                           ]
+                        ]
+                     ]
+                  }
+               }
             }
-          },
-          "paint":{
-            "text-color":{
-              "stops":[
-                [
-                  15,
-                  "rgba(255, 0, 5, 1)"
-                ],
-                [
-                  16,
-                  "rgba(255, 0, 5, 1)"
-                ]
-              ]
-            },
-            "text-halo-color":"#FFFFFF",
-            "text-halo-width":2,
-            "text-halo-blur":2,
-            "text-opacity":{
-              "stops":[
-                [
-                  12,
-                  0
-                ],
-                [
-                  13,
-                  1
-                ]
-              ]
+         },
+         {
+            "style": {
+               "id": "citymap-non-z-boundary-line",
+               "type": "line",
+               "source": "digital-citymap",
+               "source-layer": "citymap",
+               "filter": [
+                  "all",
+                  [
+                     "==",
+                     "type",
+                     "non_z_boundary"
+                  ]
+               ],
+               "paint": {
+                  "line-color": "rgba(26, 150, 26, 1)",
+                  "line-dasharray": [
+                     5,
+                     1,
+                     2,
+                     1
+                  ],
+                  "line-blur": 0,
+                  "line-width": {
+                     "stops": [
+                        [
+                           10,
+                           0.1
+                        ],
+                        [
+                           13,
+                           1
+                        ],
+                        [
+                           15,
+                           3
+                        ]
+                     ]
+                  },
+                  "line-opacity": 1,
+                  "line-offset": 2
+               },
+               "layout": {
+                  "line-cap": "butt"
+               }
             }
-          }
-        }
-      }
-    ]
-  }
+         },
+         {
+            "style": {
+               "id": "citymap-street-not-mapped-line",
+               "type": "line",
+               "source": "digital-citymap",
+               "source-layer": "citymap",
+               "filter": [
+                  "all",
+                  [
+                     "==",
+                     "type",
+                     "Street not mapped"
+                  ]
+               ],
+               "paint": {
+                  "line-color": "rgba(175, 175, 175, 1)",
+                  "line-width": {
+                     "stops": [
+                        [
+                           10,
+                           0.1
+                        ],
+                        [
+                           13,
+                           0.25
+                        ],
+                        [
+                           15,
+                           2
+                        ]
+                     ]
+                  },
+                  "line-dasharray": [
+                     0,
+                     2
+                  ]
+               },
+               "layout": {
+                  "line-cap": "round"
+               }
+            }
+         }
+      ]
+   },
+   {
+      "id": "arterials",
+      "title": "Arterials",
+      "legendIcon": "admin-line",
+      "legendColor": "",
+      "visible": false,
+      "meta": {
+         "description": "NYC Department of City Planning Technical Review Division",
+         "updated_at": "6 April 2018"
+      },
+      "layers": [
+         {
+            "style": {
+               "id": "citymap-arterials-line",
+               "type": "line",
+               "source": "digital-citymap",
+               "source-layer": "arterials",
+               "paint": {
+                  "line-color": "rgba(245, 147, 80, 1)",
+                  "line-width": {
+                     "stops": [
+                        [
+                           10,
+                           1.5
+                        ],
+                        [
+                           14,
+                           10
+                        ]
+                     ]
+                  },
+                  "line-opacity": 0.3
+               },
+               "layout": {
+                  "visibility": "visible"
+               }
+            }
+         }
+      ]
+   },
+   {
+      "id": "amendments",
+      "title": "Amendments",
+      "legendIcon": "admin-line",
+      "legendColor": "",
+      "visible": false,
+      "highlightable": true,
+      "meta": {
+         "description": "NYC Department of City Planning Technical Review Division",
+         "updated_at": "6 April 2018"
+      },
+      "layers": [
+         {
+            "style": {
+               "id": "citymap-amendments-fill",
+               "type": "fill",
+               "source": "digital-citymap",
+               "source-layer": "amendments",
+               "paint": {
+                  "fill-opacity": 0.2,
+                  "fill-color": "rgba(60, 133, 210, 1)"
+               },
+               "layout": {}
+            }
+         },
+         {
+            "style": {
+               "id": "citymap-amendments-hover",
+               "type": "fill",
+               "source": "digital-citymap",
+               "source-layer": "amendments",
+               "paint": {
+                  "fill-color": "#627BC1",
+                  "fill-opacity": 1
+               },
+               "layout": {},
+               "filter": [
+                  "==",
+                  "id",
+                  ""
+               ]
+            }
+         }
+      ]
+   },
+   {
+      "id": "street-centerlines",
+      "title": "Street Centerlines",
+      "legendIcon": "admin-line",
+      "legendColor": "",
+      "visible": true,
+      "meta": {
+         "description": "NYC Department of City Planning Technical Review Division",
+         "updated_at": "6 April 2018"
+      },
+      "layers": [
+         {
+            "style": {
+               "id": "citymap-street-centerlines-symbol",
+               "type": "symbol",
+               "source": "digital-citymap",
+               "source-layer": "street-centerlines",
+               "layout": {
+                  "text-field": "{streetname} - ({streetwidth} ft)",
+                  "text-keep-upright": true,
+                  "symbol-placement": "line",
+                  "text-size": 12
+               },
+               "paint": {
+                  "text-color": "rgba(37, 37, 37, 1)",
+                  "text-halo-color": "#fff",
+                  "text-translate": [
+                     0,
+                     0
+                  ],
+                  "text-halo-width": 2,
+                  "text-halo-blur": 1
+               }
+            }
+         }
+      ]
+   },
+   {
+      "id": "name-changes",
+      "title": "Name Changes",
+      "legendIcon": "admin-line",
+      "legendColor": "",
+      "visible": false,
+      "meta": {
+         "description": "NYC Department of City Planning Technical Review Division",
+         "updated_at": "6 April 2018"
+      },
+      "layers": [
+         {
+            "style": {
+               "id": "citymap-name-changes-circle",
+               "type": "circle",
+               "source": "digital-citymap",
+               "source-layer": "name-changes-points",
+               "layout": {
+                  "visibility": "visible"
+               },
+               "paint": {
+                  "circle-stroke-color": "rgba(49, 49, 49, 1)",
+                  "circle-color": "rgba(228, 72, 192, 1)",
+                  "circle-stroke-width": {
+                     "stops": [
+                        [
+                           10,
+                           0.5
+                        ],
+                        [
+                           14,
+                           1.5
+                        ]
+                     ]
+                  },
+                  "circle-radius": {
+                     "stops": [
+                        [
+                           10,
+                           1
+                        ],
+                        [
+                           14,
+                           5
+                        ]
+                     ]
+                  }
+               }
+            }
+         },
+         {
+            "style": {
+               "id": "citymap-name-changes-line",
+               "type": "line",
+               "source": "digital-citymap",
+               "source-layer": "name-changes-lines",
+               "paint": {
+                  "line-color": "rgba(228, 72, 192, 1)",
+                  "line-width": {
+                     "stops": [
+                        [
+                           10,
+                           1
+                        ],
+                        [
+                           16,
+                           19
+                        ]
+                     ]
+                  },
+                  "line-opacity": 0.5
+               }
+            }
+         },
+         {
+            "style": {
+               "id": "citymap-name-changes-fill",
+               "type": "fill",
+               "source": "digital-citymap",
+               "source-layer": "name-changes-areas",
+               "paint": {
+                  "fill-color": "rgba(228, 72, 192, 1)",
+                  "fill-opacity": 0.5
+               }
+            }
+         }
+      ]
+   },
+   {
+      "id": "zoning-districts",
+      "title": "Zoning Districts",
+      "visible": false,
+      "titleTooltip": "A zoning district is a residential, commercial or manufac­turing area of the city within which zoning regulations govern land use and building bulk.",
+      "meta": {
+         "description": "NYC GIS Zoning Features March 2018, Bytes of the Big Apple",
+         "url": [
+            "https://www1.nyc.gov/site/planning/data-maps/open-data.page"
+         ],
+         "updated_at": "April 5th, 2018"
+      },
+      "layers": [
+         {
+            "style": {
+               "id": "zd-lines",
+               "type": "line",
+               "source": "zoning",
+               "source-layer": "zoning-districts",
+               "paint": {
+                  "line-opacity": 0.8,
+                  "line-width": {
+                     "stops": [
+                        [
+                           13,
+                           1
+                        ],
+                        [
+                           14,
+                           3
+                        ]
+                     ]
+                  },
+                  "line-color": "rgba(255, 0, 5, 1)"
+               }
+            },
+            "before": "place_other"
+         },
+         {
+            "style": {
+               "id": "zd_labels",
+               "type": "symbol",
+               "source": "zoning",
+               "source-layer": "zoning-districts",
+               "layout": {
+                  "symbol-placement": "point",
+                  "text-field": "{zonedist}",
+                  "text-size": {
+                     "stops": [
+                        [
+                           10,
+                           8
+                        ],
+                        [
+                           14,
+                           16
+                        ]
+                     ]
+                  }
+               },
+               "paint": {
+                  "text-color": {
+                     "stops": [
+                        [
+                           15,
+                           "rgba(255, 0, 5, 1)"
+                        ],
+                        [
+                           16,
+                           "rgba(255, 0, 5, 1)"
+                        ]
+                     ]
+                  },
+                  "text-halo-color": "#FFFFFF",
+                  "text-halo-width": 2,
+                  "text-halo-blur": 2,
+                  "text-opacity": {
+                     "stops": [
+                        [
+                           12,
+                           0
+                        ],
+                        [
+                           13,
+                           1
+                        ]
+                     ]
+                  }
+               }
+            }
+         }
+      ]
+   },
+   {
+      "id": "commercial-overlays",
+      "title": "Commercial Overlays",
+      "titleTooltip": "A commercial overlay is a C1 or C2 district mapped within residential districts to serve local retail needs.",
+      "visible": true,
+      "meta": {
+         "description": "NYC GIS Zoning Features February 2018, Bytes of the Big Apple",
+         "url": [
+            "https://www1.nyc.gov/site/planning/data-maps/open-data.page"
+         ],
+         "updated_at": "5 March 2018"
+      },
+      "layers": [
+         {
+            "style": {
+               "id": "co-fill",
+               "type": "fill",
+               "source": "zoning",
+               "minzoom": 12,
+               "source-layer": "commercial-overlays",
+               "paint": {
+                  "fill-outline-color": "#cdcdcd",
+                  "fill-opacity": 0
+               }
+            },
+            "highlightable": true,
+            "clickable": true,
+            "tooltipTemplate": "{{overlay}}"
+         },
+         {
+            "style": {
+               "id": "co",
+               "type": "line",
+               "source": "zoning",
+               "source-layer": "commercial-overlays",
+               "paint": {
+                  "line-width": {
+                     "stops": [
+                        [
+                           12,
+                           0.1
+                        ],
+                        [
+                           15,
+                           2
+                        ]
+                     ]
+                  },
+                  "line-opacity": 0.75,
+                  "line-color": "rgba(220, 10, 10, 1)"
+               }
+            }
+         },
+         {
+            "style": {
+               "id": "co_labels",
+               "type": "symbol",
+               "source": "zoning",
+               "source-layer": "commercial-overlays",
+               "paint": {
+                  "text-color": "rgba(200, 0, 0, 1)",
+                  "text-halo-color": "#FFFFFF",
+                  "text-halo-width": 2,
+                  "text-halo-blur": 2,
+                  "text-opacity": 0.9
+               },
+               "layout": {
+                  "symbol-placement": "point",
+                  "text-field": "{overlay}"
+               },
+               "minzoom": 14
+            }
+         }
+      ]
+   },
+   {
+      "id": "special-purpose-districts",
+      "title": "Special Purpose Districts",
+      "titleTooltip": "The regulations for special purpose districts are designed to supplement and modify the underlying zoning in order to respond to distinctive neighborhoods with particular issues and goals",
+      "legendIcon": "polygon",
+      "legendColor": "#5E6633",
+      "meta": {
+         "description": "NYC GIS Zoning Features February 2018, Bytes of the Big Apple",
+         "url": [
+            "https://www1.nyc.gov/site/planning/data-maps/open-data.page"
+         ],
+         "updated_at": "5 March 2018"
+      },
+      "layers": [
+         {
+            "style": {
+               "id": "zoning-sp-line",
+               "type": "line",
+               "source": "zoning",
+               "source-layer": "special-purpose-districts",
+               "paint": {
+                  "line-width": {
+                     "stops": [
+                        [
+                           11,
+                           1
+                        ],
+                        [
+                           12,
+                           3
+                        ]
+                     ]
+                  },
+                  "line-color": "#5E6633",
+                  "line-dasharray": [
+                     1,
+                     1
+                  ],
+                  "line-opacity": 0.6
+               }
+            }
+         },
+         {
+            "style": {
+               "id": "zoning-sp-fill",
+               "type": "fill",
+               "source": "zoning",
+               "source-layer": "special-purpose-districts",
+               "paint": {
+                  "fill-color": "#5E6633",
+                  "fill-opacity": 0.2
+               }
+            }
+         }
+      ]
+   },
+   {
+      "id": "tax-lots",
+      "title": "Tax Lots",
+      "titleTooltip": "A tax lot is a parcel of land identified with a unique borough, block and lot number for property tax purposes.",
+      "meta": {
+         "description": "MapPLUTO™ v17v1.1, Bytes of the Big Apple",
+         "url": [
+            "https://www1.nyc.gov/site/planning/data-maps/open-data.page"
+         ],
+         "updated_at": "5 March 2018"
+      },
+      "layers": [
+         {
+            "style": {
+               "id": "pluto-fill",
+               "type": "fill",
+               "source": "pluto",
+               "minzoom": 15,
+               "source-layer": "pluto",
+               "paint": {
+                  "fill-outline-color": "#cdcdcd",
+                  "fill-color": {
+                     "property": "landuse",
+                     "type": "categorical",
+                     "stops": [
+                        [
+                           "01",
+                           "#FEFFA8"
+                        ],
+                        [
+                           "02",
+                           "#FCB842"
+                        ],
+                        [
+                           "03",
+                           "#B16E00"
+                        ],
+                        [
+                           "04",
+                           "#ff8341"
+                        ],
+                        [
+                           "05",
+                           "#fc2929"
+                        ],
+                        [
+                           "06",
+                           "#E362FB"
+                        ],
+                        [
+                           "07",
+                           "#E0BEEB"
+                        ],
+                        [
+                           "08",
+                           "#44A3D5"
+                        ],
+                        [
+                           "09",
+                           "#78D271"
+                        ],
+                        [
+                           "10",
+                           "#BAB8B6"
+                        ],
+                        [
+                           "11",
+                           "#555555"
+                        ]
+                     ],
+                     "default": "#EEEEEE"
+                  },
+                  "fill-opacity": 0
+               }
+            },
+            "highlightable": true,
+            "clickable": true,
+            "tooltipTemplate": "{{address}}"
+         },
+         {
+            "style": {
+               "id": "pluto-line",
+               "type": "line",
+               "source": "pluto",
+               "minzoom": 15,
+               "source-layer": "pluto",
+               "paint": {
+                  "line-width": 0.5,
+                  "line-color": "rgba(130, 130, 130, 1)",
+                  "line-opacity": {
+                     "stops": [
+                        [
+                           15,
+                           0
+                        ],
+                        [
+                           16,
+                           1
+                        ]
+                     ]
+                  }
+               }
+            }
+         },
+         {
+            "style": {
+               "id": "pluto-labels",
+               "type": "symbol",
+               "source": "pluto",
+               "source-layer": "pluto",
+               "minzoom": 15,
+               "layout": {
+                  "text-field": "{lot}",
+                  "text-font": [
+                     "Open Sans Regular",
+                     "Arial Unicode MS Regular"
+                  ],
+                  "text-size": 11
+               },
+               "paint": {
+                  "text-opacity": {
+                     "stops": [
+                        [
+                           16.5,
+                           0
+                        ],
+                        [
+                           17.5,
+                           1
+                        ]
+                     ]
+                  },
+                  "icon-color": "rgba(193, 193, 193, 1)",
+                  "text-color": "rgba(154, 154, 154, 1)",
+                  "text-halo-color": "rgba(152, 152, 152, 0)"
+               }
+            }
+         }
+      ]
+   },
+   {
+      "id": "floodplain-efirm2007",
+      "title": "Effective Flood Insurance Rate Maps 2007",
+      "titleTooltip": "The Effective Flood Insurance Rate Maps (FIRMs), first adopted by New York City in 1983 and last updated in 2007, establish the floodplain currently subject to the National Flood Insurance Program purchase requirements.",
+      "meta": {
+         "description": "Effective Flood Insurance Rate Maps (FIRMs) data are available at FEMA Flood Map Service Center",
+         "url": [
+            "https://msc.fema.gov/portal"
+         ],
+         "updated_at": "September 2017"
+      },
+      "layers": [
+         {
+            "style": {
+               "id": "effective-flood-insurance-rate-2007",
+               "type": "fill",
+               "source": "floodplains",
+               "source-layer": "effective-flood-insurance-rate-2007",
+               "paint": {
+                  "fill-color": {
+                     "property": "fld_zone",
+                     "type": "categorical",
+                     "stops": [
+                        [
+                           "V",
+                           "#0084a8"
+                        ],
+                        [
+                           "A",
+                           "#00a9e6"
+                        ]
+                     ]
+                  },
+                  "fill-opacity": 0.7
+               }
+            },
+            "highlightable": true,
+            "tooltipTemplate": "2007 {{fld_zone}} Zone"
+         }
+      ]
+   },
+   {
+      "id": "floodplain-pfirm2015",
+      "title": "Preliminary Flood Insurance Rate Maps 2015",
+      "titleTooltip": "Released in 2015 as part of a citywide flood map update, the Preliminary FIRMs establish the 1% annual chance floodplain. For building code and zoning purposes, the more expansive of the either the 2015 or 2007 maps is used.",
+      "meta": {
+         "description": "Flood Insurance Rate Data provided by FEMA",
+         "url": [
+            "http://www.region2coastal.com/view-flood-maps-data/view-preliminary-flood-map-data/"
+         ],
+         "updated_at": "September 2017"
+      },
+      "layers": [
+         {
+            "style": {
+               "id": "preliminary-flood-insurance-rate",
+               "type": "fill",
+               "source": "floodplains",
+               "source-layer": "preliminary-flood-insurance-rate",
+               "paint": {
+                  "fill-color": {
+                     "property": "fld_zone",
+                     "type": "categorical",
+                     "stops": [
+                        [
+                           "V",
+                           "#0084a8"
+                        ],
+                        [
+                           "A",
+                           "#00a9e6"
+                        ]
+                     ]
+                  },
+                  "fill-opacity": 0.7
+               }
+            },
+            "highlightable": true,
+            "tooltipTemplate": "2015 {{fld_zone}} Zone"
+         }
+      ]
+   }
 ]
