@@ -2,6 +2,8 @@ import Model from 'ember-data/model';
 import { computed } from '@ember-decorators/object';
 import { attr, belongsTo } from 'ember-decorators/data';
 import { alias } from 'ember-decorators/object/computed';
+import { copy } from '@ember/object/internals';
+import { set } from '@ember/object';
 
 export default class LayerModel extends Model {
   constructor(...args) {
@@ -34,9 +36,11 @@ export default class LayerModel extends Model {
   delegateVisibility() {
     const visible = this.get('visible');
     const visibility = (visible ? 'visible' : 'none');
+    const layout = copy(this.get('layout'));
 
-    this.set('layout', {
-      visibility,
-    });
+    if (layout) {
+      set(layout, 'visibility', visibility);
+      this.set('layout', layout);
+    }
   }
 }

@@ -6,6 +6,6 @@ const EmbeddableSerializer = ApplicationSerializer.extend(EmbeddedRecordsMixin);
 
 export default class LayerGroupSerializer extends EmbeddableSerializer {
   attrs = {
-    layers: { embedded: 'always' },
-  };
+    layers: { serialize: 'records', deserialize: 'records' },
+  }
 }
