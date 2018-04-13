@@ -437,7 +437,7 @@
           "layout":{
 
           },
-          "filter": [">=", "effective", -2082931200]
+          "filter": ["all", [">=","effective",-2082931200000 ], ["<=","effective",1518825600000]]
         }
       },
       {

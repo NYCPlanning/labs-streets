@@ -1,58 +1,37 @@
 import Component from '@ember/component';
 import { argument } from '@ember-decorators/argument';
-import { action, computed } from '@ember-decorators/object';
-import { oneWay } from 'ember-decorators/object/computed';
+import { action } from '@ember-decorators/object';
 import { required } from '@ember-decorators/argument/validation';
 import moment from 'moment';
 
-const defaultFormat = 'YYYY-MM-DD';
-
-const fromEpoch = function(number, format = defaultFormat) {
+const fromEpoch = function(number, format) {
   return moment(number).format(format);
 };
 
+const defaultStart = [-2082931200000, 1518825600000];
+
 export default class SliderFilterComponent extends Component {
-  @computed('layer.filter')
-  get min() {
-    const [, [,, min] = []] = this.get('layer.filter');
-    return min;
-  }
-
-  @computed('layer.filter')
-  get max() {
-    const [,, [,, max] = []] = this.get('layer.filter');
-    return max;
-  }
-
-  @computed('startMin', 'startMax')
-  get start() {
-    const { min, max } =
-      this.getProperties('min', 'max');
-    return [min, max];
-  }
-
   @required
   @argument
   layer;
 
   format = {
-    to: number => fromEpoch(number, 'YYYY-MM'),
-    from: number => fromEpoch(number, 'YYYY-MM'),
+    to: number => fromEpoch(number, 'YYYY'),
+    from: number => fromEpoch(number, 'YYYY'),
   }
 
-  @oneWay('min')
-  startMin
-
-  @oneWay('max')
-  startMax
+  start = defaultStart
+  min = defaultStart[0]
+  max = defaultStart[1]
 
   @action
-  update([min, max]) {
+  sliderChanged([min, max]) {
     const filter = this.generateExpression(min, max);
-    this.set('layer.filter', filter);
+    // this.set('layer.filter', filter); <-- This isn't appropriately applying the filter
+    map.setFilter(this.get('layer.id'), filter) // <-- this works, but uses global map object
   }
 
   generateExpression(min, max) {
-    return ['all', ['>=', 'id', min], ['<=', 'id', max]];
+    return ['all', ['>=', 'effective', min], ['<=', 'effective', max]];
   }
 }
