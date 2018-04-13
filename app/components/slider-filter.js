@@ -28,8 +28,9 @@ export default class SliderFilterComponent extends Component {
   @action
   sliderChanged([min, max]) {
     const filter = this.generateExpression(min, max);
-    // this.set('layer.filter', filter); <-- This isn't appropriately applying the filter
-    map.setFilter(this.get('layer.id'), filter) // <-- this works, but uses global map object
+    const layer = this.get('layer');
+    layer.set('filter', filter);
+    // map.setFilter(this.get('layer.id'), filter) // <-- this works, but uses global map object
   }
 
   generateExpression(min, max) {
