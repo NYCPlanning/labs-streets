@@ -112,19 +112,29 @@ body {
 }
 
 .route-index {
-  .map-container,
-  .layer-menu {
 
-    @include breakpoint(small) {
+  @include breakpoint(small) {
+    .map-container,
+    .layer-menu {
       height: calc(100vh - 12rem);
     }
+  }
 
-    @include breakpoint(medium) {
-      height: calc(100vh - 6rem);
+  @include breakpoint(medium) {
+    .map-container {
+      height: 100%;
       max-height: none;
     }
 
-    @include breakpoint(large) {
+    .layer-menu {
+      height: calc(100% - 3.375rem);
+      max-height: none;
+    }
+  }
+
+  @include breakpoint(large) {
+    .map-container,
+    .layer-menu {
       height: 100%;
     }
   }
