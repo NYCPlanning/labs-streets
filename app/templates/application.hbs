@@ -60,6 +60,14 @@
         {{/layer-menu-item}}
       {{/lookup-layer-group}}
 
+      {{#lookup-layer-group for='amendments' as |layerGroup|}}
+        {{#layer-menu-item
+          title=layerGroup.model.title
+          active=amendments}}
+          {{slider-filter layer=model.amendmentsFill map=map}}
+        {{/layer-menu-item}}
+      {{/lookup-layer-group}}
+
       {{#lookup-layer-group for='arterials' as |layerGroup|}}
         {{#layer-menu-item
           title=layerGroup.model.title
@@ -67,13 +75,6 @@
         {{/layer-menu-item}}
       {{/lookup-layer-group}}
 
-      {{#lookup-layer-group for='amendments' as |layerGroup|}}
-        {{#layer-menu-item
-          title=layerGroup.model.title
-          active=amendments}}
-          {{slider-filter layer=model.amendmentsFill}}
-        {{/layer-menu-item}}
-      {{/lookup-layer-group}}
       {{#lookup-layer-group for='name-changes' as |layerGroup|}}
         {{#layer-menu-item
           title=layerGroup.model.title
@@ -82,12 +83,48 @@
       {{/lookup-layer-group}}
     {{/accordion-menu}}
 
-    {{!-- Other Layers --}}
-    {{#accordion-menu title='Other Layers' open=false}}
+    {{!-- Supporting Layers --}}
+    {{#accordion-menu title='Supporting Layers' open=true}}
       {{#lookup-layer-group for='zoning-districts' as |layerGroup|}}
         {{#layer-menu-item
           title=layerGroup.model.title
           active=zoning-districts}}
+        {{/layer-menu-item}}
+      {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='commercial-overlays' as |layerGroup|}}
+        {{#layer-menu-item
+          title=layerGroup.model.title
+          active=commercial-overlays}}
+        {{/layer-menu-item}}
+      {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='special-purpose-districts' as |layerGroup|}}
+        {{#layer-menu-item
+          title=layerGroup.model.title
+          active=special-purpose-districts}}
+        {{/layer-menu-item}}
+      {{/lookup-layer-group}}
+
+
+      {{#lookup-layer-group for='tax-lots' as |layerGroup|}}
+        {{#layer-menu-item
+          title=layerGroup.model.title
+          active=tax-lots}}
+        {{/layer-menu-item}}
+      {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='floodplain-pfirm2015' as |layerGroup|}}
+        {{#layer-menu-item
+          title=layerGroup.model.title
+          active=floodplain-pfirm2015}}
+        {{/layer-menu-item}}
+      {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='floodplain-efirm2007' as |layerGroup|}}
+        {{#layer-menu-item
+          title=layerGroup.model.title
+          active=floodplain-efirm2007}}
         {{/layer-menu-item}}
       {{/lookup-layer-group}}
     {{/accordion-menu}}
