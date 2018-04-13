@@ -1,5 +1,4 @@
 import DS from 'ember-data';
-import { merge } from '@ember/polyfills';
 
 const { JSONSerializer } = DS;
 
