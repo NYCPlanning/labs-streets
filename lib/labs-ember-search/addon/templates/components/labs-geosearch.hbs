@@ -38,7 +38,7 @@
         {{/if}}
       </li>
       {{#each rows as |result|}}
-        <li class="result {{if (eq selected result.id) 'highlighted-result'}}" {{action 'goTo' result}}>
+        <li class="result {{if (eq selected result.id) 'highlighted-result'}}" {{action 'goTo' result}} role="button">
           {{#if (eq type 'lot')}}
             <span class="icon tax-lot"></span> <span class="subdued">{{result.label}}, Block {{result.demuxedBbl.block}}, Lot {{result.demuxedBbl.lot}}</span>
           {{else if (eq type 'zma')}}
@@ -77,7 +77,7 @@
           {{/if}}
         </li>
         {{#each rows as |result|}}
-          <li class="result {{if (eq selected result.id) 'highlighted-result'}}" {{action 'goTo' result}}>
+          <li class="result {{if (eq selected result.id) 'highlighted-result'}}" {{action 'goTo' result}} role="button">
             {{#if (eq type 'lot')}}
               <span class="icon tax-lot"></span> <span class="subdued">{{result.label}}, Block {{result.demuxedBbl.block}}, Lot {{result.demuxedBbl.lot}}</span>
             {{else if (eq type 'zma')}}
