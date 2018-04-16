@@ -13,10 +13,6 @@ const defaultStart = [-2082931200, 1518825600];
 export default class SliderFilterComponent extends Component {
   @required
   @argument
-  map;
-
-  @required
-  @argument
   layer;
 
   start = defaultStart
@@ -31,14 +27,8 @@ export default class SliderFilterComponent extends Component {
   @action
   sliderChanged([min, max]) {
     const filter = this.generateExpression(min, max);
-    const map = this.get('map');
-
-    // const layer = this.get('layer');
-    // layer.set('filter', filter);
-
-    // TODO: fix in ember-mapbox-gl, where filters do not trigger
-    // updates in the data
-    map.setFilter(this.get('layer.id'), filter); // <-- this works, but uses map directly
+    const layer = this.get('layer');
+    layer.setFilter(filter);
   }
 
   generateExpression(min, max) {
