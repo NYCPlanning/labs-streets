@@ -5,10 +5,11 @@ import { required } from '@ember-decorators/argument/validation';
 import moment from 'moment';
 
 const fromEpoch = function(number, format) {
-  return moment(number, 'X').format(format);
+  return moment(number, 'X').utc().format(format);
 };
 
-const defaultStart = [-2082931200, 1518825600];
+// Jan 1, 1903 to present
+const defaultStart = [-2114380799, parseInt(moment().utc().endOf('year').format('X'), 10)];
 
 export default class SliderFilterComponent extends Component {
   @required
@@ -30,11 +31,13 @@ export default class SliderFilterComponent extends Component {
 
   @action
   sliderChanged([min, max]) {
-    const filter = this.generateExpression(min, max);
-    const map = this.get('map');
+    // because the slider returns unix epochs based on its own step increment,
+    // get the startOf() the min timestamp's year, and the endOf() of the max timestamp's year
+    const minStart = parseInt(moment(min, 'X').utc().startOf('year').format('X'), 10);
+    const maxEnd = parseInt(moment(max, 'X').utc().endOf('year').format('X'), 10);
 
-    // const layer = this.get('layer');
-    // layer.set('filter', filter);
+    const filter = this.generateExpression(minStart, maxEnd);
+    const map = this.get('map');
 
     // TODO: fix in ember-mapbox-gl, where filters do not trigger
     // updates in the data
