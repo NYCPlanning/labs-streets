@@ -4,12 +4,13 @@ import { attr, belongsTo } from 'ember-decorators/data';
 import { alias } from 'ember-decorators/object/computed';
 import { copy } from '@ember/object/internals';
 import { set } from '@ember/object';
+import { assign } from '@ember/polyfills';
 
 export default class LayerModel extends Model {
   constructor(...args) {
     super(...args);
-    this.delegateVisibility();
-    this.addObserver('visible', this, 'delegateVisibility');
+    this.inheritVisibility();
+    this.addObserver('visible', this, 'inheritVisibility');
   }
 
   @computed('style.{paint,layout,filter}')
@@ -37,7 +38,11 @@ export default class LayerModel extends Model {
 
   @alias('style.paint') paint;
 
-  delegateVisibility() {
+  setFilter(filter = []) {
+    this.set('style', assign({}, this.get('style'), { filter }));
+  }
+
+  inheritVisibility() {
     const visible = this.get('visible');
     const visibility = (visible ? 'visible' : 'none');
     const layout = copy(this.get('layout'));

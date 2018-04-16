@@ -14,10 +14,6 @@ const defaultStart = [-2114380799, parseInt(moment().utc().endOf('year').format(
 export default class SliderFilterComponent extends Component {
   @required
   @argument
-  map;
-
-  @required
-  @argument
   layer;
 
   start = defaultStart
@@ -31,17 +27,15 @@ export default class SliderFilterComponent extends Component {
 
   @action
   sliderChanged([min, max]) {
+    const layer = this.get('layer');
+
     // because the slider returns unix epochs based on its own step increment,
     // get the startOf() the min timestamp's year, and the endOf() of the max timestamp's year
     const minStart = parseInt(moment(min, 'X').utc().startOf('year').format('X'), 10);
     const maxEnd = parseInt(moment(max, 'X').utc().endOf('year').format('X'), 10);
 
     const filter = this.generateExpression(minStart, maxEnd);
-    const map = this.get('map');
-
-    // TODO: fix in ember-mapbox-gl, where filters do not trigger
-    // updates in the data
-    map.setFilter(this.get('layer.id'), filter); // <-- this works, but uses map directly
+    layer.setFilter(filter);
   }
 
   generateExpression(min, max) {

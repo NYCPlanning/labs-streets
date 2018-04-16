@@ -98,9 +98,11 @@ record.set('paint', { 'fill-color':'pink' });
 ```
 
 #### Change filtering
-*Does not work yet*
+For now, we need to use a helper method for this because updates aren't being triggered correctly yet.
 
-There is some issue with the data binding here that we are still working on. `map.setFilter` must be used instead.
+```javascript
+layerModelInstance.setFilter(['all', ['>=', 'effective', 100]]);
+```
 
 #### Map Styling
 
