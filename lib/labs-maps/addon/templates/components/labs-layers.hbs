@@ -3,24 +3,26 @@
 
   {{!-- if the layer is hightlightable or tooltipable, bind events --}}
   {{#if (or layerObject.highlightable layerObject.tooltipable)}}
-    {{mapbox-gl-on 'mousemove' layerObject.mapboxGlStyle.id (action 'handleLayerMouseMove') 
+    {{mapbox-gl-on 'mousemove' layerObject.mapboxGlStyle.id (action 'handleLayerMouseMove')
       eventSource=map}}
-    {{mapbox-gl-on 'mouseleave' layerObject.mapboxGlStyle.id (action 'handleLayerMouseLeave') 
+    {{mapbox-gl-on 'mouseleave' layerObject.mapboxGlStyle.id (action 'handleLayerMouseLeave')
       eventSource=map}}
   {{/if}}
 
-  {{mapbox-gl-on 'click' layerObject.mapboxGlStyle.id (action 'handleLayerMouseClick') 
+  {{mapbox-gl-on 'click' layerObject.mapboxGlStyle.id (action 'handleLayerMouseClick')
     eventSource=map}}
 
-  {{mapbox-gl-layer 
+  {{mapbox-gl-layer
       map=map
-      layer=layerObject.mapboxGlStyle}}
+      layer=layerObject.mapboxGlStyle
+      before=layerObject.before
+    }}
 
   {{!-- Backup - filter is not updating correctly, but it does when
   props are bound directly --}}
-  {{!--   {{mapbox-gl-layer 
+  {{!--   {{mapbox-gl-layer
         map=map
-        layer=(hash paint=layerObject.mapboxGlStyle.paint 
+        layer=(hash paint=layerObject.mapboxGlStyle.paint
                     layout=layerObject.mapboxGlStyle.layout
                     filter=layerObject.mapboxGlStyle.filter
                     type=layerObject.mapboxGlStyle.type
@@ -31,17 +33,17 @@
 
 {{!-- Highlighted Layer Handling --}}
 {{#if hoveredFeature}}
-  {{mapbox-gl-layer 
-    map=map 
+  {{mapbox-gl-layer
+    map=map
     layer=highlightedFeatureLayer}}
 {{/if}}
 
-{{yield (hash 
-  tooltip=(if hoveredFeature 
-    (component toolTipComponent 
-      feature=hoveredFeature 
-      layer=hoveredLayer 
-      top=mousePosition.y 
+{{yield (hash
+  tooltip=(if hoveredFeature
+    (component toolTipComponent
+      feature=hoveredFeature
+      layer=hoveredLayer
+      top=mousePosition.y
       left=mousePosition.x
     )
   )
