@@ -17,6 +17,10 @@ export default class LayerModel extends Model {
     return this.get('style');
   }
 
+  @attr('string', {
+    defaultValue: 'place_other',
+  }) before
+
   @belongsTo('layer-group') layerGroup
 
   @attr({
