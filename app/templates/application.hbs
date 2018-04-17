@@ -1,4 +1,5 @@
 {{labs-site-header}}
+
 <div class="site-main grid-x route-{{currentRouteName}}">
 
   <div class="search-container">
@@ -11,8 +12,7 @@
       initOptions=initMapOptions
       mapLoaded=(action 'handleMapLoad') as |map|}}
       {{#map.labs-layers
-        model=model
-        onLayerClick=(action 'handleLayerClick') as |layers|}}
+        model=model as |layers|}}
         {{#layers.tooltip as |tooltip|}}
           {{tooltip.layer.id}}
         {{/layers.tooltip}}
@@ -26,9 +26,14 @@
         {{/map.popup}}
       {{/if}}
 
+      {{map.on 'render' (action 'handleMapDataEvent')}}
       {{map.on 'click' (action 'handleMapClick')}}
       {{map.on 'zoomend' (action 'handleZoomend')}}
       {{map.on 'dragend' (action 'handleDragend')}}
+
+      {{#if loadStateTask.isRunning}}
+        {{fa-icon 'spinner' class='fa-spin fa-3x map-loading-spinner'}}
+      {{/if}}
     {{/labs-map}}
     <a class="zola-map-area-button" href="https://zola.planning.nyc.gov/{{mapLatLngZoomHash}}" target="_blank" rel="noopener">
       <strong>View <span class="show-for-medium">this area</span> in ZoLa</strong>

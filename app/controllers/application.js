@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { action, computed } from '@ember-decorators/object';
 import { argument } from '@ember-decorators/argument';
+import { task, timeout } from 'ember-concurrency';
 import QueryParams from 'ember-parachute';
 import carto from 'carto-promises-utility/utils/carto';
 import mapboxgl from 'mapbox-gl';
@@ -104,18 +105,9 @@ export default class ApplicationController extends ParachuteController {
   @argument
   popupFeatures = [];
 
-  @action
-  handleLayerClick() {}
-  // handleLayerClick(feature = { layer: {} }) {
-  //   const { layer: { id: layerId } } = feature;
-  //
-  //   // there will be many of these
-  //   if (layerId === 'citymap-amendments-fill') {
-  //     const { properties: { altmappdf = '' } } = feature;
-  //     const clean = altmappdf.split('/').pop();
-  //     window.open(`https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/${clean}`);
-  //   }
-  // }
+  loadStateTask = task(function* () {
+    yield timeout(500);
+  }).restartable();
 
   @action
   handleZoomend(e) {
@@ -205,31 +197,6 @@ export default class ApplicationController extends ParachuteController {
   handleSearchSelect(result) {
     const map = this.get('map');
 
-    // if (type === 'lot') {
-    //   const { boro, block, lot } = bblDemux(result.bbl);
-    //   this.set('searchTerms', result.label);
-    //   this.transitionTo('lot', boro, block, lot);
-    // }
-
-    // if (type === 'zma') {
-    //   this.set('searchTerms', result.label);
-    //   this.transitionTo('zma', result.ulurpno);
-    // }
-
-    // if (type === 'zoning-district') {
-    //   mainMap.set('shouldFitBounds', true);
-    //   this.transitionTo('zoning-district', result.label);
-    // }
-
-    // if (type === 'neighborhood') {
-    //   this.set('searchTerms', result.neighbourhood);
-    //   const center = result.coordinates;
-    //   mapInstance.flyTo({
-    //     center,
-    //     zoom: 13,
-    //   });
-    // }
-
     if (result.type === 'lot') {
       const center = result.geometry.coordinates;
 
@@ -240,16 +207,11 @@ export default class ApplicationController extends ParachuteController {
         });
       }
     }
+  }
 
-    // if (type === 'special-purpose-district') {
-    //   this.set('searchTerms', result.sdname);
-    //   this.transitionTo('special-purpose-district', result.cartodb_id);
-    // }
-
-    // if (type === 'commercial-overlay') {
-    //   this.set('searchTerms', result.label);
-    //   this.transitionTo('commercial-overlay', result.overlay);
-    // }
+  @action
+  handleMapDataEvent() {
+    this.get('loadStateTask').perform();
   }
 
   // runs on controller setup and calls

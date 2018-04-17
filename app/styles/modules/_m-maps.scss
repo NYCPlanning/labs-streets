@@ -147,3 +147,13 @@
     display: block;
   }
 }
+
+.map-loading-spinner {
+  position: absolute;
+  right: 10px;
+  bottom: 30px;
+  opacity: 0.5;
+  z-index: 1;
+  pointer-events: none;
+}
+
