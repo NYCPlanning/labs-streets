@@ -57,7 +57,7 @@
     {{/each-in}}
   {{/if}}
   {{#if (is-pending results)}}
-    {{# if prevResults }}
+    {{#if prevResults }}
       {{#each-in (group-by "type" prevResults) as |type rows|}}
         <li>
           {{#if (eq type 'lot')}}
