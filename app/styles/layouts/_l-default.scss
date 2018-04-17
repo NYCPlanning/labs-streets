@@ -89,7 +89,7 @@ body {
 .layer-menu {
   background-color: $light-gray;
   z-index: 2;
-  min-height: calc(50vh - 8rem);
+  // min-height: calc(50vh - 8rem);
 
   @include breakpoint(medium) {
     min-height: none;
@@ -114,9 +114,12 @@ body {
 .route-index {
 
   @include breakpoint(small) {
-    .map-container,
+    .map-container {
+      height: calc(100vh - 14.25rem);
+    }
+
     .layer-menu {
-      height: calc(100vh - 12rem);
+      min-height: 6rem;
     }
   }
 
@@ -147,6 +150,10 @@ body {
   background-color: $body-background;
   text-align: right;
   padding: $global-margin $global-margin 0;
+
+  @include breakpoint(small only) {
+    margin-bottom: -$global-margin;
+  }
 
   @include breakpoint(medium down) {
     @include xy-cell-static(full,false,0);
