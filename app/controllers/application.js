@@ -106,7 +106,7 @@ export default class ApplicationController extends ParachuteController {
   popupFeatures = [];
 
   loadStateTask = task(function* () {
-    yield timeout(1000);
+    yield timeout(500);
   }).restartable();
 
   @action
