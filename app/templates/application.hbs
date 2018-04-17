@@ -41,7 +41,7 @@
     </a>
   </div>
 
-  <div class="layer-menu cell large-order-1">
+  <div class="layer-menu cell large-order-1 {{unless (eq currentRouteName 'index') 'show-for-medium'}}">
     {{!-- City Map Layers --}}
     {{#accordion-menu title='City Map Layers'}}
       {{#lookup-layer-group for='citymap' as |layerGroup|}}
