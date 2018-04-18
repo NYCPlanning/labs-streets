@@ -384,6 +384,8 @@
     },
     "layers": [
       {
+        "tooltipable": true,
+        "tooltipTemplate": "Type: {{type}}",
         "style": {
           "id": "citymap-mapped-streets-line",
           "type": "line",
@@ -419,6 +421,8 @@
         }
       },
       {
+        "tooltipable": true,
+        "tooltipTemplate": "Type: {{type}}",
         "style": {
           "id": "citymap-record-streets-line",
           "type": "line",
@@ -472,6 +476,8 @@
         }
       },
       {
+        "tooltipable": true,
+        "tooltipTemplate": "Type: {{type}}",
         "style": {
           "id": "citymap-street-treatments-line",
           "type": "line",
@@ -507,6 +513,8 @@
         }
       },
       {
+        "tooltipable": true,
+        "tooltipTemplate": "Type: {{type}}",
         "style": {
           "id": "citymap-underpass-tunnel-line",
           "type": "line",
@@ -560,6 +568,8 @@
         }
       },
       {
+        "tooltipable": true,
+        "tooltipTemplate": "Type: {{type}}",
         "style": {
           "id": "citymap-non-z-boundary-line",
           "type": "line",
@@ -607,6 +617,8 @@
         }
       },
       {
+        "tooltipable": true,
+        "tooltipTemplate": "Type: {{type}}",
         "style": {
           "id": "citymap-street-not-mapped-line",
           "type": "line",
