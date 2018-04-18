@@ -5,11 +5,13 @@
   <div class="search-container">
     {{#labs-search 
         onSelect=(action 'handleSearchSelect') 
-        onHoverResult=(action 'handleSearchResultHover') as |search|}}
+        onHoverResult=(action 'handleSearchResultHover')
+        onHoverOut=(action 'handleSearchHoverOut')
+        onClear=(action 'handleSearchClear') as |search|}}
       {{#if (eq search.result.type 'lot')}}
         <span class="icon tax-lot"></span> <span class="subdued">{{search.result.label}}, Block {{search.result.demuxedBbl.block}}, Lot {{search.result.demuxedBbl.lot}}</span>
-      {{else}}
-        {{search.result.label}}
+      {{else if (eq search.result.type 'city-street')}}
+        {{search.result.label}} ({{search.result.boro_name}})
       {{/if}}
     {{/labs-search}}
   </div>
@@ -32,6 +34,40 @@
           {{map-popup-content
             features=popupFeatures}}
         {{/map.popup}}
+      {{/if}}
+
+      {{#if highlightedStreetSource}}
+        {{#map.source options=highlightedStreetSource as |source|}}
+          {{source.layer layer=(hash
+              type='line'
+              paint=(hash 
+                line-color="black" 
+                line-opacity=0.8
+                line-width=(hash
+                  stops = (array
+                    (array 10 1.5)
+                    (array 14 5)
+                  )
+                )
+              )
+              layout=(hash
+                line-cap='round'
+              )
+            )
+          }}
+          {{source.layer layer=(hash
+              type='line'
+              paint=(hash 
+                line-color="lightblue" 
+                line-opacity=0.2
+                line-width=12
+              )
+              layout=(hash
+                line-cap='round'
+              )
+            )
+          }}
+        {{/map.source}}
       {{/if}}
 
       {{map.on 'render' (action 'handleMapDataEvent')}}

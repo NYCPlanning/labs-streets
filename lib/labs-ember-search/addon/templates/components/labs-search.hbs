@@ -17,7 +17,8 @@
   <span class="fa fa-search search-icon"></span>
 {{/if}}
 
-<ul class="search-results no-bullet{{if (or resultsCount currResults)' has-results'}}{{if focused ' focused'}}">
+<ul class="search-results no-bullet{{if (or resultsCount currResults)' has-results'}}{{if focused ' focused'}}"
+  onmouseleave={{action 'handleHoverOut'}}>
   {{#each-in (group-by "typeTitle" currResults) as |type rows|}}
     <li>
       <h4 class="header-small results-header">{{type}}</h4>
