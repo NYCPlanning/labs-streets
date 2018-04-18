@@ -14,7 +14,7 @@
       {{#map.labs-layers
         model=model as |layers|}}
         {{#layers.tooltip as |tooltip|}}
-          {{tooltip.layer.id}}
+          {{tooltip-renderer feature=tooltip.feature template=tooltip.layer.tooltipTemplate}}
         {{/layers.tooltip}}
       {{/map.labs-layers}}
 

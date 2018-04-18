@@ -12,7 +12,6 @@ export default class LayerGroupModel extends Model {
 
   @attr('boolean') visible = true
   @attr('boolean') highlightable = false
-  @attr('boolean') tooltipable = false
 
   @mapBy('layers', 'style') layerIds
 }

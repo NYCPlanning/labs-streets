@@ -13,6 +13,9 @@ export default class LayerModel extends Model {
     this.addObserver('visible', this, 'inheritVisibility');
   }
 
+  @attr('boolean') tooltipable = false
+  @attr('string') tooltipTemplate = ''
+
   @computed('style.{paint,layout,filter}')
   get mapboxGlStyle() {
     return this.get('style');
