@@ -97,6 +97,9 @@ export default class ApplicationController extends ParachuteController {
   }
 
   @argument
+  shareURL = window.location.href;
+
+  @argument
   popupLocation = {
     lng: 0,
     lat: 0,
@@ -225,6 +228,8 @@ export default class ApplicationController extends ParachuteController {
     if (shouldRefresh) {
       this.fetchData(queryParams);
     }
+
+    this.set('shareURL', window.location.href);
   }
 
   fetchData(queryParams, setDefaults = false) {
