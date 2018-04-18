@@ -23,7 +23,7 @@ export default class ShareControls extends Component {
   handleShareSuccess() {
     this.set('copySuccess', true);
 
-    run.later(this, function() {
+    run.later(() => {
       this.set('copySuccess', false);
     }, 2000);
   }
