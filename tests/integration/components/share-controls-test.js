@@ -1,26 +1,30 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { render, click, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | share-controls', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  test('it toggles open and closed', async function(assert) {
+    await render(hbs`{{share-controls shareURL='http://foo.bar/'}}`);
 
-    await render(hbs`{{share-controls}}`);
+    // Opens
+    await click('.share-controls-toggle');
+    const shareControlsContent = await find('.share-controls-content');
+    assert.equal(!!shareControlsContent, true);
 
-    assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      {{#share-controls}}
-        template block text
-      {{/share-controls}}
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    // Closes
+    await click('.share-controls-content .close-button');
+    const shareControlsContent2 = await find('.share-controls-content');
+    assert.equal(!!shareControlsContent2, false);
   });
+
+  test('it renders the URL', async function(assert) {
+    await render(hbs`{{share-controls shareURL='http://foo.bar/?foo=bar'}}`);
+    await click('.share-controls-toggle');
+    const URL = await find('#share-url').value;
+    assert.equal(URL, 'http://foo.bar/?foo=bar');
+  });
+
 });
