@@ -1,8 +1,14 @@
 <div {{action 'toggleAccordion'}} class="accordion-title {{unless open 'closed'}}" role="button">
   {{title}}
+  {{#if (and mapIsLoading open numberMenuItems)}}
+    {{fa-icon 'spinner' class='fa-spin medium-gray'}}
+  {{/if}}
 </div>
 {{#if open}}
   <div class="accordion-content">
-    {{yield}}
+    {{yield (hash
+        menu-item=(component 'layer-menu-item' didRenderHook=(action 'registerChild'))
+      )
+    }}
   </div>
 {{/if}}

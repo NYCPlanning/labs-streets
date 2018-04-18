@@ -94,48 +94,49 @@
 
   <div class="layer-menu cell large-order-1 {{if (not-eq currentRouteName 'index') 'show-for-medium'}}">
     {{!-- City Map Layers --}}
-    {{#accordion-menu title='City Map Layers'}}
+    {{#accordion-menu title='City Map Layers'
+        mapIsLoading=loadStateTask.isRunning as |menu|}}
       {{#lookup-layer-group for='citymap' as |layerGroup|}}
-        {{#layer-menu-item
+        {{#menu.menu-item
           title=layerGroup.model.title
           active=citymap}}
-        {{/layer-menu-item}}
+        {{/menu.menu-item}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='street-centerlines' as |layerGroup|}}
-        {{#layer-menu-item
+        {{#menu.menu-item
           title=layerGroup.model.title
           active=street-centerlines}}
-        {{/layer-menu-item}}
+        {{/menu.menu-item}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='pierhead-bulkhead-lines' as |layerGroup|}}
-        {{#layer-menu-item
+        {{#menu.menu-item
           title=layerGroup.model.title
           active=pierhead-bulkhead-lines}}
-        {{/layer-menu-item}}
+        {{/menu.menu-item}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='amendments' as |layerGroup|}}
-        {{#layer-menu-item
+        {{#menu.menu-item
           title=layerGroup.model.title
           active=amendments}}
           {{slider-filter layer=model.amendmentsFill}}
-        {{/layer-menu-item}}
+        {{/menu.menu-item}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='arterials' as |layerGroup|}}
-        {{#layer-menu-item
+        {{#menu.menu-item
           title=layerGroup.model.title
           active=arterials}}
-        {{/layer-menu-item}}
+        {{/menu.menu-item}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='name-changes' as |layerGroup|}}
-        {{#layer-menu-item
+        {{#menu.menu-item
           title=layerGroup.model.title
           active=name-changes}}
-        {{/layer-menu-item}}
+        {{/menu.menu-item}}
       {{/lookup-layer-group}}
     {{/accordion-menu}}
 

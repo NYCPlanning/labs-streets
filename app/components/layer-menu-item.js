@@ -7,6 +7,11 @@ import { classNames } from 'ember-decorators/component';
 
 @classNames('layer-menu-item')
 export default class LayerMenuItemComponent extends Component {
+  constructor() {
+    super();
+    this.get('didRenderHook')(this);
+  }
+
   @required
   @argument
   @type('string')
@@ -15,6 +20,9 @@ export default class LayerMenuItemComponent extends Component {
   @argument
   @type('boolean')
   active = true;
+
+  @argument
+  didRenderHook = () => {}
 
   @action
   toggle() {
