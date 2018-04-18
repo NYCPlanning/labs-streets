@@ -210,6 +210,10 @@ export default class ApplicationController extends ParachuteController {
         });
       }
     }
+
+    if (result.type === 'city-street') {
+      console.log(result);
+    }
   }
 
   @action

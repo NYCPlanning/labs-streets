@@ -18,23 +18,9 @@
 {{/if}}
 
 <ul class="search-results no-bullet{{if (or resultsCount currResults)' has-results'}}{{if focused ' focused'}}">
-  {{#each-in (group-by "type" currResults) as |type rows|}}
+  {{#each-in (group-by "typeTitle" currResults) as |type rows|}}
     <li>
-      {{#if (eq type 'lot')}}
-        <h4 class="header-small results-header">View Tax Lot Information</h4>
-      {{else if (eq type 'zma')}}
-        <h4 class="header-small results-header">View Zoning Change Information</h4>
-      {{else if (eq type 'neighborhood')}}
-        <h4 class="header-small results-header">Go to Neighborhood</h4>
-      {{else if (eq type 'zoning-district')}}
-        <h4 class="header-small results-header">View Zoning Districts</h4>
-      {{else if (eq type 'commercial-overlay')}}
-        <h4 class="header-small results-header">View Commerical Overlay</h4>
-      {{else if (eq type 'special-purpose-district')}}
-        <h4 class="header-small results-header">View Special Purpose District</h4>
-      {{else}}
-        <h4 class="header-small results-header">Add Map Pin</h4>
-      {{/if}}
+      <h4 class="header-small results-header">{{type}}</h4>
     </li>
     {{#each rows key='label' as |result|}}
       <li class="result {{if (eq selected result.id) 'highlighted-result'}}" {{action 'goTo' result}} role="button">
