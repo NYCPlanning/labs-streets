@@ -25,7 +25,7 @@
     {{#each rows key='label' as |result|}}
       <li class="result {{if (eq selected result.id) 'highlighted-result'}}" {{action 'goTo' result}} role="button">
         {{#if hasBlock}}
-          {{yield (hash type=result.type)}}
+          {{yield (hash result=result)}}
         {{else}}
           {{result.label}}
         {{/if}}
