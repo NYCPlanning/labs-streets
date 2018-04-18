@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { action } from '@ember-decorators/object';
 import { argument } from '@ember-decorators/argument';
+import { run } from '@ember/runloop';
 
 export default class ShareControls extends Component {
   @argument shareURL;
@@ -22,12 +23,8 @@ export default class ShareControls extends Component {
   handleShareSuccess() {
     this.set('copySuccess', true);
 
-    // run.later(myContext, function() {
-    //   this.set('copySuccess', false);
-    // }, 2000);
-    const that = this;
-    setTimeout(function() {
-      that.set('copySuccess', false);
+    run.later(this, function() {
+      this.set('copySuccess', false);
     }, 2000);
   }
 }
