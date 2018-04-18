@@ -24,16 +24,8 @@
     </li>
     {{#each rows key='label' as |result|}}
       <li class="result {{if (eq selected result.id) 'highlighted-result'}}" {{action 'goTo' result}} role="button">
-        {{#if (eq type 'lot')}}
-          <span class="icon tax-lot"></span> <span class="subdued">{{result.label}}, Block {{result.demuxedBbl.block}}, Lot {{result.demuxedBbl.lot}}</span>
-        {{else if (eq type 'zma')}}
-          <span class="icon polygon"></span> {{result.ulurpno}} <span class="subdued">{{result.label}}</span>
-        {{else if (eq type 'neighborhood')}}
-          {{result.label}}
-        {{else if (eq type 'zoning-district')}}
-          <span class="icon polygon"></span> {{result.label}}
-        {{else if (eq type 'special-purpose-district')}}
-          <span class="icon polygon"></span> {{result.label}}
+        {{#if hasBlock}}
+          {{yield (hash type=result.type)}}
         {{else}}
           {{result.label}}
         {{/if}}
@@ -45,5 +37,3 @@
 {{#if (and searchTerms (not resultsCount) (is-fulfilled results))}}
   <div class="search-results--loading">No Results Found</div>
 {{/if}}
-
-{{yield}}
