@@ -7,7 +7,11 @@
         onSelect=(action 'handleSearchSelect') 
         onHoverResult=(action 'handleSearchResultHover')
         onHoverOut=(action 'handleSearchHoverOut')
-        onClear=(action 'handleSearchClear') as |search|}}
+        onClear=(action 'handleSearchClear')
+        typeTitleLookup=(hash
+          lot='Addresses'
+          city-street='Streets'
+        ) as |search|}}
       {{#if (eq search.result.type 'lot')}}
         <span class="icon tax-lot"></span> <span class="subdued">{{search.result.label}}, Block {{search.result.demuxedBbl.block}}, Lot {{search.result.demuxedBbl.lot}}</span>
       {{else if (eq search.result.type 'city-street')}}
