@@ -43,22 +43,38 @@
   top: 100%;
   right: auto;
   bottom: auto;
-  left: -200%; // hide by default, show with .focused
+  left: -200vw; // hide by default
   box-shadow: 0 2px 0 rgba(0,0,0,0.1);
   opacity: 0;
   transition: opacity 0.5s, left 0;
   transition-delay: 0.2s;
 
-  @include breakpoint(large) {
-    width: 22rem;
-    box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
-    padding: 0 rem-calc(6) rem-calc(6);
-    max-height: calc(100vh - 9.375rem);
-    overflow: auto;
+  @include breakpoint(medium only) {
+    // hide to the right instead of left
+    left: auto;
+    right: -200vw;
   }
 
+  @include breakpoint(medium) {
+    width: 22rem;
+    box-shadow: -4px 4px 0 rgba(0,0,0,0.1);
+    max-height: calc(100vh - 10rem);
+    overflow: auto;
+    padding: 0 rem-calc(6) rem-calc(6);
+  }
+
+  @include breakpoint(large) {
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+  }
+
+  // Only show results when .focused
   &.focused {
     left: 0;
+
+    @include breakpoint(medium only) {
+      left: auto;
+      right: 0;
+    }
   }
 
   &.has-results {
