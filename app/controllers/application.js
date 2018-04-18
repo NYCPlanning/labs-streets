@@ -217,6 +217,13 @@ export default class ApplicationController extends ParachuteController {
   }
 
   @action
+  handleSearchResultHover(result) {
+    if (result.type === 'city-street') {
+      this.set('higlightedStreetSource', result.the_geom);
+    }
+  }
+
+  @action
   handleMapDataEvent() {
     this.get('loadStateTask').perform();
   }

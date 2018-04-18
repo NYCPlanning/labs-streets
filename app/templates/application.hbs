@@ -3,7 +3,9 @@
 <div class="site-main grid-x route-{{currentRouteName}}">
 
   <div class="search-container">
-    {{#labs-search onSelect=(action 'handleSearchSelect') as |search|}}
+    {{#labs-search 
+        onSelect=(action 'handleSearchSelect') 
+        onHoverResult=(action 'handleSearchResultHover') as |search|}}
       {{#if (eq search.result.type 'lot')}}
         <span class="icon tax-lot"></span> <span class="subdued">{{search.result.label}}, Block {{search.result.demuxedBbl.block}}, Lot {{search.result.demuxedBbl.lot}}</span>
       {{else}}

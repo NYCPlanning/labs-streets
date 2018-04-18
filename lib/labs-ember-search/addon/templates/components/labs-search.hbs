@@ -23,7 +23,9 @@
       <h4 class="header-small results-header">{{type}}</h4>
     </li>
     {{#each rows key='label' as |result|}}
-      <li class="result {{if (eq selected result.id) 'highlighted-result'}}" {{action 'goTo' result}} role="button">
+      <li class="result {{if (eq selected result.id) 'highlighted-result'}}" {{action 'goTo' result}} 
+        onmouseover={{action 'handleHoverResult' result}} 
+        role="button">
         {{#if hasBlock}}
           {{yield (hash result=result)}}
         {{else}}
