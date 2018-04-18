@@ -1,4 +1,6 @@
-<div {{action 'toggleAccordion'}} class="accordion-title {{unless open 'closed'}}" role="button">
+<div {{action 'toggleAccordion'}} 
+  class="accordion-title {{unless open 'closed'}} accordion-{{dasherize title}}" 
+  role="button">
   {{title}}
   {{#if (and mapIsLoading open numberMenuItems)}}
     {{fa-icon 'spinner' class='fa-spin medium-gray'}}
