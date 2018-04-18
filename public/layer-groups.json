@@ -716,7 +716,7 @@
           "source": "digital-citymap",
           "source-layer": "street-centerlines",
           "layout": {
-            "text-field": "{streetname} - ({streetwidth} ft)",
+            "text-field": "{streetname}{streetwidth}",
             "text-keep-upright": true,
             "symbol-placement": "line",
             "text-size": 12
