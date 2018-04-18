@@ -9,7 +9,7 @@ import { classNames } from 'ember-decorators/component';
 export default class LayerMenuItemComponent extends Component {
   constructor() {
     super();
-    this.get('didRenderHook')(this);
+    this.get('didInit')(this);
   }
 
   @required
@@ -22,7 +22,14 @@ export default class LayerMenuItemComponent extends Component {
   active = true;
 
   @argument
-  didRenderHook = () => {}
+  didInit = () => {}
+
+  @argument
+  willDestroyHook = () => {}
+
+  willDestroy() {
+    this.get('willDestroyHook')(this);
+  }
 
   @action
   toggle() {

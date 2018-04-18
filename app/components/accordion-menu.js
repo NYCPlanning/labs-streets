@@ -48,4 +48,11 @@ export default class AccordionMenuComponent extends Component {
       this.get('layerMenuItems').pushObject(componentContext);
     });
   }
+
+  @action
+  unregisterChild(componentContext) {
+    next(() => {
+      this.get('layerMenuItems').removeObject(componentContext);
+    });
+  }
 }
