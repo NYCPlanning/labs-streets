@@ -40,5 +40,8 @@ module('Acceptance | user toggles layers', function(hooks) {
 
     await click('.layer-zoning-districts .layer-menu-item-title');
     await click('.layer-special-purpose-districts .layer-menu-item-title');
+
+    await click('.accordion-city-map-layers');
+    await click('.accordion-city-map-layers');
   });
 });
