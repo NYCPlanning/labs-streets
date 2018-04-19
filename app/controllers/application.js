@@ -108,6 +108,8 @@ export default class ApplicationController extends ParachuteController {
   @argument
   popupFeatures = [];
 
+  highlightedStreetSource = null;
+
   loadStateTask = task(function* () {
     yield timeout(500);
   }).restartable();
@@ -210,11 +212,43 @@ export default class ApplicationController extends ParachuteController {
         });
       }
     }
+
+    if (result.type === 'city-street') {
+      const { bbox: { coordinates: [points] } } = result;
+      const [min,, max] = points;
+
+      map.fitBounds([min, max], { padding: 120 });
+
+      this.set(
+        'highlightedStreetSource',
+        { type: 'geojson', data: result.the_geom },
+      );
+    }
   }
 
   @action
-  handleMapDataEvent() {
+  handleSearchResultHover(result) {
+    if (result.type === 'city-street') {
+      this.set(
+        'highlightedStreetSource',
+        { type: 'geojson', data: result.the_geom },
+      );
+    }
+  }
+
+  @action
+  handleSearchClear() {
+    this.set('highlightedStreetSource', null);
+  }
+
+  @action
+  handleMapLoading() {
     this.get('loadStateTask').perform();
+  }
+
+  @action
+  handleSearchHoverOut() {
+    this.set('highlightedStreetSource', null);
   }
 
   // runs on controller setup and calls
