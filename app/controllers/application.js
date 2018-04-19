@@ -242,7 +242,7 @@ export default class ApplicationController extends ParachuteController {
   }
 
   @action
-  handleMapDataEvent() {
+  handleMapLoading() {
     this.get('loadStateTask').perform();
   }
 

@@ -77,7 +77,8 @@
         {{/map.popup}}
       {{/if}}
 
-      {{map.on 'render' (action 'handleMapDataEvent')}}
+      {{map.on 'render' (action 'handleMapLoading')}}
+      {{map.on 'data' (action 'handleMapLoading')}}
       {{map.on 'click' (action 'handleMapClick')}}
       {{map.on 'zoomend' (action 'handleZoomend')}}
       {{map.on 'dragend' (action 'handleDragend')}}
