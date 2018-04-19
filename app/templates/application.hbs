@@ -25,6 +25,43 @@
       id='main-map'
       initOptions=initMapOptions
       mapLoaded=(action 'handleMapLoad') as |map|}}
+
+      {{#if highlightedStreetSource}}
+        {{#map.source options=highlightedStreetSource as |source|}}
+          {{source.layer layer=(hash
+              type='line'
+              paint=(hash 
+                line-color="#ffff00" 
+                line-opacity=0.6
+                line-width=12
+              )
+              layout=(hash
+                line-cap='round'
+              )
+            )
+            before='place_other'
+          }}
+          {{source.layer layer=(hash
+              type='line'
+              paint=(hash 
+                line-color="rgba(60, 133, 210, 1)" 
+                line-opacity=1
+                line-width=(hash
+                  stops = (array
+                    (array 10 1.5)
+                    (array 14 5)
+                  )
+                )
+              )
+              layout=(hash
+                line-cap='round'
+              )
+            )
+            before='place_other'
+          }}
+        {{/map.source}}
+      {{/if}}
+
       {{#map.labs-layers
         model=model as |layers|}}
         {{#layers.tooltip as |tooltip|}}
@@ -38,40 +75,6 @@
           {{map-popup-content
             features=popupFeatures}}
         {{/map.popup}}
-      {{/if}}
-
-      {{#if highlightedStreetSource}}
-        {{#map.source options=highlightedStreetSource as |source|}}
-          {{source.layer layer=(hash
-              type='line'
-              paint=(hash 
-                line-color="black" 
-                line-opacity=0.8
-                line-width=(hash
-                  stops = (array
-                    (array 10 1.5)
-                    (array 14 5)
-                  )
-                )
-              )
-              layout=(hash
-                line-cap='round'
-              )
-            )
-          }}
-          {{source.layer layer=(hash
-              type='line'
-              paint=(hash 
-                line-color="lightblue" 
-                line-opacity=0.2
-                line-width=12
-              )
-              layout=(hash
-                line-cap='round'
-              )
-            )
-          }}
-        {{/map.source}}
       {{/if}}
 
       {{map.on 'render' (action 'handleMapDataEvent')}}
