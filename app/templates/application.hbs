@@ -79,6 +79,7 @@
 
       {{map.on 'render' (action 'handleMapLoading')}}
       {{map.on 'data' (action 'handleMapLoading')}}
+      {{map.on 'sourcedata' (action 'handleMapLoading')}}
       {{map.on 'click' (action 'handleMapClick')}}
       {{map.on 'zoomend' (action 'handleZoomend')}}
       {{map.on 'dragend' (action 'handleDragend')}}
