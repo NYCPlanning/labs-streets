@@ -39,7 +39,7 @@
 {{/if}}
 
 {{yield (hash
-  tooltip=(if hoveredFeature
+  tooltip=(if (and hoveredFeature hoveredLayer.tooltipable)
     (component toolTipComponent
       feature=hoveredFeature
       layer=hoveredLayer
