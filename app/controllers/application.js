@@ -280,7 +280,7 @@ export default class ApplicationController extends ParachuteController {
 
   @action
   handlePrint() {
-    fetch('http://localhost:3000', {
+    fetch('https://map-print.planninglabs.nyc', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -299,7 +299,7 @@ export default class ApplicationController extends ParachuteController {
         const w = window.open();
         w.document.open();
         w.document.write(text);
-        w.document.title = 'NYC One City Map - Print View'
+        w.document.title = 'NYC One City Map - Print View';
         w.document.close();
       });
   }
