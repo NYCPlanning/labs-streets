@@ -243,4 +243,30 @@ export default class ApplicationController extends ParachuteController {
       }
     });
   }
+
+  @action
+  handlePrint() {
+    fetch('http://localhost:3000', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        style: map.getStyle(), // eslint-disable-line
+        center: map.getCenter(), // eslint-disable-line
+        zoom: map.getZoom(), // eslint-disable-line
+        bearing: map.getBearing(), // eslint-disable-line
+        pitch: map.getPitch(), // eslint-disable-line
+      }),
+    })
+      .then(res => res.text())
+      .then((text) => {
+        const w = window.open();
+        w.document.open();
+        w.document.write(text);
+        w.document.title = 'NYC One City Map - Print View'
+        w.document.close();
+      });
+  }
 }
