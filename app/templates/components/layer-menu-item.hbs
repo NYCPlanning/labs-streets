@@ -5,7 +5,12 @@
       <span class="show-for-sr">Toggle Layer Group</span>
     </label>
   </div>
-  <span {{action 'toggle'}} class="layer-menu-item-title" role="button">{{title}}</span>
+  <span {{action 'toggle'}} class="layer-menu-item-title" role="button">
+    {{title}}
+    {{#if tooltip}}
+      {{info-tooltip tip=tooltip}}
+    {{/if}}
+  </span>
 </div>
 {{#if active}}
   <div class="layer-menu-item-content">
