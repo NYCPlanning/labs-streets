@@ -5,6 +5,7 @@ import { task, timeout } from 'ember-concurrency';
 import QueryParams from 'ember-parachute';
 import carto from 'carto-promises-utility/utils/carto';
 import mapboxgl from 'mapbox-gl';
+import fetch from 'fetch';
 
 export const LayerVisibilityParams = new QueryParams({
   'pierhead-bulkhead-lines': {
