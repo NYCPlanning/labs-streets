@@ -26,6 +26,7 @@ export default class ApplicationRoute extends Route {
   @action
   didTransition() {
     next(function() {
+      // not supported in IE 11
       window.dispatchEvent(new Event('resize'));
     });
   }
