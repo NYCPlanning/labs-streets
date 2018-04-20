@@ -1,6 +1,8 @@
 import Component from '@ember/component';
 import { argument } from '@ember-decorators/argument';
-import { computed } from '@ember-decorators/object';
+import { computed, action } from '@ember-decorators/object';
+import { Action } from '@ember-decorators/argument/types';
+import { type } from '@ember-decorators/argument/type';
 import moment from 'moment';
 
 export default class MapPopupContent extends Component {
@@ -28,4 +30,13 @@ export default class MapPopupContent extends Component {
 
   @argument
   features = [];
+
+  @argument
+  @type(Action)
+  onHoverListItem = () => {};
+
+  @action
+  handleHoverListItem(feature) {
+    this.get('onHoverListItem')(feature);
+  }
 }
