@@ -6,6 +6,9 @@ export default class LayerGroupModel extends Model {
   @hasMany('layer') layers
 
   @attr('string') title
+  @attr('string', {
+    defaultValue: '',
+  }) titleTooltip
   @attr('string') legendIcon
   @attr('string') legendColor
   @attr('string') meta

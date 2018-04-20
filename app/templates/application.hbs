@@ -109,6 +109,7 @@
       {{#lookup-layer-group for='citymap' as |layerGroup|}}
         {{#menu.menu-item
           title=layerGroup.model.title
+          tooltip=layerGroup.model.titleTooltip
           active=citymap}}
           <ul class="legend no-bullet">
             <li class="legend-item">
@@ -167,6 +168,7 @@
       {{#lookup-layer-group for='street-centerlines' as |layerGroup|}}
         {{#menu.menu-item
           title=layerGroup.model.title
+          tooltip=layerGroup.model.titleTooltip
           active=street-centerlines}}
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
@@ -174,6 +176,7 @@
       {{#lookup-layer-group for='pierhead-bulkhead-lines' as |layerGroup|}}
         {{#menu.menu-item
           title=layerGroup.model.title
+          tooltip=layerGroup.model.titleTooltip
           active=pierhead-bulkhead-lines}}
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
@@ -181,6 +184,7 @@
       {{#lookup-layer-group for='amendments' as |layerGroup|}}
         {{#menu.menu-item
           title=layerGroup.model.title
+          tooltip=layerGroup.model.titleTooltip
           active=amendments}}
           {{slider-filter layer=model.amendmentsFill}}
         {{/menu.menu-item}}
@@ -189,6 +193,7 @@
       {{#lookup-layer-group for='arterials' as |layerGroup|}}
         {{#menu.menu-item
           title=layerGroup.model.title
+          tooltip=layerGroup.model.titleTooltip
           active=arterials}}
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
@@ -196,6 +201,7 @@
       {{#lookup-layer-group for='name-changes' as |layerGroup|}}
         {{#menu.menu-item
           title=layerGroup.model.title
+          tooltip=layerGroup.model.titleTooltip
           active=name-changes}}
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
@@ -208,6 +214,7 @@
       {{#lookup-layer-group for='zoning-districts' as |layerGroup|}}
         {{#menu.menu-item
           title=layerGroup.model.title
+          tooltip=layerGroup.model.titleTooltip
           active=zoning-districts}}
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
@@ -215,6 +222,7 @@
       {{#lookup-layer-group for='commercial-overlays' as |layerGroup|}}
         {{#menu.menu-item
           title=layerGroup.model.title
+          tooltip=layerGroup.model.titleTooltip
           active=commercial-overlays}}
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
@@ -222,6 +230,7 @@
       {{#lookup-layer-group for='special-purpose-districts' as |layerGroup|}}
         {{#menu.menu-item
           title=layerGroup.model.title
+          tooltip=layerGroup.model.titleTooltip
           active=special-purpose-districts}}
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
@@ -229,6 +238,7 @@
       {{#lookup-layer-group for='tax-lots' as |layerGroup|}}
         {{#menu.menu-item
           title=layerGroup.model.title
+          tooltip=layerGroup.model.titleTooltip
           active=tax-lots}}
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
@@ -236,6 +246,7 @@
       {{#lookup-layer-group for='floodplain-pfirm2015' as |layerGroup|}}
         {{#menu.menu-item
           title=layerGroup.model.title
+          tooltip=layerGroup.model.titleTooltip
           active=floodplain-pfirm2015}}
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
@@ -243,6 +254,7 @@
       {{#lookup-layer-group for='floodplain-efirm2007' as |layerGroup|}}
         {{#menu.menu-item
           title=layerGroup.model.title
+          tooltip=layerGroup.model.titleTooltip
           active=floodplain-efirm2007}}
         {{/menu.menu-item}}
       {{/lookup-layer-group}}

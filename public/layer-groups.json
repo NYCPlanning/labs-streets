@@ -248,6 +248,7 @@
   {
     "id": "pierhead-bulkhead-lines",
     "title": "Pierhead & Bulkhead Lines",
+    "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "legendIcon": "admin-line",
     "legendColor": "",
     "visible": true,
@@ -334,6 +335,7 @@
   {
     "id": "arterials",
     "title": "Arterial Highways & Major Streets",
+    "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "legendIcon": "admin-line",
     "legendColor": "",
     "visible": false,
@@ -375,6 +377,7 @@
   {
     "id": "citymap",
     "title": "Street Lines",
+    "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "legendIcon": "admin-line",
     "legendColor": "",
     "visible": true,
@@ -666,6 +669,7 @@
   {
     "id": "amendments",
     "title": "City Map Alterations",
+    "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "legendIcon": "admin-line",
     "legendColor": "",
     "visible": false,
@@ -712,6 +716,7 @@
   {
     "id": "street-centerlines",
     "title": "Street Names",
+    "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "legendIcon": "admin-line",
     "legendColor": "",
     "visible": true,
@@ -751,6 +756,7 @@
   {
     "id": "name-changes",
     "title": "Name Changes",
+    "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "legendIcon": "admin-line",
     "legendColor": "",
     "visible": false,
