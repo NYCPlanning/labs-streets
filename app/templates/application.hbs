@@ -87,17 +87,18 @@
       {{#if loadStateTask.isRunning}}
         {{fa-icon 'spinner' class='fa-spin fa-3x map-loading-spinner'}}
       {{/if}}
-    {{/labs-map}}
 
-    <a class="zola-map-area-button" href="https://zola.planning.nyc.gov/{{mapLatLngZoomHash}}" target="_blank" rel="noopener">
-      <strong>View <span class="show-for-medium">this area</span> in ZoLa</strong>
-      <small class="show-for-medium">NYC’s Zoning &amp; Land Use Map</small>
-    </a>
-    {{share-controls
-      shareURL=shareURL}}
-    <div class="print-controls mapboxgl-ctrl mapboxgl-ctrl-group">
-      <button {{action 'handlePrint'}} class="mapboxgl-ctrl-icon">{{fa-icon 'print'}}</button>
-    </div>
+      <a class="zola-map-area-button" href="https://zola.planning.nyc.gov/{{mapLatLngZoomHash}}" target="_blank" rel="noopener">
+        <strong>View <span class="show-for-medium">this area</span> in ZoLa</strong>
+        <small class="show-for-medium">NYC’s Zoning &amp; Land Use Map</small>
+      </a>
+      {{share-controls
+        shareURL=shareURL}}
+      <div class="print-controls mapboxgl-ctrl mapboxgl-ctrl-group">
+        <button {{action 'handlePrint'}} class="mapboxgl-ctrl-icon">{{fa-icon 'print'}}</button>
+      </div>
+      
+    {{/labs-map}}
 
   </div>
 
