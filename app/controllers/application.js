@@ -292,6 +292,8 @@ export default class ApplicationController extends ParachuteController {
         zoom: map.getZoom(), // eslint-disable-line
         bearing: map.getBearing(), // eslint-disable-line
         pitch: map.getPitch(), // eslint-disable-line
+        title: 'NYC City Map',
+        content: 'Disclaimer!  This map was printed from the One City Map Application produced by the NYC Department of City Planning',
       }),
     })
       .then(res => res.text())
