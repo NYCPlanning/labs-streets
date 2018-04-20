@@ -6,12 +6,20 @@
   position: absolute;
   top: 10px;
   left: 50px;
-  z-index: 1;
+  z-index: 2;
   overflow: visible;
 
   .share-controls-toggle {
     color: #333333;
   }
+}
+
+.print-controls {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  z-index: 1;
+  overflow: visible;
 }
 
 .share-controls-content {

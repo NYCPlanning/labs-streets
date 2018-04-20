@@ -277,4 +277,31 @@ export default class ApplicationController extends ParachuteController {
       }
     });
   }
+
+  @action
+  handlePrint() {
+    fetch('https://map-print.planninglabs.nyc', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        style: map.getStyle(), // eslint-disable-line
+        center: map.getCenter(), // eslint-disable-line
+        zoom: map.getZoom(), // eslint-disable-line
+        bearing: map.getBearing(), // eslint-disable-line
+        pitch: map.getPitch(), // eslint-disable-line
+        title: 'NYC City Map',
+        content: 'Disclaimer!  This map was printed from the One City Map Application produced by the NYC Department of City Planning',
+      }),
+    })
+      .then(res => res.text())
+      .then((text) => {
+        const w = window.open();
+        w.document.open();
+        w.document.write(text);
+        w.document.close();
+      });
+  }
 }

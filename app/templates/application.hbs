@@ -95,6 +95,10 @@
     </a>
     {{share-controls
       shareURL=shareURL}}
+    <div class="print-controls mapboxgl-ctrl mapboxgl-ctrl-group">
+      <button {{action 'handlePrint'}} class="mapboxgl-ctrl-icon">{{fa-icon 'print'}}</button>
+    </div>
+
   </div>
 
   <div class="layer-menu cell large-order-1 {{if (not-eq currentRouteName 'index') 'show-for-medium'}}">
