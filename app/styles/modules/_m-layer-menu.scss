@@ -7,10 +7,10 @@
 
 .layer-menu-item {
   border-top: 1px solid $white;
+  font-size: rem-calc(12);
 }
 
 .layer-menu-item-header {
-  font-size: rem-calc(12);
 
   &:hover {
     background-color: rgba(107,113,123,.06);
@@ -38,4 +38,25 @@
       left: 0.625rem;
     }
   }
+}
+
+
+// Legend
+.legend {
+  padding: 0 rem-calc(6);
+  margin: 0;
+}
+
+.legend-item {
+
+}
+
+.legend-icon {
+  height: 1.5em;
+  width: auto;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 rem-calc(2) 0 0;
+
+  &.line-array {}
 }

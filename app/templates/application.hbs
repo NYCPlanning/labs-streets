@@ -3,8 +3,8 @@
 <div class="site-main grid-x route-{{currentRouteName}}">
 
   <div class="search-container">
-    {{#labs-search 
-        onSelect=(action 'handleSearchSelect') 
+    {{#labs-search
+        onSelect=(action 'handleSearchSelect')
         onHoverResult=(action 'handleSearchResultHover')
         onHoverOut=(action 'handleSearchHoverOut')
         onClear=(action 'handleSearchClear')
@@ -45,8 +45,8 @@
         {{#map.source options=highlightedStreetSource as |source|}}
           {{source.layer layer=(hash
               type='line'
-              paint=(hash 
-                line-color="#ffff00" 
+              paint=(hash
+                line-color="#ffff00"
                 line-opacity=0.6
                 line-width=12
               )
@@ -58,8 +58,8 @@
           }}
           {{source.layer layer=(hash
               type='line'
-              paint=(hash 
-                line-color="rgba(60, 133, 210, 1)" 
+              paint=(hash
+                line-color="rgba(60, 133, 210, 1)"
                 line-opacity=1
                 line-width=(hash
                   stops = (array
@@ -110,6 +110,57 @@
         {{#menu.menu-item
           title=layerGroup.model.title
           active=citymap}}
+          <ul class="legend no-bullet">
+            <li class="legend-item">
+              <svg class="legend-icon line-array" height="10" width="17" viewBox="0 0 17 10" preserveAspectRatio="xMinYMid">
+                <g fill="none" stroke="#000000" stroke-width="1">
+                  <path d="M0 5 l215 0" />
+                </g>
+              </svg> Mapped Street
+            </li>
+            <li class="legend-item">
+              <svg class="legend-icon line-array" height="10" width="17" viewBox="0 0 17 10" preserveAspectRatio="xMinYMid">
+                <g fill="none" stroke="#000000" stroke-width="1">
+                  <path stroke-dasharray="3,1.5" d="M0 5 l215 0" />
+                </g>
+              </svg> Record Street
+            </li>
+            <li class="legend-item">
+              <svg class="legend-icon line-array" height="10" width="17" viewBox="0 0 17 10" preserveAspectRatio="xMinYMid">
+                <g fill="none" stroke="#545454" stroke-width="0.3">
+                  <path d="M0 5 l215 0" />
+                </g>
+              </svg> Street Treatment
+            </li>
+            <li class="legend-item">
+              <svg class="legend-icon line-array" height="10" width="17" viewBox="0 0 17 10" preserveAspectRatio="xMinYMid">
+                <g fill="none" stroke="#AFAFAF" stroke-width="1" stroke-linecap="round">
+                  <path stroke-dasharray="0,2" d="M0 5 l215 0" />
+                </g>
+              </svg> Unmapped Street
+            </li>
+            <li class="legend-item">
+              <svg class="legend-icon line-array" height="10" width="17" viewBox="0 0 17 10" preserveAspectRatio="xMinYMid">
+                <g fill="none" stroke="#3278C8" stroke-width="1" stroke-linecap="round">
+                  <path stroke-dasharray="5,2.5,0,2,0,2.5" d="M0 5 l215 0" />
+                </g>
+              </svg> Pierhead
+            </li>
+            <li class="legend-item">
+              <svg class="legend-icon line-array" height="10" width="17" viewBox="0 0 17 10" preserveAspectRatio="xMinYMid">
+                <g fill="none" stroke="#3278C8" stroke-width="1" stroke-linecap="round">
+                  <path stroke-dasharray="5,2,0,1.5,0,1.5,0,2" d="M0 5 l215 0" />
+                </g>
+              </svg> Bulkhead
+            </li>
+            <li class="legend-item">
+              <svg class="legend-icon line-array" height="10" width="17" viewBox="0 0 17 10" preserveAspectRatio="xMinYMid">
+                <g fill="none" stroke="#1A961A" stroke-width="1" stroke-linecap="butt">
+                  <path stroke-dasharray="5,1,2,1" d="M0 5 l215 0" />
+                </g>
+              </svg> Non-Zoning Boundary
+            </li>
+          </ul>
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
 
@@ -151,8 +202,8 @@
     {{/accordion-menu}}
 
     {{!-- Supporting Layers --}}
-    {{#accordion-menu title='Supporting Layers' 
-        open=true 
+    {{#accordion-menu title='Supporting Layers'
+        open=true
         mapIsLoading=loadStateTask.isRunning as |menu|}}
       {{#lookup-layer-group for='zoning-districts' as |layerGroup|}}
         {{#menu.menu-item
