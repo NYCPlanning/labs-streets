@@ -12,7 +12,6 @@ module('Integration | Component | info-tooltip', function(hooks) {
       {{info-tooltip tip="O Hai"}}
     `);
 
-    console.log(this.element.textContent)
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.equal(this.element.textContent.trim(), '');
   });
 });

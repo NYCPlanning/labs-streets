@@ -19,7 +19,7 @@ export default class LayerMenuItemComponent extends Component {
 
   @argument
   @type('string')
-  tooltip;
+  tooltip = '';
 
   @argument
   @type('boolean')
