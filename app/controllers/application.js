@@ -301,7 +301,6 @@ export default class ApplicationController extends ParachuteController {
         const w = window.open();
         w.document.open();
         w.document.write(text);
-        w.document.title = 'NYC One City Map - Print View';
         w.document.close();
       });
   }
