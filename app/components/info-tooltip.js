@@ -4,7 +4,7 @@ import { type } from '@ember-decorators/argument/type';
 import { required } from '@ember-decorators/argument/validation';
 
 export default class InfoTooltip extends Component {
-  classNames=['float-right primary-color'];
+  classNames=['tooltip float-right primary-color'];
 
   @required
   @argument

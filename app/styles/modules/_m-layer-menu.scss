@@ -21,6 +21,10 @@
     padding: rem-calc(6);
     display: block;
     padding-left: rem-calc(30); // switch's width (20) + margin (10)
+
+    .tooltip {
+      margin-left: rem-calc(6);
+    }
   }
 
   .switch {
