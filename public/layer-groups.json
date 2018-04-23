@@ -755,8 +755,8 @@
 
   {
     "id": "name-changes",
-    "title": "Name Changes",
-    "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "title": "Local Law Names",
+    "titleTooltip": "Local Law name changes to thoroughfares and public places from 2002-current",
     "legendIcon": "admin-line",
     "legendColor": "",
     "visible": false,
