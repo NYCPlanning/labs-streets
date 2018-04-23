@@ -70,6 +70,14 @@ export const LayerVisibilityParams = new QueryParams({
   zoom: {
     defaultValue: 10,
   },
+
+  bearing: {
+    defaultValue: null,
+  },
+
+  pitch: {
+    defaultValue: null,
+  },
 });
 
 const ParachuteController = Controller.extend(LayerVisibilityParams.Mixin);
@@ -77,12 +85,11 @@ const ParachuteController = Controller.extend(LayerVisibilityParams.Mixin);
 export default class ApplicationController extends ParachuteController {
   @computed('lat', 'lng', 'zoom')
   get initMapOptions() {
-    const { lat, lng, zoom } = this.getProperties('lat', 'lng', 'zoom');
+    const mapOptions = this.getProperties('center', 'zoom', 'pitch', 'bearing');
 
     return {
+      ...mapOptions,
       style: '//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json',
-      zoom,
-      center: [lat, lng],
       maxZoom: 19,
       minZoom: 9,
       maxBounds: [
@@ -97,6 +104,11 @@ export default class ApplicationController extends ParachuteController {
   get mapLatLngZoomHash() {
     const { lat, lng, zoom } = this.getProperties('lat', 'lng', 'zoom');
     return `#${zoom}/${lng}/${lat}`;
+  }
+
+  @computed('lat', 'lng')
+  get center() {
+    return [this.get('lat'), this.get('lng')];
   }
 
   @argument
@@ -125,9 +137,15 @@ export default class ApplicationController extends ParachuteController {
   }
 
   @action
-  handleDragend(e) {
+  handleMapPositionChange(e) {
+    const zoom = e.target.getZoom();
+    const pitch = e.target.getPitch();
+    const bearing = e.target.getBearing();
     const { lat: lng, lng: lat } = e.target.getCenter();
-    this.setProperties({ lat, lng });
+
+    this.setProperties({
+      zoom, lat, lng, pitch, bearing,
+    });
   }
 
   @action

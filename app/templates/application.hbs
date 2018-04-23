@@ -81,8 +81,7 @@
       {{map.on 'data' (action 'handleMapLoading')}}
       {{map.on 'sourcedata' (action 'handleMapLoading')}}
       {{map.on 'click' (action 'handleMapClick')}}
-      {{map.on 'zoomend' (action 'handleZoomend')}}
-      {{map.on 'dragend' (action 'handleDragend')}}
+      {{map.on 'move' (action 'handleMapPositionChange')}}
 
       {{#if loadStateTask.isRunning}}
         {{fa-icon 'spinner' class='fa-spin fa-3x map-loading-spinner'}}
