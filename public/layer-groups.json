@@ -732,6 +732,7 @@
           "type": "symbol",
           "source": "digital-citymap",
           "source-layer": "street-centerlines",
+          "minzoom": 13,
           "layout": {
             "text-field": "{streetname}{streetwidth}",
             "text-keep-upright": true,
