@@ -21,7 +21,7 @@ export const LayerVisibilityParams = new QueryParams({
     refresh: true,
   },
   amendments: {
-    defaultValue: false,
+    defaultValue: true,
     refresh: true,
   },
   'street-centerlines': {

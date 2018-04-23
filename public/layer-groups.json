@@ -672,8 +672,8 @@
     "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "legendIcon": "admin-line",
     "legendColor": "",
-    "visible": false,
-    "highlightable": true,
+    "visible": true,
+    "highlightable": false,
     "meta": {
       "description": "NYC Department of City Planning Technical Review Division",
       "updated_at": "6 April 2018"
@@ -847,7 +847,7 @@
     "id": "commercial-overlays",
     "title": "Commercial Overlays",
     "titleTooltip": "A commercial overlay is a C1 or C2 district mapped within residential districts to serve local retail needs.",
-    "visible": true,
+    "visible": false,
     "meta": {
       "description": "NYC GIS Zoning Features February 2018, Bytes of the Big Apple",
       "url": [
