@@ -62,9 +62,11 @@ export const LayerVisibilityParams = new QueryParams({
   lat: {
     defaultValue: -73.92,
   },
+
   lng: {
     defaultValue: 40.7,
   },
+
   zoom: {
     defaultValue: 10,
   },
@@ -118,7 +120,8 @@ export default class ApplicationController extends ParachuteController {
   @action
   handleZoomend(e) {
     const zoom = e.target.getZoom();
-    this.setProperties({ zoom });
+    const { lat: lng, lng: lat } = e.target.getCenter();
+    this.setProperties({ zoom, lat, lng });
   }
 
   @action
