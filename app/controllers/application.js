@@ -1,11 +1,11 @@
 import Controller from '@ember/controller';
 import { action, computed } from '@ember-decorators/object';
-import { argument } from '@ember-decorators/argument';
 import { task, timeout } from 'ember-concurrency';
 import QueryParams from 'ember-parachute';
 import carto from 'carto-promises-utility/utils/carto';
 import mapboxgl from 'mapbox-gl';
 import fetch from 'fetch';
+import precisionRound from '../utils/precision-round';
 
 export const LayerVisibilityParams = new QueryParams({
   'pierhead-bulkhead-lines': {
@@ -62,25 +62,34 @@ export const LayerVisibilityParams = new QueryParams({
   lat: {
     defaultValue: -73.92,
   },
+
   lng: {
     defaultValue: 40.7,
   },
+
   zoom: {
     defaultValue: 10,
+  },
+
+  bearing: {
+    defaultValue: 0,
+  },
+
+  pitch: {
+    defaultValue: 0,
   },
 });
 
 const ParachuteController = Controller.extend(LayerVisibilityParams.Mixin);
 
 export default class ApplicationController extends ParachuteController {
-  @computed('lat', 'lng', 'zoom')
+  @computed()
   get initMapOptions() {
-    const { lat, lng, zoom } = this.getProperties('lat', 'lng', 'zoom');
+    const mapOptions = this.getProperties('center', 'zoom', 'pitch', 'bearing');
 
     return {
+      ...mapOptions,
       style: '//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json',
-      zoom,
-      center: [lat, lng],
       maxZoom: 19,
       minZoom: 9,
       maxBounds: [
@@ -90,42 +99,60 @@ export default class ApplicationController extends ParachuteController {
     };
   }
 
-  // TODO: Change once ZoLa preserves map pan/zoom state w/ query params
-  @computed('lat', 'lng', 'zoom')
-  get mapLatLngZoomHash() {
-    const { lat, lng, zoom } = this.getProperties('lat', 'lng', 'zoom');
-    return `#${zoom}/${lng}/${lat}`;
+
+  @computed('lat', 'lng')
+  get center() {
+    return [this.get('lat'), this.get('lng')];
   }
 
-  @argument
   shareURL = window.location.href;
 
-  @argument
   popupLocation = {
     lng: 0,
     lat: 0,
   };
 
-  @argument
   popupFeatures = [];
+
+  searchTerms = '';
 
   highlightedStreetSource = null;
   highlightedAmendmentSource = null;
+
+  searchedAddressSource = null;
 
   loadStateTask = task(function* () {
     yield timeout(500);
   }).restartable();
 
-  @action
-  handleZoomend(e) {
-    const zoom = e.target.getZoom();
-    this.setProperties({ zoom });
+  @computed('lat', 'lng', 'zoom', 'pitch', 'bearing')
+  get mapLatLngZoomHash() {
+    const {
+      lat, lng, zoom, pitch, bearing,
+    } = this.getProperties('lat', 'lng', 'zoom', 'pitch', 'bearing');
+
+    return `#${zoom}/${lng}/${lat}/${bearing}/${pitch}`;
   }
 
+  mapPositionDebounce = task(function* (e) {
+    yield timeout(500);
+    const pitch = e.target.getPitch();
+    const bearing = e.target.getBearing();
+    let zoom = e.target.getZoom();
+    let { lat: lng, lng: lat } = e.target.getCenter();
+
+    lng = precisionRound(lng, 4);
+    lat = precisionRound(lat, 4);
+    zoom = precisionRound(zoom, 2);
+
+    this.setProperties({
+      zoom, lat, lng, pitch, bearing,
+    });
+  }).restartable();
+
   @action
-  handleDragend(e) {
-    const { lat: lng, lng: lat } = e.target.getCenter();
-    this.setProperties({ lat, lng });
+  handleMapPositionChange(e) {
+    this.get('mapPositionDebounce').perform(e);
   }
 
   @action
@@ -143,6 +170,14 @@ export default class ApplicationController extends ParachuteController {
       trackUserLocation: true,
     });
     map.addControl(geoLocateControl, 'top-left');
+    this.set('geoLocateControl', geoLocateControl);
+
+    geoLocateControl.on('trackuserlocationstart', () => {
+      if (this.get('searchedAddressSource')) {
+        this.set('searchedAddressSource', null);
+        this.set('searchTerms', '');
+      }
+    });
 
     const scaleControl = new mapboxgl.ScaleControl({ unit: 'imperial' });
     map.addControl(scaleControl, 'bottom-left');
@@ -204,8 +239,22 @@ export default class ApplicationController extends ParachuteController {
   handleSearchSelect(result) {
     const map = this.get('map');
 
+    // handle address search results
     if (result.type === 'lot') {
       const center = result.geometry.coordinates;
+      this.set('searchedAddressSource', {
+        type: 'geojson',
+        data: {
+          type: 'Feature',
+          properties: {},
+          geometry: result.geometry,
+        },
+      });
+
+      // turn off geolocation if it is on
+      if (this.geoLocateControl._watchState !== 'OFF') {
+        this.geoLocateControl._onClickGeolocate();
+      }
 
       if (map) {
         map.flyTo({
@@ -215,6 +264,7 @@ export default class ApplicationController extends ParachuteController {
       }
     }
 
+    // handle street search results
     if (result.type === 'city-street') {
       const { bbox: { coordinates: [points] } } = result;
       const [min,, max] = points;
@@ -249,6 +299,7 @@ export default class ApplicationController extends ParachuteController {
   @action
   handleSearchClear() {
     this.set('highlightedStreetSource', null);
+    this.set('searchedAddressSource', null);
   }
 
   @action
