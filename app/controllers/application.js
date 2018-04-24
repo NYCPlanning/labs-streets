@@ -109,7 +109,11 @@ export default class ApplicationController extends ParachuteController {
   @argument
   popupFeatures = [];
 
+  searchTerms = '';
+
   highlightedStreetSource = null;
+
+  searchedAddressSource = null;
 
   loadStateTask = task(function* () {
     yield timeout(500);
@@ -142,6 +146,14 @@ export default class ApplicationController extends ParachuteController {
       trackUserLocation: true,
     });
     map.addControl(geoLocateControl, 'top-left');
+    this.set('geoLocateControl', geoLocateControl);
+
+    geoLocateControl.on('trackuserlocationstart', () => {
+      if (this.get('searchedAddressSource')) {
+        this.set('searchedAddressSource', null);
+        this.set('searchTerms', '');
+      }
+    });
 
     const scaleControl = new mapboxgl.ScaleControl({ unit: 'imperial' });
     map.addControl(scaleControl, 'bottom-left');
@@ -203,8 +215,22 @@ export default class ApplicationController extends ParachuteController {
   handleSearchSelect(result) {
     const map = this.get('map');
 
+    // handle address search results
     if (result.type === 'lot') {
       const center = result.geometry.coordinates;
+      this.set('searchedAddressSource', {
+        type: 'geojson',
+        data: {
+          type: 'Feature',
+          properties: {},
+          geometry: result.geometry,
+        },
+      });
+
+      // turn off geolocation if it is on
+      if (this.geoLocateControl._watchState !== 'OFF') {
+        this.geoLocateControl._onClickGeolocate();
+      }
 
       if (map) {
         map.flyTo({
@@ -214,6 +240,7 @@ export default class ApplicationController extends ParachuteController {
       }
     }
 
+    // handle street search results
     if (result.type === 'city-street') {
       const { bbox: { coordinates: [points] } } = result;
       const [min,, max] = points;
@@ -240,6 +267,7 @@ export default class ApplicationController extends ParachuteController {
   @action
   handleSearchClear() {
     this.set('highlightedStreetSource', null);
+    this.set('searchedAddressSource', null);
   }
 
   @action
