@@ -6,6 +6,7 @@ import QueryParams from 'ember-parachute';
 import carto from 'carto-promises-utility/utils/carto';
 import mapboxgl from 'mapbox-gl';
 import fetch from 'fetch';
+import precisionRound from '../utils/precision-round';
 
 export const LayerVisibilityParams = new QueryParams({
   'pierhead-bulkhead-lines': {
@@ -131,22 +132,19 @@ export default class ApplicationController extends ParachuteController {
 
   mapPositionDebounce = task(function* (e) {
     yield timeout(500);
-    const zoom = e.target.getZoom();
     const pitch = e.target.getPitch();
     const bearing = e.target.getBearing();
-    const { lat: lng, lng: lat } = e.target.getCenter();
+    let zoom = e.target.getZoom();
+    let { lat: lng, lng: lat } = e.target.getCenter();
+
+    lng = precisionRound(lng, 2);
+    lat = precisionRound(lat, 2);
+    zoom = precisionRound(zoom, 2);
 
     this.setProperties({
       zoom, lat, lng, pitch, bearing,
     });
   }).restartable();
-
-  @action
-  handleZoomend(e) {
-    const zoom = e.target.getZoom();
-    const { lat: lng, lng: lat } = e.target.getCenter();
-    this.setProperties({ zoom, lat, lng });
-  }
 
   @action
   handleMapPositionChange(e) {
