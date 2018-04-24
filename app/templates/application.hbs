@@ -77,12 +77,12 @@
           }}
         {{/map.source}}
       {{/if}}
-      
+
       {{#if searchedAddressSource}}
         {{#map.source options=searchedAddressSource as |source|}}
           {{source.layer layer=(hash
               type='circle'
-              paint=(hash 
+              paint=(hash
                 circle-radius=8
                 circle-color="#00A1F9"
                 circle-stroke-width=2
@@ -114,7 +114,7 @@
       <div class="print-controls mapboxgl-ctrl mapboxgl-ctrl-group">
         <button {{action 'handlePrint'}} class="mapboxgl-ctrl-icon">{{fa-icon 'print'}}</button>
       </div>
-      
+
     {{/labs-map}}
 
   </div>
@@ -273,6 +273,19 @@
           title=layerGroup.model.title
           tooltip=layerGroup.model.titleTooltip
           active=floodplain-efirm2007}}
+        {{/menu.menu-item}}
+      {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='aerials' as |layerGroup|}}
+        {{log layerGroup}}
+        {{#menu.menu-item
+          title=layerGroup.model.title
+          tooltip=layerGroup.model.titleTooltip
+          active=aerials2016}}
+          {{layerGroup.radio-selector
+            queryParams=queryParams
+            classNames='list-float-3'
+          }}
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
     {{/accordion-menu}}

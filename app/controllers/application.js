@@ -59,6 +59,61 @@ export const LayerVisibilityParams = new QueryParams({
     refresh: true,
   },
 
+  aerials2016: {
+    defaultValue: false,
+    refresh: true,
+  },
+
+  aerials2014: {
+    defaultValue: false,
+    refresh: true,
+  },
+
+  aerials2012: {
+    defaultValue: false,
+    refresh: true,
+  },
+
+  aerials2010: {
+    defaultValue: false,
+    refresh: true,
+  },
+
+  aerials2018: {
+    defaultValue: false,
+    refresh: true,
+  },
+
+  aerials2006: {
+    defaultValue: false,
+    refresh: true,
+  },
+
+  aerials2004: {
+    defaultValue: false,
+    refresh: true,
+  },
+
+  aerials20012: {
+    defaultValue: false,
+    refresh: true,
+  },
+
+  aerials1996: {
+    defaultValue: false,
+    refresh: true,
+  },
+
+  aerials1951: {
+    defaultValue: false,
+    refresh: true,
+  },
+
+  aerials1924: {
+    defaultValue: false,
+    refresh: true,
+  },
+
   lat: {
     defaultValue: -73.92,
   },

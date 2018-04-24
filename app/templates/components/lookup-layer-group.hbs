@@ -1,1 +1,4 @@
-{{yield (hash model=model)}}
+{{yield (hash
+  model=model
+  radio-selector=(component 'radio-selector' layers=this.model.layers)
+)}}
