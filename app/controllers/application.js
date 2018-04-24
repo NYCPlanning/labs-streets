@@ -120,7 +120,7 @@ export default class ApplicationController extends ParachuteController {
     yield timeout(500);
   }).restartable();
 
-  @computed('lat', 'lng', 'zoom')
+  @computed('lat', 'lng', 'zoom', 'pitch', 'bearing')
   get mapLatLngZoomHash() {
     const {
       lat, lng, zoom, pitch, bearing,
