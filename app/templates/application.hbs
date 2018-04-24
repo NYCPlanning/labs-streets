@@ -246,6 +246,8 @@
       {{#lookup-layer-group for='commercial-overlays' as |layerGroup|}}
         {{#menu.menu-item
           title=layerGroup.model.title
+          legendColor=layerGroup.model.legendColor
+          legendIcon=layerGroup.model.legendIcon
           tooltip=layerGroup.model.titleTooltip
           active=commercial-overlays}}
         {{/menu.menu-item}}
@@ -254,6 +256,8 @@
       {{#lookup-layer-group for='special-purpose-districts' as |layerGroup|}}
         {{#menu.menu-item
           title=layerGroup.model.title
+          legendColor=layerGroup.model.legendColor
+          legendIcon=layerGroup.model.legendIcon
           tooltip=layerGroup.model.titleTooltip
           active=special-purpose-districts}}
         {{/menu.menu-item}}
@@ -263,6 +267,8 @@
         {{#menu.menu-item
           title=layerGroup.model.title
           tooltip=layerGroup.model.titleTooltip
+          legendColor=layerGroup.model.legendColor
+          legendIcon=layerGroup.model.legendIcon
           active=tax-lots}}
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
@@ -272,6 +278,10 @@
           title=layerGroup.model.title
           tooltip=layerGroup.model.titleTooltip
           active=floodplain-pfirm2015}}
+          <ul class="legend no-bullet">
+            <li class="legend-item">{{fa-icon 'square' style="color:#0084a8;opacity:0.7;"}} V Zone</li>
+            <li class="legend-item">{{fa-icon 'square' style="color:#00a9e6;opacity:0.7;"}} A Zone</li>
+          </ul>
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
 
@@ -280,6 +290,10 @@
           title=layerGroup.model.title
           tooltip=layerGroup.model.titleTooltip
           active=floodplain-efirm2007}}
+          <ul class="legend no-bullet">
+            <li class="legend-item">{{fa-icon 'square' style="color:#0084a8;opacity:0.7;"}} V Zone</li>
+            <li class="legend-item">{{fa-icon 'square' style="color:#00a9e6;opacity:0.7;"}} A Zone</li>
+          </ul>
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
     {{/accordion-menu}}

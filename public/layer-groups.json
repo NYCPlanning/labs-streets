@@ -108,8 +108,8 @@
     "id": "special-purpose-districts",
     "title": "Special Purpose Districts",
     "titleTooltip": "The regulations for special purpose districts are designed to supplement and modify the underlying zoning in order to respond to distinctive neighborhoods with particular issues and goals",
-    "legendIcon": "line",
-    "legendColor": "rgba(94,102,51, 0.6)",
+    "legendIcon": "polygon-fill-dash",
+    "legendColor": "rgba(94,102,51, 1)",
     "meta": {
       "description": "NYC GIS Zoning Features February 2018, Bytes of the Big Apple",
       "url": [
@@ -164,6 +164,8 @@
     "id": "floodplain-efirm2007",
     "title": "Effective Flood Insurance Rate Maps 2007",
     "titleTooltip": "The Effective Flood Insurance Rate Maps (FIRMs), first adopted by New York City in 1983 and last updated in 2007, establish the floodplain currently subject to the National Flood Insurance Program purchase requirements.",
+    "legendIcon": "polygon",
+    "legendColor": "#0084a8",
     "meta": {
       "description": "Effective Flood Insurance Rate Maps (FIRMs) data are available at FEMA Flood Map Service Center",
       "url": [
@@ -206,6 +208,8 @@
     "id": "floodplain-pfirm2015",
     "title": "Preliminary Flood Insurance Rate Maps 2015",
     "titleTooltip": "Released in 2015 as part of a citywide flood map update, the Preliminary FIRMs establish the 1% annual chance floodplain. For building code and zoning purposes, the more expansive of the either the 2015 or 2007 maps is used.",
+    "legendIcon": "polygon",
+    "legendColor": "#0084a8",
     "meta": {
       "description": "Flood Insurance Rate Data provided by FEMA",
       "url": [
@@ -827,6 +831,8 @@
     "id": "commercial-overlays",
     "title": "Commercial Overlays",
     "titleTooltip": "A commercial overlay is a C1 or C2 district mapped within residential districts to serve local retail needs.",
+    "legendIcon": "polygon-line",
+    "legendColor": "rgba(220, 10, 10, 1)",
     "visible": false,
     "meta": {
       "description": "NYC GIS Zoning Features February 2018, Bytes of the Big Apple",
@@ -904,6 +910,8 @@
     "id": "tax-lots",
     "title": "Tax Lots",
     "titleTooltip": "A tax lot is a parcel of land identified with a unique borough, block and lot number for property tax purposes.",
+    "legendIcon": "polygon-line",
+    "legendColor": "rgba(130, 130, 130, 1)",
     "meta": {
       "description": "MapPLUTO™ v17v1.1, Bytes of the Big Apple",
       "url": [

@@ -55,6 +55,18 @@
 .legend-item {
 }
 
+.legend-icon {
+  height: 1.5em;
+  width: auto;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 rem-calc(2) 0 0;
+
+  &.line-array {
+    width: 2.5em;
+  }
+}
+
 .polygon-stacked {
   position: relative;
 
@@ -65,14 +77,27 @@
   }
 }
 
-.legend-icon {
-  height: 1.5em;
-  width: auto;
+.polygon-fill-dash {
+  opacity: 0.5;
   display: inline-block;
-  vertical-align: top;
-  margin: 0 rem-calc(2) 0 0;
+  width: 0.8em;
+  height: 0.8em;
+  position: relative;
 
-  &.line-array {
-    width: 2.5em;
+  .fill, .dash {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  .fill {
+    opacity: 0.3;
+  }
+
+  .dash {
+    border-width: 2px;
+    border-style: dotted;
   }
 }

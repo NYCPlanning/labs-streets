@@ -24,6 +24,22 @@
           {{fa-icon 'minus'}}
         </span>
       {{/if}}
+      {{#if (eq legendIcon 'polygon')}}
+        <span class="polygon" style="color:{{legendColor}};">
+          {{fa-icon 'square'}}
+        </span>
+      {{/if}}
+      {{#if (eq legendIcon 'polygon-line')}}
+        <span class="polygon-line" style="color:{{legendColor}};">
+          {{fa-icon 'square-o'}}
+        </span>
+      {{/if}}
+      {{#if (eq legendIcon 'polygon-fill-dash')}}
+        <span class="polygon-fill-dash">
+          <span class="fill" style="background-color:{{legendColor}};"></span>
+          <span class="dash" style="border-color:{{legendColor}};"></span>
+        </span>
+      {{/if}}
     {{/if}}
 
   </span>
