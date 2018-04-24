@@ -211,13 +211,13 @@
           active=name-changes}}
           <ul class="legend no-bullet">
             <li class="legend-item">
-               {{fa-icon 'circle' style="color:rgba(228, 72, 192, 1);transform:scale(0.6);"}} Streets
+              {{legend-icon legendColor='rgba(228, 72, 192, 1)' legendIcon='point'}} Streets
             </li>
             <li class="legend-item">
-               {{fa-icon 'minus' style="color:rgba(228, 72, 192, 0.5);"}} Intersections & Corners
+              {{legend-icon legendColor='rgba(228, 72, 192, 0.5)' legendIcon='line'}} Intersections & Corners
             </li>
             <li class="legend-item">
-               {{fa-icon 'square' style="color:rgba(228, 72, 192, 0.5);"}} Parks, Plazas, & Public Space
+              {{legend-icon legendColor='rgba(228, 72, 192, 0.5)' legendIcon='polygon'}} Parks, Plazas, & Public Space
             </li>
           </ul>
         {{/menu.menu-item}}
@@ -234,11 +234,11 @@
           tooltip=layerGroup.model.titleTooltip
           active=zoning-districts}}
           <ul class="legend no-bullet">
-            <li class="legend-item">{{fa-icon 'square' style="color:#ee3a36;opacity:0.8;"}} Commercial Districts</li>
-            <li class="legend-item">{{fa-icon 'square' style="color:#e187f3;opacity:0.8;"}} Manufacturing Districts</li>
-            <li class="legend-item">{{fa-icon 'square' style="color:#ffea00;opacity:0.8;"}} Residential Districts</li>
-            <li class="legend-item">{{fa-icon 'square' style="color:#78D271;opacity:0.8;"}} Parks</li>
-            <li class="legend-item">{{fa-icon 'square' style="color:#808080;opacity:0.8;"}} Battery Park City</li>
+            <li class="legend-item">{{legend-icon legendColor='rgba(238,58,54,0.8)' legendIcon='polygon'}} Commercial Districts</li>
+            <li class="legend-item">{{legend-icon legendColor='rgba(255,135,243,0.8)' legendIcon='polygon'}} Manufacturing Districts</li>
+            <li class="legend-item">{{legend-icon legendColor='rgba(255,234,0,0.8)' legendIcon='polygon'}} Residential Districts</li>
+            <li class="legend-item">{{legend-icon legendColor='rgba(120,210,113,0.8)' legendIcon='polygon'}} Parks</li>
+            <li class="legend-item">{{legend-icon legendColor='rgba(128,128,128,0.8)' legendIcon='polygon'}} Battery Park City</li>
           </ul>
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
@@ -279,8 +279,8 @@
           tooltip=layerGroup.model.titleTooltip
           active=floodplain-pfirm2015}}
           <ul class="legend no-bullet">
-            <li class="legend-item">{{fa-icon 'square' style="color:#0084a8;opacity:0.7;"}} V Zone</li>
-            <li class="legend-item">{{fa-icon 'square' style="color:#00a9e6;opacity:0.7;"}} A Zone</li>
+            <li class="legend-item">{{legend-icon legendColor='rgba(0,132,168,0.7)' legendIcon='polygon'}} V Zone</li>
+            <li class="legend-item">{{legend-icon legendColor='rgba(0,169,230,0.7)' legendIcon='polygon'}} A Zone</li>
           </ul>
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
@@ -291,8 +291,8 @@
           tooltip=layerGroup.model.titleTooltip
           active=floodplain-efirm2007}}
           <ul class="legend no-bullet">
-            <li class="legend-item">{{fa-icon 'square' style="color:#0084a8;opacity:0.7;"}} V Zone</li>
-            <li class="legend-item">{{fa-icon 'square' style="color:#00a9e6;opacity:0.7;"}} A Zone</li>
+            <li class="legend-item">{{legend-icon legendColor='rgba(0,132,168,0.7)' legendIcon='polygon'}} V Zone</li>
+            <li class="legend-item">{{legend-icon legendColor='rgba(0,169,230,0.7)' legendIcon='polygon'}} A Zone</li>
           </ul>
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
