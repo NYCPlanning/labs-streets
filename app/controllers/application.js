@@ -117,6 +117,7 @@ export default class ApplicationController extends ParachuteController {
   searchTerms = '';
 
   highlightedStreetSource = null;
+  highlightedAmendmentSource = null;
 
   searchedAddressSource = null;
 
@@ -288,6 +289,14 @@ export default class ApplicationController extends ParachuteController {
   }
 
   @action
+  handlePopupLinkOver(result) {
+    this.set(
+      'highlightedAmendmentSource',
+      { type: 'geojson', data: result.feature },
+    );
+  }
+
+  @action
   handleSearchClear() {
     this.set('highlightedStreetSource', null);
     this.set('searchedAddressSource', null);
@@ -301,6 +310,11 @@ export default class ApplicationController extends ParachuteController {
   @action
   handleSearchHoverOut() {
     this.set('highlightedStreetSource', null);
+  }
+
+  @action
+  clearAmendmentHover() {
+    this.set('highlightedAmendmentSource', null);
   }
 
   // runs on controller setup and calls

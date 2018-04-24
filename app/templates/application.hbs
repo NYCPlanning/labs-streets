@@ -38,8 +38,46 @@
         {{#map.popup
           lngLat=popupLocation}}
           {{map-popup-content
+            onHoverListItem=(action 'handlePopupLinkOver')
+            onMouseLeave=(action 'clearAmendmentHover')
             features=popupFeatures}}
         {{/map.popup}}
+
+        {{#if highlightedAmendmentSource}}
+          {{#map.source options=highlightedAmendmentSource as |source|}}
+            {{source.layer layer=(hash
+                type='line'
+                paint=(hash
+                  line-color="#ffff00"
+                  line-opacity=0.6
+                  line-width=12
+                )
+                layout=(hash
+                  line-cap='round'
+                )
+              )
+              before='place_other'
+            }}
+            {{source.layer layer=(hash
+                type='line'
+                paint=(hash
+                  line-color="rgba(60, 133, 210, 1)"
+                  line-opacity=1
+                  line-width=(hash
+                    stops = (array
+                      (array 10 1.5)
+                      (array 14 5)
+                    )
+                  )
+                )
+                layout=(hash
+                  line-cap='round'
+                )
+              )
+              before='place_other'
+            }}
+          {{/map.source}}
+        {{/if}}
       {{/if}}
 
       {{#if highlightedStreetSource}}
