@@ -19,6 +19,14 @@ export default class LayerMenuItemComponent extends Component {
 
   @argument
   @type('string')
+  legendIcon = '';
+
+  @argument
+  @type('string')
+  legendColor = '';
+
+  @argument
+  @type('string')
   tooltip = '';
 
   @argument
