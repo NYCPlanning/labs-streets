@@ -108,8 +108,8 @@
     "id": "special-purpose-districts",
     "title": "Special Purpose Districts",
     "titleTooltip": "The regulations for special purpose districts are designed to supplement and modify the underlying zoning in order to respond to distinctive neighborhoods with particular issues and goals",
-    "legendIcon": "polygon",
-    "legendColor": "#5E6633",
+    "legendIcon": "line",
+    "legendColor": "rgba(94,102,51, 0.6)",
     "meta": {
       "description": "NYC GIS Zoning Features February 2018, Bytes of the Big Apple",
       "url": [
@@ -137,12 +137,11 @@
                 ]
               ]
             },
-            "line-color": "#5E6633",
+            "line-color": "rgba(94,102,51, 0.6)",
             "line-dasharray": [
               1,
               1
-            ],
-            "line-opacity": 0.6
+            ]
           }
         }
       },
@@ -249,7 +248,7 @@
     "id": "pierhead-bulkhead-lines",
     "title": "Pierhead & Bulkhead Lines",
     "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "legendIcon": "admin-line",
+    "legendIcon": "",
     "legendColor": "",
     "visible": true,
     "meta": {
@@ -336,8 +335,8 @@
     "id": "arterials",
     "title": "Arterial Highways & Major Streets",
     "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "legendIcon": "admin-line",
-    "legendColor": "",
+    "legendIcon": "line",
+    "legendColor": "rgba(245, 147, 80, 0.3)",
     "visible": false,
     "meta": {
       "description": "NYC Department of City Planning Technical Review Division",
@@ -351,7 +350,7 @@
           "source": "digital-citymap",
           "source-layer": "arterials",
           "paint": {
-            "line-color": "rgba(245, 147, 80, 1)",
+            "line-color": "rgba(245, 147, 80, 0.3)",
             "line-width": {
               "stops": [
                 [
@@ -363,8 +362,7 @@
                   10
                 ]
               ]
-            },
-            "line-opacity": 0.3
+            }
           },
           "layout": {
             "visibility": "visible"
@@ -378,7 +376,7 @@
     "id": "citymap",
     "title": "Street Lines",
     "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "legendIcon": "admin-line",
+    "legendIcon": "",
     "legendColor": "",
     "visible": true,
     "meta": {
@@ -670,10 +668,10 @@
     "id": "amendments",
     "title": "City Map Alterations",
     "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "legendIcon": "admin-line",
-    "legendColor": "",
+    "legendIcon": "polygon-stacked",
+    "legendColor": "rgba(60, 133, 210, 0.4)",
     "visible": true,
-    "highlightable": false,
+    "highlightable": true,
     "meta": {
       "description": "NYC Department of City Planning Technical Review Division",
       "updated_at": "6 April 2018"
@@ -686,28 +684,9 @@
           "source": "digital-citymap",
           "source-layer": "amendments",
           "paint": {
-            "fill-opacity": 0.2,
-            "fill-color": "rgba(60, 133, 210, 1)"
+            "fill-color": "rgba(60, 133, 210, 0.2)"
           },
           "layout": {}
-        }
-      },
-      {
-        "style": {
-          "id": "citymap-amendments-hover",
-          "type": "fill",
-          "source": "digital-citymap",
-          "source-layer": "amendments",
-          "paint": {
-            "fill-color": "#627BC1",
-            "fill-opacity": 1
-          },
-          "layout": {},
-          "filter": [
-            "==",
-            "id",
-            ""
-          ]
         }
       }
     ]
@@ -717,7 +696,7 @@
     "id": "street-centerlines",
     "title": "Street Names",
     "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "legendIcon": "admin-line",
+    "legendIcon": "",
     "legendColor": "",
     "visible": true,
     "meta": {
@@ -758,7 +737,7 @@
     "id": "name-changes",
     "title": "Local Law Names",
     "titleTooltip": "Local Law name changes to thoroughfares and public places from 2002-current",
-    "legendIcon": "admin-line",
+    "legendIcon": "",
     "legendColor": "",
     "visible": false,
     "meta": {

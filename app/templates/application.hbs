@@ -97,7 +97,7 @@
       <div class="print-controls mapboxgl-ctrl mapboxgl-ctrl-group">
         <button {{action 'handlePrint'}} class="mapboxgl-ctrl-icon">{{fa-icon 'print'}}</button>
       </div>
-      
+
     {{/labs-map}}
 
   </div>
@@ -142,20 +142,6 @@
             </li>
             <li class="legend-item">
               <svg class="legend-icon line-array" height="10" width="17" viewBox="0 0 17 10" preserveAspectRatio="xMinYMid">
-                <g fill="none" stroke="#3278C8" stroke-width="1" stroke-linecap="round">
-                  <path stroke-dasharray="5,2.5,0,2,0,2.5" d="M0 5 l215 0" />
-                </g>
-              </svg> Pierhead
-            </li>
-            <li class="legend-item">
-              <svg class="legend-icon line-array" height="10" width="17" viewBox="0 0 17 10" preserveAspectRatio="xMinYMid">
-                <g fill="none" stroke="#3278C8" stroke-width="1" stroke-linecap="round">
-                  <path stroke-dasharray="5,2,0,1.5,0,1.5,0,2" d="M0 5 l215 0" />
-                </g>
-              </svg> Bulkhead
-            </li>
-            <li class="legend-item">
-              <svg class="legend-icon line-array" height="10" width="17" viewBox="0 0 17 10" preserveAspectRatio="xMinYMid">
                 <g fill="none" stroke="#1A961A" stroke-width="1" stroke-linecap="butt">
                   <path stroke-dasharray="5,1,2,1" d="M0 5 l215 0" />
                 </g>
@@ -178,12 +164,30 @@
           title=layerGroup.model.title
           tooltip=layerGroup.model.titleTooltip
           active=pierhead-bulkhead-lines}}
+          <ul class="legend no-bullet">
+            <li class="legend-item">
+              <svg class="legend-icon line-array" height="10" width="17" viewBox="0 0 17 10" preserveAspectRatio="xMinYMid">
+                <g fill="none" stroke="#3278C8" stroke-width="1" stroke-linecap="round">
+                  <path stroke-dasharray="5,2.5,0,2,0,2.5" d="M0 5 l215 0" />
+                </g>
+              </svg> Pierhead
+            </li>
+            <li class="legend-item">
+              <svg class="legend-icon line-array" height="10" width="17" viewBox="0 0 17 10" preserveAspectRatio="xMinYMid">
+                <g fill="none" stroke="#3278C8" stroke-width="1" stroke-linecap="round">
+                  <path stroke-dasharray="5,2,0,1.5,0,1.5,0,2" d="M0 5 l215 0" />
+                </g>
+              </svg> Bulkhead
+            </li>
+          </ul>
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='amendments' as |layerGroup|}}
         {{#menu.menu-item
           title=layerGroup.model.title
+          legendColor=layerGroup.model.legendColor
+          legendIcon=layerGroup.model.legendIcon
           tooltip=layerGroup.model.titleTooltip
           active=amendments}}
           {{slider-filter layer=model.amendmentsFill}}

@@ -10,6 +10,14 @@
       {{info-tooltip tip=tooltip}}
     {{/if}}
     {{title}}
+    {{#if (and legendColor active)}}
+      {{#if (eq legendIcon 'polygon-stacked')}}
+        <span class="polygon-stacked" style="color:{{legendColor}};">
+          {{fa-icon 'square'}}
+          {{fa-icon 'square'}}
+        </span>
+      {{/if}}
+    {{/if}}
   </span>
 </div>
 {{#if active}}
