@@ -27,7 +27,6 @@
       mapLoaded=(action 'handleMapLoad') as |map|}}
 
       {{#map.labs-layers
-        hoveredFeature=hoveredFeature
         model=model as |layers|}}
         {{#layers.tooltip as |tooltip|}}
           {{tooltip-renderer feature=tooltip.feature template=tooltip.layer.tooltipTemplate}}
@@ -45,6 +44,42 @@
 
       {{#if highlightedStreetSource}}
         {{#map.source options=highlightedStreetSource as |source|}}
+          {{source.layer layer=(hash
+              type='line'
+              paint=(hash
+                line-color="#ffff00"
+                line-opacity=0.6
+                line-width=12
+              )
+              layout=(hash
+                line-cap='round'
+              )
+            )
+            before='place_other'
+          }}
+          {{source.layer layer=(hash
+              type='line'
+              paint=(hash
+                line-color="rgba(60, 133, 210, 1)"
+                line-opacity=1
+                line-width=(hash
+                  stops = (array
+                    (array 10 1.5)
+                    (array 14 5)
+                  )
+                )
+              )
+              layout=(hash
+                line-cap='round'
+              )
+            )
+            before='place_other'
+          }}
+        {{/map.source}}
+      {{/if}}
+
+      {{#if highlightedAmendmentSource}}
+        {{#map.source options=highlightedAmendmentSource as |source|}}
           {{source.layer layer=(hash
               type='line'
               paint=(hash
