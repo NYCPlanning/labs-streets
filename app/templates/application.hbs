@@ -35,12 +35,11 @@
 
       {{#if (not-eq popupFeatures null)}}
         {{#map.popup
-          lngLat=popupLocation
-          as |popup|}}
+          lngLat=popupLocation}}
           {{map-popup-content
             onHoverListItem=(action 'handlePopupLinkOver')
+            onMouseLeave=(action 'clearAmendmentHover')
             features=popupFeatures}}
-          {{popup.on 'close' (action 'clearAmendmentHover')}}
         {{/map.popup}}
 
         {{#if highlightedAmendmentSource}}

@@ -36,8 +36,17 @@ export default class MapPopupContent extends Component {
   @type(Action)
   onHoverListItem = () => {};
 
+  @argument
+  @type(Action)
+  onMouseLeave = () => {};
+
   @action
   handleHoverListItem(feature) {
     this.get('onHoverListItem')(feature);
+  }
+
+  @action
+  mouseLeave() {
+    this.get('onMouseLeave')();
   }
 }
