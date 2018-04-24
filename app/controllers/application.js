@@ -1,6 +1,5 @@
 import Controller from '@ember/controller';
 import { action, computed } from '@ember-decorators/object';
-import { argument } from '@ember-decorators/argument';
 import { task, timeout } from 'ember-concurrency';
 import QueryParams from 'ember-parachute';
 import carto from 'carto-promises-utility/utils/carto';
@@ -100,7 +99,27 @@ export default class ApplicationController extends ParachuteController {
     };
   }
 
-  // TODO: Change once ZoLa preserves map pan/zoom state w/ query params
+
+  @computed('lat', 'lng')
+  get center() {
+    return [this.get('lat'), this.get('lng')];
+  }
+
+  shareURL = window.location.href;
+
+  popupLocation = {
+    lng: 0,
+    lat: 0,
+  };
+
+  popupFeatures = [];
+
+  highlightedStreetSource = null;
+
+  loadStateTask = task(function* () {
+    yield timeout(500);
+  }).restartable();
+
   @computed('lat', 'lng', 'zoom')
   get mapLatLngZoomHash() {
     const {
@@ -109,29 +128,6 @@ export default class ApplicationController extends ParachuteController {
 
     return `#${zoom}/${lng}/${lat}/${bearing}/${pitch}`;
   }
-
-  @computed('lat', 'lng')
-  get center() {
-    return [this.get('lat'), this.get('lng')];
-  }
-
-  @argument
-  shareURL = window.location.href;
-
-  @argument
-  popupLocation = {
-    lng: 0,
-    lat: 0,
-  };
-
-  @argument
-  popupFeatures = [];
-
-  highlightedStreetSource = null;
-
-  loadStateTask = task(function* () {
-    yield timeout(500);
-  }).restartable();
 
   mapPositionDebounce = task(function* (e) {
     yield timeout(500);
