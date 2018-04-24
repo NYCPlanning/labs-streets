@@ -261,6 +261,11 @@ export default class ApplicationController extends ParachuteController {
     this.set('highlightedStreetSource', null);
   }
 
+  @action
+  clearAmendmentHover() {
+    this.set('highlightedAmendmentSource', null);
+  }
+
   // runs on controller setup and calls
   // function to overwrite layer-groups'
   // visibility state with QP state
