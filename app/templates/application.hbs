@@ -197,6 +197,8 @@
       {{#lookup-layer-group for='arterials' as |layerGroup|}}
         {{#menu.menu-item
           title=layerGroup.model.title
+          legendColor=layerGroup.model.legendColor
+          legendIcon=layerGroup.model.legendIcon
           tooltip=layerGroup.model.titleTooltip
           active=arterials}}
         {{/menu.menu-item}}
@@ -207,6 +209,17 @@
           title=layerGroup.model.title
           tooltip=layerGroup.model.titleTooltip
           active=name-changes}}
+          <ul class="legend no-bullet">
+            <li class="legend-item">
+               {{fa-icon 'circle' style="color:rgba(228, 72, 192, 1);transform:scale(0.6);"}} Streets
+            </li>
+            <li class="legend-item">
+               {{fa-icon 'minus' style="color:rgba(228, 72, 192, 0.5);"}} Intersections & Corners
+            </li>
+            <li class="legend-item">
+               {{fa-icon 'square' style="color:rgba(228, 72, 192, 0.5);"}} Parks, Plazas, & Public Space
+            </li>
+          </ul>
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
     {{/accordion-menu}}
@@ -220,6 +233,13 @@
           title=layerGroup.model.title
           tooltip=layerGroup.model.titleTooltip
           active=zoning-districts}}
+          <ul class="legend no-bullet">
+            <li class="legend-item">{{fa-icon 'square' style="color:#ee3a36;opacity:0.8;"}} Commercial Districts</li>
+            <li class="legend-item">{{fa-icon 'square' style="color:#e187f3;opacity:0.8;"}} Manufacturing Districts</li>
+            <li class="legend-item">{{fa-icon 'square' style="color:#ffea00;opacity:0.8;"}} Residential Districts</li>
+            <li class="legend-item">{{fa-icon 'square' style="color:#78D271;opacity:0.8;"}} Parks</li>
+            <li class="legend-item">{{fa-icon 'square' style="color:#808080;opacity:0.8;"}} Battery Park City</li>
+          </ul>
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
 

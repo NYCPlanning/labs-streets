@@ -336,7 +336,7 @@
     "title": "Arterial Highways & Major Streets",
     "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "legendIcon": "line",
-    "legendColor": "rgba(245, 147, 80, 0.3)",
+    "legendColor": "rgba(245, 147, 80, 0.6)",
     "visible": false,
     "meta": {
       "description": "NYC Department of City Planning Technical Review Division",
@@ -350,7 +350,7 @@
           "source": "digital-citymap",
           "source-layer": "arterials",
           "paint": {
-            "line-color": "rgba(245, 147, 80, 0.3)",
+            "line-color": "rgba(245, 147, 80, 0.4)",
             "line-width": {
               "stops": [
                 [
