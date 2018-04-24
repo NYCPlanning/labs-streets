@@ -21,6 +21,10 @@
     padding: rem-calc(6);
     display: block;
     padding-left: rem-calc(30); // switch's width (20) + margin (10)
+
+    .tooltip {
+      margin-left: rem-calc(6);
+    }
   }
 
   .switch {
@@ -48,7 +52,6 @@
 }
 
 .legend-item {
-
 }
 
 .legend-icon {
@@ -58,5 +61,7 @@
   vertical-align: top;
   margin: 0 rem-calc(2) 0 0;
 
-  &.line-array {}
+  &.line-array {
+    width: 2.5em;
+  }
 }

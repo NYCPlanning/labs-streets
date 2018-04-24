@@ -6,10 +6,10 @@
     </label>
   </div>
   <span {{action 'toggle'}} class="layer-menu-item-title" role="button">
-    {{title}}
     {{#if tooltip}}
       {{info-tooltip tip=tooltip}}
     {{/if}}
+    {{title}}
   </span>
 </div>
 {{#if active}}

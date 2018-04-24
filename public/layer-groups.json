@@ -440,7 +440,7 @@
             ]
           ],
           "paint": {
-            "line-color": "rgba(0, 0, 0, 1)",
+            "line-color": "rgba(51, 51, 51, 1)",
             "line-width": {
               "stops": [
                 [
@@ -672,8 +672,8 @@
     "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "legendIcon": "admin-line",
     "legendColor": "",
-    "visible": false,
-    "highlightable": true,
+    "visible": true,
+    "highlightable": false,
     "meta": {
       "description": "NYC Department of City Planning Technical Review Division",
       "updated_at": "6 April 2018"
@@ -732,6 +732,7 @@
           "type": "symbol",
           "source": "digital-citymap",
           "source-layer": "street-centerlines",
+          "minzoom": 13,
           "layout": {
             "text-field": "{streetname}{streetwidth}",
             "text-keep-upright": true,
@@ -755,8 +756,8 @@
 
   {
     "id": "name-changes",
-    "title": "Name Changes",
-    "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "title": "Local Law Names",
+    "titleTooltip": "Local Law name changes to thoroughfares and public places from 2002-current",
     "legendIcon": "admin-line",
     "legendColor": "",
     "visible": false,
@@ -847,7 +848,7 @@
     "id": "commercial-overlays",
     "title": "Commercial Overlays",
     "titleTooltip": "A commercial overlay is a C1 or C2 district mapped within residential districts to serve local retail needs.",
-    "visible": true,
+    "visible": false,
     "meta": {
       "description": "NYC GIS Zoning Features February 2018, Bytes of the Big Apple",
       "url": [
