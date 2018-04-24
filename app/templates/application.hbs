@@ -8,6 +8,7 @@
         onHoverResult=(action 'handleSearchResultHover')
         onHoverOut=(action 'handleSearchHoverOut')
         onClear=(action 'handleSearchClear')
+        searchTerms=searchTerms
         typeTitleLookup=(hash
           lot='Addresses'
           city-street='Streets'
@@ -70,6 +71,22 @@
               )
               layout=(hash
                 line-cap='round'
+              )
+            )
+            before='place_other'
+          }}
+        {{/map.source}}
+      {{/if}}
+      
+      {{#if searchedAddressSource}}
+        {{#map.source options=searchedAddressSource as |source|}}
+          {{source.layer layer=(hash
+              type='circle'
+              paint=(hash 
+                circle-radius=8
+                circle-color="#00A1F9"
+                circle-stroke-width=2
+                circle-stroke-color="#FFFFFF"
               )
             )
             before='place_other'
