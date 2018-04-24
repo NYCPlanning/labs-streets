@@ -131,16 +131,14 @@ export default class ApplicationController extends ParachuteController {
 
   mapPositionDebounce = task(function* (e) {
     yield timeout(500);
-    let pitch = e.target.getPitch();
-    let bearing = e.target.getBearing();
+    const pitch = e.target.getPitch();
+    const bearing = e.target.getBearing();
     let zoom = e.target.getZoom();
     let { lat: lng, lng: lat } = e.target.getCenter();
 
-    lng = precisionRound(lng, 2);
-    lat = precisionRound(lat, 2);
+    lng = precisionRound(lng, 4);
+    lat = precisionRound(lat, 4);
     zoom = precisionRound(zoom, 2);
-    pitch = precisionRound(pitch, 2);
-    bearing = precisionRound(bearing, 2);
 
     this.setProperties({
       zoom, lat, lng, pitch, bearing,
