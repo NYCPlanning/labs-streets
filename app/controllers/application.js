@@ -72,18 +72,18 @@ export const LayerVisibilityParams = new QueryParams({
   },
 
   bearing: {
-    defaultValue: null,
+    defaultValue: 0,
   },
 
   pitch: {
-    defaultValue: null,
+    defaultValue: 0,
   },
 });
 
 const ParachuteController = Controller.extend(LayerVisibilityParams.Mixin);
 
 export default class ApplicationController extends ParachuteController {
-  @computed('lat', 'lng', 'zoom')
+  @computed()
   get initMapOptions() {
     const mapOptions = this.getProperties('center', 'zoom', 'pitch', 'bearing');
 
@@ -129,6 +129,18 @@ export default class ApplicationController extends ParachuteController {
     yield timeout(500);
   }).restartable();
 
+  mapPositionDebounce = task(function* (e) {
+    yield timeout(500);
+    const zoom = e.target.getZoom();
+    const pitch = e.target.getPitch();
+    const bearing = e.target.getBearing();
+    const { lat: lng, lng: lat } = e.target.getCenter();
+
+    this.setProperties({
+      zoom, lat, lng, pitch, bearing,
+    });
+  }).restartable();
+
   @action
   handleZoomend(e) {
     const zoom = e.target.getZoom();
@@ -138,14 +150,7 @@ export default class ApplicationController extends ParachuteController {
 
   @action
   handleMapPositionChange(e) {
-    const zoom = e.target.getZoom();
-    const pitch = e.target.getPitch();
-    const bearing = e.target.getBearing();
-    const { lat: lng, lng: lat } = e.target.getCenter();
-
-    this.setProperties({
-      zoom, lat, lng, pitch, bearing,
-    });
+    this.get('mapPositionDebounce').perform(e);
   }
 
   @action
