@@ -27,6 +27,7 @@
       mapLoaded=(action 'handleMapLoad') as |map|}}
 
       {{#map.labs-layers
+        hoveredFeature=hoveredFeature
         model=model as |layers|}}
         {{#layers.tooltip as |tooltip|}}
           {{tooltip-renderer feature=tooltip.feature template=tooltip.layer.tooltipTemplate}}
@@ -37,6 +38,7 @@
         {{#map.popup
           lngLat=popupLocation}}
           {{map-popup-content
+            onHoverListItem=(action 'handlePopupLinkOver')
             features=popupFeatures}}
         {{/map.popup}}
       {{/if}}

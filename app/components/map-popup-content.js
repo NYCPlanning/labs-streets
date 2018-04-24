@@ -18,6 +18,7 @@ export default class MapPopupContent extends Component {
       const pdf = properties.altmappdf.split('/').pop();
 
       return {
+        feature,
         timestamp: parseInt(moment(properties.effective).format('X'), 10),
         pdflink: `https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/${pdf}`,
         pdf,

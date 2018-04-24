@@ -110,6 +110,13 @@ export default class ApplicationController extends ParachuteController {
   popupFeatures = [];
 
   highlightedStreetSource = null;
+  hoveredFeature = {
+    'type': 'Feature',
+    'geometry': {
+      'type': 'Polygon',
+      'coordinates': [[[-5e6, -1e6], [-4e6, 1e6], [-3e6, -1e6]]]
+    }
+  };
 
   loadStateTask = task(function* () {
     yield timeout(500);
@@ -235,6 +242,11 @@ export default class ApplicationController extends ParachuteController {
         { type: 'geojson', data: result.the_geom },
       );
     }
+  }
+
+  @action
+  handlePopupLinkOver(result) {
+    this.set('hoveredFeature', result.feature);
   }
 
   @action

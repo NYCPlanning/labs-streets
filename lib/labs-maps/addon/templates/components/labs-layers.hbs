@@ -17,18 +17,6 @@
       layer=layerObject.mapboxGlStyle
       before=layerObject.before
     }}
-
-  {{!-- Backup - filter is not updating correctly, but it does when
-  props are bound directly --}}
-  {{!--   {{mapbox-gl-layer
-        map=map
-        layer=(hash paint=layerObject.mapboxGlStyle.paint
-                    layout=layerObject.mapboxGlStyle.layout
-                    filter=layerObject.mapboxGlStyle.filter
-                    type=layerObject.mapboxGlStyle.type
-                    source=layerObject.mapboxGlStyle.source
-                    source-layer=layerObject.mapboxGlStyle.source-layer
-                    id=layerObject.mapboxGlStyle.id)}} --}}
 {{/each}}
 
 {{!-- Highlighted Layer Handling --}}
