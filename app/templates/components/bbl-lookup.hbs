@@ -24,17 +24,23 @@
   <div class="grid-x">
     <div class="cell auto block-container">
       <label>Block
-        {{input type='number' value=block}}
+        {{input type='number' value=block min='1' max='99999' key-up='validate'}}
       </label>
     </div>
     <div class="cell auto lot-container">
       <label>Lot
-        {{input type='number' value=lot}}
+        {{input type='number' value=lot min='1' max='9999' key-up='validate'}}
       </label>
     </div>
   </div>
   {{#if errorMessage}}<p class="lu-red text-center text-small"><{{errorMessage}}</p>{{/if}}
-  <input type="submit" value="Go to BBL" class="button small expanded no-margin" onclick={{action 'checkBBL'}}>
+  {{#if (and validBlock (not validLot))}}
+    <input type="submit" value="Go to Block" class="button small expanded no-margin" onclick={{action 'checkBlock'}}>
+  {{else if validLot}}
+    <input type="submit" value="Go to Lot" class="button small expanded no-margin" onclick={{action 'checkLot'}}>
+  {{else}}
+    <input type="submit" value="Go to Lot" class="button small expanded no-margin {{unless valid 'disabled'}}">
+  {{/if}}
 </div>
 {{/unless}}
 

@@ -370,4 +370,13 @@ export default class ApplicationController extends ParachuteController {
         w.document.close();
       });
   }
+
+  @action
+  flyTo(center, zoom) {
+    // Fly to the lot
+    this.get('map').flyTo({ center, zoom });
+
+    // Turn on the Tax Lots layer group
+    this.get('model.layerGroups').findBy('id', 'tax-lots').set('visible', true);
+  }
 }
