@@ -285,7 +285,7 @@
             {{#each layerGroup.model.layers as |layer|}}
               <li onclick={{action (mut selected-aerial) layer.id}} role='button'>
                 <label {{!template-lint-disable "nested-interactive"}}>
-                  <span class="{{if layer.visibility '' 'medium-gray'}}">
+                  <span class="layer-group-radio-{{layer.id}} {{if layer.visibility '' 'medium-gray'}}">
                     {{fa-icon (if layer.visibility "dot-circle-o" "circle-o")}}
                   </span>
                   {{layer.displayName}}
