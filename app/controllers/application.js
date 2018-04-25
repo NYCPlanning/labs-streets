@@ -59,6 +59,11 @@ export const LayerVisibilityParams = new QueryParams({
     refresh: true,
   },
 
+  aerials: {
+    defaultValue: false,
+    refresh: true,
+  },
+
   aerials2016: {
     defaultValue: false,
     refresh: true,
@@ -335,6 +340,9 @@ export default class ApplicationController extends ParachuteController {
     this.set('highlightedStreetSource', null);
   }
 
+  @action
+  toggleLayerVisibility() {}
+
   // runs on controller setup and calls
   // function to overwrite layer-groups'
   // visibility state with QP state
@@ -351,13 +359,13 @@ export default class ApplicationController extends ParachuteController {
   }
 
   fetchData(queryParams, setDefaults = false) {
-    this.get('model.layerGroups').forEach((group) => {
-      const groupId = group.get('id');
+    this.get('model.layerGroups').forEach((layerGroup) => {
+      const groupId = layerGroup.get('id');
       if (queryParams[groupId] !== undefined) {
         if (setDefaults) {
-          this.setDefaultQueryParamValue(groupId, group.get('visible'));
+          this.setDefaultQueryParamValue(groupId, layerGroup.get('visible'));
         }
-        group.set('visible', queryParams[groupId]);
+        layerGroup.set('visible', queryParams[groupId]);
       }
     });
   }

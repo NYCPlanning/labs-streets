@@ -277,15 +277,13 @@
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='aerials' as |layerGroup|}}
-        {{log layerGroup}}
         {{#menu.menu-item
           title=layerGroup.model.title
           tooltip=layerGroup.model.titleTooltip
-          active=aerials2016}}
-          {{layerGroup.radio-selector
-            queryParams=queryParams
-            classNames='list-float-3'
-          }}
+          active=aerials}}
+          {{radio-selector
+            layers=layerGroup.model.layers
+            classNames='list-float-3'}}
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
     {{/accordion-menu}}

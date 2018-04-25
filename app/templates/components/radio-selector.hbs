@@ -1,9 +1,9 @@
 <ul class="layer-menu-item--group-checkboxes {{classNames}}">
   {{#each layers as |layer|}}
-    <li {{action 'switchLayer' layer.layer.id}}>
-      <label>
-        <span class="{{if (mut (get qps layer.layer.id)) '' 'medium-gray'}}">
-          {{fa-icon (if (mut (get qps layer.layer.id)) "dot-circle-o" "circle-o")}}
+    <li {{action 'switchLayer' layer.id}} role='button'>
+      <label {{!template-lint-disable "nested-interactive"}}>
+        <span class="{{if (mut (get qps layer.id)) '' 'medium-gray'}}">
+          {{fa-icon (if (mut (get qps layer.id)) "dot-circle-o" "circle-o")}}
         </span>
         {{layer.displayName}}
       </label>

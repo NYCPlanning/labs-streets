@@ -21,9 +21,25 @@ export default class LayerModel extends Model {
     return this.get('style');
   }
 
+  @computed('layout.visibility')
+  get layoutVisible() {
+    return this.get('layout.visibility') === 'visible';
+  }
+  set layoutVisible(value) {
+    const visibility = (value ? 'visible' : 'none');
+    const layout = copy(this.get('layout'));
+
+    if (layout) {
+      set(layout, 'visibility', visibility);
+      this.set('layout', layout);
+    }
+  }
+
   @attr('string', {
     defaultValue: 'place_other',
   }) before
+
+  @attr('string') displayName;
 
   @belongsTo('layer-group') layerGroup
 
