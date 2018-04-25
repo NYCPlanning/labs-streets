@@ -1148,6 +1148,7 @@
          ],
          "updated_at": "n/a"
       },
+      "layerVisibilityType": "singleton",
       "layers": [
          {
             "displayName": "2016",

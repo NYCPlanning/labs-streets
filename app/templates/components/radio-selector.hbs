@@ -2,8 +2,8 @@
   {{#each layers as |layer|}}
     <li {{action 'switchLayer' layer.id}} role='button'>
       <label {{!template-lint-disable "nested-interactive"}}>
-        <span class="{{if (mut (get qps layer.id)) '' 'medium-gray'}}">
-          {{fa-icon (if (mut (get qps layer.id)) "dot-circle-o" "circle-o")}}
+        <span class="{{if layer.visibility '' 'medium-gray'}}">
+          {{fa-icon (if layer.visibility "dot-circle-o" "circle-o")}}
         </span>
         {{layer.displayName}}
       </label>

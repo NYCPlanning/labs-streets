@@ -9,11 +9,14 @@ export default class LayerGroupModel extends Model {
 
   @attr('boolean', { defaultValue: false }) highlightable
 
-  // properties used to describe the visibility state
-  // of the associated layers. layer groups can have
-  //  - singleton layers (only one or none layers are visible)
-  //  - multi (many may be visible or none)
-  //  - binary (all are visible or none are visible)
+  /*
+  this property describes the visibility state
+  of the associated layers. layer groups can have
+    - singleton layers (only one or none layers are visible)
+      the top-most layer is on by default
+    - multi (many may be visible or none)
+    - binary (all are visible or none are visible)
+  */
   @attr('string', { defaultValue: 'binary' }) layerVisibilityType
 
   @attr('string') title
@@ -28,7 +31,6 @@ export default class LayerGroupModel extends Model {
 
   @mapBy('layers', 'id') layerIds
 
-  // hideAll() {}
   showOneLayer(id) {
     this.get('layers').forEach((layer) => {
       if (layer.get('id') === id) {

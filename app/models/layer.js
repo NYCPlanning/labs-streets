@@ -10,10 +10,26 @@ export default class LayerModel extends Model {
   constructor(...args) {
     super(...args);
     this.delegateVisibility();
-    this.addObserver('visible', this, 'delegateVisibility');
+    this.addObserver('layerGroup.visible', this, 'delegateVisibility');
+  }
+
+  delegateVisibility() {
+    const visible = this.get('layerGroup.visible');
+
+    if (this.get('layerVisibilityType') === 'singleton') {
+      if (this.get('position') === 1 && this.get('layerGroup.visible')) {
+        this.set('visibility', true);
+      } else {
+        this.set('visibility', false);
+      }
+    } else {
+      this.set('visibility', visible);
+    }
   }
 
   @belongsTo('layer-group') layerGroup
+
+  @attr('number', { defaultValue: -1 }) position;
 
   @computed('style.{paint,layout,filter}')
   get mapboxGlStyle() {
@@ -40,8 +56,20 @@ export default class LayerModel extends Model {
     this.set('style', assign({}, this.get('style'), { filter }));
   }
 
+  @computed('layerVisibilityType')
+  get selected() {
+    return this.get('visibility');
+  }
+  set selected(value) {
+    if (value) {
+      this.set('layerGroup.visible', false);
+      this.set('visibility', true);
+    }
+  }
+
   // getter and setter for visibility
   // accepts true or false
+  // mapbox property that actually determines visibility
   @computed('layout.visibility')
   get visibility() {
     return this.get('layout.visibility') === 'visible';
@@ -56,26 +84,11 @@ export default class LayerModel extends Model {
     }
   }
 
-  @alias('layerGroup.visible') visible;
-
   @alias('layerGroup.highlightable') highlightable;
 
-  @attr('boolean') tooltipable = false
+  @alias('layerGroup.layerVisibilityType') layerVisibilityType;
 
-  @attr('string') tooltipTemplate = ''
+  @attr('boolean', { defaultValue: false }) tooltipable
 
-  setFilter(filter = []) {
-    this.set('style', assign({}, this.get('style'), { filter }));
-  }
-
-  delegateVisibility() {
-    const visible = this.get('visible');
-    const visibility = (visible ? 'visible' : 'none');
-    const layout = copy(this.get('layout'));
-
-    if (layout) {
-      set(layout, 'visibility', visibility);
-      this.set('layout', layout);
-    }
-  }
+  @attr('string', { defaultValue: '' }) tooltipTemplate
 }
