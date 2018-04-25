@@ -9,23 +9,44 @@ import { assign } from '@ember/polyfills';
 export default class LayerModel extends Model {
   constructor(...args) {
     super(...args);
-    this.inheritVisibility();
-    this.addObserver('visible', this, 'inheritVisibility');
+    this.delegateVisibility();
+    this.addObserver('visible', this, 'delegateVisibility');
   }
 
-  @attr('boolean') tooltipable = false
-  @attr('string') tooltipTemplate = ''
+  @belongsTo('layer-group') layerGroup
 
   @computed('style.{paint,layout,filter}')
   get mapboxGlStyle() {
     return this.get('style');
   }
 
+  @attr('string', { defaultValue: 'place_other' }) before
+
+  @attr('string') displayName;
+
+  @attr({ defaultValue: () => ({}) }) style
+
+  @alias('style.paint') paint;
+
+  @alias('style.layout') layout;
+
+  // getter and setter for filter
+  // accepts array
+  @computed('style.filter')
+  get filter() {
+    return this.get('style.filter');
+  }
+  set filter(filter) {
+    this.set('style', assign({}, this.get('style'), { filter }));
+  }
+
+  // getter and setter for visibility
+  // accepts true or false
   @computed('layout.visibility')
-  get layoutVisible() {
+  get visibility() {
     return this.get('layout.visibility') === 'visible';
   }
-  set layoutVisible(value) {
+  set visibility(value) {
     const visibility = (value ? 'visible' : 'none');
     const layout = copy(this.get('layout'));
 
@@ -35,35 +56,19 @@ export default class LayerModel extends Model {
     }
   }
 
-  @attr('string', { defaultValue: 'place_other' }) before
-
-  @attr('string') displayName;
-
-  @belongsTo('layer-group') layerGroup
-
-  @attr({ defaultValue: () => ({}) }) style
-
   @alias('layerGroup.visible') visible;
 
   @alias('layerGroup.highlightable') highlightable;
 
-  @computed('style.filter')
-  get filter() {
-    return this.get('style.filter');
-  }
-  set filter(filter) {
-    this.set('style', assign({}, this.get('style'), { filter }));
-  }
+  @attr('boolean') tooltipable = false
 
-  @alias('style.layout') layout;
-
-  @alias('style.paint') paint;
+  @attr('string') tooltipTemplate = ''
 
   setFilter(filter = []) {
     this.set('style', assign({}, this.get('style'), { filter }));
   }
 
-  inheritVisibility() {
+  delegateVisibility() {
     const visible = this.get('visible');
     const visibility = (visible ? 'visible' : 'none');
     const layout = copy(this.get('layout'));

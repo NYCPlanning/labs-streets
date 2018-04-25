@@ -10,9 +10,9 @@ export default Ember.Component.extend({
       layers.forEach((layer) => {
         // show the selected layer
         if (layer.get('id') === id) {
-          layer.set('layoutVisible', true);
+          layer.set('visibility', true);
         } else { // hide all other layers
-          layer.set('layoutVisible', false);
+          layer.set('visibility', false);
         }
       });
     },
