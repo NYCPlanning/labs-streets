@@ -48,77 +48,22 @@ export const LayerVisibilityParams = new QueryParams({
     defaultValue: false,
     refresh: true,
   },
-
   'floodplain-pfirm2015': {
     defaultValue: false,
     refresh: true,
   },
-
   'floodplain-efirm2007': {
     defaultValue: false,
     refresh: true,
   },
-
   aerials: {
     defaultValue: false,
     refresh: true,
   },
-
-  aerials2016: {
-    defaultValue: false,
+  'selected-aerial': {
+    defaultValue: '',
     refresh: true,
   },
-
-  aerials2014: {
-    defaultValue: false,
-    refresh: true,
-  },
-
-  aerials2012: {
-    defaultValue: false,
-    refresh: true,
-  },
-
-  aerials2010: {
-    defaultValue: false,
-    refresh: true,
-  },
-
-  aerials2018: {
-    defaultValue: false,
-    refresh: true,
-  },
-
-  aerials2006: {
-    defaultValue: false,
-    refresh: true,
-  },
-
-  aerials2004: {
-    defaultValue: false,
-    refresh: true,
-  },
-
-  aerials20012: {
-    defaultValue: false,
-    refresh: true,
-  },
-
-  aerials1996: {
-    defaultValue: false,
-    refresh: true,
-  },
-
-  aerials1951: {
-    defaultValue: false,
-    refresh: true,
-  },
-
-  aerials1924: {
-    defaultValue: false,
-    refresh: true,
-  },
-
   lat: {
     defaultValue: -73.92,
   },
@@ -358,14 +303,24 @@ export default class ApplicationController extends ParachuteController {
     this.set('shareURL', window.location.href);
   }
 
+  // TODO: rewrite
   fetchData(queryParams, setDefaults = false) {
     this.get('model.layerGroups').forEach((layerGroup) => {
       const groupId = layerGroup.get('id');
       if (queryParams[groupId] !== undefined) {
         if (setDefaults) {
           this.setDefaultQueryParamValue(groupId, layerGroup.get('visible'));
+
+          if (layerGroup.get('layerVisibilityType') === 'singleton') {
+            this.setDefaultQueryParamValue('selected-aerial', layerGroup.get('selected'));
+          }
         }
+
         layerGroup.set('visible', queryParams[groupId]);
+
+        if (layerGroup.get('layerVisibilityType') === 'singleton' && queryParams['selected-aerial']) {
+          layerGroup.set('selected', queryParams['selected-aerial']);
+        }
       }
     });
   }

@@ -56,26 +56,17 @@ export default class LayerModel extends Model {
     this.set('style', assign({}, this.get('style'), { filter }));
   }
 
-  @computed('layerVisibilityType')
-  get selected() {
-    return this.get('visibility');
-  }
-  set selected(value) {
-    if (value) {
-      this.set('layerGroup.visible', false);
-      this.set('visibility', true);
-    }
-  }
-
   // getter and setter for visibility
   // accepts true or false
   // mapbox property that actually determines visibility
+  // this also must check that parent visibility is true
   @computed('layout.visibility')
   get visibility() {
     return this.get('layout.visibility') === 'visible';
   }
   set visibility(value) {
-    const visibility = (value ? 'visible' : 'none');
+    const parentVisibilityState = value && this.get('layerGroup.visible');
+    const visibility = (parentVisibilityState ? 'visible' : 'none');
     const layout = copy(this.get('layout'));
 
     if (layout) {

@@ -1,6 +1,7 @@
 import Model from 'ember-data/model';
 import { attr, hasMany } from 'ember-decorators/data';
 import { mapBy } from 'ember-decorators/object/computed';
+import { computed } from '@ember-decorators/object';
 
 export default class LayerGroupModel extends Model {
   @hasMany('layer') layers
@@ -18,6 +19,16 @@ export default class LayerGroupModel extends Model {
     - binary (all are visible or none are visible)
   */
   @attr('string', { defaultValue: 'binary' }) layerVisibilityType
+
+  // singleton only
+  @computed('layers.@each.visibility')
+  get selected() {
+    return this.get('layers').findBy('visibility', true);
+  }
+  set selected(id) {
+    this.get('layers').setEach('visibility', false);
+    this.get('layers').findBy('id', id).set('visibility', true);
+  }
 
   @attr('string') title
 
