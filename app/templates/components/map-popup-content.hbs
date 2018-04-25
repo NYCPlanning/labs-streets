@@ -6,12 +6,12 @@
     {{#if cleanAlterations}}
       <h4 class="popup-header">Map Amendments</h4>
       <ul class="popup-list no-bullet no-margin">
-        {{#each cleanAlterations as |feature|}}
+        {{#each cleanAlterations as |alteration|}}
           <li class="dark-gray" {{! template-lint-disable "nested-interactive" }}
-            onmousemove={{action 'handleHoverListItem' feature}} role="button">
-            <a class="button--alteration-pdf" href="{{feature.pdflink}}" target="_blank" rel="noopener">
-              <strong>{{fa-icon 'external-link'}} {{feature.pdf}}</strong>
-              <span class="date">Effective: {{feature.effective}}</span>
+            onmousemove={{action 'handleHoverListItem' alteration}} role="button">
+            <a class="button--alteration-pdf" href="{{alteration.pdflink}}" target="_blank" rel="noopener">
+              <strong>{{fa-icon 'external-link'}} {{alteration.pdf}}</strong>
+              <span class="date">Effective: {{alteration.effective}}</span>
             </a>
           </li>
         {{/each}}
@@ -22,13 +22,13 @@
 
     {{#if cleanLots}}
       <ul class="popup-list no-bullet no-margin">
-        {{#each cleanLots as |feature|}}
+        {{#each cleanLots as |lot|}}
           <li class="dark-gray" {{! template-lint-disable "nested-interactive" }}
-            onmousemove={{action 'handleHoverListItem' feature}} role="button">
+            onmousemove={{action 'handleHoverListItem' lot}} role="button">
             <hr class="small-margin">
-            <a class="button--tax-lot button gray text-orange no-margin" href="https://zola.planninglabs.nyc/lot/{{feature.boro}}/{{feature.block}}/{{feature.lot}}" target="_blank">
-              <span class="bbl">{{feature.boroName}}, Block {{feature.block}}, Lot {{feature.lot}}</span>
-              <strong class="address">{{feature.address}}</strong>
+            <a class="button--tax-lot button gray text-orange no-margin" href="https://zola.planninglabs.nyc/lot/{{lot.boro}}/{{lot.block}}/{{lot.lot}}" target="_blank">
+              <span class="bbl">{{lot.boroName}}, Block {{lot.block}}, Lot {{lot.lot}}</span>
+              <strong class="address">{{lot.address}}</strong>
               <span class="prompt">{{fa-icon 'external-link'}} View this lot in ZoLa</span>
             </a>
           </li>
