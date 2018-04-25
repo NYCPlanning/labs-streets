@@ -35,23 +35,25 @@ export default class LayerModel extends Model {
     }
   }
 
-  @attr('string', {
-    defaultValue: 'place_other',
-  }) before
+  @attr('string', { defaultValue: 'place_other' }) before
 
   @attr('string') displayName;
 
   @belongsTo('layer-group') layerGroup
 
-  @attr({
-    defaultValue: () => ({}),
-  }) style
+  @attr({ defaultValue: () => ({}) }) style
 
   @alias('layerGroup.visible') visible;
 
   @alias('layerGroup.highlightable') highlightable;
 
-  @alias('style.filter') filter;
+  @computed('style.filter')
+  get filter() {
+    return this.get('style.filter');
+  }
+  set filter(filter) {
+    this.set('style', assign({}, this.get('style'), { filter }));
+  }
 
   @alias('style.layout') layout;
 
