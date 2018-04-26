@@ -35,7 +35,7 @@ export default class SliderFilterComponent extends Component {
     const maxEnd = parseInt(moment(max, 'X').utc().endOf('year').format('X'), 10);
 
     const filter = this.generateExpression(minStart, maxEnd);
-    layer.setFilter(filter);
+    layer.set('filter', filter);
   }
 
   generateExpression(min, max) {

@@ -115,12 +115,12 @@
           }}
         {{/map.source}}
       {{/if}}
-      
+
       {{#if searchedAddressSource}}
         {{#map.source options=searchedAddressSource as |source|}}
           {{source.layer layer=(hash
               type='circle'
-              paint=(hash 
+              paint=(hash
                 circle-radius=8
                 circle-color="#00A1F9"
                 circle-stroke-width=2
@@ -347,6 +347,26 @@
           <ul class="legend no-bullet">
             <li class="legend-item">{{legend-icon legendColor='rgba(0,132,168,0.7)' legendIcon='polygon'}} V Zone</li>
             <li class="legend-item">{{legend-icon legendColor='rgba(0,169,230,0.7)' legendIcon='polygon'}} A Zone</li>
+          </ul>
+        {{/menu.menu-item}}
+      {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='aerials' as |layerGroup|}}
+        {{#menu.menu-item
+          title=layerGroup.model.title
+          tooltip=layerGroup.model.titleTooltip
+          active=aerials}}
+          <ul class="layer-menu-item--group-checkboxes list-float-3">
+            {{#each layerGroup.model.layers as |layer|}}
+              <li onclick={{action (mut selected-aerial) layer.id}} role='button'>
+                <label {{!template-lint-disable "nested-interactive"}}>
+                  <span class="layer-group-radio-{{layer.id}} {{if layer.visibility '' 'medium-gray'}}">
+                    {{fa-icon (if layer.visibility "dot-circle-o" "circle-o")}}
+                  </span>
+                  {{layer.displayName}}
+                </label>
+              </li>
+            {{/each}}
           </ul>
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
