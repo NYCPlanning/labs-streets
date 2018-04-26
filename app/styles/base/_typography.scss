@@ -52,6 +52,41 @@ button {
   color: $primary-color;
 }
 
+.button--tax-lot {
+
+  .bbl {
+    display: block;
+    font-size: rem-calc(10);
+  }
+
+  .address {
+    display: block;
+    margin: rem-calc(4) 0;
+  }
+
+  .prompt {
+    display: block;
+    font-size: rem-calc(11);
+  }
+}
+
+.button--alteration-pdf {
+  display: block;
+  line-height: 1.2;
+  margin: 0 rem-calc(-3) rem-calc(3);
+  padding: rem-calc(3);
+
+  &:hover {
+    background-color: rgba(107,113,123,.06);
+  }
+
+  .date {
+    display: block;
+    color: $dark-gray;
+    font-size: rem-calc(10);
+  }
+}
+
 
 //
 // Badges
@@ -88,6 +123,11 @@ button {
 .text-tiny {
   font-size: rem-calc(10);
   line-height: 1.5;
+}
+
+hr.small-margin {
+  margin-top: rem-calc(10);
+  margin-bottom: rem-calc(10);
 }
 
 .text-weight-normal {

@@ -109,6 +109,7 @@
 
 .popup-content {
   max-height: calc(50vh - 10rem);
+  min-width: 12rem;
   overflow: auto;
   margin: -1rem -0.5rem;
   padding: 1rem 0.5rem;
