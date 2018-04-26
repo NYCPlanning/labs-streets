@@ -3,24 +3,39 @@
     {{fa-icon 'spinner' class='fa-spin medium-gray fa-3x fa-fw'}}
   {{else}}
 
-    {{#if cleanFeatures}}
+    {{#if cleanAlterations}}
       <h4 class="popup-header">Map Amendments</h4>
       <ul class="popup-list no-bullet no-margin">
-        {{#each cleanFeatures as |feature|}}
+        {{#each cleanAlterations as |alteration|}}
           <li class="dark-gray" {{! template-lint-disable "nested-interactive" }}
-            onmousemove={{action 'handleHoverListItem' feature}} role="button">
-            <strong>
-              <a href="{{feature.pdflink}}" target="_blank" rel="noopener">
-                <i aria-hidden="true" class="fa fa-external-link"></i>
-                {{feature.pdf}}
-              </a>
-            </strong> <span class="date">{{feature.effective}}</span>
+            onmousemove={{action 'handleHoverListItem' alteration}} role="button">
+            <a class="button--alteration-pdf" href="{{alteration.pdflink}}" target="_blank" rel="noopener">
+              <strong>{{fa-icon 'external-link'}} {{alteration.pdf}}</strong>
+              <span class="date">Effective: {{alteration.effective}}</span>
+            </a>
           </li>
         {{/each}}
       </ul>
     {{else}}
       There are no map amendments here.
     {{/if}}
+
+    {{#if cleanLots}}
+      <ul class="popup-list no-bullet no-margin">
+        {{#each cleanLots as |lot|}}
+          <li class="dark-gray" {{! template-lint-disable "nested-interactive" }}
+            onmousemove={{action 'handleHoverListItem' lot}} role="button">
+            <hr class="small-margin">
+            <a class="button--tax-lot button gray text-orange no-margin" href="https://zola.planninglabs.nyc/lot/{{lot.boro}}/{{lot.block}}/{{lot.lot}}" target="_blank">
+              <span class="bbl">{{lot.boroName}}, Block {{lot.block}}, Lot {{lot.lot}}</span>
+              <strong class="address">{{lot.address}}</strong>
+              <span class="prompt">{{fa-icon 'external-link'}} View this lot in ZoLa</span>
+            </a>
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
+
 
   {{/if}}
   {{yield}}

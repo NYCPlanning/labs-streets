@@ -212,10 +212,22 @@ export default class ApplicationController extends ParachuteController {
   handleMapClick(e) {
     const { lng, lat } = e.lngLat;
     const SQL = `
-    SELECT the_geom, altmappdf, effective
+    SELECT the_geom, 'alteration' AS type, altmappdf, effective, NULL AS bbl, NULL AS address
       FROM citymap_amendments_v0
       WHERE effective IS NOT NULL
         AND ST_Intersects(
+          the_geom,
+          ST_SetSRID(
+            ST_MakePoint(
+              ${lng},
+              ${lat}
+            ),4326
+          )
+        )
+    UNION ALL
+    SELECT the_geom, 'taxlot' AS type, NULL as altmappdf, NULL as effective, bbl, address
+      FROM mappluto_v1711
+        WHERE ST_Intersects(
           the_geom,
           ST_SetSRID(
             ST_MakePoint(
