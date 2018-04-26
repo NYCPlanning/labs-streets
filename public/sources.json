@@ -2,7 +2,8 @@
   {
     "id": "digital-citymap",
     "type": "cartovector",
-    "source-layers": [{
+    "source-layers": [
+      {
         "id": "bulkhead-lines",
         "sql": "SELECT the_geom_webmercator FROM citymap_bulkheadlines_v0"
       },
@@ -59,19 +60,19 @@
     ]
   },
   {
-     "id": "pluto",
-     "type": "cartovector",
-     "minzoom": 12,
-     "source-layers": [
-        {
-           "id": "pluto",
-           "sql": "SELECT the_geom_webmercator, bbl, lot, landuse, address FROM mappluto_v1711"
-        },
-        {
-           "id": "block-centroids",
-           "sql": "SELECT the_geom_webmercator, block FROM mappluto_block_centroids"
-        }
-     ]
+    "id": "pluto",
+    "type": "cartovector",
+    "minzoom": 12,
+    "source-layers": [
+      {
+        "id": "pluto",
+        "sql": "SELECT the_geom_webmercator, bbl, lot, landuse, address FROM mappluto_v1711"
+      },
+      {
+        "id": "block-centroids",
+        "sql": "SELECT the_geom_webmercator, block FROM mappluto_block_centroids"
+      }
+    ]
   },
   {
     "id": "floodplains",
@@ -86,6 +87,93 @@
         "sql": "SELECT the_geom_webmercator, CASE WHEN fld_zone IN ('A', 'A0', 'AE') THEN 'A' WHEN fld_zone = 'VE' THEN 'V' WHEN fld_zone = '0.2 PCT ANNUAL CHANCE FLOOD HAZARD' THEN 'Shaded X' END as fld_zone FROM floodplain_pfirm2015_v0 WHERE fld_zone IN ('A', 'A0', 'AE') OR fld_zone = 'VE' "
       }
     ]
+  },
+  {
+    "id": "aerials-2016",
+    "type": "raster",
+    "tiles": [
+      "https://maps.nyc.gov/xyz/1.0.0/photo/2016/{z}/{x}/{y}.png8"
+    ],
+    "tileSize": 256
+  },
+  {
+    "id": "aerials-2014",
+    "type": "raster",
+    "tiles": [
+      "https://maps.nyc.gov/xyz/1.0.0/photo/2014/{z}/{x}/{y}.png8"
+    ],
+    "tileSize": 256
+  },
+  {
+    "id": "aerials-2012",
+    "type": "raster",
+    "tiles": [
+      "https://maps.nyc.gov/xyz/1.0.0/photo/2012/{z}/{x}/{y}.png8"
+    ],
+    "tileSize": 256
+  },
+  {
+    "id": "aerials-2010",
+    "type": "raster",
+    "tiles": [
+      "https://maps.nyc.gov/xyz/1.0.0/photo/2010/{z}/{x}/{y}.png8"
+    ],
+    "tileSize": 256
+  },
+  {
+    "id": "aerials-2008",
+    "type": "raster",
+    "tiles": [
+      "https://maps.nyc.gov/xyz/1.0.0/photo/2008/{z}/{x}/{y}.png8"
+    ],
+    "tileSize": 256
+  },
+  {
+    "id": "aerials-2006",
+    "type": "raster",
+    "tiles": [
+      "https://maps.nyc.gov/xyz/1.0.0/photo/2006/{z}/{x}/{y}.png8"
+    ],
+    "tileSize": 256
+  },
+  {
+    "id": "aerials-2004",
+    "type": "raster",
+    "tiles": [
+      "https://maps.nyc.gov/xyz/1.0.0/photo/2004/{z}/{x}/{y}.png8"
+    ],
+    "tileSize": 256
+  },
+  {
+    "id": "aerials-20012",
+    "type": "raster",
+    "tiles": [
+      "https://maps.nyc.gov/xyz/1.0.0/photo/2001-2/{z}/{x}/{y}.png8"
+    ],
+    "tileSize": 256
+  },
+  {
+    "id": "aerials-1996",
+    "type": "raster",
+    "tiles": [
+      "https://maps.nyc.gov/xyz/1.0.0/photo/1996/{z}/{x}/{y}.png8"
+    ],
+    "tileSize": 256
+  },
+  {
+    "id": "aerials-1951",
+    "type": "raster",
+    "tiles": [
+      "https://maps.nyc.gov/xyz/1.0.0/photo/1951/{z}/{x}/{y}.png8"
+    ],
+    "tileSize": 256
+  },
+  {
+    "id": "aerials-1924",
+    "type": "raster",
+    "tiles": [
+      "https://maps.nyc.gov/xyz/1.0.0/photo/1924/{z}/{x}/{y}.png8"
+    ],
+    "tileSize": 256
   }
-
 ]

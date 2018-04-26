@@ -48,17 +48,22 @@ export const LayerVisibilityParams = new QueryParams({
     defaultValue: false,
     refresh: true,
   },
-
   'floodplain-pfirm2015': {
     defaultValue: false,
     refresh: true,
   },
-
   'floodplain-efirm2007': {
     defaultValue: false,
     refresh: true,
   },
-
+  aerials: {
+    defaultValue: false,
+    refresh: true,
+  },
+  'selected-aerial': {
+    defaultValue: '',
+    refresh: true,
+  },
   lat: {
     defaultValue: -73.92,
   },
@@ -344,14 +349,24 @@ export default class ApplicationController extends ParachuteController {
     this.set('shareURL', window.location.href);
   }
 
+  // TODO: rewrite
   fetchData(queryParams, setDefaults = false) {
-    this.get('model.layerGroups').forEach((group) => {
-      const groupId = group.get('id');
+    this.get('model.layerGroups').forEach((layerGroup) => {
+      const groupId = layerGroup.get('id');
       if (queryParams[groupId] !== undefined) {
         if (setDefaults) {
-          this.setDefaultQueryParamValue(groupId, group.get('visible'));
+          this.setDefaultQueryParamValue(groupId, layerGroup.get('visible'));
+
+          if (layerGroup.get('layerVisibilityType') === 'singleton') {
+            this.setDefaultQueryParamValue('selected-aerial', layerGroup.get('selected'));
+          }
         }
-        group.set('visible', queryParams[groupId]);
+
+        layerGroup.set('visible', queryParams[groupId]);
+
+        if (layerGroup.get('layerVisibilityType') === 'singleton' && queryParams['selected-aerial']) {
+          layerGroup.set('selected', queryParams['selected-aerial']);
+        }
       }
     });
   }
