@@ -87,7 +87,6 @@ export default class BBLLookupComponent extends Component {
 
   @action
   setBorocode(option) {
-    console.log("SET BORO", option);
     this.set('boro', option);
     this.send('validate');
   }
