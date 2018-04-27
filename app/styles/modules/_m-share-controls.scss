@@ -22,6 +22,14 @@
   overflow: visible;
 }
 
+.data-controls {
+  position: absolute;
+  top: 90px;
+  left: 50px;
+  z-index: 1;
+  overflow: visible;
+}
+
 .share-controls-content {
   width: 23rem;
   max-width: calc(100vw - 60px);

@@ -7,6 +7,27 @@ import mapboxgl from 'mapbox-gl';
 import fetch from 'fetch';
 import precisionRound from '../utils/precision-round';
 
+// get a geojson rectangle for the current map's view
+const getBoundsGeoJSON = (map) => {
+  const canvas = map.getCanvas();
+  const { width, height } = canvas;
+  const cUL = map.unproject([0, 0]).toArray();
+  const cUR = map.unproject([width, 0]).toArray();
+  const cLR = map.unproject([width, height]).toArray();
+  const cLL = map.unproject([0, height]).toArray();
+
+  return {
+    type: 'Polygon',
+    coordinates: [[cUL, cUR, cLR, cLL, cUL]],
+    crs: {
+      type: 'name',
+      properties: {
+        name: 'EPSG:4326',
+      },
+    },
+  };
+};
+
 export const LayerVisibilityParams = new QueryParams({
   'pierhead-bulkhead-lines': {
     defaultValue: true,
@@ -126,6 +147,8 @@ export default class ApplicationController extends ParachuteController {
 
   searchedAddressSource = null;
 
+  boundsGeoJSON = null;
+
   loadStateTask = task(function* () {
     yield timeout(500);
   }).restartable();
@@ -153,6 +176,8 @@ export default class ApplicationController extends ParachuteController {
     this.setProperties({
       zoom, lat, lng, pitch, bearing,
     });
+
+    this.set('boundsGeoJSON', getBoundsGeoJSON(this.map));
   }).restartable();
 
   @action
@@ -211,6 +236,8 @@ export default class ApplicationController extends ParachuteController {
     ];
 
     basemapLayersToHide.forEach(layer => map.removeLayer(layer));
+
+    this.set('boundsGeoJSON', getBoundsGeoJSON(this.map));
   }
 
   @action
