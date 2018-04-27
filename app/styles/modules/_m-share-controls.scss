@@ -33,9 +33,11 @@
 .share-controls-content {
   width: 23rem;
   max-width: calc(100vw - 60px);
+  max-height: calc(100vh - 13em);
   padding: rem-calc(10);
   background-color: $body-background;
   border-radius: 4px;
+  overflow: scroll;
 
   @include breakpoint(medium) {
     max-width: 50vw;
@@ -49,10 +51,6 @@
 
   h3, p {
     margin-bottom: rem-calc(6);
-  }
-
-  :last-child {
-    margin-bottom: 0;
   }
 
   .close-button {
