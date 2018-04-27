@@ -621,7 +621,7 @@
   {
     "id": "amendments",
     "title": "City Map Alterations",
-    "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "titleTooltip": "An index of adopted alterations to the City Map",
     "legendIcon": "polygon-stacked",
     "legendColor": "rgba(60, 133, 210, 0.4)",
     "visible": true,
