@@ -371,6 +371,10 @@
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
     {{/accordion-menu}}
+
+    <a {{action 'resetToDefaults'}} class="button gray small reset-map-button" disabled={{isDefault}}>
+      {{fa-icon "undo"}} Reset Map Layers
+    </a>
   </div>
 
   {{outlet}}

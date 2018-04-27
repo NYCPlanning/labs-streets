@@ -8,10 +8,20 @@ export default class ApplicationRoute extends Route {
   model = async function() {
     const sources = await this.store.findAll('source')
       .then(sourceModels => normalizeCartoVectors(sourceModels.toArray()));
+
     const layers =
       await this.store.peekAll('layer');
+
     const layerGroups =
       await this.store.findAll('layer-group');
+
+    const layerGroupMap = layerGroups
+      .reduce((acc, layerGroup) => {
+        acc[layerGroup.get('id')] = layerGroup;
+
+        return acc;
+      }, {});
+
     const amendmentsFill =
       await this.store.peekRecord('layer', 'citymap-amendments-fill');
 
@@ -19,6 +29,7 @@ export default class ApplicationRoute extends Route {
       sources,
       layers,
       layerGroups,
+      layerGroupMap,
       amendmentsFill,
     });
   }

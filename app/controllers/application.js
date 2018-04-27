@@ -6,8 +6,13 @@ import carto from 'carto-promises-utility/utils/carto';
 import mapboxgl from 'mapbox-gl';
 import fetch from 'fetch';
 import precisionRound from '../utils/precision-round';
+import { alias } from '@ember/object/computed';
 
 export const LayerVisibilityParams = new QueryParams({
+  'visibleLayers': {
+    defaultValue: [],
+    refresh: true,
+  },
   'pierhead-bulkhead-lines': {
     defaultValue: true,
     refresh: true,
@@ -103,7 +108,6 @@ export default class ApplicationController extends ParachuteController {
       ],
     };
   }
-
 
   @computed('lat', 'lng')
   get center() {
@@ -338,37 +342,28 @@ export default class ApplicationController extends ParachuteController {
   // function to overwrite layer-groups'
   // visibility state with QP state
   setup({ queryParams }) {
-    this.fetchData(queryParams, true);
-  }
-
-  queryParamsDidChange({ shouldRefresh, queryParams }) {
-    if (shouldRefresh) {
-      this.fetchData(queryParams);
-    }
-
-    this.set('shareURL', window.location.href);
-  }
-
-  // TODO: rewrite
-  fetchData(queryParams, setDefaults = false) {
     this.get('model.layerGroups').forEach((layerGroup) => {
       const groupId = layerGroup.get('id');
       if (queryParams[groupId] !== undefined) {
-        if (setDefaults) {
-          this.setDefaultQueryParamValue(groupId, layerGroup.get('visible'));
+        // pulls the default from how it's set in configuration
+        this.setDefaultQueryParamValue(groupId, layerGroup.get('visible'));
 
-          if (layerGroup.get('layerVisibilityType') === 'singleton') {
-            this.setDefaultQueryParamValue('selected-aerial', layerGroup.get('selected'));
-          }
-        }
-
+        // sets the visibility state from QPs
         layerGroup.set('visible', queryParams[groupId]);
 
-        if (layerGroup.get('layerVisibilityType') === 'singleton' && queryParams['selected-aerial']) {
-          layerGroup.set('selected', queryParams['selected-aerial']);
+        // aliases that to the controller
+        this.set(groupId, alias(`model.layerGroupMap.${groupId}.visible`));
+
+        // handle special singleton layer group
+        if (layerGroup.get('layerVisibilityType') === 'singleton') {
+          this.setDefaultQueryParamValue('selected-aerial', layerGroup.get('selected'));
         }
       }
     });
+  }
+
+  queryParamsDidChange() {
+    this.set('shareURL', window.location.href);
   }
 
   @action
