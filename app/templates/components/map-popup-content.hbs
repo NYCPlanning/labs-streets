@@ -6,7 +6,7 @@
         <li class="dark-gray" {{! template-lint-disable "nested-interactive" }}
           onmousemove={{action 'handleHoverListItem' alteration}} role="button">
           <a class="button--alteration-pdf" href="{{alteration.pdflink}}" target="_blank" rel="noopener">
-            <strong>{{fa-icon 'external-link'}} {{alteration.pdf}}</strong>
+            <strong>{{fa-icon 'external-link'}} <span class="filename">{{alteration.pdf}}</span></strong>
             <span class="date">Effective: {{alteration.effective}}</span>
           </a>
         </li>
