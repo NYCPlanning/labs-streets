@@ -79,6 +79,10 @@
             }}
           {{/map.source}}
         {{/if}}
+      {{else}}
+        {{#map.popup lngLat=popupLocation}}
+          {{fa-icon 'spinner' class='fa-spin medium-gray fa-3x fa-fw'}}
+        {{/map.popup}}
       {{/if}}
 
       {{#if highlightedStreetSource}}

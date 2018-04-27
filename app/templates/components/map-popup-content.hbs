@@ -1,42 +1,36 @@
 <div class="popup-content">
-  {{#if (eq cleanFeatures null)}}
-    {{fa-icon 'spinner' class='fa-spin medium-gray fa-3x fa-fw'}}
+  {{#if cleanAlterations}}
+    <h4 class="popup-header">Map Amendments</h4>
+    <ul class="popup-list no-bullet no-margin">
+      {{#each cleanAlterations as |alteration|}}
+        <li class="dark-gray" {{! template-lint-disable "nested-interactive" }}
+          onmousemove={{action 'handleHoverListItem' alteration}} role="button">
+          <a class="button--alteration-pdf" href="{{alteration.pdflink}}" target="_blank" rel="noopener">
+            <strong>{{fa-icon 'external-link'}} {{alteration.pdf}}</strong>
+            <span class="date">Effective: {{alteration.effective}}</span>
+          </a>
+        </li>
+      {{/each}}
+    </ul>
   {{else}}
-
-    {{#if cleanAlterations}}
-      <h4 class="popup-header">Map Amendments</h4>
-      <ul class="popup-list no-bullet no-margin">
-        {{#each cleanAlterations as |alteration|}}
-          <li class="dark-gray" {{! template-lint-disable "nested-interactive" }}
-            onmousemove={{action 'handleHoverListItem' alteration}} role="button">
-            <a class="button--alteration-pdf" href="{{alteration.pdflink}}" target="_blank" rel="noopener">
-              <strong>{{fa-icon 'external-link'}} {{alteration.pdf}}</strong>
-              <span class="date">Effective: {{alteration.effective}}</span>
-            </a>
-          </li>
-        {{/each}}
-      </ul>
-    {{else}}
-      There are no map amendments here.
-    {{/if}}
-
-    {{#if cleanLots}}
-      <ul class="popup-list no-bullet no-margin">
-        {{#each cleanLots as |lot|}}
-          <li class="dark-gray" {{! template-lint-disable "nested-interactive" }}
-            onmousemove={{action 'handleHoverListItem' lot}} role="button">
-            <hr class="small-margin">
-            <a class="button--tax-lot button gray text-orange no-margin" href="https://zola.planninglabs.nyc/lot/{{lot.boro}}/{{lot.block}}/{{lot.lot}}" target="_blank">
-              <span class="bbl">{{lot.boroName}}, Block {{lot.block}}, Lot {{lot.lot}}</span>
-              <strong class="address">{{lot.address}}</strong>
-              <span class="prompt">{{fa-icon 'external-link'}} View this lot in ZoLa</span>
-            </a>
-          </li>
-        {{/each}}
-      </ul>
-    {{/if}}
-
-
+    There are no map amendments here.
   {{/if}}
+
+  {{#if cleanLots}}
+    <ul class="popup-list no-bullet no-margin">
+      {{#each cleanLots as |lot|}}
+        <li class="dark-gray" {{! template-lint-disable "nested-interactive" }}
+          onmousemove={{action 'handleHoverListItem' lot}} role="button">
+          <hr class="small-margin">
+          <a class="button--tax-lot button expanded gray text-orange no-margin" href="https://zola.planninglabs.nyc/lot/{{lot.boro}}/{{lot.block}}/{{lot.lot}}" target="_blank" rel="noopener">
+            <span class="bbl">{{lot.boroName}}, Block {{lot.block}}, Lot {{lot.lot}}</span>
+            <strong class="address">{{lot.address}}</strong>
+            <span class="prompt">{{fa-icon 'external-link'}} View this lot in ZoLa</span>
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+  {{/if}}
+
   {{yield}}
 </div>
