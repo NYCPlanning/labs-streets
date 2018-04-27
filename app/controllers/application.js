@@ -117,7 +117,7 @@ export default class ApplicationController extends ParachuteController {
     lat: 0,
   };
 
-  popupFeatures = [];
+  popupFeatures = null;
 
   searchTerms = '';
 
@@ -215,6 +215,11 @@ export default class ApplicationController extends ParachuteController {
 
   @action
   handleMapClick(e) {
+    // Open the popup and clear its content (defaults to showing spinner)
+    this.set('popupFeatures', null);
+    this.set('popupLocation', e.lngLat);
+
+    // Query and set the popup content
     const { lng, lat } = e.lngLat;
     const SQL = `
     SELECT the_geom, 'alteration' AS type, altmappdf, effective, NULL AS bbl, NULL AS address
@@ -242,9 +247,6 @@ export default class ApplicationController extends ParachuteController {
           )
         )
     `;
-
-    this.set('popupLocation', e.lngLat);
-    this.set('popupFeatures', null);
 
     carto.SQL(SQL, 'geojson')
       .then((FC) => {
@@ -396,5 +398,14 @@ export default class ApplicationController extends ParachuteController {
         w.document.write(text);
         w.document.close();
       });
+  }
+
+  @action
+  flyTo(center, zoom) {
+    // Fly to the lot
+    this.get('map').flyTo({ center, zoom });
+
+    // Turn on the Tax Lots layer group
+    this.set('tax-lots', true);
   }
 }

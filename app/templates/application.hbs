@@ -19,6 +19,7 @@
         {{search.result.label}} ({{search.result.boro_name}})
       {{/if}}
     {{/labs-search}}
+    {{bbl-lookup flyTo=(action 'flyTo')}}
   </div>
 
   <div class="map-container cell medium-auto large-order-2">
@@ -78,6 +79,10 @@
             }}
           {{/map.source}}
         {{/if}}
+      {{else}}
+        {{#map.popup lngLat=popupLocation}}
+          {{fa-icon 'spinner' class='fa-spin medium-gray fa-3x fa-fw'}}
+        {{/map.popup}}
       {{/if}}
 
       {{#if highlightedStreetSource}}
