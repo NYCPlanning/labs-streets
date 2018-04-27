@@ -8,7 +8,7 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('about');
-  this.route('about-city-map');
+  this.route('city-map');
 });
 
 export default Router;
