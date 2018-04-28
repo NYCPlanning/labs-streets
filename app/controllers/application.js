@@ -41,7 +41,7 @@ export const LayerVisibilityParams = new QueryParams({
     },
   },
   'selected-aerial': {
-    defaultValue: '',
+    defaultValue: 'aerials-2016',
     refresh: true,
   },
   lat: {
@@ -347,12 +347,12 @@ export default class ApplicationController extends ParachuteController {
   // runs on controller setup and calls
   // function to overwrite layer-groups'
   // visibility state with QP state
-  setup({ queryParams: { layerGroups } }) {
+  setup({ queryParams: { layerGroups: layerGroupParams, 'selected-aerial': selectedAerial } }) {
     const layerGroupModels = this.get('model.layerGroups');
 
-    if (layerGroups.length) {
+    if (layerGroupParams.length) {
       layerGroupModels.forEach((layerGroup) => {
-        if (layerGroups.includes(layerGroup.get('id'))) {
+        if (layerGroupParams.includes(layerGroup.get('id'))) {
           layerGroup.set('visible', true);
         } else {
           layerGroup.set('visible', false);
@@ -360,7 +360,13 @@ export default class ApplicationController extends ParachuteController {
       });
     }
 
+    if (selectedAerial) {
+      this.get('model.layerGroupMap.aerials').set('selected', selectedAerial);
+    }
+
+    // alias (two-way bind) model props to controller
     this.set('layerGroups', alias('visibleLayerGroups'));
+    this.set('selected-aerial', alias('model.layerGroupMap.aerials.selected'));
   }
 
   queryParamsDidChange() {
