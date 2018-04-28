@@ -34,6 +34,14 @@ export default class ApplicationRoute extends Route {
     });
   }
 
+  setupController(controller, model) {
+    controller.setDefaultQueryParamValue(
+      'layerGroups',
+      model.layerGroups.filterBy('visible', true).mapBy('id'),
+    );
+    super.setupController(controller, model);
+  }
+
   @action
   didTransition() {
     next(function() {

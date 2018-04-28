@@ -12,58 +12,12 @@ export const LayerVisibilityParams = new QueryParams({
   layerGroups: {
     defaultValue: [],
     refresh: true,
-  },
-  'pierhead-bulkhead-lines': {
-    defaultValue: true,
-    refresh: true,
-  },
-  citymap: {
-    defaultValue: true,
-    refresh: true,
-  },
-  arterials: {
-    defaultValue: false,
-    refresh: true,
-  },
-  amendments: {
-    defaultValue: true,
-    refresh: true,
-  },
-  'street-centerlines': {
-    defaultValue: true,
-    refresh: true,
-  },
-  'name-changes': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'zoning-districts': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'commercial-overlays': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'special-purpose-districts': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'tax-lots': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'floodplain-pfirm2015': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'floodplain-efirm2007': {
-    defaultValue: false,
-    refresh: true,
-  },
-  aerials: {
-    defaultValue: false,
-    refresh: true,
+    serialize(value) {
+      return value.toString();
+    },
+    deserialize(value) {
+      return value.split(',');
+    },
   },
   'selected-aerial': {
     defaultValue: '',
@@ -72,19 +26,15 @@ export const LayerVisibilityParams = new QueryParams({
   lat: {
     defaultValue: -73.92,
   },
-
   lng: {
     defaultValue: 40.7,
   },
-
   zoom: {
     defaultValue: 10,
   },
-
   bearing: {
     defaultValue: 0,
   },
-
   pitch: {
     defaultValue: 0,
   },
@@ -338,30 +288,6 @@ export default class ApplicationController extends ParachuteController {
     this.set('highlightedAmendmentSource', null);
   }
 
-  // runs on controller setup and calls
-  // function to overwrite layer-groups'
-  // visibility state with QP state
-  setup({ queryParams }) {
-    const layerGroups = this.get('model.layerGroups');
-
-    layerGroups.setEach('visible', false);
-    queryParams.layerGroups.forEach((param) => {
-      layerGroups.findBy('id', param).set('visible', true);
-    });
-
-    this.set('layerGroups', alias('visibleLayerGroups'));
-  }
-
-  @computed('model.layerGroups.@each.visible')
-  get visibleLayerGroups() {
-    return this.get('model.layerGroups').filterBy('visible', true).mapBy('id');
-  }
-  set visibleLayerGroups(value) { /* noop */ }
-
-  queryParamsDidChange() {
-    this.set('shareURL', window.location.href);
-  }
-
   @action
   handlePrint() {
     fetch('https://map-print.planninglabs.nyc', {
@@ -388,4 +314,33 @@ export default class ApplicationController extends ParachuteController {
         w.document.close();
       });
   }
+
+  // runs on controller setup and calls
+  // function to overwrite layer-groups'
+  // visibility state with QP state
+  setup({ queryParams: { layerGroups } }) {
+    const layerGroupModels = this.get('model.layerGroups');
+
+    if (layerGroups.length) {
+      layerGroupModels.forEach((layerGroup) => {
+        if (layerGroups.includes(layerGroup.get('id'))) {
+          layerGroup.set('visible', true);
+        } else {
+          layerGroup.set('visible', false);
+        }
+      });
+    }
+
+    this.set('layerGroups', alias('visibleLayerGroups'));
+  }
+
+  queryParamsDidChange() {
+    this.set('shareURL', window.location.href);
+  }
+
+  @computed('model.layerGroups.@each.visible')
+  get visibleLayerGroups() {
+    return this.get('model.layerGroups').filterBy('visible', true).mapBy('id');
+  }
+  set visibleLayerGroups(value) { /* noop */ }
 }
