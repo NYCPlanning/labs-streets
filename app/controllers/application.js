@@ -9,7 +9,7 @@ import { alias } from '@ember/object/computed';
 import precisionRound from '../utils/precision-round';
 
 export const LayerVisibilityParams = new QueryParams({
-  visibleLayers: {
+  layerGroups: {
     defaultValue: [],
     refresh: true,
   },
@@ -342,25 +342,21 @@ export default class ApplicationController extends ParachuteController {
   // function to overwrite layer-groups'
   // visibility state with QP state
   setup({ queryParams }) {
-    this.get('model.layerGroups').forEach((layerGroup) => {
-      const groupId = layerGroup.get('id');
-      if (queryParams[groupId] !== undefined) {
-        // pulls the default from how it's set in configuration
-        this.setDefaultQueryParamValue(groupId, layerGroup.get('visible'));
+    const layerGroups = this.get('model.layerGroups');
 
-        // sets the visibility state from QPs
-        layerGroup.set('visible', queryParams[groupId]);
-
-        // aliases that to the controller
-        this.set(groupId, alias(`model.layerGroupMap.${groupId}.visible`));
-
-        // handle special singleton layer group
-        if (layerGroup.get('layerVisibilityType') === 'singleton') {
-          this.setDefaultQueryParamValue('selected-aerial', layerGroup.get('selected'));
-        }
-      }
+    layerGroups.setEach('visible', false);
+    queryParams.layerGroups.forEach((param) => {
+      layerGroups.findBy('id', param).set('visible', true);
     });
+
+    this.set('layerGroups', alias('visibleLayerGroups'));
   }
+
+  @computed('model.layerGroups.@each.visible')
+  get visibleLayerGroups() {
+    return this.get('model.layerGroups').filterBy('visible', true).mapBy('id');
+  }
+  set visibleLayerGroups(value) { /* noop */ }
 
   queryParamsDidChange() {
     this.set('shareURL', window.location.href);
