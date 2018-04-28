@@ -5,11 +5,11 @@ import QueryParams from 'ember-parachute';
 import carto from 'carto-promises-utility/utils/carto';
 import mapboxgl from 'mapbox-gl';
 import fetch from 'fetch';
-import precisionRound from '../utils/precision-round';
 import { alias } from '@ember/object/computed';
+import precisionRound from '../utils/precision-round';
 
 export const LayerVisibilityParams = new QueryParams({
-  'visibleLayers': {
+  visibleLayers: {
     defaultValue: [],
     refresh: true,
   },
