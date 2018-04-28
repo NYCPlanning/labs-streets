@@ -1,0 +1,51 @@
+<span {{action (mut closed) (not closed)}} class="bbl-lookup-toggle button tiny gray text-orange expanded no-margin" role="button">
+  {{#if closed}}
+    {{fa-icon 'chevron-down'}}
+  {{else}}
+    {{fa-icon 'chevron-up'}}
+  {{/if}}
+  BBL Lookup
+</span>
+
+{{#unless closed}}
+  <div class="bbl-lookup-form">
+    <div class="bbl-power-select">
+      <label>Borough</label>
+      {{#power-select
+          class="bbl-lookup--boro-select"
+          tagName=div
+          options=boroOptions
+          searchEnabled=false
+          selected=boro
+          searchField='name'
+          onchange=(action 'setBorocode')
+          as |boro|}}
+        {{boro.name}}
+      {{/power-select}}
+    </div>
+    <div class="grid-x">
+      <div class="cell auto block-container">
+        <label>
+          Block
+          {{input class="bbl-lookup--block-input" type='number' value=block min='1' max='99999' key-up='validate'}}
+        </label>
+      </div>
+      <div class="cell auto lot-container">
+        <label>
+          Lot
+          {{input class="bbl-lookup--lot-input" type='number' value=lot min='1' max='9999' key-up='validate'}}
+        </label>
+      </div>
+    </div>
+    {{#if errorMessage}}<p class="lu-red text-center text-small"><{{errorMessage}}</p>{{/if}}
+    {{#if (and validBlock (not validLot))}}
+      <input type="submit" value="Go to Block" class="button small expanded no-margin" onclick={{action 'checkBlock'}}>
+    {{else if validLot}}
+      <input type="submit" value="Go to Lot" class="button small expanded no-margin" onclick={{action 'checkLot'}}>
+    {{else}}
+      <input type="submit" value="Go to Lot" class="button small expanded no-margin disabled">
+    {{/if}}
+  </div>
+{{/unless}}
+
+{{yield}}

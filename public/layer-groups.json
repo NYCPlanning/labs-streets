@@ -251,7 +251,7 @@
   {
     "id": "pierhead-bulkhead-lines",
     "title": "Pierhead & Bulkhead Lines",
-    "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "titleTooltip": "The Pierhead line is the extent to which piers and platforms over water may be built as shown on the City Map.  The Bulkhead line is the extent to which the filling of land is permitted without additional permits.",
     "legendIcon": "",
     "legendColor": "",
     "visible": true,
@@ -338,7 +338,7 @@
   {
     "id": "arterials",
     "title": "Arterial Highways & Major Streets",
-    "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "titleTooltip": "Designated rights-of-way shown on the Master Plan of Arterial Highways and Major Streets of 1945 (not an exact copy).",
     "legendIcon": "line",
     "legendColor": "rgba(245, 147, 80, 0.6)",
     "visible": false,
@@ -379,7 +379,6 @@
   {
     "id": "citymap",
     "title": "Street Lines",
-    "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "legendIcon": "",
     "legendColor": "",
     "visible": true,
@@ -576,55 +575,6 @@
         "tooltipable": true,
         "tooltipTemplate": "Type: {{type}}",
         "style": {
-          "id": "citymap-non-z-boundary-line",
-          "type": "line",
-          "source": "digital-citymap",
-          "source-layer": "citymap",
-          "filter": [
-            "all",
-            [
-              "==",
-              "type",
-              "non_z_boundary"
-            ]
-          ],
-          "paint": {
-            "line-color": "#1A961A",
-            "line-dasharray": [
-              5,
-              1,
-              2,
-              1
-            ],
-            "line-blur": 0,
-            "line-width": {
-              "stops": [
-                [
-                  10,
-                  0.1
-                ],
-                [
-                  13,
-                  1
-                ],
-                [
-                  15,
-                  3
-                ]
-              ]
-            },
-            "line-opacity": 1,
-            "line-offset": 2
-          },
-          "layout": {
-            "line-cap": "butt"
-          }
-        }
-      },
-      {
-        "tooltipable": true,
-        "tooltipTemplate": "Type: {{type}}",
-        "style": {
           "id": "citymap-street-not-mapped-line",
           "type": "line",
           "source": "digital-citymap",
@@ -671,7 +621,7 @@
   {
     "id": "amendments",
     "title": "City Map Alterations",
-    "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "titleTooltip": "An index of adopted alterations to the City Map",
     "legendIcon": "polygon-stacked",
     "legendColor": "rgba(60, 133, 210, 0.4)",
     "visible": true,
@@ -699,7 +649,7 @@
   {
     "id": "street-centerlines",
     "title": "Street Names",
-    "titleTooltip": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "titleTooltip": "Legal street names as shown on the City Map",
     "legendIcon": "",
     "legendColor": "",
     "visible": true,
@@ -740,7 +690,7 @@
   {
     "id": "name-changes",
     "title": "Local Law Names",
-    "titleTooltip": "Local Law name changes to thoroughfares and public places from 2002-current",
+    "titleTooltip": "Local Law name changes to thoroughfares and public places from 2002 to present",
     "legendIcon": "",
     "legendColor": "",
     "visible": false,
@@ -1180,6 +1130,52 @@
             "icon-color": "rgba(193, 193, 193, 1)",
             "text-color": "rgba(154, 154, 154, 1)",
             "text-halo-color": "rgba(152, 152, 152, 0)"
+          }
+        }
+      },
+      {
+        "before": "place_country_major",
+        "style": {
+          "id": "block-labels",
+          "type": "symbol",
+          "source": "pluto",
+          "source-layer": "block-centroids",
+          "layout": {
+            "text-field": "{block}",
+            "text-font": [
+              "Open Sans Regular",
+              "Arial Unicode MS Regular"
+            ],
+            "text-size": {
+              "stops": [
+                [
+                  14,
+                  12
+                ],
+                [
+                  16,
+                  18
+                ]
+              ]
+            }
+          },
+          "paint": {
+            "text-halo-color": "rgba(255, 255, 255, 0.5)",
+            "text-halo-width": 1,
+            "text-color": "rgba(121, 121, 121, 1)",
+            "text-halo-blur": 0,
+            "text-opacity": {
+              "stops": [
+                [
+                  14,
+                  0
+                ],
+                [
+                  15,
+                  1
+                ]
+              ]
+            }
           }
         }
       }

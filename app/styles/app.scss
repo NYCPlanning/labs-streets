@@ -83,6 +83,7 @@ $lu-gray: #5F5F60;
 // Modules
 // --------------------------------------------------
 @import 'modules/_m-accordion-menu';
+@import 'modules/_m-bbl-lookup';
 @import 'modules/_m-site-header';
 @import 'modules/_m-labs-beta-notice';
 @import 'modules/_m-layer-menu';
@@ -90,3 +91,5 @@ $lu-gray: #5F5F60;
 @import 'modules/_m-search';
 @import 'modules/_m-share-controls';
 @import 'modules/_m-noui';
+
+@import "ember-power-select";

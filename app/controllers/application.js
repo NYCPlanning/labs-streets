@@ -8,6 +8,27 @@ import fetch from 'fetch';
 import { alias } from '@ember/object/computed';
 import precisionRound from '../utils/precision-round';
 
+// get a geojson rectangle for the current map's view
+const getBoundsGeoJSON = (map) => {
+  const canvas = map.getCanvas();
+  const { width, height } = canvas;
+  const cUL = map.unproject([0, 0]).toArray();
+  const cUR = map.unproject([width, 0]).toArray();
+  const cLR = map.unproject([width, height]).toArray();
+  const cLL = map.unproject([0, height]).toArray();
+
+  return {
+    type: 'Polygon',
+    coordinates: [[cUL, cUR, cLR, cLL, cUL]],
+    crs: {
+      type: 'name',
+      properties: {
+        name: 'EPSG:4326',
+      },
+    },
+  };
+};
+
 export const LayerVisibilityParams = new QueryParams({
   layerGroups: {
     defaultValue: [],
@@ -71,7 +92,7 @@ export default class ApplicationController extends ParachuteController {
     lat: 0,
   };
 
-  popupFeatures = [];
+  popupFeatures = null;
 
   searchTerms = '';
 
@@ -79,6 +100,8 @@ export default class ApplicationController extends ParachuteController {
   highlightedAmendmentSource = null;
 
   searchedAddressSource = null;
+
+  boundsGeoJSON = null;
 
   loadStateTask = task(function* () {
     yield timeout(500);
@@ -107,6 +130,8 @@ export default class ApplicationController extends ParachuteController {
     this.setProperties({
       zoom, lat, lng, pitch, bearing,
     });
+
+    this.set('boundsGeoJSON', getBoundsGeoJSON(this.map));
   }).restartable();
 
   @action
@@ -165,10 +190,17 @@ export default class ApplicationController extends ParachuteController {
     ];
 
     basemapLayersToHide.forEach(layer => map.removeLayer(layer));
+
+    this.set('boundsGeoJSON', getBoundsGeoJSON(this.map));
   }
 
   @action
   handleMapClick(e) {
+    // Open the popup and clear its content (defaults to showing spinner)
+    this.set('popupFeatures', null);
+    this.set('popupLocation', e.lngLat);
+
+    // Query and set the popup content
     const { lng, lat } = e.lngLat;
     const SQL = `
     SELECT the_geom, 'alteration' AS type, altmappdf, effective, NULL AS bbl, NULL AS address
@@ -196,9 +228,6 @@ export default class ApplicationController extends ParachuteController {
           )
         )
     `;
-
-    this.set('popupLocation', e.lngLat);
-    this.set('popupFeatures', null);
 
     carto.SQL(SQL, 'geojson')
       .then((FC) => {
@@ -343,4 +372,13 @@ export default class ApplicationController extends ParachuteController {
     return this.get('model.layerGroups').filterBy('visible', true).mapBy('id');
   }
   set visibleLayerGroups(value) { /* noop */ }
+
+  @action
+  flyTo(center, zoom) {
+    // Fly to the lot
+    this.get('map').flyTo({ center, zoom });
+
+    // Turn on the Tax Lots layer group
+    this.set('tax-lots', true);
+  }
 }
