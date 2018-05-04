@@ -402,7 +402,6 @@ export default class ApplicationController extends ParachuteController {
 
   @action
   handlePrint() {
-
     const config = {
       mapConfig: {
         style: map.getStyle(), // eslint-disable-line
@@ -413,7 +412,7 @@ export default class ApplicationController extends ParachuteController {
       },
       logo: 'https://raw.githubusercontent.com/NYCPlanning/logo/master/dcp_logo_772.png',
       title: 'NYC Street Map',
-      // content: 'This map was printed from NYC Street Map Application created by the NYC Department of City Planning. It is not an official record and all information displayed must be confirmed based on official records.',
+      content: 'This map was printed from NYC Street Map Application created by the NYC Department of City Planning. It is not an official record and all information displayed must be confirmed based on official records.',
       source: 'NYC Street Map | https://streetmap.planning.nyc.gov',
     };
 
