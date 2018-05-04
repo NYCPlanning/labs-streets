@@ -165,7 +165,7 @@
 
   <div class="layer-menu cell large-order-1 {{if (not-eq currentRouteName 'index') 'show-for-medium'}}">
     {{!-- City Map Layers --}}
-    {{#accordion-menu title='City Map Layers'
+    {{#accordion-menu title='Street Map Layers'
         mapIsLoading=loadStateTask.isRunning as |menu|}}
       {{#lookup-layer-group for='citymap' as |layerGroup|}}
         {{#menu.menu-item

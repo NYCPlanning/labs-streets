@@ -8,7 +8,7 @@ export default class ShareControls extends Component {
   datasets = [
     {
       tableName: 'citymap_citymap_v0',
-      displayName: 'City Map Features',
+      displayName: 'City Street Features',
     },
     {
       tableName: 'citymap_amendments_v0',

@@ -261,6 +261,8 @@
     },
     "layers": [
       {
+        "tooltipable": true,
+        "tooltipTemplate": "Pierhead Line",
         "style": {
           "id": "citymap-pierhead-line",
           "type": "line",
@@ -298,6 +300,8 @@
         }
       },
       {
+        "tooltipable": true,
+        "tooltipTemplate": "Bulkhead Line",
         "style": {
           "id": "citymap-bulkhead-line",
           "type": "line",
@@ -338,7 +342,7 @@
   {
     "id": "arterials",
     "title": "Arterial Highways & Major Streets",
-    "titleTooltip": "Designated rights-of-way shown on the Master Plan of Arterial Highways and Major Streets of 1945 (not an exact copy).",
+    "titleTooltip": "Designated rights-of-way shown on the Master Plan of Arterial Highways and Major Streets (not an exact copy).",
     "legendIcon": "line",
     "legendColor": "rgba(245, 147, 80, 0.6)",
     "visible": false,
@@ -388,8 +392,6 @@
     },
     "layers": [
       {
-        "tooltipable": true,
-        "tooltipTemplate": "Type: {{type}}",
         "style": {
           "id": "citymap-mapped-streets-line",
           "type": "line",
@@ -426,7 +428,52 @@
       },
       {
         "tooltipable": true,
-        "tooltipTemplate": "Type: {{type}}",
+        "tooltipTemplate": "{{type}}",
+        "style": {
+          "id": "citymap-streets-tooltip-line",
+          "type": "line",
+          "source": "digital-citymap",
+          "source-layer": "citymap",
+          "paint": {
+            "line-opacity": 0.001,
+            "line-width": {
+              "stops": [
+                [
+                  10,
+                  0.2
+                ],
+                [
+                  13,
+                  2
+                ],
+                [
+                  15,
+                  6
+                ]
+              ]
+            }
+          },
+          "filter": [
+            "any",
+            [
+              "==",
+              "type",
+              "Mapped Street"
+            ],
+            [
+              "==",
+              "type",
+              "Street not mapped"
+            ],
+            [
+              "==",
+              "type",
+              "Record Street"
+            ]
+          ]
+        }
+      },
+      {
         "style": {
           "id": "citymap-record-streets-line",
           "type": "line",
@@ -480,8 +527,6 @@
         }
       },
       {
-        "tooltipable": true,
-        "tooltipTemplate": "Type: {{type}}",
         "style": {
           "id": "citymap-street-treatments-line",
           "type": "line",
@@ -517,8 +562,6 @@
         }
       },
       {
-        "tooltipable": true,
-        "tooltipTemplate": "Type: {{type}}",
         "style": {
           "id": "citymap-underpass-tunnel-line",
           "type": "line",
@@ -572,8 +615,6 @@
         }
       },
       {
-        "tooltipable": true,
-        "tooltipTemplate": "Type: {{type}}",
         "style": {
           "id": "citymap-street-not-mapped-line",
           "type": "line",

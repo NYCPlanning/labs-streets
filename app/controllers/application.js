@@ -402,28 +402,35 @@ export default class ApplicationController extends ParachuteController {
 
   @action
   handlePrint() {
-    fetch('https://map-print.planninglabs.nyc', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
+
+    const config = {
+      mapConfig: {
         style: map.getStyle(), // eslint-disable-line
         center: map.getCenter(), // eslint-disable-line
         zoom: map.getZoom(), // eslint-disable-line
         bearing: map.getBearing(), // eslint-disable-line
         pitch: map.getPitch(), // eslint-disable-line
-        title: 'NYC City Map',
-        content: 'Disclaimer!  This map was printed from the One City Map Application produced by the NYC Department of City Planning',
-      }),
+      },
+      logo: 'https://raw.githubusercontent.com/NYCPlanning/logo/master/dcp_logo_772.png',
+      title: 'NYC Street Map',
+      // content: 'This map was printed from NYC Street Map Application created by the NYC Department of City Planning. It is not an official record and all information displayed must be confirmed based on official records.',
+      source: 'NYC Street Map | https://streetmap.planning.nyc.gov',
+    };
+
+    fetch('https://map-print.planninglabs.nyc/config', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(config),
     })
-      .then(res => res.text())
-      .then((text) => {
-        const w = window.open();
-        w.document.open();
-        w.document.write(text);
-        w.document.close();
+      .then(res => res.json())
+      .then((res) => {
+        if (res.status === 'success') {
+          window.open('https://map-print.planninglabs.nyc', '_blank');
+        }
       });
   }
 
