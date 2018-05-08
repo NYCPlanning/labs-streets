@@ -5,6 +5,7 @@ import QueryParams from 'ember-parachute';
 import carto from 'carto-promises-utility/utils/carto';
 import mapboxgl from 'mapbox-gl';
 import fetch from 'fetch';
+import { alias } from '@ember/object/computed';
 import precisionRound from '../utils/precision-round';
 
 // get a geojson rectangle for the current map's view
@@ -29,78 +30,32 @@ const getBoundsGeoJSON = (map) => {
 };
 
 export const LayerVisibilityParams = new QueryParams({
-  'pierhead-bulkhead-lines': {
-    defaultValue: true,
+  layerGroups: {
+    defaultValue: [],
     refresh: true,
-  },
-  citymap: {
-    defaultValue: true,
-    refresh: true,
-  },
-  arterials: {
-    defaultValue: false,
-    refresh: true,
-  },
-  amendments: {
-    defaultValue: true,
-    refresh: true,
-  },
-  'street-centerlines': {
-    defaultValue: true,
-    refresh: true,
-  },
-  'name-changes': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'zoning-districts': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'commercial-overlays': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'special-purpose-districts': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'tax-lots': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'floodplain-pfirm2015': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'floodplain-efirm2007': {
-    defaultValue: false,
-    refresh: true,
-  },
-  aerials: {
-    defaultValue: false,
-    refresh: true,
+    serialize(value) {
+      return value.toString();
+    },
+    deserialize(value) {
+      return value.split(',');
+    },
   },
   'selected-aerial': {
-    defaultValue: '',
+    defaultValue: 'aerials-2016',
     refresh: true,
   },
   lat: {
     defaultValue: -73.92,
   },
-
   lng: {
     defaultValue: 40.7,
   },
-
   zoom: {
     defaultValue: 10,
   },
-
   bearing: {
     defaultValue: 0,
   },
-
   pitch: {
     defaultValue: 0,
   },
@@ -124,7 +79,6 @@ export default class ApplicationController extends ParachuteController {
       ],
     };
   }
-
 
   @computed('lat', 'lng')
   get center() {
@@ -363,43 +317,6 @@ export default class ApplicationController extends ParachuteController {
     this.set('highlightedAmendmentSource', null);
   }
 
-  // runs on controller setup and calls
-  // function to overwrite layer-groups'
-  // visibility state with QP state
-  setup({ queryParams }) {
-    this.fetchData(queryParams, true);
-  }
-
-  queryParamsDidChange({ shouldRefresh, queryParams }) {
-    if (shouldRefresh) {
-      this.fetchData(queryParams);
-    }
-
-    this.set('shareURL', window.location.href);
-  }
-
-  // TODO: rewrite
-  fetchData(queryParams, setDefaults = false) {
-    this.get('model.layerGroups').forEach((layerGroup) => {
-      const groupId = layerGroup.get('id');
-      if (queryParams[groupId] !== undefined) {
-        if (setDefaults) {
-          this.setDefaultQueryParamValue(groupId, layerGroup.get('visible'));
-
-          if (layerGroup.get('layerVisibilityType') === 'singleton') {
-            this.setDefaultQueryParamValue('selected-aerial', layerGroup.get('selected'));
-          }
-        }
-
-        layerGroup.set('visible', queryParams[groupId]);
-
-        if (layerGroup.get('layerVisibilityType') === 'singleton' && queryParams['selected-aerial']) {
-          layerGroup.set('selected', queryParams['selected-aerial']);
-        }
-      }
-    });
-  }
-
   @action
   handlePrint() {
     const config = {
@@ -432,6 +349,41 @@ export default class ApplicationController extends ParachuteController {
         }
       });
   }
+
+  // runs on controller setup and calls
+  // function to overwrite layer-groups'
+  // visibility state with QP state
+  setup({ queryParams: { layerGroups: layerGroupParams, 'selected-aerial': selectedAerial } }) {
+    const layerGroupModels = this.get('model.layerGroups');
+
+    if (layerGroupParams.length) {
+      layerGroupModels.forEach((layerGroup) => {
+        if (layerGroupParams.includes(layerGroup.get('id'))) {
+          layerGroup.set('visible', true);
+        } else {
+          layerGroup.set('visible', false);
+        }
+      });
+    }
+
+    if (selectedAerial) {
+      this.get('model.layerGroupMap.aerials').set('selected', selectedAerial);
+    }
+
+    // alias (two-way bind) model props to controller
+    this.set('layerGroups', alias('visibleLayerGroups'));
+    this.set('selected-aerial', alias('model.layerGroupMap.aerials.selected'));
+  }
+
+  queryParamsDidChange() {
+    this.set('shareURL', window.location.href);
+  }
+
+  @computed('model.layerGroups.@each.visible')
+  get visibleLayerGroups() {
+    return this.get('model.layerGroups').filterBy('visible', true).mapBy('id');
+  }
+  set visibleLayerGroups(value) { /* noop */ }
 
   @action
   flyTo(center, zoom) {

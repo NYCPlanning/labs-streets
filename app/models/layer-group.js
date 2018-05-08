@@ -23,7 +23,12 @@ export default class LayerGroupModel extends Model {
   // singleton only
   @computed('layers.@each.visibility')
   get selected() {
-    return this.get('layers').findBy('visibility', true);
+    const selectedLayer = this.get('layers').findBy('visibility', true);
+    if (selectedLayer) {
+      return selectedLayer.get('id');
+    }
+
+    return null;
   }
   set selected(id) {
     this.get('layers').setEach('visibility', false);
