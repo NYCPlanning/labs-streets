@@ -73,7 +73,6 @@
     "babel-preset-es2015": "6.24.1",
     "babel-preset-stage-2": "6.24.1",
     "babelify": "8.0.0",
-    "broccoli-merge-json": "git+https://github.com/CODDDE/broccoli-merge-json.git#update-to-broccoli-plugin",
     "eslint-config-airbnb": "16.1.0",
     "eslint-plugin-ember-best-practices": "1.1.1",
     "eslint-plugin-import": "2.10.0",
