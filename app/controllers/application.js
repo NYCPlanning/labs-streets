@@ -402,7 +402,16 @@ export default class ApplicationController extends ParachuteController {
 
   @action
   handlePrint() {
-    const config = {
+
+    // get layerGroups that are currently visible and have legendConfigs
+    // then map to get legendConfig objects
+    const visibleLegendConfigs = this.get('model').layerGroups.toArray()
+      .filter((layerGroup) => {
+        return layerGroup.get('visible') && layerGroup.get('legendConfig');
+      })
+      .map(layerGroup => layerGroup.get('legendConfig'));
+
+    const printConfig = {
       mapConfig: {
         style: map.getStyle(), // eslint-disable-line
         center: map.getCenter(), // eslint-disable-line
@@ -416,6 +425,8 @@ export default class ApplicationController extends ParachuteController {
       source: 'NYC Street Map | https://streetmap.planning.nyc.gov',
     };
 
+    if (visibleLegendConfigs.length > 0) printConfig.legendConfig = visibleLegendConfigs;
+
     fetch('https://map-print.planninglabs.nyc/config', {
       method: 'POST',
       credentials: 'include',
@@ -423,7 +434,7 @@ export default class ApplicationController extends ParachuteController {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(config),
+      body: JSON.stringify(printConfig),
     })
       .then(res => res.json())
       .then((res) => {
