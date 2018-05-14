@@ -1,0 +1,27 @@
+{
+  "id": "amendments",
+  "title": "City Map Alterations",
+  "titleTooltip": "An index of adopted alterations to the City Map",
+  "legendIcon": "polygon-stacked",
+  "legendColor": "rgba(60, 133, 210, 0.4)",
+  "visible": true,
+  "highlightable": false,
+  "meta": {
+    "description": "NYC Department of City Planning Technical Review Division",
+    "updated_at": "6 April 2018"
+  },
+  "layers": [
+    {
+      "style": {
+        "id": "citymap-amendments-fill",
+        "type": "fill",
+        "source": "digital-citymap",
+        "source-layer": "amendments",
+        "paint": {
+          "fill-color": "rgba(60, 133, 210, 0.2)"
+        },
+        "layout": {}
+      }
+    }
+  ]
+}
