@@ -402,14 +402,17 @@ export default class ApplicationController extends ParachuteController {
 
   @action
   handlePrint() {
-
     // get layerGroups that are currently visible and have legendConfigs
     // then map to get legendConfig objects
     const visibleLegendConfigs = this.get('model').layerGroups.toArray()
-      .filter((layerGroup) => {
+      .filter((layerGroup) => { // eslint-disable-line
         return layerGroup.get('visible') && layerGroup.get('legendConfig');
       })
-      .map(layerGroup => layerGroup.get('legendConfig'));
+      .map((layerGroup) => {
+        const config = layerGroup.get('legendConfig');
+        config.id = layerGroup.id;
+        return config;
+      });
 
     const printConfig = {
       mapConfig: {
@@ -427,7 +430,9 @@ export default class ApplicationController extends ParachuteController {
 
     if (visibleLegendConfigs.length > 0) printConfig.legendConfig = visibleLegendConfigs;
 
-    fetch('https://map-print.planninglabs.nyc/config', {
+    const printServiceURL = 'https://map-print.planninglabs.nyc';
+
+    fetch(`${printServiceURL}/config`, {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -439,7 +444,7 @@ export default class ApplicationController extends ParachuteController {
       .then(res => res.json())
       .then((res) => {
         if (res.status === 'success') {
-          window.open('https://map-print.planninglabs.nyc', '_blank');
+          window.open(printServiceURL, '_blank');
         }
       });
   }

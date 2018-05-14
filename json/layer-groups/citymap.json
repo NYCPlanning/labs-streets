@@ -1,24 +1,24 @@
 {
-  "id": "citymap",
-  "title": "Street Lines",
-  "legendIcon": "",
-  "legendColor": "",
-  "visible": true,
-  "meta": {
-    "description": "NYC Department of City Planning Technical Review Division",
-    "updated_at": "6 April 2018"
+  "id":"citymap",
+  "title":"Street Lines",
+  "legendIcon":"",
+  "legendColor":"",
+  "visible":true,
+  "meta":{
+    "description":"NYC Department of City Planning Technical Review Division",
+    "updated_at":"6 April 2018"
   },
-  "layers": [
+  "layers":[
     {
-      "style": {
-        "id": "citymap-mapped-streets-line",
-        "type": "line",
-        "source": "digital-citymap",
-        "source-layer": "citymap",
-        "paint": {
-          "line-color": "rgba(51, 51, 51, 1)",
-          "line-width": {
-            "stops": [
+      "style":{
+        "id":"citymap-mapped-streets-line",
+        "type":"line",
+        "source":"digital-citymap",
+        "source-layer":"citymap",
+        "paint":{
+          "line-color":"rgba(51, 51, 51, 1)",
+          "line-width":{
+            "stops":[
               [
                 10,
                 0.1
@@ -34,7 +34,7 @@
             ]
           }
         },
-        "filter": [
+        "filter":[
           "all",
           [
             "==",
@@ -45,17 +45,17 @@
       }
     },
     {
-      "tooltipable": true,
-      "tooltipTemplate": "{{type}}",
-      "style": {
-        "id": "citymap-streets-tooltip-line",
-        "type": "line",
-        "source": "digital-citymap",
-        "source-layer": "citymap",
-        "paint": {
-          "line-opacity": 0.001,
-          "line-width": {
-            "stops": [
+      "tooltipable":true,
+      "tooltipTemplate":"{{type}}",
+      "style":{
+        "id":"citymap-streets-tooltip-line",
+        "type":"line",
+        "source":"digital-citymap",
+        "source-layer":"citymap",
+        "paint":{
+          "line-opacity":0.001,
+          "line-width":{
+            "stops":[
               [
                 10,
                 0.2
@@ -71,7 +71,7 @@
             ]
           }
         },
-        "filter": [
+        "filter":[
           "any",
           [
             "==",
@@ -92,12 +92,12 @@
       }
     },
     {
-      "style": {
-        "id": "citymap-record-streets-line",
-        "type": "line",
-        "source": "digital-citymap",
-        "source-layer": "citymap",
-        "filter": [
+      "style":{
+        "id":"citymap-record-streets-line",
+        "type":"line",
+        "source":"digital-citymap",
+        "source-layer":"citymap",
+        "filter":[
           "all",
           [
             "==",
@@ -105,10 +105,10 @@
             "Record Street"
           ]
         ],
-        "paint": {
-          "line-color": "rgba(51, 51, 51, 1)",
-          "line-width": {
-            "stops": [
+        "paint":{
+          "line-color":"rgba(51, 51, 51, 1)",
+          "line-width":{
+            "stops":[
               [
                 10,
                 0.1
@@ -123,8 +123,8 @@
               ]
             ]
           },
-          "line-dasharray": {
-            "stops": [
+          "line-dasharray":{
+            "stops":[
               [
                 10,
                 [
@@ -145,12 +145,12 @@
       }
     },
     {
-      "style": {
-        "id": "citymap-street-treatments-line",
-        "type": "line",
-        "source": "digital-citymap",
-        "source-layer": "citymap",
-        "filter": [
+      "style":{
+        "id":"citymap-street-treatments-line",
+        "type":"line",
+        "source":"digital-citymap",
+        "source-layer":"citymap",
+        "filter":[
           "all",
           [
             "==",
@@ -158,10 +158,10 @@
             "street_treatment"
           ]
         ],
-        "paint": {
-          "line-color": "#545454",
-          "line-width": {
-            "stops": [
+        "paint":{
+          "line-color":"#545454",
+          "line-width":{
+            "stops":[
               [
                 10,
                 0.1
@@ -180,23 +180,23 @@
       }
     },
     {
-      "style": {
-        "id": "citymap-underpass-tunnel-line",
-        "type": "line",
-        "source": "digital-citymap",
-        "source-layer": "citymap",
-        "filter": [
+      "style":{
+        "id":"citymap-underpass-tunnel-line",
+        "type":"line",
+        "source":"digital-citymap",
+        "source-layer":"citymap",
+        "filter":[
           "all",
           [
-             "==",
-             "type",
-             "Underpass or Tunnel"
+            "==",
+            "type",
+            "Underpass or Tunnel"
           ]
         ],
-        "paint": {
-          "line-color": "rgba(150, 150, 150, 1)",
-          "line-width": {
-            "stops": [
+        "paint":{
+          "line-color":"rgba(150, 150, 150, 1)",
+          "line-width":{
+            "stops":[
               [
                 10,
                 0.1
@@ -211,8 +211,8 @@
               ]
             ]
           },
-          "line-dasharray": {
-            "stops": [
+          "line-dasharray":{
+            "stops":[
               [
                 10,
                 [
@@ -233,12 +233,12 @@
       }
     },
     {
-      "style": {
-        "id": "citymap-street-not-mapped-line",
-        "type": "line",
-        "source": "digital-citymap",
-        "source-layer": "citymap",
-        "filter": [
+      "style":{
+        "id":"citymap-street-not-mapped-line",
+        "type":"line",
+        "source":"digital-citymap",
+        "source-layer":"citymap",
+        "filter":[
           "all",
           [
             "==",
@@ -246,10 +246,10 @@
             "Street not mapped"
           ]
         ],
-        "paint": {
-          "line-color": "#AFAFAF",
-          "line-width": {
-            "stops": [
+        "paint":{
+          "line-color":"#AFAFAF",
+          "line-width":{
+            "stops":[
               [
                 10,
                 0.1
@@ -264,38 +264,57 @@
               ]
             ]
           },
-          "line-dasharray": [
+          "line-dasharray":[
             0,
             2
           ]
         },
-        "layout": {
-          "line-cap": "round"
+        "layout":{
+          "line-cap":"round"
         }
       }
     }
   ],
   "legendConfig": {
-    "label": "Street Lines",
-    "items": [
+    "label":"Street Lines",
+    "items":[
       {
-         "type": "line",
-         "label": "Mapped Street",
-         "style": {
-            "fill": "none",
-            "stroke": "#000"
-         }
+        "type":"line",
+        "label":"Mapped Street",
+        "style":{
+          "fill":"none",
+          "stroke":"#000"
+        }
       },
       {
-           "type": "line",
-           "label": "Record Street",
-           "style": {
-              "fill": "none",
-              "stroke": "#000",
-              "strokeWidth": "1",
-              "strokeDasharray": "3, 1.5"
-           }
+        "type":"line",
+        "label":"Record Street",
+        "style":{
+          "fill":"none",
+          "stroke":"#000",
+          "strokeWidth":"1",
+          "strokeDasharray":"3, 1.5"
         }
-     ]
+      },
+      {
+        "type":"line",
+        "label":"Street Treatment",
+        "style":{
+          "fill":"none",
+          "stroke":"#a1a1a1",
+          "strokeWidth":"0.5"
+        }
+      },
+      {
+        "type":"line",
+        "label":"Unmapped Street",
+        "style":{
+          "fill":"none",
+          "stroke":"#a1a1a1",
+          "strokeWidth":"0.5",
+          "strokeDasharray":"1"
+        }
+      }
+    ]
   }
 }
