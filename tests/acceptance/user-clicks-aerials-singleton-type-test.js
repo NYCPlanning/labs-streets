@@ -12,15 +12,15 @@ module('Acceptance | user clicks aerials singleton type', function(hooks) {
     const toggledRadio = await find('.layer-group-radio-aerials-2006 .fa-dot-circle-o');
     assert.ok(toggledRadio);
 
-    assert.equal(currentURL(), '/?aerials=true&selected-aerial=aerials-2006');
+    assert.equal(currentURL(), '/about?aerials=true&selected-aerial=aerials-2006');
 
     await click('.layer-aerial-imagery .layer-menu-item-title');
 
-    assert.equal(currentURL(), '/?selected-aerial=aerials-2006');
+    assert.equal(currentURL(), '/about?selected-aerial=aerials-2006');
 
     await click('.layer-aerial-imagery .layer-menu-item-title');
 
-    assert.equal(currentURL(), '/?aerials=true&selected-aerial=aerials-2006');
+    assert.equal(currentURL(), '/about?aerials=true&selected-aerial=aerials-2006');
 
     // it should preserve previously toggled
     const toggledRadioAfter = await find('.layer-group-radio-aerials-2006 .fa-dot-circle-o');

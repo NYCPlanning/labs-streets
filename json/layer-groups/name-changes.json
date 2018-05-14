@@ -1,0 +1,89 @@
+{
+  "id": "name-changes",
+  "title": "Local Law Names",
+  "titleTooltip": "Local Law name changes to thoroughfares and public places from 2002 to present",
+  "legendIcon": "",
+  "legendColor": "",
+  "visible": false,
+  "meta": {
+    "description": "NYC Department of City Planning Technical Review Division",
+    "updated_at": "6 April 2018"
+  },
+  "layers": [
+    {
+      "style": {
+        "id": "citymap-name-changes-circle",
+        "type": "circle",
+        "source": "digital-citymap",
+        "source-layer": "name-changes-points",
+        "layout": {
+          "visibility": "visible"
+        },
+        "paint": {
+          "circle-stroke-color": "rgba(49, 49, 49, 1)",
+          "circle-color": "rgba(228, 72, 192, 1)",
+          "circle-stroke-width": {
+            "stops": [
+              [
+                10,
+                0.5
+              ],
+              [
+                14,
+                1.5
+              ]
+            ]
+          },
+          "circle-radius": {
+            "stops": [
+              [
+                10,
+                1
+              ],
+              [
+                14,
+                5
+              ]
+            ]
+          }
+        }
+      }
+    },
+    {
+      "style": {
+        "id": "citymap-name-changes-line",
+        "type": "line",
+        "source": "digital-citymap",
+        "source-layer": "name-changes-lines",
+        "paint": {
+          "line-color": "rgba(228, 72, 192, 1)",
+          "line-width": {
+            "stops": [
+              [
+                10,
+                1
+              ],
+              [
+                16,
+                19
+              ]
+            ]
+          },
+          "line-opacity": 0.5
+        }
+      }
+    },
+    {
+      "style": {
+        "id": "citymap-name-changes-fill",
+        "type": "fill",
+        "source": "digital-citymap",
+        "source-layer": "name-changes-areas",
+        "paint": {
+          "fill-color": "rgba(228, 72, 192, 1)",
+          "fill-opacity": 0.5
+        }
+      }
+    }
+  ]
+}
