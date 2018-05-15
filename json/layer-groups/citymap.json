@@ -45,8 +45,6 @@
       }
     },
     {
-      "tooltipable": true,
-      "tooltipTemplate": "{{type}}",
       "style": {
         "id": "citymap-streets-tooltip-line",
         "type": "line",

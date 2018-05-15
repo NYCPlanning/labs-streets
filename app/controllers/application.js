@@ -359,6 +359,12 @@ export default class ApplicationController extends ParachuteController {
   }
 
   @action
+  handleLayerMouseMove() {
+    const map = this.get('map');
+    map.getCanvas().style.cursor = 'pointer';
+  }
+
+  @action
   clearAmendmentHover() {
     this.set('highlightedAmendmentSource', null);
   }
