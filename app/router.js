@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('about');
   this.route('city-map');
   this.route('features');
+  this.route('feedback');
 });
 
 export default Router;
