@@ -144,6 +144,7 @@
       {{map.on 'click' (action 'handleMapClick')}}
       {{map.on 'move' (action 'handleMapPositionChange')}}
       {{map.on 'mousemove' (action 'handleLayerMouseMove')}}
+      {{map.on 'drag' (action 'handleMapMouseDrag')}}
       {{map.on 'zoomend' (action 'handleMapPositionChange')}}
 
       {{#if loadStateTask.isRunning}}
