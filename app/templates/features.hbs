@@ -1,0 +1,36 @@
+<div class="content-close-button-container">
+  {{link-to '×' 'application' click=(action (mut closed) true) class="content-close-button"}}
+</div>
+<div class="content-area cell large-5 large-order-3 xxlarge-4">
+
+  <h1 class="header-xlarge">Features</h1>
+
+  <p>NYC Street Map does not yet include all the information contained on the City Map. As more information becomes electronically available, NYC Street Map will be updated. This app currently provides the following information:</p>
+
+  <ul>
+    <li>Boundaries of mapped and unmapped streets</li>
+    <li>Official names of streets</li>
+    <li>Mapped street widths (usually includes sidewalks)</li>
+    <li>Alteration maps showing approved changes to the City Map since 1938 (In some areas, maps are available that show changes which have been approved by the City Planning Commission and City Council, but have not yet taken effect.)</li>
+    <li>Street and place names established by local law</li>
+  </ul>
+
+  <p>This street information has never been so easy to access, but NYC Street Map is only a starting point for research about the City’s streets. It lacks some information on the City Map and may have inaccuracies.  All information gathered from NYC Street Map must be confirmed based on the official City Map records.</p>
+
+  <div class="callout secondary text-small">
+    <div class="grid-x">
+      <p class="cell medium-6">To confirm what you see in NYC Street Map with official City Map records, please contact the relevant Borough President’s Topographic Office:</p>
+      <div class="cell medium-6">
+        <ul>
+          <li>Bronx – <a target="_blank" href="http://bronxboropres.nyc.gov/topography/"><strong>website</strong> {{fa-icon 'external-link' }}</a></li>
+          <li>Brooklyn – <a target="_blank" href="http://www.brooklyn-usa.org/topography/"><strong>website</strong> {{fa-icon 'external-link' }}</a></li>
+          <li>Manhattan – <a target="_blank" href="http://manhattanbp.nyc.gov/html/land_use/topographical-services.shtml"><strong>website</strong> {{fa-icon 'external-link' }}</a></li>
+          <li>Queens – <a target="_blank" href="http://www.queensbp.org/land-use/"><strong>website</strong> {{fa-icon 'external-link' }}</a></li>
+          <li>Staten Island – <a target="_blank" href="https://www.statenislandusa.com/staffdirectory.html"><strong>website</strong> {{fa-icon 'external-link' }}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  {{outlet}}
+</div>
