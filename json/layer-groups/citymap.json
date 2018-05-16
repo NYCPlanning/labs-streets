@@ -16,7 +16,18 @@
         "source": "digital-citymap",
         "source-layer": "citymap",
         "paint": {
-          "line-color": "rgba(51, 51, 51, 1)",
+          "line-color": {
+            "stops": [
+              [
+                10,
+                "rgba(50, 50, 50, 0.3)"
+              ],
+              [
+                13,
+                "rgba(50, 50, 50, 1)"
+              ]
+            ]
+          },
           "line-width": {
             "stops": [
               [
@@ -104,7 +115,18 @@
           ]
         ],
         "paint": {
-          "line-color": "rgba(51, 51, 51, 1)",
+          "line-color": {
+            "stops": [
+              [
+                10,
+                "rgba(50, 50, 50, 0.3)"
+              ],
+              [
+                13,
+                "rgba(50, 50, 50, 1)"
+              ]
+            ]
+          },
           "line-width": {
             "stops": [
               [
@@ -157,7 +179,18 @@
           ]
         ],
         "paint": {
-          "line-color": "#545454",
+          "line-color": {
+            "stops": [
+              [
+                10,
+                "rgba(84, 84, 84, 0.3)"
+              ],
+              [
+                13,
+                "rgba(84, 84, 84, 1)"
+              ]
+            ]
+          },
           "line-width": {
             "stops": [
               [
@@ -245,7 +278,18 @@
           ]
         ],
         "paint": {
-          "line-color": "#AFAFAF",
+          "line-color": {
+            "stops": [
+              [
+                10,
+                "rgba(175, 175, 175, 0.3)"
+              ],
+              [
+                13,
+                "rgba(175, 175, 175, 1)"
+              ]
+            ]
+          },
           "line-width": {
             "stops": [
               [
@@ -281,7 +325,7 @@
          "label": "Mapped Street",
          "style": {
             "fill": "none",
-            "stroke": "#000"
+            "stroke": "rgba(50, 50, 50, 1)"
          }
       },
       {
@@ -289,7 +333,7 @@
            "label": "Record Street",
            "style": {
               "fill": "none",
-              "stroke": "#000",
+              "stroke": "rgba(50, 50, 50, 1)",
               "strokeWidth": "1",
               "strokeDasharray": "3, 1.5"
            }
