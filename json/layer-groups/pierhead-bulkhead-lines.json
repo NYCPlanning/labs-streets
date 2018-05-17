@@ -96,8 +96,8 @@
          "style": {
            "fill": "none",
            "stroke": "#3278C8",
-           "strokeLinecap": "round",
-           "strokeDasharray": "5,2.5,0,2,0,2.5"
+           "stroke-linecap": "round",
+           "stroke-dasharray": "5,2.5,0,2,0,2.5"
          }
       },
       {
@@ -106,8 +106,8 @@
          "style": {
            "fill": "none",
            "stroke": "#3278C8",
-           "strokeLinecap": "round",
-           "strokeDasharray": "5,2,0,1.5,0,1.5,0,2"
+           "stroke-linecap": "round",
+           "stroke-dasharray": "5,2,0,1.5,0,1.5,0,2"
          }
       }
     ]

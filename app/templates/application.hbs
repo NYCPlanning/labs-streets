@@ -172,36 +172,6 @@
           title=layerGroup.model.title
           tooltip=layerGroup.model.titleTooltip
           active=citymap}}
-{{!--           <ul class="legend no-bullet">
-            <li class="legend-item">
-              <svg class="legend-icon line-array" height="10" width="17" viewBox="0 0 17 10" preserveAspectRatio="xMinYMid">
-                <g fill="none" stroke="#000000" stroke-width="1">
-                  <path d="M0 5 l215 0" />
-                </g>
-              </svg> Mapped Street {{info-tooltip tip="A street that has been established on an adopted alteration map or section map and filed with the appropriate agencies"}}
-            </li>
-            <li class="legend-item">
-              <svg class="legend-icon line-array" height="10" width="17" viewBox="0 0 17 10" preserveAspectRatio="xMinYMid">
-                <g fill="none" stroke="#000000" stroke-width="1">
-                  <path stroke-dasharray="3,1.5" d="M0 5 l215 0" />
-                </g>
-              </svg> Record Street {{info-tooltip tip="A street that is not officially mapped but that is documented in some other legal record and may or may not be a public way.  Record streets are shown as dashed lines on the City Map and in the app."}}
-            </li>
-            <li class="legend-item">
-              <svg class="legend-icon line-array" height="10" width="17" viewBox="0 0 17 10" preserveAspectRatio="xMinYMid">
-                <g fill="none" stroke="#545454" stroke-width="0.3">
-                  <path d="M0 5 l215 0" />
-                </g>
-              </svg> Street Treatment {{info-tooltip tip="Lines on the City Map that reflect curb lines, approach ramps and other physical elements for illustrative purposes only.  Treatment lines may be changed without public review (ULURP)."}}
-            </li>
-            <li class="legend-item">
-              <svg class="legend-icon line-array" height="10" width="17" viewBox="0 0 17 10" preserveAspectRatio="xMinYMid">
-                <g fill="none" stroke="#AFAFAF" stroke-width="1" stroke-linecap="round">
-                  <path stroke-dasharray="0,2" d="M0 5 l215 0" />
-                </g>
-              </svg> Unmapped Street {{info-tooltip tip="A street that has been built but does not appear on the City Map and may or may not be a public way."}}
-            </li>
-          </ul> --}}
           {{labs-map-legend model=layerGroup.model.legendConfig}}
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
@@ -219,22 +189,7 @@
           title=layerGroup.model.title
           tooltip=layerGroup.model.titleTooltip
           active=pierhead-bulkhead-lines}}
-          <ul class="legend no-bullet">
-            <li class="legend-item">
-              <svg class="legend-icon line-array" height="10" width="17" viewBox="0 0 17 10" preserveAspectRatio="xMinYMid">
-                <g fill="none" stroke="#3278C8" stroke-width="1" stroke-linecap="round">
-                  <path stroke-dasharray="5,2.5,0,2,0,2.5" d="M0 5 l215 0" />
-                </g>
-              </svg> Pierhead
-            </li>
-            <li class="legend-item">
-              <svg class="legend-icon line-array" height="10" width="17" viewBox="0 0 17 10" preserveAspectRatio="xMinYMid">
-                <g fill="none" stroke="#3278C8" stroke-width="1" stroke-linecap="round">
-                  <path stroke-dasharray="5,2,0,1.5,0,1.5,0,2" d="M0 5 l215 0" />
-                </g>
-              </svg> Bulkhead
-            </li>
-          </ul>
+          {{labs-map-legend model=layerGroup.model.legendConfig}}
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
 
