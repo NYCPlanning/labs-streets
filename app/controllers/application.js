@@ -359,19 +359,6 @@ export default class ApplicationController extends ParachuteController {
   }
 
   @action
-  handleLayerMouseMove() {
-    const map = this.get('map');
-    map.getCanvas().style.cursor = 'pointer';
-  }
-
-  @action
-  handleMapMouseDrag() {
-    const map = this.get('map');
-    map.getCanvas().style.cssText += 'cursor:-webkit-grabbing; cursor:-moz-grabbing; cursor:grabbing;';
-    console.log(map.getCanvas().style.cssText);
-  }
-
-  @action
   clearAmendmentHover() {
     this.set('highlightedAmendmentSource', null);
   }
@@ -415,7 +402,19 @@ export default class ApplicationController extends ParachuteController {
 
   @action
   handlePrint() {
-    const config = {
+    // get layerGroups that are currently visible and have legendConfigs
+    // then map to get legendConfig objects
+    const visibleLegendConfigs = this.get('model').layerGroups.toArray()
+      .filter((layerGroup) => { // eslint-disable-line
+        return layerGroup.get('visible') && layerGroup.get('legendConfig');
+      })
+      .map((layerGroup) => {
+        const config = layerGroup.get('legendConfig');
+        config.id = layerGroup.id;
+        return config;
+      });
+
+    const printConfig = {
       mapConfig: {
         style: map.getStyle(), // eslint-disable-line
         center: map.getCenter(), // eslint-disable-line
@@ -429,19 +428,23 @@ export default class ApplicationController extends ParachuteController {
       source: 'NYC Street Map | https://streetmap.planning.nyc.gov',
     };
 
-    fetch('https://map-print.planninglabs.nyc/config', {
+    if (visibleLegendConfigs.length > 0) printConfig.legendConfig = visibleLegendConfigs;
+
+    const printServiceURL = 'https://map-print.planninglabs.nyc';
+
+    fetch(`${printServiceURL}/config`, {
       method: 'POST',
       credentials: 'include',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(config),
+      body: JSON.stringify(printConfig),
     })
       .then(res => res.json())
       .then((res) => {
         if (res.status === 'success') {
-          window.open('https://map-print.planninglabs.nyc', '_blank');
+          window.open(printServiceURL, '_blank');
         }
       });
   }

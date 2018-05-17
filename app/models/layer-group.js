@@ -40,6 +40,8 @@ export default class LayerGroupModel extends Model {
 
   @attr() meta
 
+  @attr() legendConfig
+
   @mapBy('layers', 'id') layerIds
 
   showOneLayer(id) {

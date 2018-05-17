@@ -23,5 +23,17 @@
         "layout": {}
       }
     }
-  ]
+  ],
+  "legendConfig": {
+    "items": [
+      {
+        "type": "area",
+        "label": "City Map Alterations",
+        "style": {
+          "stroke": "none",
+          "fill": "rgba(60, 133, 210, 0.4)"
+        }
+      }
+    ]
+  }
 }
