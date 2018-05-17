@@ -25,12 +25,10 @@
       <h4 class="header-small results-header">{{type}}</h4>
     </li>
     {{#each rows key='label' as |result|}}
-      {{log result}}
       <li class="result {{if (eq selected result.id) 'highlighted-result'}}" {{action 'goTo' result}}
         onmouseover={{action 'handleHoverResult' result}}
         role="button">
         {{#if hasBlock}}
-          {{log "hasBlock"}}
           {{yield (hash result=result)}}
         {{else}}
           {{result.label}}

@@ -5,6 +5,7 @@ import QueryParams from 'ember-parachute';
 import carto from 'carto-promises-utility/utils/carto';
 import mapboxgl from 'mapbox-gl';
 import fetch from 'fetch';
+import turfBbox from 'npm:@turf/bbox';
 import precisionRound from '../utils/precision-round';
 
 // get a geojson rectangle for the current map's view
@@ -322,6 +323,17 @@ export default class ApplicationController extends ParachuteController {
         { type: 'geojson', data: result.the_geom },
       );
     }
+
+    // handle alteration search results
+    if (result.type === 'city-map-alteration') {
+      const bounds = turfBbox.default(result.the_geom);
+      map.fitBounds(bounds, { padding: 120 });
+
+      this.set(
+        'highlightedAmendmentSource',
+        { type: 'geojson', data: result.the_geom },
+      );
+    }
   }
 
   @action
@@ -329,6 +341,13 @@ export default class ApplicationController extends ParachuteController {
     if (result.type === 'city-street') {
       this.set(
         'highlightedStreetSource',
+        { type: 'geojson', data: result.the_geom },
+      );
+    }
+
+    if (result.type === 'city-map-alteration') {
+      this.set(
+        'highlightedAmendmentSource',
         { type: 'geojson', data: result.the_geom },
       );
     }
