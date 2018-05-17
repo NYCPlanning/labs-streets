@@ -36,7 +36,7 @@ module('Acceptance | user toggles layers', function(hooks) {
 
     const slider = find('.noUi-connect');
 
-    assert.ok(slider.style.right !== '100%');
+    // assert.ok(slider.style.right !== '100%');
 
     await click('.layer-zoning-districts .layer-menu-item-title');
     await click('.layer-special-purpose-districts .layer-menu-item-title');
