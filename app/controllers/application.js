@@ -125,7 +125,6 @@ export default class ApplicationController extends ParachuteController {
     };
   }
 
-
   @computed('lat', 'lng')
   get center() {
     return [this.get('lat'), this.get('lng')];
@@ -356,6 +355,19 @@ export default class ApplicationController extends ParachuteController {
   @action
   handleSearchHoverOut() {
     this.set('highlightedStreetSource', null);
+  }
+
+  @action
+  handleLayerMouseMove() {
+    const map = this.get('map');
+    map.getCanvas().style.cursor = 'pointer';
+  }
+
+  @action
+  handleMapMouseDrag() {
+    const map = this.get('map');
+    map.getCanvas().style.cssText += 'cursor:-webkit-grabbing; cursor:-moz-grabbing; cursor:grabbing;';
+    console.log(map.getCanvas().style.cssText);
   }
 
   @action
