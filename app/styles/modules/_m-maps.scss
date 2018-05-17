@@ -102,6 +102,28 @@
   border-radius: 2px;
 }
 
+.mapboxgl-popup-content, .mapboxgl-popup-tip {
+  transition: all 0.2s;
+}
+
+.mapboxgl-popup:hover {
+  .mapboxgl-popup-content {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .mapboxgl-popup-tip {
+    border-top-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .button--tax-lot {
+    background-color: transparent;
+  }
+
+  .button--tax-lot:hover {
+    background-color: #eee;
+  }
+}
+
 .popup-header {
   font-size: rem-calc(14);
   margin-bottom: rem-calc(6);
