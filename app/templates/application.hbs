@@ -12,11 +12,14 @@
         typeTitleLookup=(hash
           lot='Addresses'
           city-street='Streets'
+          city-map-alteration='Alterations'
         ) as |search|}}
       {{#if (eq search.result.type 'lot')}}
         <span class="icon tax-lot"></span> <span class="subdued">{{search.result.label}}, Block {{search.result.demuxedBbl.block}}, Lot {{search.result.demuxedBbl.lot}}</span>
       {{else if (eq search.result.type 'city-street')}}
         {{search.result.label}} ({{search.result.boro_name}})
+      {{else if (eq search.result.type 'city-map-alteration')}}
+        {{search.result.label}} ({{moment-format search.result.effective 'DD MMMM YYYY' 'X'}})
       {{/if}}
     {{/labs-search}}
     {{bbl-lookup flyTo=(action 'flyTo')}}
@@ -88,6 +91,42 @@
 
       {{#if highlightedStreetSource}}
         {{#map.source options=highlightedStreetSource as |source|}}
+          {{source.layer layer=(hash
+              type='line'
+              paint=(hash
+                line-color="#ffff00"
+                line-opacity=0.6
+                line-width=12
+              )
+              layout=(hash
+                line-cap='round'
+              )
+            )
+            before='place_other'
+          }}
+          {{source.layer layer=(hash
+              type='line'
+              paint=(hash
+                line-color="rgba(60, 133, 210, 1)"
+                line-opacity=1
+                line-width=(hash
+                  stops = (array
+                    (array 10 1.5)
+                    (array 14 5)
+                  )
+                )
+              )
+              layout=(hash
+                line-cap='round'
+              )
+            )
+            before='place_other'
+          }}
+        {{/map.source}}
+      {{/if}}
+
+      {{#if highlightedAmendmentSource}}
+        {{#map.source options=highlightedAmendmentSource as |source|}}
           {{source.layer layer=(hash
               type='line'
               paint=(hash
