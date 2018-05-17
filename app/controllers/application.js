@@ -359,19 +359,6 @@ export default class ApplicationController extends ParachuteController {
   }
 
   @action
-  handleLayerMouseMove() {
-    const map = this.get('map');
-    map.getCanvas().style.cursor = 'pointer';
-  }
-
-  @action
-  handleMapMouseDrag() {
-    const map = this.get('map');
-    map.getCanvas().style.cssText += 'cursor:-webkit-grabbing; cursor:-moz-grabbing; cursor:grabbing;';
-    console.log(map.getCanvas().style.cssText);
-  }
-
-  @action
   clearAmendmentHover() {
     this.set('highlightedAmendmentSource', null);
   }
