@@ -125,7 +125,6 @@ export default class ApplicationController extends ParachuteController {
     };
   }
 
-
   @computed('lat', 'lng')
   get center() {
     return [this.get('lat'), this.get('lng')];
