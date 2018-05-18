@@ -1,0 +1,49 @@
+<div class="content-close-button-container">
+  {{link-to '×' 'application' click=(action (mut closed) true) class="content-close-button"}}
+</div>
+<div class="content-area cell large-5 large-order-3 xxlarge-4">
+
+  <h1 class="header-xlarge">Data</h1>
+
+  <p>NYC Street Map currently provides the following information:</p>
+
+  <ul>
+    <li><strong>Boundaries of mapped and unmapped streets</strong></li>
+    <li><strong>Official names of streets</strong></li>
+    <li><strong>Mapped street widths</strong> <small>(usually includes sidewalks)</small></li>
+    <li><strong>Alteration maps showing approved changes to the City Map since 1938</strong> <small>(in some areas, maps are available that show changes which have been approved by the City Planning Commission and City Council, but have not yet taken effect)</small></li>
+    <li><strong>Street and place names established by local law</strong></li>
+  </ul>
+
+  <p class="text-small"><em>This app will be updated as more information becomes electronically available.</em></p>
+
+  <hr>
+
+  <h2 class="header-xlarge">Data Sources</h2>
+
+  <ul>
+    {{#each model.layerGroups as |layerGroup|}}
+      <li>
+        <h2 class="header-medium no-margin">{{layerGroup.title}}</h2>
+        <p>
+          {{#if layerGroup.meta.description}}
+            <span style="display:block;" class="dark-gray"><strong>{{layerGroup.meta.description}}</strong></span>
+          {{/if}}
+          {{#if layerGroup.meta.url}}
+            {{#each layerGroup.meta.url as |url|}}
+              <span style="display:block;" class="no-margin"><a href="{{url}}" target="_blank" rel="noopener">{{fa-icon 'external-link'}} {{url}}</a></span>
+            {{/each}}
+          {{/if}}
+          {{#if layerGroup.meta.updated_at}}
+            <span style="display:block;" class="dark-gray text-small">Updated in ZoLa: {{layerGroup.meta.updated_at}}</span>
+          {{/if}}
+        </p>
+      </li>
+    {{/each}}
+  </ul>
+
+  <p>For more information on the licenses which govern OpenStreetMap, please refer to <a href="www.openstreetmap.org/copyright">www.openstreetmap.org/copyright</a></p>
+
+
+  {{outlet}}
+</div>
