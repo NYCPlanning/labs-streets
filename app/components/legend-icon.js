@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { argument } from '@ember-decorators/argument';
 import { computed } from '@ember-decorators/object';
 import { type } from '@ember-decorators/argument/type';
-import { classNames } from 'ember-decorators/component';
+import { classNames } from '@ember-decorators/component';
 
 @classNames('legend-icon')
 export default class LegendIconComponent extends Component {
