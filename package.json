@@ -19,6 +19,7 @@
   "devDependencies": {
     "@ember-decorators/argument": "0.8.13",
     "@ember-decorators/babel-transforms": "^2.0.0",
+    "ember-labs-maps": "nycplanning/ember-labs-maps#v0.1.0",
     "broccoli-asset-rev": "^2.4.5",
     "broccoli-clean-css": "~1.1.0",
     "ember-ajax": "^3.0.0",
@@ -87,7 +88,6 @@
       "lib/carto-promises-utility",
       "lib/ember-foundation-components",
       "lib/labs-ember-search",
-      "lib/ember-labs-maps",
       "lib/ember-cli-merge-json"
     ]
   }
