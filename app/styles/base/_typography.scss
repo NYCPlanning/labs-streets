@@ -258,3 +258,34 @@ hr.small-margin {
 .ember-tooltip {
   font-size: rem-calc(10);
 }
+
+
+//
+// Ember Tooltip
+// --------------------------------------------------
+figure {
+  margin-bottom: $global-margin;
+
+  img {
+    margin-bottom: $global-margin/2;
+  }
+
+  figcaption {
+    text-align: center;
+    font-size: rem-calc(10);
+    color: $dark-gray;
+  }
+
+  .figure-link {
+    display: block;
+    background-color: $primary-color;
+    padding: $global-margin/2;
+    border-radius: 4px;
+
+    img {}
+
+    figcaption {
+      color: $white;
+    }
+  }
+}

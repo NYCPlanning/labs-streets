@@ -3,7 +3,7 @@
   <div class="grid-x grid-padding-x">
     <div class="branding cell shrink large-auto">
       <a class="dcp-link" href="http://www1.nyc.gov/site/planning/index.page"><img class="dcp-logo" src="https://raw.githubusercontent.com/NYCPlanning/logo/master/dcp_logo_772.png" alt="NYC Planning"></a>
-      {{#link-to 'application' classNames='site-name' click=(action (mut closed) true)}}Street Map <small class="site-subtitle show-for-medium">The Status &amp; History of N<span class="show-for-large">ew </span>Y<span class="show-for-large">ork </span>C<span class="show-for-large">ity</span>&rsquo;s Streets</small>{{/link-to}}
+      {{#link-to 'application' classNames='site-name' click=(action (mut closed) true)}}Street Map <small class="site-subtitle show-for-medium"><span class="show-for-xlarge">The</span> Status &amp; History of N<span class="show-for-xlarge">ew </span>Y<span class="show-for-xlarge">ork </span>C<span class="show-for-xlarge">ity</span>&rsquo;s Streets</small>{{/link-to}}
 
     </div>
     <div class="cell auto hide-for-large text-right">
@@ -17,6 +17,12 @@
           </li>
           <li class="menu-list-item">
             {{link-to 'City Map' 'city-map' click=(action (mut closed) true) class="menu-list-item-link"}}
+          </li>
+          <li class="menu-list-item">
+            {{link-to 'Data' 'data' click=(action (mut closed) true) class="menu-list-item-link"}}
+          </li>
+          <li class="menu-list-item">
+            {{link-to 'Feedback' 'feedback' click=(action (mut closed) true) class="menu-list-item-link"}}
           </li>
         </ul>
       </nav>

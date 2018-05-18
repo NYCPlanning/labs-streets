@@ -34,7 +34,7 @@
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-foundation-6-sass": "0.0.24",
     "ember-cli-inject-live-reload": "^1.4.1",
-    "ember-cli-moment-shim": "^3.6.0",
+    "ember-cli-moment-shim": "^3.7.1",
     "ember-cli-nouislider": "^0.14.1",
     "ember-cli-qunit": "^4.1.1",
     "ember-cli-sass": "^6.0.0",
@@ -53,6 +53,7 @@
     "ember-macro-helpers": "1.0.0",
     "ember-mapbox-gl": "0.9.1",
     "ember-maybe-import-regenerator": "^0.1.6",
+    "ember-moment": "^7.7.0",
     "ember-parachute": "0.3.7",
     "ember-power-select": "^1.9.6",
     "ember-promise-helpers": "1.0.6",
@@ -69,6 +70,7 @@
     "node": "^4.5 || 6.* || >= 7.*"
   },
   "dependencies": {
+    "@turf/bbox": "^6.0.1",
     "babel-eslint": "8.2.2",
     "babel-plugin-transform-object-rest-spread": "6.26.0",
     "babel-preset-es2015": "6.24.1",
