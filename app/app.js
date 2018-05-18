@@ -3,8 +3,6 @@ import loadInitializers from 'ember-load-initializers';
 import Resolver from './resolver';
 import config from './config/environment';
 
-Ember.run.backburner.DEBUG = true;
-
 const App = Application.extend({
   modulePrefix: config.modulePrefix,
   podModulePrefix: config.podModulePrefix,
