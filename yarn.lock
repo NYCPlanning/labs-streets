@@ -3713,9 +3713,9 @@ ember-inflector@^2.0.0:
   dependencies:
     ember-cli-babel "^6.0.0"
 
-ember-labs-maps@nycplanning/ember-labs-maps#v0.1.0:
+ember-labs-maps@nycplanning/ember-labs-maps#v0.1.1:
   version "0.0.0"
-  resolved "https://codeload.github.com/nycplanning/ember-labs-maps/tar.gz/669026443e0ba3ac35fed71420c160e015b7c3f6"
+  resolved "https://codeload.github.com/nycplanning/ember-labs-maps/tar.gz/f17ce5c00b5cfd45bde1b166844ec38f885cf447"
   dependencies:
     "@ember-decorators/argument" "0.8.13"
     "@ember-decorators/babel-transforms" "^2.0.0"
@@ -3735,6 +3735,15 @@ ember-load-initializers@^1.0.0:
 ember-macro-helpers@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-macro-helpers/-/ember-macro-helpers-1.0.0.tgz#bdb875f5752814f3e0c886e2ed650f01cc302712"
+  dependencies:
+    ember-cli-babel "^6.6.0"
+    ember-cli-string-utils "^1.1.0"
+    ember-cli-test-info "^1.0.0"
+    ember-weakmap "^3.0.0"
+
+ember-macro-helpers@^0.17.0:
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/ember-macro-helpers/-/ember-macro-helpers-0.17.1.tgz#34836e9158cc260ee1c540935371d11f52ec98d9"
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-cli-string-utils "^1.1.0"
