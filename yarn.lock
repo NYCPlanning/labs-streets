@@ -2275,6 +2275,12 @@ cardinal@~0.4.2:
     ansicolors "~0.2.1"
     redeyed "~0.4.0"
 
+cartobox-promises-utility@nycplanning/cartobox-promises-utility:
+  version "0.0.0"
+  resolved "https://codeload.github.com/nycplanning/cartobox-promises-utility/tar.gz/0cc2da9b0e1c1589a810e0aa5f4d070b82d4310f"
+  dependencies:
+    ember-cli-babel "^6.6.0"
+
 caseless@~0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.11.0.tgz#715b96ea9841593cc33067923f5ec60ebda4f7d7"
