@@ -253,7 +253,7 @@ export default class ApplicationController extends ParachuteController {
     // Query and set the popup content
     const { lng, lat } = e.lngLat;
     const SQL = `
-    SELECT the_geom, 'alteration' AS type, altmappdf, effective, NULL AS bbl, NULL AS address
+    SELECT the_geom, 'alteration' AS type, altmappdf, status, effective, NULL AS bbl, NULL AS address
       FROM citymap_amendments_v0
       WHERE effective IS NOT NULL
         AND ST_Intersects(
@@ -266,7 +266,7 @@ export default class ApplicationController extends ParachuteController {
           )
         )
     UNION ALL
-    SELECT the_geom, 'taxlot' AS type, NULL as altmappdf, NULL as effective, bbl, address
+    SELECT the_geom, 'taxlot' AS type, NULL as altmappdf, NULL as status, NULL as effective, bbl, address
       FROM mappluto_v1711
         WHERE ST_Intersects(
           the_geom,

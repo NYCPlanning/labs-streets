@@ -2,15 +2,18 @@
   {{#if cleanAlterations}}
     <h4 class="popup-header">Map Amendments</h4>
     <ul class="popup-list no-bullet no-margin">
-      {{#each cleanAlterations as |alteration|}}
-        <li class="dark-gray" {{! template-lint-disable "nested-interactive" }}
-          onmousemove={{action 'handleHoverListItem' alteration}} role="button">
-          <a class="button--alteration-pdf" href="{{alteration.pdflink}}" target="_blank" rel="noopener">
-            <strong>{{fa-icon 'external-link'}} <span class="filename">{{alteration.pdf}}</span></strong>
-            <span class="date">Effective: {{alteration.effective}}</span>
-          </a>
-        </li>
-      {{/each}}
+      {{#each-in (group-by "status" cleanAlterations) as |status alterations|}}
+        {{status}}
+        {{#each alterations as |alteration|}}
+          <li class="dark-gray" {{! template-lint-disable "nested-interactive" }}
+            onmousemove={{action 'handleHoverListItem' alteration}} role="button">
+            <a class="button--alteration-pdf" href="{{alteration.pdflink}}" target="_blank" rel="noopener">
+              <strong>{{fa-icon 'external-link'}} <span class="filename">{{alteration.pdf}}</span></strong>
+              <span class="date">Effective: {{alteration.effective}}</span>
+            </a>
+          </li>
+        {{/each}}
+      {{/each-in}}
     </ul>
   {{else}}
     There are no map amendments here.
