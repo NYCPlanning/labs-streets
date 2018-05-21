@@ -3,7 +3,7 @@ import { argument } from '@ember-decorators/argument';
 import { action, computed } from '@ember-decorators/object';
 import { run } from '@ember/runloop';
 
-export default class ShareControls extends Component {
+export default class CustomControls extends Component {
   // Share Control properties
   @argument shareURL;
   @argument shareClosed = true;
