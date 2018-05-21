@@ -46,6 +46,10 @@ export const LayerVisibilityParams = new QueryParams({
     defaultValue: true,
     refresh: true,
   },
+  'amendments-adopted-pending': {
+    defaultValue: false,
+    refresh: true,
+  },
   'street-centerlines': {
     defaultValue: true,
     refresh: true,
