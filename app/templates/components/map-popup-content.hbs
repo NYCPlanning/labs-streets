@@ -1,9 +1,8 @@
 <div class="popup-content">
   {{#if cleanAlterations}}
-    <h4 class="popup-header">Map Amendments</h4>
-    <ul class="popup-list no-bullet no-margin">
-      {{#each-in (group-by "status" cleanAlterations) as |status alterations|}}
-        {{if (eq status '13') 'Pending' 'Adopted'}}
+    {{#each-in (group-by "status" cleanAlterations) as |status alterations|}}
+      <h4 class="popup-header">{{if (eq status '13') 'Pending' 'Adopted'}} Map Alterations</h4>
+      <ul class="popup-list no-bullet">
         {{#each alterations as |alteration|}}
           <li class="dark-gray" {{! template-lint-disable "nested-interactive" }}
             onmousemove={{action 'handleHoverListItem' alteration}} role="button">
@@ -15,8 +14,8 @@
             </a>
           </li>
         {{/each}}
-      {{/each-in}}
-    </ul>
+      </ul>
+    {{/each-in}}
   {{else}}
     There are no map amendments here.
   {{/if}}
