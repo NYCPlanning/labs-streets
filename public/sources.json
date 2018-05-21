@@ -9,7 +9,7 @@
       },
       {
         "id": "arterials",
-        "sql": "SELECT the_geom_webmercator FROM citymap_arterials_v0"
+        "sql": "SELECT the_geom_webmercator, route_type FROM citymap_arterials_v0"
       },
       {
         "id": "pierhead-lines",
