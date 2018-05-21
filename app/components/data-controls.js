@@ -11,7 +11,7 @@ export default class ShareControls extends Component {
       displayName: 'City Street Features',
     },
     {
-      tableName: 'citymap_amendments_v1',
+      tableName: 'citymap_amendments_v2',
       displayName: 'City Map Amendments',
     },
     {

@@ -246,13 +246,13 @@
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
 
-      {{#lookup-layer-group for='amendments-adopted-pending' as |layerGroup|}}
+      {{#lookup-layer-group for='amendments-pending' as |layerGroup|}}
         {{menu.menu-item
           title=layerGroup.model.title
           legendColor=layerGroup.model.legendColor
           legendIcon=layerGroup.model.legendIcon
           tooltip=layerGroup.model.titleTooltip
-          active=amendments-adopted-pending}}
+          active=amendments-pending}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='arterials' as |layerGroup|}}

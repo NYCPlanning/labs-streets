@@ -46,7 +46,7 @@ export const LayerVisibilityParams = new QueryParams({
     defaultValue: true,
     refresh: true,
   },
-  'amendments-adopted-pending': {
+  'amendments-pending': {
     defaultValue: false,
     refresh: true,
   },
@@ -254,8 +254,9 @@ export default class ApplicationController extends ParachuteController {
     const { lng, lat } = e.lngLat;
     const SQL = `
     SELECT the_geom, 'alteration' AS type, altmappdf, status, effective, NULL AS bbl, NULL AS address
-      FROM citymap_amendments_v1
-      WHERE effective IS NOT NULL
+      FROM citymap_amendments_v2
+      WHERE (effective IS NOT NULL
+              OR status = '13')
         AND ST_Intersects(
           the_geom,
           ST_SetSRID(
