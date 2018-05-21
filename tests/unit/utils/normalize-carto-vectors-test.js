@@ -1,4 +1,4 @@
-import normalizeCartoVectors from 'carto-promises-utility/utils/normalize-carto-vectors';
+import normalizeCartoVectors from 'cartobox-promises-utility/utils/normalize-carto-vectors';
 import { module, test } from 'qunit';
 
 const plutoSource = {

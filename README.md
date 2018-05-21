@@ -45,7 +45,7 @@ You will need the following things properly installed on your computer.
 
 City Map is an [Ember.js](https://www.emberjs.com/) single page application (SPA). The frontend handles routing, web mapping, layout, and user interactions, and communicates with various APIs for content and data.
 
-Several dependencies are split up into their own repositories under /lib, including labs-layers, labs-ember-search, and carto-promises-utility. These are starting points for possible addons. 
+Several dependencies are split up into their own repositories under /lib, including labs-layers, labs-ember-search, and cartobox-promises-utility. These are starting points for possible addons. 
 
 ### Models, Layers, and Mutability
 In this mapping iteration, we use models to manage individual layer and layer-group state. A layer group is a collection of layers, with a single visibility state. If a layer group's visibility is toggled off, that state is delegated to its related layers. These models allow for developers to reference a layer model from anywhere and manipulate its state, including layers' paint, layout, and filter states. These three properties are part of the MapboxGL Style Specification. 
