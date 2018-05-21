@@ -1,6 +1,6 @@
 {
   "id": "arterials",
-  "title": "Arterials",
+  "title": "Arterial Highways & Major Streets",
   "titleTooltip": "Designated rights-of-way shown on the Master Plan of Arterial Highways and Major Streets (not an exact copy).",
   "visible": false,
   "meta": {
@@ -61,11 +61,11 @@
     }
   ],
   "legendConfig": {
-    "label":"Arterials",
+    "label":"Arterial & Major Streets",
     "items":[
       {
         "type":"line",
-        "label":"Highway",
+        "label":"Arterial",
         "style":{
           "fill":"none",
           "stroke":"rgba(255, 210, 90, 1)"
