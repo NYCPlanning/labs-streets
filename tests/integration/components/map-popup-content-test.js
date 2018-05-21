@@ -24,7 +24,8 @@ module('Integration | Component | map-popup-content', function(hooks) {
           'type': 'alteration',
           'name': 'Party',
           'altmappdf': 'like-its.pdf',
-          'effective': '1999-01-01T05:00:00Z'
+          'effective': '1999-01-01T05:00:00Z',
+          'status': '14'
         }
       }
     ]);
