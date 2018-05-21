@@ -2,35 +2,40 @@
 // Module: Share Controls
 // --------------------------------------------------
 
-.share-controls {
+.custom-controls {
   position: absolute;
   top: 10px;
   left: 50px;
   z-index: 2;
   overflow: visible;
 
-  .share-controls-toggle {
+  .mapboxgl-ctrl-icon {
     color: #333333;
+  }
+
+  .mapboxgl-ctrl-group {
+    position: absolute;
+    right: auto;
+    bottom: auto;
+    left: 0;
+    overflow: visible;
+
+    &.share-controls {
+      top: 0;
+      z-index: 3;
+    }
+    &.data-controls  {
+      top: 40px;
+      z-index: 2;
+    }
+    &.print-controls {
+      top: 80px;
+      z-index: 1;
+    }
   }
 }
 
-.print-controls {
-  position: absolute;
-  top: 50px;
-  left: 50px;
-  z-index: 1;
-  overflow: visible;
-}
-
-.data-controls {
-  position: absolute;
-  top: 90px;
-  left: 50px;
-  z-index: 1;
-  overflow: visible;
-}
-
-.share-controls-content {
+.custom-controls-content {
   width: 23rem;
   max-width: calc(100vw - 60px);
   max-height: calc(100vh - 13em);
