@@ -1,0 +1,66 @@
+<div class="custom-controls">
+
+  <div class="share-controls mapboxgl-ctrl mapboxgl-ctrl-group">
+    {{#if shareClosed}}
+      <button {{action 'handleShareOpen'}} class="mapboxgl-ctrl-icon">{{fa-icon 'share-alt'}}</button>
+    {{else}}
+      <div class="custom-controls-content">
+        <button {{action 'handleClose'}} class="close-button" aria-label="Close alert" type="button"><span aria-hidden="true">&times;</span></button>
+        <h3 class="header-small">Share</h3>
+        <p>Adjust the map's layers, center, and zoom. Then copy and paste the link wherever you want to share your exact map view.</p>
+        <div class="input-group">
+          <input id="share-url" class="input-group-field" type="text" value="{{shareURL}}">
+          <div class="input-group-button">
+            {{#copy-button
+              clipboardTarget="#share-url"
+              success=(action 'handleShareSuccess')
+              error=(action 'handleClose')
+              class="button"
+            }}
+              {{fa-icon 'paste'}} Copy Link
+            {{/copy-button}}
+          </div>
+        </div>
+        {{#if copySuccess}}
+          <div class="share-controls-copy-success">
+            <div class="share-controls-copy-success-message">{{fa-icon 'check'}} Copied</div>
+          </div>
+        {{/if}}
+        <p>For more information about the City Map, contact the Borough President's office.</p>
+        <ul class="no-margin">
+          <li>Bronx: <a href="mailto:foo@bar.org">foo@bar.org {{fa-icon 'envelope-o'}}</a></li>
+          <li>Brooklyn: <a href="mailto:foo@bar.org">foo@bar.org {{fa-icon 'envelope-o'}}</a></li>
+          <li>Manhattan: <a href="mailto:foo@bar.org">foo@bar.org {{fa-icon 'envelope-o'}}</a></li>
+          <li>Queens: <a href="mailto:foo@bar.org">foo@bar.org {{fa-icon 'envelope-o'}}</a></li>
+          <li>Staten Island: <a href="mailto:foo@bar.org">foo@bar.org {{fa-icon 'envelope-o'}}</a></li>
+        </ul>
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="data-controls mapboxgl-ctrl mapboxgl-ctrl-group">
+    {{#if dataClosed}}
+      <button {{action 'handleDataOpen'}} class="mapboxgl-ctrl-icon">{{fa-icon 'download'}}</button>
+    {{else}}
+      <div class="custom-controls-content">
+        <button {{action 'handleClose'}} class="close-button" aria-label="Close alert" type="button"><span aria-hidden="true">&times;</span></button>
+        <h3 class="header-small">Get the Data</h3>
+        <ul class="no-bullet">
+          {{#each datasets as |dataset|}}
+            <li>
+              <p>
+                {{fa-icon 'download'}} {{dataset.displayName}}:
+                <a href="https://planninglabs.carto.com/api/v2/sql?format=SHP&filename={{dataset.tableName}}&q=SELECT * FROM {{dataset.tableName}}"><strong>All</strong>&nbsp;<small>(SHP)</small></a>
+                <span class="medium-gray">|</span>
+                <a href="https://planninglabs.carto.com/api/v2/sql?format=SHP&filename={{dataset.tableName}}_clipped&q=SELECT * FROM {{dataset.tableName}} WHERE ST_Intersects(the_geom, ST_GeomFromGeoJSON('{{stringifiedBoundsGeoJSON}}'))"><strong>In View</strong>&nbsp;<small>(SHP)</small></a>
+              </p>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
+  </div>
+
+  {{yield}}
+
+</div>
