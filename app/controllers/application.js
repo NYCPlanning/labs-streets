@@ -277,7 +277,21 @@ export default class ApplicationController extends ParachuteController {
 
     carto.SQL(SQL, 'geojson')
       .then((FC) => {
-        this.set('popupFeatures', FC.features);
+        // sigh... queryRenderedFeatures() for street name changes and append the results to the Features returned from Carto
+        const map = this.get('map');
+        const layers = ['citymap-name-changes-circle', 'citymap-name-changes-line', 'citymap-name-changes-fill'];
+        const streetNameChanges = map.queryRenderedFeatures(
+          e.point,
+          { layers },
+        );
+
+        // append a type property for use in rendering the popup
+        streetNameChanges.forEach((feature) => {
+          feature.properties.type = 'streetnamechange'; // eslint-disable-line
+          return feature;
+        });
+
+        this.set('popupFeatures', [...FC.features, ...streetNameChanges]);
       });
   }
 
@@ -386,7 +400,6 @@ export default class ApplicationController extends ParachuteController {
   handleMapMouseDrag() {
     const map = this.get('map');
     map.getCanvas().style.cssText += 'cursor:-webkit-grabbing; cursor:-moz-grabbing; cursor:grabbing;';
-    console.log(map.getCanvas().style.cssText);
   }
 
   @action

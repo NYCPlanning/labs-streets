@@ -74,6 +74,19 @@ export default class MapPopupContent extends Component {
     return cleanLots;
   }
 
+  @computed('features')
+  get streetNameChanges() {
+    const features = this.get('features');
+
+    if (features === null) return features;
+
+    // add a timestamp property to sort by
+    const streetNameChanges = features
+      .filter(d => d.properties.type === 'streetnamechange');
+
+    return streetNameChanges;
+  }
+
   @argument
   features = [];
 
