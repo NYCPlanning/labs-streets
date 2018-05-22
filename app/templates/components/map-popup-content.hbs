@@ -37,7 +37,7 @@
     <h4 class="popup-header">Local Law Names</h4>
     <ul class="popup-list no-bullet no-margin">
       {{#each streetNameChanges as |nameChange|}}
-        <a href="https://laws.council.nyc.gov/legislation/int-{{nameChange.properties.intronumbe}}-{{nameChange.properties.intro_year}}/" target="_blank" rel="noopener">{{nameChange.properties.honoraryna}} {{fa-icon 'external-link'}}</a><br>
+        <a href="https://laws.council.nyc.gov/legislation/int-{{nameChange.properties.intronumbe}}-{{nameChange.properties.intro_year}}/" target="_blank" rel="noopener"> {{fa-icon 'external-link'}}{{nameChange.properties.honoraryna}} - {{nameChange.properties.ll_effecti}}</a><br>
       {{/each}}
     </ul>
   {{/if}}
