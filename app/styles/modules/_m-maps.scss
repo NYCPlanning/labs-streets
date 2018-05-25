@@ -124,11 +124,6 @@
   }
 }
 
-.popup-header {
-  font-size: rem-calc(14);
-  margin-bottom: rem-calc(6);
-}
-
 .popup-content {
   max-height: calc(50vh - 10rem);
   min-width: 12rem;
@@ -140,6 +135,16 @@
     max-height: calc(80vh - 10rem);
   }
 }
+
+.popup-header {
+  font-size: rem-calc(14);
+  margin-bottom: rem-calc(6);
+}
+
+.popup-list {
+  margin-bottom: rem-calc(10);
+}
+
 
 // HACK: dot and pulse misalign without this.
 .mapboxgl-user-location-dot {
