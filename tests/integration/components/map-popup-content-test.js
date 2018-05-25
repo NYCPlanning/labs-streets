@@ -33,13 +33,13 @@ module('Integration | Component | map-popup-content', function(hooks) {
     await render(hbs`{{map-popup-content features=popupFeatures }}`);
 
     const header = await find('.popup-header');
-    assert.equal(header.textContent.trim(), 'Map Amendments');
+    assert.equal(header.textContent.trim(), 'Adopted Map Amendments');
 
     const altmappdf = await find('.popup-list .filename');
     assert.equal(altmappdf.textContent.trim(), 'like-its.pdf');
 
     const effective = await find('.popup-list .date');
-    assert.equal(effective.textContent.trim(), 'Effective: Jan 1, 1999');
+    assert.equal(effective.textContent.trim(), 'Effective Jan 1, 1999');
   });
 
 });

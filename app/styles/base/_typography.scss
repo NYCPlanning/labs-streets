@@ -70,7 +70,7 @@ button {
   }
 }
 
-.button--alteration-pdf {
+.popup-button {
   display: block;
   line-height: 1.2;
   margin: 0 rem-calc(-3) rem-calc(3);
@@ -80,10 +80,18 @@ button {
     background-color: rgba(107,113,123,.06);
   }
 
+  .link-name {
+    max-width: 15em;
+  }
+
   .date {
-    display: block;
     color: $dark-gray;
     font-size: rem-calc(10);
+    white-space: nowrap;
+  }
+
+  .float-left + .float-right {
+    margin-left: rem-calc(10);
   }
 }
 

@@ -259,10 +259,9 @@
       {{#lookup-layer-group for='arterials' as |layerGroup|}}
         {{#menu.menu-item
           title=layerGroup.model.title
-          legendColor=layerGroup.model.legendColor
-          legendIcon=layerGroup.model.legendIcon
           tooltip=layerGroup.model.titleTooltip
           active=arterials}}
+          {{labs-map-legend model=layerGroup.model.legendConfig}}
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
 

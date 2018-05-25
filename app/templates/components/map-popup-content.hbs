@@ -1,15 +1,15 @@
 <div class="popup-content">
   {{#if cleanAlterations}}
     {{#each-in (group-by "status" cleanAlterations) as |status alterations|}}
-      <h4 class="popup-header">{{if (eq status '13') 'Pending' 'Adopted'}} Map Alterations</h4>
+      <h4 class="popup-header">{{if (eq status '13') 'Pending' 'Adopted'}} Map Amendments</h4>
       <ul class="popup-list no-bullet">
         {{#each alterations as |alteration|}}
           <li class="dark-gray" {{! template-lint-disable "nested-interactive" }}
             onmousemove={{action 'handleHoverListItem' alteration}} role="button">
-            <a class="button--alteration-pdf" href="{{alteration.pdflink}}" target="_blank" rel="noopener">
-              <strong>{{fa-icon 'external-link'}} <span class="filename">{{alteration.pdf}}</span></strong>
+            <a class="popup-button clearfix" href="{{alteration.pdflink}}" target="_blank" rel="noopener">
+              <strong class="link-name float-left">{{fa-icon 'external-link'}} <span class="filename">{{alteration.pdf}}</span></strong>
               {{#if (eq status '14')}}
-                <span class="date">Effective: {{alteration.effective}}</span>
+                <span class="date float-right">Effective {{alteration.effective}}</span>
               {{/if}}
             </a>
           </li>
@@ -20,10 +20,25 @@
     There are no map amendments here.
   {{/if}}
 
+  {{#if streetNameChanges}}
+    <hr class="small-margin">
+    <h4 class="popup-header">Local Law Names</h4>
+    <ul class="popup-list no-bullet no-margin">
+      {{#each streetNameChanges as |nameChange|}}
+        <li>
+          <a class="popup-button clearfix"  href="https://laws.council.nyc.gov/legislation/int-{{nameChange.properties.intronumbe}}-{{nameChange.properties.intro_year}}/" target="_blank" rel="noopener">
+            <strong class="link-name float-left">{{fa-icon 'external-link'}} {{nameChange.properties.honoraryna}}</strong>
+            <span class="date float-right">{{nameChange.properties.ll_effecti}}</span>
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+  {{/if}}
+
   {{#if cleanLots}}
     <ul class="popup-list no-bullet no-margin">
       {{#each cleanLots as |lot|}}
-        <li class="dark-gray" {{! template-lint-disable "nested-interactive" }}
+        <li {{! template-lint-disable "nested-interactive" }}
           onmousemove={{action 'handleHoverListItem' lot}} role="button">
           <hr class="small-margin">
           <a class="button--tax-lot button expanded gray text-orange no-margin" href="https://zola.planninglabs.nyc/lot/{{lot.boro}}/{{lot.block}}/{{lot.lot}}" target="_blank" rel="noopener">
