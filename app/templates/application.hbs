@@ -274,6 +274,14 @@
           </ul>
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='stair-streets' as |layerGroup|}}
+        {{#menu.menu-item
+          title=layerGroup.model.title
+          tooltip=layerGroup.model.titleTooltip
+          active=stair-streets}}
+        {{/menu.menu-item}}
+      {{/lookup-layer-group}}
     {{/accordion-menu}}
 
     {{!-- Supporting Layers --}}

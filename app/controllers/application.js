@@ -78,6 +78,10 @@ export const LayerVisibilityParams = new QueryParams({
     defaultValue: false,
     refresh: true,
   },
+  'stair-streets': {
+    defaultValue: false,
+    refresh: true,
+  },
   aerials: {
     defaultValue: false,
     refresh: true,

@@ -1,0 +1,48 @@
+{
+  "id":"stair-streets",
+  "title":"Stair Streets",
+  "legendIcon":"",
+  "legendColor":"",
+  "visible":false,
+  "layers":[
+    {
+      "style":{
+        "id": "stair-streets-line",
+        "type": "line",
+        "source": "digital-citymap",
+        "source-layer": "street-centerlines",
+        "filter": [
+          "all",
+          [
+            "==",
+            "roadway_ty",
+            "Step_Stair_ST"
+          ]
+        ],
+        "paint": {
+          "line-color": "rgba(30, 164, 39, 1)",
+          "line-width": {
+            "stops": [
+              [
+                10,
+                0.2
+              ],
+              [
+                13,
+                2
+              ],
+              [
+                15,
+                6
+              ]
+            ]
+          },
+          "line-dasharray": [
+            0.2,
+            0.3
+          ]
+        }
+      }
+    }
+  ]
+}
