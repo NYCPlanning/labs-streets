@@ -1,0 +1,54 @@
+{
+  "id":"paper-streets",
+  "title":"Paper Streets",
+  "legendIcon": "polygon",
+  "legendColor": "rgba(30, 164, 39, 0.8)",
+  "titleTooltip": "Streets that are officially mapped but are not built and only appear on paper maps",
+  "visible":false,
+  "layers":[
+    {
+      "style":{
+        "id": "paper-streets-line",
+        "before":"boundary_country",
+        "type": "line",
+        "source": "digital-citymap",
+        "source-layer": "street-centerlines",
+        "filter": [
+          "all",
+          [
+            "==",
+            "feature_st",
+            "Paper_St"
+          ]
+        ],
+        "paint": {
+          "line-color": "rgba(30, 164, 39, 0.8)",
+          "line-width": {
+            "stops": [
+              [
+                10,
+                1.5
+              ],
+              [
+                14,
+                6
+              ],
+              [
+                16,
+                20
+              ],
+              [
+                18,
+                50
+              ],
+              [
+                19,
+                100
+              ]
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

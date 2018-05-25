@@ -278,6 +278,7 @@
       {
         "type":"line",
         "label":"Mapped Street",
+        "tooltip":"A street that has been established on an adopted alteration map or section map and filed with the appropriate agencies",
         "style":{
           "fill":"none",
           "stroke": "rgba(50, 50, 50, 1)"
@@ -286,6 +287,7 @@
       {
         "type":"line",
         "label":"Street Treatment",
+        "tooltip":"Lines on the City Map that reflect curb lines, approach ramps and other physical elements for illustrative purposes only - may be changed without public review (ULURP)",
         "style":{
           "fill":"none",
           "stroke":"rgba(84, 84, 84, 1)",
@@ -295,6 +297,7 @@
       {
         "type":"line",
         "label":"Unmapped Street",
+        "tooltip":"A street that may or may not be a public way, that is either not officially mapped but is documented in some other legal record or that has been built but does not appear on the City Map",
         "style":{
           "fill":"none",
           "stroke":"rgba(50, 50, 50, 0.4)",
