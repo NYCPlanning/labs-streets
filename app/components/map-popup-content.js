@@ -84,6 +84,11 @@ export default class MapPopupContent extends Component {
     const streetNameChanges = features
       .filter(d => d.properties.type === 'streetnamechange');
 
+    streetNameChanges.forEach((d) => {
+      d.properties.ll_effecti = moment(d.properties.ll_effecti, 'MM/DD/YYYY').format('MMM D, YYYY'); // eslint-disable-line
+      return d;
+    });
+
     return streetNameChanges;
   }
 
