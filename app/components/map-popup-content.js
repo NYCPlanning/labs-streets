@@ -33,15 +33,17 @@ export default class MapPopupContent extends Component {
       .filter(d => d.properties.type === 'alteration')
       .map((feature) => {
         const { properties } = feature;
+        const { altmappdf, effective, status } = properties;
 
-        const pdf = properties.altmappdf.split('/').pop();
+        const pdf = altmappdf.split('/').pop();
 
         return {
           feature,
-          timestamp: parseInt(moment(properties.effective).format('X'), 10),
+          status,
+          timestamp: parseInt(moment(effective).format('X'), 10),
           pdflink: `https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/${pdf}`,
           pdf,
-          effective: moment(properties.effective).format('MMM D, YYYY'),
+          effective: moment(effective).format('MMM D, YYYY'),
         };
       });
 
@@ -58,12 +60,13 @@ export default class MapPopupContent extends Component {
       .filter(d => d.properties.type === 'taxlot')
       .map((feature) => {
         const { properties } = feature;
-        const BBLparts = splitBBL(properties.bbl);
+        const { bbl, address } = properties;
+        const BBLparts = splitBBL(bbl);
 
         return {
           feature,
-          bbl: properties.bbl,
-          address: properties.address,
+          bbl,
+          address,
           boro: BBLparts.boro,
           boroName: boroLookup[BBLparts.boro],
           block: BBLparts.block,

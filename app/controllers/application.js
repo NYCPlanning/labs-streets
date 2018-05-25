@@ -46,6 +46,10 @@ export const LayerVisibilityParams = new QueryParams({
     defaultValue: true,
     refresh: true,
   },
+  'amendments-pending': {
+    defaultValue: false,
+    refresh: true,
+  },
   'street-centerlines': {
     defaultValue: true,
     refresh: true,
@@ -253,9 +257,10 @@ export default class ApplicationController extends ParachuteController {
     // Query and set the popup content
     const { lng, lat } = e.lngLat;
     const SQL = `
-    SELECT the_geom, 'alteration' AS type, altmappdf, effective, NULL AS bbl, NULL AS address
-      FROM citymap_amendments_v0
-      WHERE effective IS NOT NULL
+    SELECT the_geom, 'alteration' AS type, altmappdf, status, effective, NULL AS bbl, NULL AS address
+      FROM citymap_amendments_v2
+      WHERE (effective IS NOT NULL
+              OR status = '13')
         AND ST_Intersects(
           the_geom,
           ST_SetSRID(
@@ -266,7 +271,7 @@ export default class ApplicationController extends ParachuteController {
           )
         )
     UNION ALL
-    SELECT the_geom, 'taxlot' AS type, NULL as altmappdf, NULL as effective, bbl, address
+    SELECT the_geom, 'taxlot' AS type, NULL as altmappdf, NULL as status, NULL as effective, bbl, address
       FROM mappluto_v1711
         WHERE ST_Intersects(
           the_geom,
