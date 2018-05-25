@@ -1,14 +1,15 @@
 {
-  "id":"stair-streets",
-  "title":"Stair Streets",
-  "legendIcon": "four-vertical-lines",
-  "legendColor": "rgba(30, 164, 39, 1)",
-  "titleTooltip": "Street segments with steps or stairs to accommodate foot traffic.",
+  "id":"paper-streets",
+  "title":"Paper Streets",
+  "legendIcon": "polygon",
+  "legendColor": "rgba(30, 164, 39, 0.8)",
+  "titleTooltip": "Streets that are officially mapped but are not built and only appear on paper maps",
   "visible":false,
   "layers":[
     {
       "style":{
-        "id": "stair-streets-line",
+        "id": "paper-streets-line",
+        "before":"boundary_country",
         "type": "line",
         "source": "digital-citymap",
         "source-layer": "street-centerlines",
@@ -16,12 +17,12 @@
           "all",
           [
             "==",
-            "roadway_ty",
-            "Step_Stair_ST"
+            "feature_st",
+            "Paper_St"
           ]
         ],
         "paint": {
-          "line-color": "rgba(30, 164, 39, 1)",
+          "line-color": "rgba(30, 164, 39, 0.8)",
           "line-width": {
             "stops": [
               [
@@ -45,11 +46,7 @@
                 100
               ]
             ]
-          },
-          "line-dasharray": [
-            0.2,
-            0.3
-          ]
+          }
         }
       }
     }
