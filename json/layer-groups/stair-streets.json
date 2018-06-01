@@ -2,7 +2,7 @@
   "id":"stair-streets",
   "title":"Stair Streets",
   "legendIcon": "four-vertical-lines",
-  "legendColor": "rgba(30, 164, 39, 1)",
+  "legendColor": "rgba(100, 170, 40, 0.8)",
   "titleTooltip": "Street segments with steps or stairs to accommodate foot traffic.",
   "visible":false,
   "layers":[
@@ -21,7 +21,7 @@
           ]
         ],
         "paint": {
-          "line-color": "rgba(30, 164, 39, 1)",
+          "line-color": "rgba(100, 170, 40, 0.8)",
           "line-width": {
             "stops": [
               [
@@ -46,10 +46,60 @@
               ]
             ]
           },
-          "line-dasharray": [
-            0.2,
-            0.3
+          "line-dasharray": {
+            "stops": [
+              [
+                13,
+                [
+                  1
+                ]
+              ],
+              [
+                14,
+                [
+                  0.2,
+                  0.2
+                ]
+              ]
+            ]
+          }
+        }
+      }
+    },
+    {
+      "style":{
+        "id": "stair-streets-line-halo",
+        "type": "line",
+        "source": "digital-citymap",
+        "source-layer": "street-centerlines",
+        "filter": [
+          "all",
+          [
+            "==",
+            "roadway_ty",
+            "Step_Stair_ST"
           ]
+        ],
+        "paint": {
+          "line-color": "rgba(100, 170, 40, 0.5)",
+          "line-width": {
+            "stops": [
+              [
+                13,
+                4
+              ],
+              [
+                14,
+                0
+              ]
+            ]
+          },
+          "line-translate-anchor": "map",
+          "line-gap-width": 2
+        },
+        "layout": {
+          "line-cap": "round",
+          "line-join": "round"
         }
       }
     }
