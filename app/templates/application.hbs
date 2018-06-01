@@ -383,7 +383,7 @@
           title=layerGroup.model.title
           tooltip=layerGroup.model.titleTooltip
           active=aerials}}
-          <ul class="layer-menu-item--group-checkboxes list-float-3">
+          <ul class="layer-menu-item--group-checkboxes no-bullet list-float-3">
             {{#each layerGroup.model.layers as |layer|}}
               <li onclick={{action (mut selected-aerial) layer.id}} role='button'>
                 <label {{!template-lint-disable "nested-interactive"}}>
