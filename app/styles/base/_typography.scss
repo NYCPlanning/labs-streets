@@ -44,7 +44,7 @@ h6,
 //
 // Buttons
 // --------------------------------------------------
-button {
+button, label {
   cursor: pointer;
 }
 
@@ -269,7 +269,7 @@ hr.small-margin {
 
 
 //
-// Ember Tooltip
+// Images, Figures
 // --------------------------------------------------
 figure {
   margin-bottom: $global-margin;
@@ -295,5 +295,18 @@ figure {
     figcaption {
       color: $white;
     }
+  }
+}
+
+
+//
+// Multi-column lists
+// --------------------------------------------------
+.list-float-3 {
+  @include clearfix;
+
+  li {
+    float: left;
+    width: 33.33%;
   }
 }
