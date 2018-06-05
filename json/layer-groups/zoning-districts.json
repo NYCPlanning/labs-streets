@@ -12,6 +12,7 @@
     },
     "layers": [
       {
+        "before": "boundary_state",
         "style": {
           "id": "zd-fill",
           "type": "fill",

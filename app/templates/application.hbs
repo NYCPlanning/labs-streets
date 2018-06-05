@@ -284,16 +284,6 @@
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
 
-      {{#lookup-layer-group for='stair-streets' as |layerGroup|}}
-        {{#menu.menu-item
-          title=layerGroup.model.title
-          tooltip=layerGroup.model.titleTooltip
-          legendColor=layerGroup.model.legendColor
-          legendIcon=layerGroup.model.legendIcon
-          active=stair-streets}}
-        {{/menu.menu-item}}
-      {{/lookup-layer-group}}
-
       {{#lookup-layer-group for='paper-streets' as |layerGroup|}}
         {{#menu.menu-item
           title=layerGroup.model.title
@@ -301,6 +291,16 @@
           legendColor=layerGroup.model.legendColor
           legendIcon=layerGroup.model.legendIcon
           active=paper-streets}}
+        {{/menu.menu-item}}
+      {{/lookup-layer-group}}
+
+      {{#lookup-layer-group for='stair-streets' as |layerGroup|}}
+        {{#menu.menu-item
+          title=layerGroup.model.title
+          tooltip=layerGroup.model.titleTooltip
+          legendColor=layerGroup.model.legendColor
+          legendIcon=layerGroup.model.legendIcon
+          active=stair-streets}}
         {{/menu.menu-item}}
       {{/lookup-layer-group}}
     {{/accordion-menu}}
