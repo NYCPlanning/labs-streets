@@ -297,7 +297,7 @@
       {
         "type":"line",
         "label":"Unmapped Street",
-        "tooltip":"A built street that is not officially part of the City Map and over which the public may or may not have a right of way. Record streets (documented in a legal record other than the City Map) and private roads are examples of unmapped streets.",
+        "tooltip":"A street that is not officially shown on the City Map and over which the public may or may not have a right of way. Record streets and private roads are examples of unmapped streets.",
         "style":{
           "fill":"none",
           "stroke":"rgba(50, 50, 50, 0.4)",
