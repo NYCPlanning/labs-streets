@@ -1,7 +1,7 @@
 {
   "id": "amendments-pending",
   "title": "Pending City Map Alterations",
-  "titleTooltip": "An index of alterations to the City Map. Alteration Maps show changes made to the City Map and, when they are the most recent in an area, serve as an official record of the City Map in the area they depict.",
+  "titleTooltip": "Proposed Alterations to the City Map that have been approved in public review but have not yet been officially enacted. These alterations have not yet taken effect and are shown for illustrative purposes.",
   "legendIcon": "polygon-stacked",
   "legendColor": "rgba(240, 15, 130, 0.4)",
   "visible": false,
