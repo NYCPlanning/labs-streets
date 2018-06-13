@@ -7,6 +7,7 @@ import mapboxgl from 'mapbox-gl';
 import fetch from 'fetch';
 import turfBbox from 'npm:@turf/bbox';
 import precisionRound from '../utils/precision-round';
+import trackEvent from '../utils/track-event';
 
 // get a geojson rectangle for the current map's view
 const getBoundsGeoJSON = (map) => {
@@ -253,6 +254,7 @@ export default class ApplicationController extends ParachuteController {
   }
 
   @action
+  @trackEvent('click', 'popup', 'popupLocation')
   handleMapClick(e) {
     // Open the popup and clear its content (defaults to showing spinner)
     this.set('popupFeatures', null);

@@ -33,6 +33,22 @@ module.exports = function(environment) {
       host: (environment === 'devlocal') ? '//localhost:4000' : 'https://zola-search-api.planninglabs.nyc',
       route: 'search',
     },
+
+    metricsAdapters: [
+      {
+        name: 'GoogleAnalytics',
+        environments: ['development', 'production', 'ga-development'],
+        config: {
+          id: 'UA-84250233-12',
+          // Use `analytics_debug.js` in development
+          debug: environment === 'development',
+          // Use verbose tracing of GA events
+          trace: environment === 'development',
+          // Ensure development env hits aren't sent to GA
+          sendHitTask: environment !== 'development' || environment !== 'ga-development',
+        },
+      },
+    ],
   };
 
   if (environment === 'development') {
