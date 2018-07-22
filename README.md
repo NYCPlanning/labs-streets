@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/NYCPlanning/labs-citymap/tree/develop.svg?style=svg)](https://circleci.com/gh/NYCPlanning/labs-citymap/tree/develop)
+
 # The City Map
 
 The City Map is the official adopted map of the city. It shows the location, dimension and grades of streets, parks, public places, and certain public easements. However, the City Map isn’t one comprehensive map; it’s a collection of many alteration maps for small areas of the City. This app brings all of the pieces of the City Map into one convenient place on the web.
