@@ -18,11 +18,9 @@ export default class LayerMenuItemComponent extends Component {
   title;
 
   @argument
-  @type('string')
   legendIcon = '';
 
   @argument
-  @type('string')
   legendColor = '';
 
   @argument

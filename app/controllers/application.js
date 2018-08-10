@@ -444,7 +444,6 @@ export default class ApplicationController extends ParachuteController {
       if (queryParams[groupId] !== undefined) {
         if (setDefaults) {
           this.setDefaultQueryParamValue(groupId, layerGroup.get('visible'));
-
           if (layerGroup.get('layerVisibilityType') === 'singleton') {
             this.setDefaultQueryParamValue('selected-aerial', layerGroup.get('selected'));
           }

@@ -4,6 +4,6 @@ const { JSONAPIAdapter } = DS;
 
 export default class LayerGroupAdapter extends JSONAPIAdapter {
   urlForFindAll() {
-    return '/layer-groups.json';
+    return 'http://localhost:3000/v1/layer-groups';
   }
 }
