@@ -10,10 +10,6 @@ module.exports = function(defaults) {
     babel: {
       plugins: ['transform-object-rest-spread'],
     },
-    'ember-cli-merge-json': {
-      srcDir: '/json',
-      destDir: '/',
-    },
     sourcemaps: {
       enabled: true,
       extensions: ['js'],

@@ -129,7 +129,7 @@ export default class ApplicationController extends ParachuteController {
 
     return {
       ...mapOptions,
-      style: '//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json',
+      style: this.get('model.initialStyle'),
       maxZoom: 19,
       minZoom: 9,
       maxBounds: [
