@@ -1,6 +1,5 @@
 import Route from '@ember/routing/route';
 import { hash } from 'rsvp';
-import normalizeCartoVectors from 'cartobox-promises-utility/utils/normalize-carto-vectors';
 import { action } from '@ember-decorators/object';
 import { next } from '@ember/runloop';
 
@@ -13,8 +12,6 @@ export default class ApplicationRoute extends Route {
   }
 
   model = async function() {
-    // const sources = await this.store.findAll('source')
-    //   .then(sourceModels => normalizeCartoVectors(sourceModels.toArray()));
     const layers =
       await this.store.peekAll('layer');
     const layerGroups =
@@ -24,9 +21,7 @@ export default class ApplicationRoute extends Route {
 
     const { mapboxStyle: initialStyle } = layerGroups.get('meta');
 
-
     return hash({
-      // sources,
       layers,
       layerGroups,
       amendmentsFill,
