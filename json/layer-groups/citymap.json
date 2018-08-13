@@ -507,7 +507,7 @@
       {
         "type":"railroad",
         "label":"Rail",
-        "tooltip":"Railways",
+        "tooltip":"Railroad right-of-way",
         "style":{
           "fill":"none",
           "stroke":"#9ca0a1",
