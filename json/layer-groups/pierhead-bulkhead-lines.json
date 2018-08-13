@@ -11,15 +11,48 @@
   },
   "layers": [
     {
+      "tooltipable":true,
+      "tooltipTemplate":"Water Edge",
+      "style":{
+        "id":"water-edge",
+        "type":"line",
+        "source":"digital-citymap",
+        "source-layer":"citymap",
+        "paint":{
+          "line-color": "#b0b5b5",
+          "line-width":{
+            "stops":[
+              [
+                10,
+                0.5
+              ],
+              [
+                14,
+                2
+              ]
+            ]
+          }
+        },
+        "filter":[
+          "all",
+          [
+            "==",
+            "type",
+            "Water line"
+          ]
+        ]
+      }
+    },
+    {
       "tooltipable": true,
-      "tooltipTemplate": "Pierhead Line",
+      "tooltipTemplate": "US Pierhead Line",
       "style": {
-        "id": "citymap-pierhead-line",
+        "id": "citymap-pierhead-line-US",
         "type": "line",
         "source": "digital-citymap",
         "source-layer": "pierhead-lines",
         "paint": {
-          "line-color": "rgba(50, 120, 200, 1)",
+          "line-color": "#fc9272",
           "line-width": {
             "stops": [
               [
@@ -32,6 +65,7 @@
               ]
             ]
           },
+
           "line-opacity": 1,
           "line-dasharray": [
             5,
@@ -46,19 +80,85 @@
         },
         "layout": {
           "line-cap": "round"
-        }
+        },
+        "filter":[
+          "any",
+          [
+            "==",
+            "jurisdicti",
+            "U.S."
+          ],
+          [
+            "==",
+            "jurisdicti",
+            "US"
+          ],
+          [
+            "==",
+            "jurisdicti",
+            "unknown"
+          ]
+        ]
       }
     },
     {
       "tooltipable": true,
-      "tooltipTemplate": "Bulkhead Line",
+      "tooltipTemplate": "NYC Pierhead Line",
       "style": {
-        "id": "citymap-bulkhead-line",
+        "id": "citymap-pierhead-line-NYC",
+        "type": "line",
+        "source": "digital-citymap",
+        "source-layer": "pierhead-lines",
+        "paint": {
+          "line-color": "#de2d26",
+          "line-width": {
+            "stops": [
+              [
+                10,
+                0.5
+              ],
+              [
+                14,
+                3
+              ]
+            ]
+          },
+
+          "line-opacity": 1,
+          "line-dasharray": [
+            5,
+            2,
+            0,
+            1.5,
+            0,
+            1.5,
+            0,
+            2
+          ]
+        },
+        "layout": {
+          "line-cap": "round"
+        },
+        "filter":[
+          "any",
+          [
+            "==",
+            "jurisdicti",
+            "City of New York"
+          ]
+        ]
+      }
+    },
+    {
+      "tooltipable": true,
+      "tooltipTemplate": "US Bulkhead Line",
+      "style": {
+        "id": "citymap-bulkhead-line-US",
         "type": "line",
         "source": "digital-citymap",
         "source-layer": "bulkhead-lines",
         "paint": {
-          "line-color": "#3278C8",
+          "line-color": "#2ca2b8",
           "line-width": {
             "stops": [
               [
@@ -83,32 +183,119 @@
         },
         "layout": {
           "line-cap": "round"
+        },
+        "filter":[
+          "any",
+          [
+            "==",
+            "jurisdicti",
+            "U.S."
+          ],
+          [
+            "==",
+            "jurisdicti",
+            "unknown"
+          ]
+        ]
+        }
+      },
+    {
+      "tooltipable": true,
+      "tooltipTemplate": "NYC Bulkhead Line",
+      "style": {
+        "id": "citymap-bulkhead-line-NYC",
+        "type": "line",
+        "source": "digital-citymap",
+        "source-layer": "bulkhead-lines",
+        "paint": {
+          "line-color": "#1d547a",
+          "line-width": {
+            "stops": [
+              [
+                10,
+                0.5
+              ],
+              [
+                14,
+                3
+              ]
+            ]
+          },
+          "line-opacity": 1,
+          "line-dasharray": [
+            5,
+            2.5,
+            0,
+            2,
+            0,
+            2.5
+          ]
+        },
+        "layout": {
+          "line-cap": "round"
+        },
+          "filter":[
+            "all",
+            [
+              "==",
+              "jurisdicti",
+              "City of New York"
+            ]
+          ]
         }
       }
-    }
   ],
   "legendConfig": {
     "label": "Water Lines",
     "items": [
       {
          "type": "line",
-         "label": "Pierhead Line",
+         "label": "US Pierhead Line",
          "style": {
            "fill": "none",
-           "stroke": "#3278C8",
+           "stroke": "#fc9272",
            "stroke-linecap": "round",
            "stroke-dasharray": "5,2.5,0,2,0,2.5"
          }
       },
       {
          "type": "line",
-         "label": "Bulkhead Line",
+         "label": "NYC Pierhead Line",
          "style": {
            "fill": "none",
-           "stroke": "#3278C8",
+           "stroke": "#de2d26",
+           "stroke-linecap": "round",
+           "stroke-dasharray": "5,2.5,0,2,0,2.5"
+         }
+      },
+      {
+         "type": "line",
+         "label": "US Bulkhead Line",
+         "style": {
+           "fill": "none",
+           "stroke": "#2ca2b8",
            "stroke-linecap": "round",
            "stroke-dasharray": "5,2,0,1.5,0,1.5,0,2"
          }
+      },
+      {
+         "type": "line",
+         "label": "NYC Bulkhead Line",
+         "style": {
+           "fill": "none",
+           "stroke": "#1d547a",
+           "stroke-linecap": "round",
+           "stroke-dasharray": "5,2,0,1.5,0,1.5,0,2"
+         }
+      },
+      {
+        "type":"line",
+        "label":"Water Edge",
+        "tooltip":"When there are no pierhead or bulkhead lines, boundaries are marked by the water's edge",
+        "style":{
+          "fill":"none",
+          "stroke": "#757879"
+        }
       }
     ]
   }
