@@ -22,6 +22,9 @@ module.exports = function(environment) {
       // when it is created
     },
 
+    host: 'http://localhost:3000',
+    namespace: 'v1',
+
     'mapbox-gl': {
       accessToken: 'peanut-butter',
       map: {
@@ -52,6 +55,8 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
+    ENV.host = 'http://localhost:3000';
+    ENV.namespace = 'v1';
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -73,6 +78,8 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
+    ENV.host = 'https://layers-api.planninglabs.nyc';
+    ENV.namespace = 'v1';
   }
 
   return ENV;
