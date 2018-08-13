@@ -11,6 +11,39 @@
   },
   "layers": [
     {
+      "tooltipable":true,
+      "tooltipTemplate":"Water Edge",
+      "style":{
+        "id":"water-edge",
+        "type":"line",
+        "source":"digital-citymap",
+        "source-layer":"citymap",
+        "paint":{
+          "line-color": "#b0b5b5",
+          "line-width":{
+            "stops":[
+              [
+                10,
+                0.5
+              ],
+              [
+                14,
+                2
+              ]
+            ]
+          }
+        },
+        "filter":[
+          "all",
+          [
+            "==",
+            "type",
+            "Water line"
+          ]
+        ]
+      }
+    },
+    {
       "tooltipable": true,
       "tooltipTemplate": "US Pierhead Line",
       "style": {
@@ -207,39 +240,6 @@
               "==",
               "jurisdicti",
               "City of New York"
-            ]
-          ]
-        }
-      },
-      {
-        "tooltipable":true,
-        "tooltipTemplate":"Water Edge",
-        "style":{
-          "id":"water-edge",
-          "type":"line",
-          "source":"digital-citymap",
-          "source-layer":"citymap",
-          "paint":{
-            "line-color": "#757879",
-            "line-width":{
-              "stops":[
-                [
-                  10,
-                  0.5
-                ],
-                [
-                  14,
-                  3
-                ]
-              ]
-            }
-          },
-          "filter":[
-            "all",
-            [
-              "==",
-              "type",
-              "Water line"
             ]
           ]
         }

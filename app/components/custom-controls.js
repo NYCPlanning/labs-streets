@@ -14,7 +14,7 @@ export default class CustomControls extends Component {
   @argument boundsGeoJSON;
 
   datasets = [
-      { tableName: 'citymap_citymap_v1', displayName: 'City Street Features' },
+    { tableName: 'citymap_citymap_v1', displayName: 'City Street Features' },
     { tableName: 'citymap_amendments_v3', displayName: 'City Map Amendments' },
     { tableName: 'citymap_streetcenterlines_v1', displayName: 'Street Centerlines' },
     { tableName: 'citymap_streetnamechanges_points_v0', displayName: 'Street Name Changes - Points' },
