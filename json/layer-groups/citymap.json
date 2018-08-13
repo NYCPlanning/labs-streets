@@ -285,7 +285,7 @@
               "stops":[
                 [
                   10,
-                  0.8
+                  1
                 ],
                 [
                   13,
@@ -505,7 +505,7 @@
         }
       },
       {
-        "type":"line",
+        "type":"railroad",
         "label":"Rail",
         "tooltip":"Railways",
         "style":{
