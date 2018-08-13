@@ -425,11 +425,11 @@
         "stops": [
           [
             10,
-            "grey"
+            "#9ca0a1"
           ],
           [
             13,
-            "grey"
+            "#9ca0a1"
           ]
         ]
       },
@@ -510,7 +510,7 @@
         "tooltip":"Railways",
         "style":{
           "fill":"none",
-          "stroke":"grey",
+          "stroke":"#9ca0a1",
           "stroke-width":"2",
           "stroke-dasharray":"0.6, 2"
         }
@@ -518,10 +518,10 @@
       {
         "type":"line",
         "label":"Borough Boundaries",
-        "tooltip":"The boundaries between the five boroughs",
+        "tooltip":"",
         "style":{
           "fill":"none",
-          "stroke": "rgba(105, 105, 105, 1)"
+          "stroke": "#4e5050"
         }
       }
     ]
