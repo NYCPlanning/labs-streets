@@ -8,7 +8,7 @@ const plutoSource = {
   'source-layers': [
     {
       id: 'pluto',
-      sql: 'SELECT the_geom_webmercator, sourceimag, cartodb_id FROM citymap_bulkheadlines_v0',
+      sql: 'SELECT the_geom_webmercator, sourceimag, cartodb_id FROM citymap_bulkheadlines_v1',
     },
   ],
 };

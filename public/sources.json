@@ -5,7 +5,7 @@
     "source-layers": [
       {
         "id": "bulkhead-lines",
-        "sql": "SELECT the_geom_webmercator FROM citymap_bulkheadlines_v0"
+        "sql": "SELECT the_geom_webmercator, jurisdicti FROM citymap_bulkheadlines_v1"
       },
       {
         "id": "arterials",
@@ -13,19 +13,19 @@
       },
       {
         "id": "pierhead-lines",
-        "sql": "SELECT the_geom_webmercator FROM citymap_pierheadlines_v0"
+        "sql": "SELECT the_geom_webmercator, jurisdicti FROM citymap_pierheadlines_v1"
       },
       {
         "id": "amendments",
-        "sql": "SELECT the_geom_webmercator, ST_Area(the_geom) as area, cartodb_id as id, altmappdf, extract(epoch from effective) as effective, status FROM citymap_amendments_v2 WHERE effective IS NOT NULL OR status = '13' ORDER BY area DESC"
+        "sql": "SELECT the_geom_webmercator, ST_Area(the_geom) as area, cartodb_id as id, altmappdf, SUBSTRING(altmappdf, 1, 6) AS ulurp, extract(epoch from effective) as effective, status FROM citymap_amendments_v3 WHERE effective IS NOT NULL OR status = '13' ORDER BY area DESC"
       },
       {
         "id": "street-centerlines",
-        "sql": "SELECT the_geom_webmercator, official_s AS streetname, COALESCE('   (' || streetwidt || ' ft)') AS streetwidth, roadway_ty, feature_st FROM citymap_streetcenterlines_v0"
+        "sql": "SELECT the_geom_webmercator, official_s AS streetname, COALESCE('   (' || streetwidt || ' ft)') AS streetwidth, roadway_ty, feature_st FROM citymap_streetcenterlines_v1"
       },
       {
         "id": "citymap",
-        "sql": "SELECT the_geom_webmercator, type FROM citymap_citymap_v0"
+        "sql": "SELECT the_geom_webmercator, type, boro_nm FROM citymap_citymap_v1"
       },
       {
         "id": "name-changes-points",
@@ -38,6 +38,10 @@
       {
         "id": "name-changes-areas",
         "sql": "SELECT the_geom_webmercator, intronumbe, intro_year, ll_effecti, CASE WHEN honoraryna = 'none' THEN officialna ELSE honoraryna END FROM citymap_streetnamechanges_areas_v0"
+      },
+      {
+        "id": "rail-lines",
+        "sql": "SELECT the_geom_webmercator, street FROM citymap_rails_v0"
       }
     ]
   },

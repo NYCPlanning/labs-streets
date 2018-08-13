@@ -140,6 +140,49 @@ The App is deployed to our VPS using Dokku, you need only do a `git push` of the
 - To Deploy: `git push dokku master`
 - To deploy a branch other than master, alias it to master: `git push dokku {branchname}:master`
 
+## Uploading New Files to Digital Ocean Spaces
+
+1. Ask the client to send you the new files they want uploaded to the app. This can be over Slack, Box, Dropbox, etc. 
+2. Download the new files in a folder on your machine. 
+
+3. Before uploading these files to Spaces,  you need to install s3cmd on your machine. You can download the file here: https://s3tools.org/download 
+4. Once you have s3cmd downloaded, navigate (in your terminal) to the s3cmd folder you just downloaded
+5. Run the command 	$ sudo python setup.py install
+6. Then run 		$ s3cmd --configure
+
+	Fill in the new config options:
+
+Access Key: access key (this will be given to you by another team member)
+Secret Key: secret key (this will be given to you by another team member)
+Default Region [US]: [press enter]
+S3 Endpoint: nyc3.digitaloceanspaces.com
+DNS-style bucket+hostname: %(bucket)s.nyc3.digitaloceanspaces.com
+Encryption password: [press enter]
+Path to GPG program: [press enter]
+Use HTTPS protocol [Yes/No]: Yes
+HTTP Proxy server name: [press enter]
+Test access with supplied credentials? [Y/n] y
+
+//If you see this error about GPG program, type in "n" for Retry configuration 
+
+ERROR: Test failed: GPG program not found
+Retry configuration? [Y/n] n
+
+Save settings? [y/N] y
+Configuration saved to '/Users/YourFile/.s3cfg'
+
+7. After setting up the config, navigate to the directory with the files you downloaded from the client, and run this command in the terminal: 
+
+	$  s3cmd --acl-public put ./* s3://nycdcp-dcm-alteration-maps --recursive
+
+	// “--acl-public” allows anyone to view the file online
+	// “ ./* ” signifies a specific path to follow to locate the folder
+	// “s3://nycdcp-dcm-alteration-maps” is the folder on Spaces where you are adding the new files
+	// "--recursive" is necessary to upload a directory
+
+8. Make sure to have another team member add you to the Digital Ocean account. You will receive an email when you have been added. Create a new account from this email, and now you are able to view the files that have been uploaded to the Spaces folder. 
+
+
 ## Contact us
 
 You can find us on Twitter at [@nycplanninglabs](https://twitter.com/nycplanninglabs), or comment on issues and we'll follow up as soon as we can. If you'd like to send an email, use [labs_dl@planning.nyc.gov](mailto:labs_dl@planning.nyc.gov)
