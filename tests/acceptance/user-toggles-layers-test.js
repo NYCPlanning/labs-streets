@@ -7,7 +7,7 @@ module('Acceptance | user toggles layers', function(hooks) {
 
   test('User toggles layers', async function(assert) {
     await visit('/');
-    await click('.layer-street-map-features .layer-menu-item-title');
+    await click('.layer-street-lines .layer-menu-item-title');
     await click('.layer-street-names .layer-menu-item-title');
     await click('.layer-local-law-names .layer-menu-item-title');
     // await click('.layer-city-map-alterations .layer-menu-item-title');
