@@ -2318,12 +2318,12 @@ cartobox-promises-utility@nycplanning/cartobox-promises-utility:
     ember-cli-babel "^6.6.0"
     ember-fetch "4.0.1"
 
-cartobox-promises-utility@nycplanning/cartobox-promises-utility#v1.0.1:
+cartobox-promises-utility@nycplanning/cartobox-promises-utility#v1.0.2:
   version "0.0.0"
-  resolved "https://codeload.github.com/nycplanning/cartobox-promises-utility/tar.gz/4485296d07bea2dba49bb8ff6292e9cacbf584a4"
+  resolved "https://codeload.github.com/nycplanning/cartobox-promises-utility/tar.gz/57f1c96a0bf03c47e048c30d202643cc49db3c69"
   dependencies:
     ember-cli-babel "^6.6.0"
-    ember-fetch "4.0.1"
+    ember-fetch "5.0.0"
 
 caseless@~0.11.0:
   version "0.11.0"
@@ -3755,6 +3755,19 @@ ember-fetch@4.0.1:
     node-fetch "^2.0.0-alpha.9"
     yetch "^0.0.1"
 
+ember-fetch@4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/ember-fetch/-/ember-fetch-4.0.2.tgz#865ca90d8aa63b9ebe5bce709aeaa44b35668b5a"
+  dependencies:
+    abortcontroller-polyfill "^1.1.9"
+    broccoli-concat "^3.2.2"
+    broccoli-merge-trees "^2.0.0"
+    broccoli-stew "^1.4.2"
+    broccoli-templater "^1.0.0"
+    ember-cli-babel "^6.8.2"
+    node-fetch "^2.0.0-alpha.9"
+    yetch "^0.0.1"
+
 ember-fetch@5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/ember-fetch/-/ember-fetch-5.0.0.tgz#fc58980010d625e9d86d238cbaabe7803fdddcfa"
@@ -3805,19 +3818,6 @@ ember-inflector@^2.0.0:
   dependencies:
     ember-cli-babel "^6.0.0"
 
-ember-labs-maps@nycplanning/ember-labs-maps#v1.0.0:
-  version "0.0.0"
-  resolved "https://codeload.github.com/nycplanning/ember-labs-maps/tar.gz/8deed3db443fd5fed29d8f981080336dfa22df88"
-  dependencies:
-    "@ember-decorators/argument" "0.8.13"
-    "@ember-decorators/babel-transforms" "^2.0.0"
-    ember-cli-babel "^6.6.0"
-    ember-cli-htmlbars "^2.0.1"
-    ember-cli-htmlbars-inline-precompile "^1.0.0"
-    ember-decorators "2.0.0"
-    ember-mapbox-gl "0.10.0"
-    ember-truth-helpers "2.0.0"
-
 ember-load-initializers@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-load-initializers/-/ember-load-initializers-1.0.0.tgz#4919eaf06f6dfeca7e134633d8c05a6c9921e6e7"
@@ -3841,6 +3841,23 @@ ember-macro-helpers@^0.17.0:
     ember-cli-string-utils "^1.1.0"
     ember-cli-test-info "^1.0.0"
     ember-weakmap "^3.0.0"
+
+ember-mapbox-composer@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/ember-mapbox-composer/-/ember-mapbox-composer-0.0.1.tgz#0ec20e44486a6a9729fa3ccecc21976a1599dcdf"
+  dependencies:
+    "@ember-decorators/argument" "0.8.15"
+    "@ember-decorators/babel-transforms" "^2.0.0"
+    cartobox-promises-utility nycplanning/cartobox-promises-utility#v1.0.2
+    ember-cli-babel "^6.6.0"
+    ember-cli-htmlbars "^2.0.1"
+    ember-cli-htmlbars-inline-precompile "^1.0.0"
+    ember-decorators "2.1.0"
+    ember-fetch "4.0.2"
+    ember-font-awesome "^4.0.0-rc.2"
+    ember-mapbox-gl "0.10.0"
+    ember-truth-helpers "2.0.0"
+    pretender "2.0.0"
 
 ember-mapbox-gl@0.10.0:
   version "0.10.0"
