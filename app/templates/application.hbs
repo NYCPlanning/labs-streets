@@ -12,14 +12,14 @@
         typeTitleLookup=(hash
           lot='Addresses'
           city-street='Streets'
-          city-map-alteration='Alterations'
+          city-map-alteration='Alterations and ULURP Numbers'
         ) as |search|}}
       {{#if (eq search.result.type 'lot')}}
         <span class="icon tax-lot"></span> <span class="subdued">{{search.result.label}}, Block {{search.result.demuxedBbl.block}}, Lot {{search.result.demuxedBbl.lot}}</span>
       {{else if (eq search.result.type 'city-street')}}
         {{search.result.label}} ({{search.result.boro_name}})
       {{else if (eq search.result.type 'city-map-alteration')}}
-        {{search.result.label}} ({{moment-format search.result.effective 'DD MMMM YYYY' 'X'}})
+        {{search.result.label}} ({{moment-format search.result.effective 'DD MMMM YYYY'}})
       {{/if}}
     {{/labs-search}}
     {{bbl-lookup flyTo=(action 'flyTo')}}
