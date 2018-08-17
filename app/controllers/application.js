@@ -96,7 +96,7 @@ export const LayerVisibilityParams = new QueryParams({
     refresh: true,
   },
   'selected-aerial': {
-    defaultValue: '',
+    defaultValue: 'aerials-2016',
     refresh: true,
   },
   lat: {

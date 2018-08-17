@@ -32,7 +32,7 @@
 
       {{#map.labs-layers
         onLayerMouseMove=(action 'handleLayerMouseMove')
-        model=model as |layers|}}
+        layerGroups=model.layerGroups as |layers|}}
         {{#layers.tooltip as |tooltip|}}
           {{tooltip-renderer feature=tooltip.feature template=tooltip.layer.tooltipTemplate}}
         {{/layers.tooltip}}
