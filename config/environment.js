@@ -22,7 +22,6 @@ module.exports = function(environment) {
       // when it is created
     },
 
-    host: 'http://localhost:3000',
     namespace: 'v1',
 
     'mapbox-gl': {
@@ -55,7 +54,6 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
-    ENV.host = 'http://localhost:3000';
     ENV.namespace = 'v1';
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
@@ -74,6 +72,7 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+    ENV.namespace = 'v1';
   }
 
   if (environment === 'production') {
