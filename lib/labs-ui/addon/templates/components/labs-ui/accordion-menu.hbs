@@ -1,0 +1,16 @@
+<div {{action 'toggleAccordion'}} 
+  class="accordion-title {{unless open 'closed'}} accordion-{{dasherize title}}" 
+  role="button">
+  {{title}}
+  {{#if (and mapIsLoading open numberMenuItems)}}
+    {{fa-icon 'spinner' class='fa-spin medium-gray'}}
+  {{/if}}
+</div>
+{{#if open}}
+  <div class="accordion-content">
+    {{yield (hash
+        menu-item=(component 'labs-ui/layer-menu-item' willDestroyHook=(action 'unregisterChild') didInit=(action 'registerChild'))
+      )
+    }}
+  </div>
+{{/if}}
