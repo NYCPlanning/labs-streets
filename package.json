@@ -89,9 +89,10 @@
   },
   "ember-addon": {
     "paths": [
+      "lib/ember-cli-merge-json",
       "lib/ember-foundation-components",
       "lib/labs-ember-search",
-      "lib/ember-cli-merge-json"
+      "lib/labs-ui"
     ]
   }
 }
