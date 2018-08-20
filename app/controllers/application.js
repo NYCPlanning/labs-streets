@@ -96,7 +96,7 @@ export const LayerVisibilityParams = new QueryParams({
     refresh: true,
   },
   'selected-aerial': {
-    defaultValue: '',
+    defaultValue: 'aerials-2016',
     refresh: true,
   },
   lat: {
@@ -129,7 +129,7 @@ export default class ApplicationController extends ParachuteController {
 
     return {
       ...mapOptions,
-      style: '//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json',
+      style: this.get('model.initialStyle'),
       maxZoom: 19,
       minZoom: 9,
       maxBounds: [
@@ -444,7 +444,6 @@ export default class ApplicationController extends ParachuteController {
       if (queryParams[groupId] !== undefined) {
         if (setDefaults) {
           this.setDefaultQueryParamValue(groupId, layerGroup.get('visible'));
-
           if (layerGroup.get('layerVisibilityType') === 'singleton') {
             this.setDefaultQueryParamValue('selected-aerial', layerGroup.get('selected'));
           }

@@ -1,9 +1,10 @@
 import DS from 'ember-data';
+import config from '../config/environment';
 
+const { host, namespace } = config;
 const { JSONAPIAdapter } = DS;
 
 export default class LayerGroupAdapter extends JSONAPIAdapter {
-  urlForFindAll() {
-    return '/layer-groups.json';
-  }
+  host = host;
+  namespace = namespace;
 }

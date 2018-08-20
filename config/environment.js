@@ -22,6 +22,8 @@ module.exports = function(environment) {
       // when it is created
     },
 
+    namespace: 'v1',
+
     'mapbox-gl': {
       accessToken: 'peanut-butter',
       map: {
@@ -52,6 +54,7 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
+    ENV.namespace = 'v1';
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -69,10 +72,19 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+    ENV.namespace = 'v1';
+  }
+
+  if (environment === 'staging') {
+    // here you can enable a production-specific feature
+    ENV.host = 'https://layers-api-staging.planninglabs.nyc';
+    ENV.namespace = 'v1';
   }
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
+    ENV.host = 'https://layers-api.planninglabs.nyc';
+    ENV.namespace = 'v1';
   }
 
   return ENV;

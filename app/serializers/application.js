@@ -1,6 +1,5 @@
 import DS from 'ember-data';
 
-const { JSONSerializer } = DS;
+const { JSONAPISerializer } = DS;
 
-export default class ApplicationSerializer extends JSONSerializer {
-}
+export default class ApplicationSerializer extends JSONAPISerializer {}
