@@ -1,1 +1,27 @@
-{{yield}}
+<div class="layer-menu-item-header layer-{{dasherize title}}">
+  <div class="switch tiny float-left">
+    <input class="switch-input" type="checkbox" checked={{if active 'checked'}}>
+    <label {{action 'toggle'}} class="switch-paddle">
+      <span class="show-for-sr">Toggle Layer Group</span>
+    </label>
+  </div>
+  <span {{action 'toggle'}} class="layer-menu-item-title" role="button">
+    {{#if tooltip}}
+      {{info-tooltip tip=tooltip}}
+    {{/if}}
+
+    {{title}}
+
+    {{#if active}}
+      {{#if (and legendColor legendIcon)}}
+        {{legend-icon legendColor=legendColor legendIcon=legendIcon}}
+      {{/if}}
+    {{/if}}
+
+  </span>
+</div>
+{{#if active}}
+  <div class="layer-menu-item-content">
+    {{yield}}
+  </div>
+{{/if}}
