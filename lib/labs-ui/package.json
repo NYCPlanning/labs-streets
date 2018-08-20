@@ -11,6 +11,7 @@
     "@ember-decorators/argument": "0.8.13",
     "@ember-decorators/babel-transforms": "2.0.0",
     "babel-plugin-htmlbars-inline-precompile": "0.2.4",
-    "ember-font-awesome": "^4.0.0-rc.2"
+    "ember-font-awesome": "^4.0.0-rc.2",
+    "ember-tooltips": "^3.0.0-beta.2"
   }
 }

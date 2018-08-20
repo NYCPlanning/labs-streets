@@ -1,26 +1,42 @@
-import { module, test } from 'qunit';
+import { module, test, skip } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { render, click, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | labs-ui/accordion-menu', function(hooks) {
+module('Integration | Component | accordion-menu', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  test('it toggles closed', async function(assert) {
+    await render(hbs`{{labs-ui/accordion-menu title='Foo'}}`);
+    await click('.accordion-title');
+    const accordionContent = await find('.accordion-content');
 
-    await render(hbs`{{labs-ui/accordion-menu}}`);
+    assert.equal(!!accordionContent, false);
+  });
 
-    assert.equal(this.element.textContent.trim(), '');
+  test('it toggles open', async function(assert) {
+    await render(hbs`{{labs-ui/accordion-menu title='Foo' open=false}}`);
+    await click('.accordion-title');
+    const accordionContent = await find('.accordion-content');
 
-    // Template block usage:
-    await render(hbs`
-      {{#labs-ui/accordion-menu}}
-        template block text
-      {{/labs-ui/accordion-menu}}
-    `);
+    assert.equal(!!accordionContent, true);
+  });
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+  test('it renders the title', async function(assert) {
+    await render(hbs`{{labs-ui/accordion-menu open=false title='Foo'}}`);
+    const title = await find('.accordion-title').textContent.trim();
+
+    assert.equal(title, 'Foo');
+  });
+
+  test('it yields the block', async function(assert) {
+    await render(hbs`{{#labs-ui/accordion-menu title='Foo'}}Bar{{/labs-ui/accordion-menu}}`);
+    const accordionContent = await find('.accordion-content').textContent.trim();
+
+    assert.equal(accordionContent, 'Bar');
+  });
+
+  skip('it shows a count of active children', async function(assert) {
+
   });
 });

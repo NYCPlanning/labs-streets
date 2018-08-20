@@ -7,14 +7,14 @@
   </div>
   <span {{action 'toggle'}} class="layer-menu-item-title" role="button">
     {{#if tooltip}}
-      {{info-tooltip tip=tooltip}}
+      {{labs-ui/info-tooltip tip=tooltip}}
     {{/if}}
 
     {{title}}
 
     {{#if active}}
       {{#if (and legendColor legendIcon)}}
-        {{legend-icon legendColor=legendColor legendIcon=legendIcon}}
+        {{labs-ui/legend-icon legendColor=legendColor legendIcon=legendIcon}}
       {{/if}}
     {{/if}}
 
