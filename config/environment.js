@@ -75,6 +75,12 @@ module.exports = function(environment) {
     ENV.namespace = 'v1';
   }
 
+  if (environment === 'staging') {
+    // here you can enable a staging-specific feature
+    ENV.host = 'https://layers-api-staging.planninglabs.nyc';
+    ENV.namespace = 'v1';
+  }
+
   if (environment === 'production') {
     // here you can enable a production-specific feature
     ENV.host = 'https://layers-api.planninglabs.nyc';
