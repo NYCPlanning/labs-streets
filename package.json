@@ -62,8 +62,8 @@
     "ember-tooltips": "^3.0.0-beta.2",
     "ember-truth-helpers": "2.0.0",
     "ember-welcome-page": "^3.0.0",
-    "labs-ui": "0.0.0",
     "eslint-plugin-ember": "^5.0.0",
+    "labs-ui": "0.0.1",
     "loader.js": "^4.2.3",
     "mapbox-gl": "^0.45.0"
   },
