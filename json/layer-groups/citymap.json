@@ -57,7 +57,7 @@
     },
     {
       "tooltipable":true,
-      "tooltipTemplate":"{{type}}",
+      "tooltipTemplate":"{{{type}}}",
       "style":{
         "id":"citymap-streets-tooltip-line",
         "type":"line",
@@ -273,7 +273,7 @@
     },
       {
         "tooltipable":true,
-        "tooltipTemplate":"{{boro_nm}}",
+        "tooltipTemplate":"{{{boro_nm}}}",
         "style":{
           "id":"borough-boundaries",
           "type":"line",
@@ -413,8 +413,6 @@
     }
   },
   {
-  "tooltipable":true,
-  "tooltipTemplate":"{{street}}",
   "style":{
     "id":"railway-cross-lines",
     "type":"line",

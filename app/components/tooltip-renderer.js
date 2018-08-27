@@ -8,9 +8,6 @@ export default class TooltipRenderer extends Component {
   get renderedText() {
     const properties = this.get('feature.properties');
     const template = this.get('template');
-
-    console.log(template, properties)
-
     return mustache.render(template, properties);
   }
 
