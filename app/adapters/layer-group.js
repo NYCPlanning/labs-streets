@@ -7,4 +7,16 @@ const { JSONAPIAdapter } = DS;
 export default class LayerGroupAdapter extends JSONAPIAdapter {
   host = host;
   namespace = namespace;
+
+  query = async (store, type, query = {}) => {
+    const URL = this.buildURL(type.modelName);
+
+    return fetch(`${URL}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+      body: JSON.stringify(query),
+    }).then(blob => blob.json());
+  }
 }
