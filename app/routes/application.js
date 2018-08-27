@@ -13,7 +13,7 @@ export default class ApplicationRoute extends Route {
   model = async () => {
     const layerGroups = await this.store.query('layer-group', {
       'layer-groups': [
-        { id: 'citymap', visible: true },
+        { id: 'citymap', visible: true }, //layers: [{}, {}, {}, {}, {}, {}, {}, { tooltipTemplate: '{{{street}}}' }] },
         { id: 'street-centerlines', visible: true },
         { id: 'pierhead-bulkhead-lines', visible: true },
         { id: 'amendments', visible: true },
