@@ -210,97 +210,93 @@
     {{#labs-ui/accordion-menu title='Street Map Layers'
         mapIsLoading=loadStateTask.isRunning as |menu|}}
       {{#lookup-layer-group for='citymap' as |layerGroup|}}
-        {{#menu.menu-item
-          title=layerGroup.model.title
-          tooltip=layerGroup.model.titleTooltip
-          active=layerGroup.model.visible}}
-          {{labs-map-legend model=layerGroup.model.legendConfig}}
-        {{/menu.menu-item}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          tooltip=layerGroup.model.legend.tooltip
+          active=layerGroup.model.visible
+        }}
+          {{labs-ui/legend-items items=layerGroup.model.legend.items}}
+        {{/labs-ui/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='street-centerlines' as |layerGroup|}}
-        {{#menu.menu-item
-          title=layerGroup.model.title
-          tooltip=layerGroup.model.titleTooltip
-          active=layerGroup.model.visible}}
-        {{/menu.menu-item}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          tooltip=layerGroup.model.legend.tooltip
+          active=layerGroup.model.visible
+        }}
+        {{/labs-ui/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='pierhead-bulkhead-lines' as |layerGroup|}}
-        {{#menu.menu-item
-          title=layerGroup.model.title
-          tooltip=layerGroup.model.titleTooltip
-          active=layerGroup.model.visible}}
-          {{labs-map-legend model=layerGroup.model.legendConfig}}
-        {{/menu.menu-item}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          tooltip=layerGroup.model.legend.tooltip
+          active=layerGroup.model.visible
+        }}
+          {{labs-ui/legend-items items=layerGroup.model.legend.items}}
+        {{/labs-ui/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='amendments' as |layerGroup|}}
-        {{#menu.menu-item
-          title=layerGroup.model.title
-          legendColor=layerGroup.model.legendColor
-          legendIcon=layerGroup.model.legendIcon
-          tooltip=layerGroup.model.titleTooltip
-          active=layerGroup.model.visible}}
-          {{slider-filter layer=model.amendmentsFill}}
-        {{/menu.menu-item}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          tooltip=layerGroup.model.legend.tooltip
+          icon=layerGroup.model.legend.icon
+          active=layerGroup.model.visible
+        }}
+          {{slider-filter layer=layerGroup.model.amendmentsFill}}
+        {{/labs-ui/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='amendments-pending' as |layerGroup|}}
-        {{menu.menu-item
-          title=layerGroup.model.title
-          legendColor=layerGroup.model.legendColor
-          legendIcon=layerGroup.model.legendIcon
-          tooltip=layerGroup.model.titleTooltip
-          active=layerGroup.model.visible}}
+        {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            tooltip=layerGroup.model.legend.tooltip
+            icon=layerGroup.model.legend.icon
+            active=layerGroup.model.visible
+        }}
+        {{/labs-ui/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='arterials' as |layerGroup|}}
-        {{#menu.menu-item
-          title=layerGroup.model.title
-          tooltip=layerGroup.model.titleTooltip
-          active=layerGroup.model.visible}}
-          {{labs-map-legend model=layerGroup.model.legendConfig}}
-        {{/menu.menu-item}}
+        {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            tooltip=layerGroup.model.legend.tooltip
+            active=layerGroup.model.visible
+        }}
+          {{labs-ui/legend-items items=layerGroup.model.legend.items}}
+        {{/labs-ui/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='name-changes' as |layerGroup|}}
-        {{#menu.menu-item
-          title=layerGroup.model.title
-          tooltip=layerGroup.model.titleTooltip
-          active=layerGroup.model.visible}}
-          <ul class="legend no-bullet">
-            <li class="legend-item">
-              {{labs-ui/legend-icon legendColor='rgba(228, 72, 192, 1)' legendIcon='point'}} Intersections & Corners
-            </li>
-            <li class="legend-item">
-              {{labs-ui/legend-icon legendColor='rgba(228, 72, 192, 0.5)' legendIcon='line'}} Streets
-            </li>
-            <li class="legend-item">
-              {{labs-ui/legend-icon legendColor='rgba(228, 72, 192, 0.5)' legendIcon='polygon'}} Parks, Plazas, & Public Space
-            </li>
-          </ul>
-        {{/menu.menu-item}}
+        {{#labs-ui/layer-group-toggle
+            label=layerGroup.model.legend.label
+            tooltip=layerGroup.model.legend.tooltip
+            active=layerGroup.model.visible
+        }}
+          {{labs-ui/legend-items items=layerGroup.model.legend.items}}
+        {{/labs-ui/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='paper-streets' as |layerGroup|}}
-        {{#menu.menu-item
-          title=layerGroup.model.title
-          tooltip=layerGroup.model.titleTooltip
-          legendColor=layerGroup.model.legendColor
-          legendIcon=layerGroup.model.legendIcon
-          active=layerGroup.model.visible}}
-        {{/menu.menu-item}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          tooltip=layerGroup.model.legend.tooltip
+          icon=layerGroup.model.legend.icon
+          active=layerGroup.model.visible
+        }}
+        {{/labs-ui/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='stair-streets' as |layerGroup|}}
-        {{#menu.menu-item
-          title=layerGroup.model.title
-          tooltip=layerGroup.model.titleTooltip
-          legendColor=layerGroup.model.legendColor
-          legendIcon=layerGroup.model.legendIcon
-          active=layerGroup.model.visible}}
-        {{/menu.menu-item}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          tooltip=layerGroup.model.legend.tooltip
+          icon=layerGroup.model.legend.icon
+          active=layerGroup.model.visible
+        }}
+        {{/labs-ui/layer-group-toggle}}
       {{/lookup-layer-group}}
     {{/labs-ui/accordion-menu}}
 
@@ -309,79 +305,72 @@
         open=true
         mapIsLoading=loadStateTask.isRunning as |menu|}}
       {{#lookup-layer-group for='zoning-districts' as |layerGroup|}}
-        {{#menu.menu-item
-          title=layerGroup.model.title
-          tooltip=layerGroup.model.titleTooltip
-          active=layerGroup.model.visible}}
-          <ul class="legend no-bullet">
-            <li class="legend-item">{{labs-ui/legend-icon legendColor='rgba(238,58,54,0.8)' legendIcon='polygon'}} Commercial Districts</li>
-            <li class="legend-item">{{labs-ui/legend-icon legendColor='rgba(255,135,243,0.8)' legendIcon='polygon'}} Manufacturing Districts</li>
-            <li class="legend-item">{{labs-ui/legend-icon legendColor='rgba(255,234,0,0.8)' legendIcon='polygon'}} Residential Districts</li>
-            <li class="legend-item">{{labs-ui/legend-icon legendColor='rgba(120,210,113,0.8)' legendIcon='polygon'}} Parks</li>
-            <li class="legend-item">{{labs-ui/legend-icon legendColor='rgba(128,128,128,0.8)' legendIcon='polygon'}} Battery Park City</li>
-          </ul>
-        {{/menu.menu-item}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          tooltip=layerGroup.model.legend.tooltip
+          active=layerGroup.model.visible
+        }}
+          {{!-- TODO add legend items to the zoning-districts layerGroup --}}
+          {{!-- {{labs-ui/legend-items items=layerGroup.model.legend.items}} --}}
+        {{/labs-ui/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='commercial-overlays' as |layerGroup|}}
-        {{#menu.menu-item
-          title=layerGroup.model.title
-          legendColor=layerGroup.model.legendColor
-          legendIcon=layerGroup.model.legendIcon
-          tooltip=layerGroup.model.titleTooltip
-          active=layerGroup.model.visible}}
-        {{/menu.menu-item}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          tooltip=layerGroup.model.legend.tooltip
+          icon=layerGroup.model.legend.icon
+          active=layerGroup.model.visible
+        }}
+        {{/labs-ui/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='special-purpose-districts' as |layerGroup|}}
-        {{#menu.menu-item
-          title=layerGroup.model.title
-          legendColor=layerGroup.model.legendColor
-          legendIcon=layerGroup.model.legendIcon
-          tooltip=layerGroup.model.titleTooltip
-          active=layerGroup.model.visible}}
-        {{/menu.menu-item}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          tooltip=layerGroup.model.legend.tooltip
+          icon=layerGroup.model.legend.icon
+          active=layerGroup.model.visible
+        }}
+        {{/labs-ui/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='tax-lots' as |layerGroup|}}
-        {{#menu.menu-item
-          title=layerGroup.model.title
-          tooltip=layerGroup.model.titleTooltip
-          legendColor=layerGroup.model.legendColor
-          legendIcon=layerGroup.model.legendIcon
-          active=layerGroup.model.visible}}
-        {{/menu.menu-item}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          tooltip=layerGroup.model.legend.tooltip
+          icon=layerGroup.model.legend.icon
+          active=layerGroup.model.visible
+        }}
+        {{/labs-ui/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='floodplain-pfirm2015' as |layerGroup|}}
-        {{#menu.menu-item
-          title=layerGroup.model.title
-          tooltip=layerGroup.model.titleTooltip
-          active=layerGroup.model.visible}}
-          <ul class="legend no-bullet">
-            <li class="legend-item">{{labs-ui/legend-icon legendColor='rgba(0,132,168,0.7)' legendIcon='polygon'}} V Zone</li>
-            <li class="legend-item">{{labs-ui/legend-icon legendColor='rgba(0,169,230,0.7)' legendIcon='polygon'}} A Zone</li>
-          </ul>
-        {{/menu.menu-item}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          tooltip=layerGroup.model.legend.tooltip
+          active=layerGroup.model.visible
+        }}
+          {{labs-ui/legend-items items=layerGroup.model.legend.items}}
+        {{/labs-ui/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='floodplain-efirm2007' as |layerGroup|}}
-        {{#menu.menu-item
-          title=layerGroup.model.title
-          tooltip=layerGroup.model.titleTooltip
-          active=layerGroup.model.visible}}
-          <ul class="legend no-bullet">
-            <li class="legend-item">{{labs-ui/legend-icon legendColor='rgba(0,132,168,0.7)' legendIcon='polygon'}} V Zone</li>
-            <li class="legend-item">{{labs-ui/legend-icon legendColor='rgba(0,169,230,0.7)' legendIcon='polygon'}} A Zone</li>
-          </ul>
-        {{/menu.menu-item}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          tooltip=layerGroup.model.legend.tooltip
+          active=layerGroup.model.visible
+        }}
+          {{labs-ui/legend-items items=layerGroup.model.legend.items}}
+        {{/labs-ui/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='aerials' as |layerGroup|}}
-        {{#menu.menu-item
-          title=layerGroup.model.title
-          tooltip=layerGroup.model.titleTooltip
-          active=layerGroup.model.visible}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          tooltip=layerGroup.model.legend.tooltip
+          active=layerGroup.model.visible
+        }}
           <ul class="layer-menu-item--group-checkboxes no-bullet list-float-3">
             {{#each layerGroup.model.layers as |layer|}}
               <li onclick={{action (mut selected-aerial) layer.id}} role='button'>
@@ -394,13 +383,9 @@
               </li>
             {{/each}}
           </ul>
-        {{/menu.menu-item}}
+        {{/labs-ui/layer-group-toggle}}
       {{/lookup-layer-group}}
     {{/labs-ui/accordion-menu}}
-
-    <a {{action resetQueryParams}} class="button gray small reset-map-button" disabled={{isDefault}}>
-      {{fa-icon "undo"}} Reset Map Layers
-    </a>
   </div>
 
   {{outlet}}

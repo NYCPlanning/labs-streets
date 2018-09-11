@@ -79,7 +79,7 @@ body {
   position: relative;
   z-index: 1;
   height: 50vh;
-  background-color: $medium-gray;
+  background-color: $light-gray;
 
   @include breakpoint(large) {
     height: 100%;
@@ -87,7 +87,7 @@ body {
 }
 
 .layer-menu {
-  background-color: $light-gray;
+  background-color: $off-white;
   z-index: 2;
   // min-height: calc(50vh - 8rem);
 
