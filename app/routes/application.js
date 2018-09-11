@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import { hash } from 'rsvp';
-import { action } from '@ember-decorators/object';
+import { action } from '@ember-decorators/object'; // eslint-disable-line
 import { next } from '@ember/runloop';
 
 export default class ApplicationRoute extends Route {
