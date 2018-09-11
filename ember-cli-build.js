@@ -24,6 +24,9 @@ module.exports = function(defaults) {
         'ember-metrics/metrics-adapters/google-analytics.js',
       ],
     },
+    'ember-cli-foundation-6-sass': {
+      foundationJs: 'all',
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated
