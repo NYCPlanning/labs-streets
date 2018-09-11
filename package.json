@@ -19,6 +19,10 @@
   "devDependencies": {
     "@ember-decorators/argument": "0.8.18",
     "@ember-decorators/babel-transforms": "^2.0.0",
+    "@fortawesome/ember-fontawesome": "^0.1.5",
+    "@fortawesome/free-brands-svg-icons": "^5.2.0",
+    "@fortawesome/free-regular-svg-icons": "^5.1.0",
+    "@fortawesome/free-solid-svg-icons": "^5.3.1",
     "broccoli-asset-rev": "^2.4.5",
     "broccoli-clean-css": "~1.1.0",
     "ember-ajax": "^3.0.0",
@@ -47,7 +51,6 @@
     "ember-decorators": "2.0.0",
     "ember-export-application-global": "^2.0.0",
     "ember-fetch": "3.4.5",
-    "ember-font-awesome": "^4.0.0-rc.2",
     "ember-load-initializers": "^1.0.0",
     "ember-macro-helpers": "1.0.0",
     "ember-mapbox-gl": "0.9.1",

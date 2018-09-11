@@ -1,15 +1,15 @@
 @charset 'UTF-8';
 
+//
 // Labs UI variables
+// --------------------------------------------------
 @import 'labs-ui/variables';
 
 
 //
 // Foundation
 // --------------------------------------------------
-@import "settings";
 @import 'foundation-sites/foundation';
-@include foundation-everything;
 
 @include foundation-global-styles;
 @include foundation-xy-grid-classes;
@@ -52,34 +52,27 @@
 @include foundation-visibility-classes;
 @include foundation-float-classes;
 
-//
-// Base
-// --------------------------------------------------
-@import 'base/_typography';
 
 //
-// Layouts
-// --------------------------------------------------
-@import 'layouts/_l-default';
-
 // Labs UI modules (import all or some)
+// --------------------------------------------------
 @import 'labs-ui/all-modules';
 
-// Custom app modules and styles
-@import 'layouts/_l-default';
-
 
 //
-// Modules
+// Custom app modules and styles
 // --------------------------------------------------
-@import 'modules/_m-accordion-menu';
-@import 'modules/_m-bbl-lookup';
-@import 'modules/_m-site-header';
-@import 'modules/_m-labs-beta-notice';
+
+// @import 'base/_typography';
+@import 'layouts/_l-default';
+// @import 'modules/_m-accordion-menu';
+// @import 'modules/_m-bbl-lookup';
+// @import 'modules/_m-site-header';
+// @import 'modules/_m-labs-beta-notice';
 @import 'modules/_m-layer-menu';
 @import 'modules/_m-maps';
 @import 'modules/_m-search';
 @import 'modules/_m-custom-controls';
-@import 'modules/_m-noui';
-
-@import "ember-power-select";
+// @import 'modules/_m-noui';
+//
+// @import "ember-power-select";
