@@ -12,10 +12,27 @@ export default class ApplicationRoute extends Route {
   }
 
   model = async function() {
+    const ids = ['citymap',
+      'street-centerlines',
+      'pierhead-bulkhead-lines',
+      'amendments',
+      'amendments-pending',
+      'arterials',
+      'name-changes',
+      'paper-streets',
+      'stair-streets',
+      'zoning-districts',
+      'commercial-overlays',
+      'special-purpose-districts',
+      'tax-lots',
+      'floodplain-pfirm2015',
+      'floodplain-efirm2007',
+      'aerials'];
+
     const layers =
       await this.store.peekAll('layer');
     const layerGroups =
-      await this.store.query('layer-group', {});
+      await this.store.query('layer-group', { ids });
     const amendmentsFill =
       await this.store.peekRecord('layer', 'citymap-amendments-fill');
 
