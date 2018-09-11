@@ -37,7 +37,7 @@
         </label>
       </div>
     </div>
-    {{#if errorMessage}}<p class="lu-red text-center text-small"><{{errorMessage}}</p>{{/if}}
+    {{#if errorMessage}}<p class="lu-red text-center text-small">{{errorMessage}}</p>{{/if}}
     {{#if (and validBlock (not validLot))}}
       <input type="submit" value="Go to Block" class="button small expanded no-margin" onclick={{action 'checkBlock'}}>
     {{else if validLot}}
