@@ -12,27 +12,30 @@ export default class ApplicationRoute extends Route {
   }
 
   model = async function() {
-    const ids = ['citymap',
-      'street-centerlines',
-      'pierhead-bulkhead-lines',
-      'amendments',
-      'amendments-pending',
-      'arterials',
-      'name-changes',
-      'paper-streets',
-      'stair-streets',
-      'zoning-districts',
-      'commercial-overlays',
-      'special-purpose-districts',
-      'tax-lots',
-      'floodplain-pfirm2015',
-      'floodplain-efirm2007',
-      'aerials'];
-
     const layers =
       await this.store.peekAll('layer');
     const layerGroups =
-      await this.store.query('layer-group', { ids });
+      await this.store.query('layer-group', {
+        'layer-groups': [
+          { id: 'citymap', visible: true },
+          { id: 'street-centerlines', visible: true },
+          { id: 'pierhead-bulkhead-lines', visible: true },
+          { id: 'amendments', visible: true },
+          { id: 'amendments-pending', visible: false },
+          { id: 'arterials', visible: false },
+          { id: 'name-changes', visible: false },
+          { id: 'paper-streets', visible: false },
+          { id: 'stair-streets', visible: false },
+          { id: 'zoning-districts', visible: false },
+          { id: 'commercial-overlays', visible: false },
+          { id: 'special-purpose-districts', visible: false },
+          { id: 'tax-lots', visible: false },
+          { id: 'floodplain-pfirm2015', visible: false },
+          { id: 'floodplain-efirm2007', visible: false },
+          { id: 'aerials', visible: false },
+        ],
+      });
+
     const amendmentsFill =
       await this.store.peekRecord('layer', 'citymap-amendments-fill');
 

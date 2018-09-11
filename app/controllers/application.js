@@ -118,6 +118,12 @@ export const LayerVisibilityParams = new QueryParams({
   pitch: {
     defaultValue: 0,
   },
+
+  layerGroups: {
+    defaultValue: [],
+    refresh: true,
+    as: 'layer-groups',
+  },
 });
 
 const ParachuteController = Controller.extend(LayerVisibilityParams.Mixin);
@@ -142,6 +148,29 @@ export default class ApplicationController extends ParachuteController {
   @computed('lat', 'lng')
   get center() {
     return [this.get('lat'), this.get('lng')];
+  }
+
+  @computed('model.layerGroups.@each.visible')
+  get layerGroups() {
+    const { model } = this;
+
+    if (model) {
+      return model.layerGroups.filterBy('visible').mapBy('id').sort();
+    }
+
+    return [];
+  }
+
+  set layerGroups(value) {
+    if (Array.isArray(value) && this.model && value.length) {
+      this.model.layerGroups.forEach((layerGroup) => {
+        if (value.includes(layerGroup.id)) {
+          layerGroup.set('visible', true);
+        } else {
+          layerGroup.set('visible', false);
+        }
+      });
+    }
   }
 
   shareURL = window.location.href;
@@ -422,40 +451,8 @@ export default class ApplicationController extends ParachuteController {
     this.set('highlightedAmendmentSource', null);
   }
 
-  // runs on controller setup and calls
-  // function to overwrite layer-groups'
-  // visibility state with QP state
-  setup({ queryParams }) {
-    this.fetchData(queryParams, true);
-  }
-
-  queryParamsDidChange({ shouldRefresh, queryParams }) {
-    if (shouldRefresh) {
-      this.fetchData(queryParams);
-    }
-
+  queryParamsDidChange() {
     this.set('shareURL', window.location.href);
-  }
-
-  // TODO: rewrite
-  fetchData(queryParams, setDefaults = false) {
-    this.get('model.layerGroups').forEach((layerGroup) => {
-      const groupId = layerGroup.get('id');
-      if (queryParams[groupId] !== undefined) {
-        if (setDefaults) {
-          this.setDefaultQueryParamValue(groupId, layerGroup.get('visible'));
-          if (layerGroup.get('layerVisibilityType') === 'singleton') {
-            this.setDefaultQueryParamValue('selected-aerial', layerGroup.get('selected'));
-          }
-        }
-
-        layerGroup.set('visible', queryParams[groupId]);
-
-        if (layerGroup.get('layerVisibilityType') === 'singleton' && queryParams['selected-aerial']) {
-          layerGroup.set('selected', queryParams['selected-aerial']);
-        }
-      }
-    });
   }
 
   @action
