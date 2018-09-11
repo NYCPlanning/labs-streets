@@ -23,10 +23,9 @@ $lu-gray: #5F5F60;
 //
 // Foundation
 // --------------------------------------------------
-@import 'settings';
+@import "settings";
 @import 'foundation-sites/foundation';
-@include foundation-everything;
-@import 'labs-ui/all-modules';
+// @include foundation-everything;
 
 @include foundation-global-styles;
 @include foundation-xy-grid-classes;

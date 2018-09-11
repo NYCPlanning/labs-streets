@@ -10,9 +10,6 @@ module.exports = function(defaults) {
     babel: {
       plugins: ['transform-object-rest-spread'],
     },
-    'ember-cli-foundation-6-sass': { 
-      'foundationJs': 'all' 
-    },
     sourcemaps: {
       enabled: true,
       extensions: ['js'],
