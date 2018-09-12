@@ -59,13 +59,14 @@ export default class ApplicationRoute extends Route {
         'layer-groups': layerGroupParams = '[]',
       },
     } = transition;
+
     const params = JSON.parse(layerGroupParams).sort();
 
-    if (!defaultVisibleLayerGroups.every(layerGroup => params.includes(layerGroup))
+    if (!defaultVisibleLayerGroups.every(layerGroup => params.any(param => (param.id || param) === layerGroup))
       && params.length) {
       // set initial state from query params when not default
       layerGroups.forEach((layerGroup) => {
-        layerGroup.set('visible', params.includes(layerGroup.id));
+        layerGroup.set('visible', params.any(param => (param.id || param) === layerGroup.id));
       });
     }
   }

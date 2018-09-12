@@ -373,7 +373,7 @@
         }}
           <ul class="layer-menu-item--group-checkboxes no-bullet list-float-3">
             {{#each layerGroup.model.layers as |layer|}}
-              <li onclick={{action (mut selected-aerial) layer.id}} role='button'>
+              <li onclick={{action (mut layerGroup.model.selected) layer.id}} role='button'>
                 <label {{!template-lint-disable "nested-interactive"}}>
                   <span class="layer-group-radio-{{layer.id}} {{if layer.visibility '' 'medium-gray'}}">
                     {{fa-icon (if layer.visibility "dot-circle-o" "circle-o")}}

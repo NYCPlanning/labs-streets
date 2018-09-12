@@ -31,70 +31,6 @@ const getBoundsGeoJSON = (map) => {
 };
 
 export const LayerVisibilityParams = new QueryParams({
-  'pierhead-bulkhead-lines': {
-    defaultValue: true,
-    refresh: true,
-  },
-  citymap: {
-    defaultValue: true,
-    refresh: true,
-  },
-  arterials: {
-    defaultValue: false,
-    refresh: true,
-  },
-  amendments: {
-    defaultValue: true,
-    refresh: true,
-  },
-  'amendments-pending': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'street-centerlines': {
-    defaultValue: true,
-    refresh: true,
-  },
-  'name-changes': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'zoning-districts': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'commercial-overlays': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'special-purpose-districts': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'tax-lots': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'floodplain-pfirm2015': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'floodplain-efirm2007': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'stair-streets': {
-    defaultValue: false,
-    refresh: true,
-  },
-  'paper-streets': {
-    defaultValue: false,
-    refresh: true,
-  },
-  aerials: {
-    defaultValue: false,
-    refresh: true,
-  },
   'selected-aerial': {
     defaultValue: 'aerials-2016',
     refresh: true,
@@ -150,20 +86,31 @@ export default class ApplicationController extends ParachuteController {
     return [this.get('lat'), this.get('lng')];
   }
 
-  @computed('model.layerGroups.@each.visible')
+  @computed('model.layerGroups.@each.visible', 'model.layerGroups.@each.selected')
   get layerGroups() {
     const { model } = this;
     if (model) {
-      return model.layerGroups.filterBy('visible').mapBy('id').sort();
+      return model.layerGroups.filterBy('visible').map((layerGroup) => {
+        if (layerGroup.get('layerVisibilityType') === 'singleton') {
+          return { id: layerGroup.get('id'), selected: layerGroup.get('selected.id') };
+        }
+
+        return layerGroup.get('id');
+      }).sort();
     }
 
     return [];
   }
-  set layerGroups(value) {
-    if (Array.isArray(value) && this.get('model') && value.length) {
+  set layerGroups(params) {
+    if (Array.isArray(params) && this.get('model') && params.length) {
       this.model.layerGroups.forEach((layerGroup) => {
-        if (value.includes(layerGroup.id)) {
+        const foundParam = params.find(param => (param.id || param) === layerGroup.id);
+        if (foundParam) {
           layerGroup.set('visible', true);
+
+          if (foundParam.selected) {
+            layerGroup.set('selected', foundParam.selected);
+          }
         } else {
           layerGroup.set('visible', false);
         }
