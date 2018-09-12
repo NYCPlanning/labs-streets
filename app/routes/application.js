@@ -62,11 +62,20 @@ export default class ApplicationRoute extends Route {
 
     const params = JSON.parse(layerGroupParams).sort();
 
-    if (!defaultVisibleLayerGroups.every(layerGroup => params.any(param => (param.id || param) === layerGroup))
-      && params.length) {
+    // if not every default visible layer group is included in the params
+    const isDefaultState = defaultVisibleLayerGroups
+      .every(layerGroup => params.any(param => (param.id || param) === layerGroup));
+
+    if (!isDefaultState && params.length) {
       // set initial state from query params when not default
       layerGroups.forEach((layerGroup) => {
         layerGroup.set('visible', params.any(param => (param.id || param) === layerGroup.id));
+
+        if (layerGroup.get('layerVisibilityType') === 'singleton') {
+          const { selected } = params.find(param => (param.id || param) === layerGroup.id) || {};
+
+          if (selected) layerGroup.set('selected', selected);
+        }
       });
     }
   }
