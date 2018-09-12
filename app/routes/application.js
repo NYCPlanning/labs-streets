@@ -62,7 +62,7 @@ export default class ApplicationRoute extends Route {
 
     const params = JSON.parse(layerGroupParams).sort();
 
-    // if not every default visible layer group is included in the params
+    // check if the provided params are the default
     const isDefaultState = defaultVisibleLayerGroups
       .every(layerGroup => params.any(param => (param.id || param) === layerGroup));
 
