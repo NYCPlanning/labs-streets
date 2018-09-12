@@ -153,16 +153,14 @@ export default class ApplicationController extends ParachuteController {
   @computed('model.layerGroups.@each.visible')
   get layerGroups() {
     const { model } = this;
-
     if (model) {
       return model.layerGroups.filterBy('visible').mapBy('id').sort();
     }
 
     return [];
   }
-
   set layerGroups(value) {
-    if (Array.isArray(value) && this.model && value.length) {
+    if (Array.isArray(value) && this.get('model') && value.length) {
       this.model.layerGroups.forEach((layerGroup) => {
         if (value.includes(layerGroup.id)) {
           layerGroup.set('visible', true);

@@ -39,14 +39,42 @@ export default class ApplicationRoute extends Route {
     const amendmentsFill =
       await this.store.peekRecord('layer', 'citymap-amendments-fill');
 
+    const defaultVisibleLayerGroups = layerGroups.filterBy('visible').mapBy('id').sort().copy();
+
     const { mapboxStyle: initialStyle } = layerGroups.get('meta');
 
     return hash({
       layers,
       layerGroups,
       amendmentsFill,
+      defaultVisibleLayerGroups,
       initialStyle,
     });
+  }
+
+  afterModel(model, transition) {
+    const { layerGroups, defaultVisibleLayerGroups } = model;
+    const {
+      queryParams: {
+        'layer-groups': layerGroupParams = '[]',
+      },
+    } = transition;
+    const params = JSON.parse(layerGroupParams).sort();
+
+    if (!defaultVisibleLayerGroups.every(layerGroup => params.includes(layerGroup))
+      && params.length) {
+      // set initial state from query params when not default
+      layerGroups.forEach((layerGroup) => {
+        layerGroup.set('visible', params.includes(layerGroup.id));
+      });
+    }
+  }
+
+  setupController(controller, model) {
+    const { defaultVisibleLayerGroups } = model;
+
+    controller.setDefaultQueryParamValue('layerGroups', defaultVisibleLayerGroups);
+    super.setupController(controller, model);
   }
 
   @action
