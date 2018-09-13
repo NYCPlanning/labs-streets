@@ -215,6 +215,10 @@ body {
 //
 // Typography
 // --------------------------------------------------
+label {
+  cursor: pointer;
+}
+
 hr.small-margin {
   margin-top: rem-calc(10);
   margin-bottom: rem-calc(10);
@@ -276,5 +280,15 @@ hr.small-margin {
 
   .float-left + .float-right {
     margin-left: rem-calc(10);
+  }
+}
+
+// Multi-column lists
+.list-float-3 {
+  @include clearfix;
+
+  li {
+    float: left;
+    width: 33.33%;
   }
 }
