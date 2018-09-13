@@ -6283,9 +6283,9 @@ labs-ember-search@NYCPlanning/labs-ember-search:
     ember-promise-helpers "1.0.6"
     ember-truth-helpers "2.0.0"
 
-labs-ui@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/labs-ui/-/labs-ui-0.0.5.tgz#2398d8e855e17a7f0a4570743158365e2f247a7a"
+labs-ui@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/labs-ui/-/labs-ui-0.0.6.tgz#5bd4dd0808321c5eeb5000ebf3a6fd2879a2d3e3"
   dependencies:
     "@ember-decorators/argument" "0.8.15"
     "@ember-decorators/babel-transforms" "^2.0.0"
