@@ -20,7 +20,6 @@
     "@ember-decorators/argument": "0.8.18",
     "@ember-decorators/babel-transforms": "^2.0.0",
     "@fortawesome/ember-fontawesome": "^0.1.5",
-    "@fortawesome/free-brands-svg-icons": "^5.2.0",
     "@fortawesome/free-regular-svg-icons": "^5.1.0",
     "@fortawesome/free-solid-svg-icons": "^5.3.1",
     "broccoli-asset-rev": "^2.4.5",
@@ -67,7 +66,7 @@
     "ember-welcome-page": "^3.0.0",
     "eslint-plugin-ember": "^5.0.0",
     "labs-ember-search": "NYCPlanning/labs-ember-search",
-    "labs-ui": "^0.0.3",
+    "labs-ui": "^0.0.5",
     "loader.js": "^4.2.3",
     "mapbox-gl": "^0.45.0"
   },

@@ -36,6 +36,13 @@ module.exports = function(environment) {
       route: 'search',
     },
 
+    fontawesome: {
+      icons: {
+        'free-regular-svg-icons': 'all',
+        'free-solid-svg-icons': 'all',
+      },
+    },
+
     metricsAdapters: [
       {
         name: 'GoogleAnalytics',

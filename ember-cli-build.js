@@ -27,11 +27,6 @@ module.exports = function(defaults) {
     'ember-cli-foundation-6-sass': {
       foundationJs: 'all',
     },
-    fontawesome: {
-      icons: {
-        'free-solid-svg-icons': 'all',
-      },
-    },
   });
 
   // Use `app.import` to add additional libraries to the generated
