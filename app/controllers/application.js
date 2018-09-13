@@ -8,6 +8,7 @@ import fetch from 'fetch';
 import turfBbox from 'npm:@turf/bbox';
 import precisionRound from '../utils/precision-round';
 import trackEvent from '../utils/track-event';
+import dynamicQueryParam from '../decorators/dynamic-query-param';
 
 // get a geojson rectangle for the current map's view
 const getBoundsGeoJSON = (map) => {
@@ -86,37 +87,8 @@ export default class ApplicationController extends ParachuteController {
     return [this.get('lat'), this.get('lng')];
   }
 
-  @computed('model.layerGroups.@each.visible', 'model.layerGroups.@each.selected')
-  get layerGroups() {
-    const { model } = this;
-    if (model) {
-      return model.layerGroups.filterBy('visible').map((layerGroup) => {
-        if (layerGroup.get('layerVisibilityType') === 'singleton') {
-          return { id: layerGroup.get('id'), selected: layerGroup.get('selected.id') };
-        }
-
-        return layerGroup.get('id');
-      }).sort();
-    }
-
-    return [];
-  }
-  set layerGroups(params) {
-    if (Array.isArray(params) && this.get('model') && params.length) {
-      this.model.layerGroups.forEach((layerGroup) => {
-        const foundParam = params.find(param => (param.id || param) === layerGroup.id);
-        if (foundParam) {
-          layerGroup.set('visible', true);
-
-          if (foundParam.selected) {
-            layerGroup.set('selected', foundParam.selected);
-          }
-        } else {
-          layerGroup.set('visible', false);
-        }
-      });
-    }
-  }
+  @dynamicQueryParam('model.layerGroups.@each.visible', 'model.layerGroups.@each.selected')
+  layerGroups;
 
   shareURL = window.location.href;
 
