@@ -207,6 +207,74 @@ body {
 }
 
 .reset-map-button {
-  margin: 0.7rem 1rem;
-  width: 100%;
+  margin: rem-calc(6);
+  width: calc(100% - #{rem-calc(6)*2});
+}
+
+
+//
+// Typography
+// --------------------------------------------------
+hr.small-margin {
+  margin-top: rem-calc(10);
+  margin-bottom: rem-calc(10);
+}
+
+.content-header {
+  @extend h3;
+  margin-bottom: rem-calc(10);
+
+  .landmark {
+    display: block;
+    margin-bottom: 0;
+  }
+
+  .landmark + .address {
+    display: block;
+    @extend h4;
+    margin-bottom: 0;
+  }
+}
+
+.button--tax-lot {
+
+  .bbl {
+    display: block;
+    font-size: rem-calc(10);
+  }
+
+  .address {
+    display: block;
+    margin: rem-calc(4) 0;
+  }
+
+  .prompt {
+    display: block;
+    font-size: rem-calc(11);
+  }
+}
+
+.popup-button {
+  display: block;
+  line-height: 1.2;
+  margin: 0 rem-calc(-3) rem-calc(3);
+  padding: rem-calc(3);
+
+  &:hover {
+    background-color: rgba(107,113,123,.06);
+  }
+
+  .link-name {
+    max-width: 15em;
+  }
+
+  .date {
+    color: $dark-gray;
+    font-size: rem-calc(10);
+    white-space: nowrap;
+  }
+
+  .float-left + .float-right {
+    margin-left: rem-calc(10);
+  }
 }

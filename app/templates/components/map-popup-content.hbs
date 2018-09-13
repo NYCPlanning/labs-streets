@@ -7,7 +7,7 @@
           <li class="dark-gray" {{! template-lint-disable "nested-interactive" }}
             onmousemove={{action 'handleHoverListItem' alteration}} role="button">
             <a class="popup-button clearfix" href="{{alteration.pdflink}}" target="_blank" rel="noopener">
-              <strong class="link-name float-left">{{fa-icon 'external-link'}} <span class="filename">{{alteration.pdf}}</span></strong>
+              <strong class="link-name float-left">{{fa-icon 'external-link-alt'}} <span class="filename">{{alteration.pdf}}</span></strong>
               {{#if (eq status '14')}}
                 <span class="date float-right">Effective {{alteration.effective}}</span>
               {{/if}}
