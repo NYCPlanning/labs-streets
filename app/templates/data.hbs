@@ -22,20 +22,19 @@
   <h2 class="header-xlarge">Data Sources</h2>
 
   <ul>
-    {{#each model.layerGroups as |layerGroup|}}
+    {{#each model as |source|}}
       <li>
-        <h2 class="header-medium no-margin">{{layerGroup.title}}</h2>
         <p>
-          {{#if layerGroup.meta.description}}
-            <span style="display:block;" class="dark-gray"><strong>{{layerGroup.meta.description}}</strong></span>
+          {{#if source.meta.description}}
+            <span style="display:block;" class="dark-gray"><strong>{{source.meta.description}}</strong></span>
           {{/if}}
-          {{#if layerGroup.meta.url}}
-            {{#each layerGroup.meta.url as |url|}}
-              <span style="display:block;" class="no-margin"><a href="{{url}}" target="_blank" rel="noopener">{{fa-icon 'external-link'}} {{url}}</a></span>
+          {{#if source.meta.url}}
+            {{#each source.meta.url as |url|}}
+              <span style="display:block;" class="no-margin"><a href="{{url}}" target="_blank" rel="noopener">{{fa-icon 'external-link-alt'}} {{url}}</a></span>
             {{/each}}
           {{/if}}
-          {{#if layerGroup.meta.updated_at}}
-            <span style="display:block;" class="dark-gray text-small">Updated: {{layerGroup.meta.updated_at}}</span>
+          {{#if source.meta.updated_at}}
+            <span style="display:block;" class="dark-gray text-small">Updated: {{source.meta.updated_at}}</span>
           {{/if}}
         </p>
       </li>
