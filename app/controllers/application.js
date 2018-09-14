@@ -6,9 +6,11 @@ import carto from 'cartobox-promises-utility/utils/carto';
 import mapboxgl from 'mapbox-gl';
 import fetch from 'fetch';
 import turfBbox from 'npm:@turf/bbox';
+import { service } from '@ember-decorators/service';
+import { alias } from '@ember-decorators/object/computed';
 import precisionRound from '../utils/precision-round';
 import trackEvent from '../utils/track-event';
-import dynamicQueryParam from '../decorators/dynamic-query-param';
+
 
 // get a geojson rectangle for the current map's view
 const getBoundsGeoJSON = (map) => {
@@ -56,7 +58,7 @@ export const LayerVisibilityParams = new QueryParams({
     defaultValue: 0,
   },
 
-  layerGroups: {
+  'layerGroupService.visibleLayerGroups': {
     defaultValue: [],
     refresh: true,
     as: 'layer-groups',
@@ -66,6 +68,11 @@ export const LayerVisibilityParams = new QueryParams({
 const ParachuteController = Controller.extend(LayerVisibilityParams.Mixin);
 
 export default class ApplicationController extends ParachuteController {
+  @service('layerGroups') layerGroupService
+
+  @alias('layerGroupService.visibleLayerGroups')
+  layerGroups
+
   @computed()
   get initMapOptions() {
     const mapOptions = this.getProperties('center', 'zoom', 'pitch', 'bearing');
@@ -87,8 +94,10 @@ export default class ApplicationController extends ParachuteController {
     return [this.get('lat'), this.get('lng')];
   }
 
-  @dynamicQueryParam('model.layerGroups.@each.visible', 'model.layerGroups.@each.selected')
-  layerGroups;
+  // setup when the model comes back
+  // setup() {
+    
+  // }
 
   shareURL = window.location.href;
 

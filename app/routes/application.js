@@ -2,8 +2,11 @@ import Route from '@ember/routing/route';
 import { hash } from 'rsvp';
 import { action } from '@ember-decorators/object'; // eslint-disable-line
 import { next } from '@ember/runloop';
+import { service } from '@ember-decorators/service';
 
 export default class ApplicationRoute extends Route {
+  @service('layerGroups') layerGroupService
+
   beforeModel = (transition) => {
     // only transition to about if index is loaded and there is no hash
     if (transition.intent.url === '/' && window.location.href.split('#').length < 2) {
@@ -39,52 +42,18 @@ export default class ApplicationRoute extends Route {
     const amendmentsFill =
       await this.store.peekRecord('layer', 'citymap-amendments-fill');
 
-    const defaultVisibleLayerGroups = layerGroups.filterBy('visible').mapBy('id').sort().copy();
-
     const { mapboxStyle: initialStyle } = layerGroups.get('meta');
 
     return hash({
       layers,
       layerGroups,
       amendmentsFill,
-      defaultVisibleLayerGroups,
       initialStyle,
     });
   }
 
-  afterModel(model, transition) {
-    const { layerGroups, defaultVisibleLayerGroups } = model;
-    const {
-      queryParams: {
-        'layer-groups': layerGroupParams = '[]',
-      },
-    } = transition;
-
-    const params = JSON.parse(layerGroupParams).sort();
-
-    // check if the provided params are the default
-    const isDefaultState = params
-      .every(param => defaultVisibleLayerGroups.any(layerGroup => (param.id || param) === layerGroup));
-
-    if (!isDefaultState && params.length) {
-      // set initial state from query params when not default
-      layerGroups.forEach((layerGroup) => {
-        layerGroup.set('visible', params.any(param => (param.id || param) === layerGroup.id));
-
-        if (layerGroup.get('layerVisibilityType') === 'singleton') {
-          const { selected } = params.find(param => (param.id || param) === layerGroup.id) || {};
-
-          if (selected) layerGroup.set('selected', selected);
-        }
-      });
-    }
-  }
-
-  setupController(controller, model) {
-    const { defaultVisibleLayerGroups } = model;
-
-    controller.setDefaultQueryParamValue('layerGroups', defaultVisibleLayerGroups);
-    super.setupController(controller, model);
+  afterModel({ layerGroups }) {
+    this.get('layerGroupService').initializeObservers(layerGroups);
   }
 
   @action
