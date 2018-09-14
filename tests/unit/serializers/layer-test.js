@@ -15,7 +15,8 @@ module('Unit | Serializer | layer', function(hooks) {
 
   test('it serializes records', function(assert) {
     let store = this.owner.lookup('service:store');
-    let record = run(() => store.createRecord('layer', {}));
+    let layerGroup = run(() => store.createRecord('layer-group', {}));
+    let record = run(() => store.createRecord('layer', { layerGroup }));
 
     let serializedRecord = record.serialize();
 

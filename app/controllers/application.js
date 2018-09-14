@@ -6,8 +6,11 @@ import carto from 'cartobox-promises-utility/utils/carto';
 import mapboxgl from 'mapbox-gl';
 import fetch from 'fetch';
 import turfBbox from 'npm:@turf/bbox';
+import { service } from '@ember-decorators/service';
+import { alias } from '@ember-decorators/object/computed';
 import precisionRound from '../utils/precision-round';
 import trackEvent from '../utils/track-event';
+
 
 // get a geojson rectangle for the current map's view
 const getBoundsGeoJSON = (map) => {
@@ -55,7 +58,7 @@ export const LayerVisibilityParams = new QueryParams({
     defaultValue: 0,
   },
 
-  layerGroups: {
+  'layerGroupService.visibleLayerGroups': {
     defaultValue: [],
     refresh: true,
     as: 'layer-groups',
@@ -65,6 +68,11 @@ export const LayerVisibilityParams = new QueryParams({
 const ParachuteController = Controller.extend(LayerVisibilityParams.Mixin);
 
 export default class ApplicationController extends ParachuteController {
+  @service('layerGroups') layerGroupService
+
+  @alias('layerGroupService.visibleLayerGroups')
+  layerGroups
+
   @computed()
   get initMapOptions() {
     const mapOptions = this.getProperties('center', 'zoom', 'pitch', 'bearing');
@@ -84,38 +92,6 @@ export default class ApplicationController extends ParachuteController {
   @computed('lat', 'lng')
   get center() {
     return [this.get('lat'), this.get('lng')];
-  }
-
-  @computed('model.layerGroups.@each.visible', 'model.layerGroups.@each.selected')
-  get layerGroups() {
-    const { model } = this;
-    if (model) {
-      return model.layerGroups.filterBy('visible').map((layerGroup) => {
-        if (layerGroup.get('layerVisibilityType') === 'singleton') {
-          return { id: layerGroup.get('id'), selected: layerGroup.get('selected.id') };
-        }
-
-        return layerGroup.get('id');
-      }).sort();
-    }
-
-    return [];
-  }
-  set layerGroups(params) {
-    if (Array.isArray(params) && this.get('model') && params.length) {
-      this.model.layerGroups.forEach((layerGroup) => {
-        const foundParam = params.find(param => (param.id || param) === layerGroup.id);
-        if (foundParam) {
-          layerGroup.set('visible', true);
-
-          if (foundParam.selected) {
-            layerGroup.set('selected', foundParam.selected);
-          }
-        } else {
-          layerGroup.set('visible', false);
-        }
-      });
-    }
   }
 
   shareURL = window.location.href;
