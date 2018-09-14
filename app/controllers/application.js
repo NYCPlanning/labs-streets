@@ -94,11 +94,6 @@ export default class ApplicationController extends ParachuteController {
     return [this.get('lat'), this.get('lng')];
   }
 
-  // setup when the model comes back
-  // setup() {
-    
-  // }
-
   shareURL = window.location.href;
 
   popupLocation = {

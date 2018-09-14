@@ -231,7 +231,7 @@
   <div class="layer-menu cell large-order-1 {{if (not-eq currentRouteName 'index') 'show-for-medium'}}">
     {{!-- City Map Layers --}}
     {{#labs-ui/layer-groups-container title='Street Map Layers'
-        mapIsLoading=loadStateTask.isRunning as |menu|}}
+        mapIsLoading=loadStateTask.isRunning}}
       {{#lookup-layer-group for='citymap' as |layerGroup|}}
         {{#labs-ui/layer-group-toggle
           label=layerGroup.model.legend.label
@@ -326,7 +326,7 @@
     {{!-- Supporting Layers --}}
     {{#labs-ui/layer-groups-container title='Supporting Layers'
         open=true
-        mapIsLoading=loadStateTask.isRunning as |menu|}}
+        mapIsLoading=loadStateTask.isRunning}}
       {{#lookup-layer-group for='zoning-districts' as |layerGroup|}}
         {{#labs-ui/layer-group-toggle
           label=layerGroup.model.legend.label
@@ -413,7 +413,7 @@
       {{/lookup-layer-group}}
     {{/labs-ui/layer-groups-container}}
 
-    <a {{action resetQueryParams}} class="button gray small reset-map-button" disabled={{isDefault}}>
+    <a {{action resetQueryParams}} role='button' class="button gray small reset-map-button" disabled={{isDefault}}>
       {{fa-icon "undo"}} Reset Map Layers
     </a>
   </div>

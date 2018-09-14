@@ -8,7 +8,8 @@ module('Unit | Model | layer', function(hooks) {
   // Replace this with your real tests.
   test('it exists', function(assert) {
     let store = this.owner.lookup('service:store');
-    let model = run(() => store.createRecord('layer', {}));
+    let layerGroup = run(() => store.createRecord('layer-group', {}));
+    let model = run(() => store.createRecord('layer', { layerGroup }));
     assert.ok(model);
   });
 });
