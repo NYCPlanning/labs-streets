@@ -25,8 +25,8 @@ export default class LayerGroupService extends Service {
     controller.setDefaultQueryParamValue('layerGroupService.visibleLayerGroups', defaultVisibleLayerGroups);
 
     // check if the provided params are the default
-    const isDefaultState = params
-      .every(param => defaultVisibleLayerGroups.any(layerGroup => (param.id || param) === layerGroup));
+    const isDefaultState = defaultVisibleLayerGroups
+      .every(layerGroup => params.any(param => (param.id || param) === layerGroup));
 
     // check if QP isn't default and there are other params
     if (!isDefaultState && params.length) {
