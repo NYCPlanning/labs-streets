@@ -7,10 +7,6 @@ module('Acceptance | user toggles layers', function(hooks) {
 
   test('User toggles layers', async function(assert) {
     await visit('/');
-    await click('.layer-street-lines .layer-menu-item-title');
-    await click('.layer-street-names .layer-menu-item-title');
-    await click('.layer-local-law-names .layer-menu-item-title');
-    // await click('.layer-city-map-alterations .layer-menu-item-title');
 
     const { x: xLower } = find('.noUi-handle-lower').getBoundingClientRect();
     const { x: xUpper } = find('.noUi-handle-upper').getBoundingClientRect();
@@ -38,7 +34,7 @@ module('Acceptance | user toggles layers', function(hooks) {
 
     assert.ok(slider.style.right !== '100%');
 
-    await click('.layer-zoning-districts .layer-menu-item-title');
-    await click('.layer-special-purpose-districts .layer-menu-item-title');
+    await click('.layer-zoning-districts .layer-group-toggle-label');
+    await click('.layer-special-purpose-districts .layer-group-toggle-label');
   });
 });
