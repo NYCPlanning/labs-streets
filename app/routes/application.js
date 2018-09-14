@@ -52,8 +52,14 @@ export default class ApplicationRoute extends Route {
     });
   }
 
-  afterModel({ layerGroups }) {
-    this.get('layerGroupService').initializeObservers(layerGroups);
+  /**
+   * @override: ember lifecycle
+   */
+  setupController(controller, model) {
+    const { layerGroups } = model;
+    this.get('layerGroupService').initializeObservers(layerGroups, controller);
+
+    super.setupController(controller, model);
   }
 
   @action

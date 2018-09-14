@@ -16,13 +16,13 @@ export default class LayerGroupService extends Service {
 
     signature is a model directly from the route
   */
-  initializeObservers(layerGroups) {
+  initializeObservers(layerGroups, controller) {
     // set initial state from QPs, grab init state from models
     const defaultVisibleLayerGroups = layerGroups.filterBy('visible').mapBy('id').sort().copy();
     const params = this.get('visibleLayerGroups');
 
     // set defaults through ember parachute
-    // controller.setDefaultQueryParamValue('layerGroupService.visibleLayerGroups', defaultVisibleLayerGroups);
+    controller.setDefaultQueryParamValue('layerGroupService.visibleLayerGroups', defaultVisibleLayerGroups);
 
     // check if the provided params are the default
     const isDefaultState = params
