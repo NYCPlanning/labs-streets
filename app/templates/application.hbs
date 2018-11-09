@@ -40,9 +40,10 @@
       {{#if (eq search.result.type 'lot')}}
         {{fa-icon 'map-pin' fixedWidth=true}} <span class="subdued">{{search.result.label}}, Block {{search.result.demuxedBbl.block}}, Lot {{search.result.demuxedBbl.lot}}</span>
       {{else if (eq search.result.type 'city-street')}}
+        {{fa-icon 'road'}}
         {{search.result.label}} ({{search.result.boro_name}})
       {{else if (eq search.result.type 'city-map-alteration')}}
-        {{search.result.label}} ({{moment-format search.result.effective 'DD MMMM YYYY'}})
+        <span class="icon polygon"></span> {{search.result.label}} ({{moment-format search.result.effective 'DD MMMM YYYY'}})
       {{/if}}
     {{/labs-search}}
     {{labs-bbl-lookup flyTo=(action 'flyTo')}}
