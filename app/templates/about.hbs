@@ -3,22 +3,20 @@
 </div>
 <div class="content-area cell large-5 large-order-3 xxlarge-4">
 
-  <h1 class="header-xlarge">Welcome to NYC&nbsp;Street&nbsp;Map</h1>
+  <h1 class="header-xlarge no-margin">Welcome to NYC&nbsp;Street&nbsp;Map</h1>
+  <p class="text-small">Read the <a href="https://www1.nyc.gov/site/planning/data-maps/dsiclaimer-web-based-products.page" target="_blank" rel="noopener">disclaimer</a> and view the {{link-to 'data sources' 'data'}}</p>
 
   <p class="lead">NYC Street Map is an ongoing effort to digitize official street records, bring them together with other street information, and make them easily accessible to the public. With this app, you can find the official mapped width, name, and status of specific streets and how they may relate to specific properties. You can also see how the street grid has changed over time in your area.</p>
 
-  <p>NYC Street Map combines 8000+ components of the official City Map with other street information into a seamless Citywide map. However, NYC Street Map does not contain all the information on the City Map and may have inaccuracies. The information shown on NYC Street Map must be confirmed based on the official City Map records.</p>
+  <hr>
 
-  {{#link-to 'city-map' class="button secondary expanded"}}<strong>Learn more about the official City Map&hellip;</strong>{{/link-to}}
+  <p>NYC Street Map combines 8000+ components of the official City Map with other street information into a seamless Citywide map. However, this app does not contain all the information on the City Map, may have inaccuracies, and must be confirmed by the official City Map records. <br>{{#link-to 'city-map'}}Learn more about the official City Map&hellip;{{/link-to}}</p>
 
   <hr>
 
-  <h4>How to find alterations</h4>
-  <p>Search for an address, street name, alteration number (e.g. cp21423), or ULURP number (e.g. 841080mmk) and easily locate them on the map. Search results only include ULURP numbers or alteration numbers relevant to official street records. You can find ULURP numbers associated with zoning change projects in <a href="https://zap.planning.nyc.gov/projects" target="_blank" rel="noopener noreferrer">ZAP Search application</a>.</p>
-
-  <hr>
-
-  <p class="text-small"><em>NYC Street Map was developed by the City of New York using NYC open data and other public data sources and is provided solely for informational purposes. The City makes no representation as to the accuracy of the information or to its suitability for any purpose. The City disclaims any liability for errors that may be contained herein and shall not be responsible for any damages consequential or actual, arising out of or in connection with the use of this information. The City makes no warranties, express or implied, including, but not limited to, implied warranties of merchantability and fitness for a particular purpose as to the quality, content, accuracy, or completeness of the information, text graphics, links and other items contained in NYC Street Map.</em></p>
+  <h4 class="small-margin-bottom">How to find alterations</h4>
+  <p>You can search for an address, street name, alteration number (e.g. cp21423), or ULURP number (e.g. 841080mmk) to easily locate them on this map. Search results only include ULURP numbers or alteration numbers relevant to official street records. You can find ULURP numbers associated with zoning change projects in <a href="https://zap.planning.nyc.gov/projects" target="_blank" rel="noopener noreferrer">ZAP Search application</a>.</p>
 
   {{outlet}}
+
 </div>
