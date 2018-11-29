@@ -18,7 +18,6 @@ export default macro((...keys) =>
       return [];
     },
     set(key, params) {
-      console.log(params, (this.get('model')));
       if (Array.isArray(params) && this.get('model') && params.length) {
         this.model.layerGroups.forEach((layerGroup) => {
           const foundParam = params.find(param => (param.id || param) === layerGroup.id);
