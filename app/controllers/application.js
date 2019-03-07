@@ -228,7 +228,7 @@ export default class ApplicationController extends ParachuteController {
         )
     UNION ALL
     SELECT the_geom, 'taxlot' AS type, NULL as altmappdf, NULL as status, NULL as effective, bbl, address
-      FROM mappluto_v1711
+      FROM mappluto
         WHERE ST_Intersects(
           the_geom,
           ST_SetSRID(
