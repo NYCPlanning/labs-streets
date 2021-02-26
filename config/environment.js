@@ -62,6 +62,10 @@ module.exports = function(environment) {
 
   if (environment === 'development') {
     ENV.namespace = 'v1';
+
+    // Enable this line to specify the address for a locally run Layers API
+    // ENV.host = 'http://localhost:3000';
+
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
