@@ -7,9 +7,6 @@ module.exports = function(defaults) {
     'ember-cli-babel': {
       includePolyfill: true,
     },
-    babel: {
-      plugins: ['transform-object-rest-spread'],
-    },
     sourcemaps: {
       enabled: true,
       extensions: ['js'],
@@ -27,6 +24,9 @@ module.exports = function(defaults) {
     'ember-cli-foundation-6-sass': {
       foundationJs: 'all',
     },
+    'ember-cli-template-lint': {
+      testGenerator: 'qunit' // or 'mocha', etc.
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
