@@ -1,22 +1,23 @@
-import { hasMany, attr } from '@ember-decorators/data';
-import { alias } from '@ember-decorators/object/computed';
+import DS from 'ember-data';
 import LayerGroup from 'ember-mapbox-composer/models/layer-group';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
+import { alias } from '@ember/object/computed';
 
-export default class LayerGroupModel extends LayerGroup {
+export default LayerGroup.extend({
   init(...args) {
     this._super(...args);
 
     // update registry for aggregate state service
     this.set('layerGroupService.layerGroupRegistry', this.get('layerGroupService.layerGroupRegistry').concat(this));
-  }
+  },
 
-  @service('layerGroups')
-  layerGroupService
+  layerGroupService: service('layerGroups'),
 
-  @attr() meta
-  @attr() legend
-  @alias('legend.label') title
+  meta: null,
 
-  @hasMany('source', { async: false }) sources
-}
+  legend: null,
+
+  title: alias('legend.label'),
+
+  sources: DS.hasMany('source', { async: false }) 
+});
