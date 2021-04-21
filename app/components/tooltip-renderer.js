@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { computed } from '@ember-decorators/object';
 import { argument } from '@ember-decorators/argument';
-import mustache from 'npm:mustache';
+import mustache from 'mustache';
 
 export default class TooltipRenderer extends Component {
   @computed('feature', 'template')
