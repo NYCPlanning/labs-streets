@@ -1,13 +1,13 @@
 import Controller from '@ember/controller';
-import { action, computed } from '@ember-decorators/object';
 import { task, timeout } from 'ember-concurrency';
 import QueryParams from 'ember-parachute';
 import carto from 'cartobox-promises-utility/utils/carto';
 import mapboxgl from 'mapbox-gl';
 import fetch from 'fetch';
 import turfBbox from '@turf/bbox';
-import { service } from '@ember-decorators/service';
-import { alias } from '@ember-decorators/object/computed';
+import { inject as service } from '@ember/service';
+import { alias } from '@ember/object/computed';
+import { action, computed } from '@ember/object';
 import precisionRound from '../utils/precision-round';
 import trackEvent from '../utils/track-event';
 
@@ -68,10 +68,11 @@ export const LayerVisibilityParams = new QueryParams({
 const ParachuteController = Controller.extend(LayerVisibilityParams.Mixin);
 
 export default class ApplicationController extends ParachuteController {
-  @service('layerGroups') layerGroupService
+  @service('layerGroups')
+  layerGroupService;
 
   @alias('layerGroupService.visibleLayerGroups')
-  layerGroups
+  layerGroups;
 
   @computed()
   get initMapOptions() {

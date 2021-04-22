@@ -3,13 +3,12 @@ import fetch from 'fetch';
 import config from '../config/environment';
 
 const { host, namespace } = config;
-const { JSONAPIAdapter } = DS;
 
-export default class LayerGroupAdapter extends JSONAPIAdapter {
-  host = host;
-  namespace = namespace;
+export default DS.JSONAPIAdapter.extend({
+  host: host,
+  namespace: namespace,
 
-  async query(store, type, query = {}) {
+  query: async function(store, type, query = {}) {
     const URL = this.buildURL(type.modelName);
 
     return fetch(`${URL}`, {
@@ -20,4 +19,4 @@ export default class LayerGroupAdapter extends JSONAPIAdapter {
       body: JSON.stringify(query),
     }).then(blob => blob.json());
   }
-}
+});

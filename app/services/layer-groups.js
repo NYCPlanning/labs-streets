@@ -18,7 +18,10 @@ export default class LayerGroupService extends Service {
   */
   initializeObservers(layerGroups, controller) {
     // set initial state from QPs, grab init state from models
-    const defaultVisibleLayerGroups = layerGroups.filterBy('visible').mapBy('id').sort().copy();
+    const sortedGroups = layerGroups.filterBy('visible').mapBy('id').sort();
+
+    const defaultVisibleLayerGroups = [...sortedGroups];
+
     const params = this.get('visibleLayerGroups');
 
     // set defaults through ember parachute

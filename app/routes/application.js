@@ -1,11 +1,12 @@
 import Route from '@ember/routing/route';
 import { hash } from 'rsvp';
-import { action } from '@ember-decorators/object'; // eslint-disable-line
+import { action } from '@ember/object';
 import { next } from '@ember/runloop';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 
 export default class ApplicationRoute extends Route {
-  @service('layerGroups') layerGroupService
+  @service('layerGroups')
+  layerGroupService;
 
   beforeModel = (transition) => {
     // only transition to about if index is loaded and there is no hash
@@ -57,6 +58,7 @@ export default class ApplicationRoute extends Route {
    */
   setupController(controller, model) {
     const { layerGroups } = model;
+    console.log("layer groups is : ", layerGroups)
     this.get('layerGroupService').initializeObservers(layerGroups, controller);
 
     super.setupController(controller, model);

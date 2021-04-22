@@ -1,32 +1,22 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const babelPlugin = require('ember-auto-import/babel-plugin');
 
 module.exports = function(defaults) {
-  const app = new EmberApp(defaults, {
-    'ember-cli-babel': {
-      includePolyfill: true,
-    },
-    sourcemaps: {
-      enabled: true,
-      extensions: ['js'],
-    },
-    treeShaking: {
-      enabled: true,
-      include: [
-        // This is where you can add additional entry points.
-
-        // This is an example of dynamic lookup. There is no import statement, so it needs a hint to prevent removal.
-        // https://github.com/poteto/ember-metrics/blob/c0fecc9e85190009d4d08d5be7db88df3e9803ea/addon/services/metrics.js#L177
-        'ember-metrics/metrics-adapters/google-analytics.js',
-      ],
-    },
+  let app = new EmberApp(defaults, {
     'ember-cli-foundation-6-sass': {
       foundationJs: 'all',
     },
-    'ember-cli-template-lint': {
-      testGenerator: 'qunit' // or 'mocha', etc.
-    }
+    '@ember-decorators/babel-transforms': {
+      decoratorsBeforeExport: true,
+    },
+    'ember-cli-babel': {
+      includePolyfill: true,
+    },
+    babel: {
+      plugins: [babelPlugin],
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated
