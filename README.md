@@ -34,12 +34,14 @@ You will need the following things properly installed on your computer.
 
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/) (with NPM)
+  - This installation was tested using Node v10.24.1
 - [Ember CLI](https://ember-cli.com/)
+- [Yarn](https://yarnpkg.com/)
 
 ## Local development
 
-- Clone this repo `git clone git@github.com:NYCPlanning/labs-citymap.git`
-- Navigate to the repo: `cd labs-citymap`
+- Clone this repo `git clone git@github.com:NYCPlanning/labs-streets.git`
+- Navigate to the repo: `cd labs-streets`
 - Install Dependencies `yarn`
 - Start the server `ember s`
 
