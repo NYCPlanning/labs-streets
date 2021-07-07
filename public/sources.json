@@ -25,7 +25,7 @@
       },
       {
         "id": "citymap",
-        "sql": "SELECT the_geom_webmercator, type, boro_nm FROM citymap_citymap_v1"
+        "sql": "SELECT the_geom_webmercator, feat_type, borough FROM dcp_dcm"
       },
       {
         "id": "name-changes-points",
