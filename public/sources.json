@@ -25,7 +25,7 @@
       },
       {
         "id": "citymap",
-        "sql": "SELECT the_geom_webmercator, type, boro_nm FROM citymap_citymap_v1"
+        "sql": "SELECT the_geom_webmercator, feat_type, borough FROM dcp_dcm"
       },
       {
         "id": "name-changes-points",
@@ -70,11 +70,11 @@
     "source-layers": [
       {
         "id": "pluto",
-        "sql": "SELECT the_geom_webmercator, bbl, lot, landuse, address FROM mappluto"
+        "sql": "SELECT the_geom_webmercator, bbl, lot, landuse, address FROM dcp_mappluto"
       },
       {
         "id": "block-centroids",
-        "sql": "SELECT the_geom_webmercator, block FROM mappluto_block_centroids"
+        "sql": "SELECT the_geom_webmercator, block FROM dof_dtm_block_centroids"
       }
     ]
   },
