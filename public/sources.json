@@ -70,7 +70,7 @@
     "source-layers": [
       {
         "id": "pluto",
-        "sql": "SELECT the_geom_webmercator, bbl, lot, landuse, address FROM mappluto"
+        "sql": "SELECT the_geom_webmercator, bbl, lot, landuse, address FROM dcp_mappluto"
       },
       {
         "id": "block-centroids",
