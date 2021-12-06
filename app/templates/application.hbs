@@ -45,10 +45,7 @@
         {{search.result.label}} ({{moment-format search.result.effective 'DD MMMM YYYY'}})
       {{/if}}
     {{/labs-search}}
-    {{
-      labs-bbl-lookup
-      onSuccess=(action 'flyTo')
-    }}
+    {{labs-bbl-lookup onSuccess=(action 'flyTo')}}
   </div>
   <div class="map-container cell medium-auto large-order-2">
     {{#labs-map
