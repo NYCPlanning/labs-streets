@@ -34,14 +34,28 @@ You will need the following things properly installed on your computer.
 
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/) (with NPM)
+  - This installation was tested using Node v10.24.1
 - [Ember CLI](https://ember-cli.com/)
+- [Yarn](https://yarnpkg.com/)
 
 ## Local development
 
-- Clone this repo `git clone git@github.com:NYCPlanning/labs-citymap.git`
-- Navigate to the repo: `cd labs-citymap`
+- Clone this repo `git clone git@github.com:NYCPlanning/labs-streets.git`
+- Navigate to the repo: `cd labs-streets`
 - Install Dependencies `yarn`
 - Start the server `ember s`
+
+## Connecting to local Layers API
+
+By default, in development this app will acquire Layer Group information from the static file at `public/layer-groups/v1`.
+
+To retrieve the latest layer group info by targetting a locally run or live Layers API, you can specify the `host` environment variable
+within `config/environment.js`.
+
+For example, if you are running a local Layers API at `localhost:3000`, then under the `environment === 'development'` condition in `config/envrinment.js`, add
+```
+ ENV.host = 'http://localhost:3000';
+```
 
 ## Architecture
 
