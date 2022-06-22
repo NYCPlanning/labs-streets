@@ -88,13 +88,13 @@ module.exports = function(environment) {
 
   if (environment === 'staging') {
     // here you can enable a staging-specific feature
-    ENV.host = 'https://layers-api-staging.planninglabs.nyc';
+    ENV.host = process.env.LAYERS_API_URL || 'https://layers-api-staging.planninglabs.nyc';
     ENV.namespace = 'v1';
   }
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
-    ENV.host = 'https://layers-api.planninglabs.nyc';
+    ENV.host = process.env.LAYERS_API_URL || 'https://layers-api.planninglabs.nyc';
     ENV.namespace = 'v1';
   }
 
