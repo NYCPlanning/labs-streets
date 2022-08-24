@@ -34,6 +34,7 @@ module.exports = function(environment) {
     'labs-search': {
       host: (environment === 'devlocal') ? '//localhost:4000' : 'https://search-api-production.herokuapp.com',
       route: 'search',
+      helpers: ['geosearch-v2', 'city-map-street-search', 'city-map-alteration'],
     },
 
     fontawesome: {
