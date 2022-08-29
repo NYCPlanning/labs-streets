@@ -26,9 +26,9 @@
     <ul class="popup-list no-bullet no-margin">
       {{#each streetNameChanges as |nameChange|}}
         <li>
-          <a class="popup-button clearfix"  href="https://laws.council.nyc.gov/legislation/int-{{nameChange.properties.intronumbe}}-{{nameChange.properties.intro_year}}/" target="_blank" rel="noopener">
-            <strong class="link-name float-left">{{fa-icon 'external-link'}} {{nameChange.properties.honoraryna}}</strong>
-            <span class="date float-right">{{nameChange.properties.ll_effecti}}</span>
+          <a class="popup-button clearfix"  href="https://council.nyc.gov/legislation/int-{{nameChange.properties.intro_num}}-{{nameChange.properties.intro_year}}/" target="_blank" rel="noopener">
+            <strong class="link-name float-left">{{fa-icon 'external-link'}} {{nameChange.properties.honor_name}}</strong>
+            <span class="date float-right">{{nameChange.properties.lleffectdt}}</span>
           </a>
         </li>
       {{/each}}
