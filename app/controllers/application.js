@@ -130,7 +130,7 @@ export default class ApplicationController extends ParachuteController {
     const pitch = e.target.getPitch();
     const bearing = e.target.getBearing();
     let zoom = e.target.getZoom();
-    let { lat: lng, lng: lat } = e.target.getCenter();
+    let { lat, lng } = e.target.getCenter();
 
     lng = precisionRound(lng, 4);
     lat = precisionRound(lat, 4);
