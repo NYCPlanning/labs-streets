@@ -91,7 +91,7 @@ export default class ApplicationController extends ParachuteController {
 
   @computed('lat', 'lng')
   get center() {
-    return [this.get('lat'), this.get('lng')];
+    return [this.get('lng'), this.get('lat')];
   }
 
   shareURL = window.location.href;
