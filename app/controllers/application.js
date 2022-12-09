@@ -206,6 +206,18 @@ export default class ApplicationController extends ParachuteController {
   @action
   @trackEvent('click', 'popup', 'popupLocation')
   handleMapClick(e) {
+    const citymapLayerDisabled = this.get('model').layerGroups.toArray().filter((layerGroup) => { // eslint-disable-line
+      return layerGroup.get('visible');
+    }).find(layer => layer.id === 'citymap') === undefined;
+
+    const pendingAmendmentsLayerDisabled = this.get('model').layerGroups.toArray().filter((layerGroup) => { // eslint-disable-line
+      return layerGroup.get('visible');
+    }).find(layer => layer.id === 'amendments-pending') === undefined;
+
+    const amendmentsLayerDisabled = this.get('model').layerGroups.toArray().filter((layerGroup) => { // eslint-disable-line
+      return layerGroup.get('visible');
+    }).find(layer => layer.id === 'amendments') === undefined;
+
     // Open the popup and clear its content (defaults to showing spinner)
     this.set('popupFeatures', null);
     this.set('popupLocation', e.lngLat);
@@ -256,7 +268,13 @@ export default class ApplicationController extends ParachuteController {
           return feature;
         });
 
-        this.set('popupFeatures', [...FC.features, ...streetNameChanges]);
+        let filteredFeatures = FC.features;
+
+        if (citymapLayerDisabled) filteredFeatures = filteredFeatures.filter(feature => feature.properties.type !== 'taxlot');
+        if (amendmentsLayerDisabled) filteredFeatures = filteredFeatures.filter(feature => (feature.properties.type === 'alteration' && feature.properties.effective === null) || feature.properties.type === 'taxlot');
+        if (pendingAmendmentsLayerDisabled) filteredFeatures = filteredFeatures.filter(feature => (feature.properties.type === 'alteration' && feature.properties.effective !== null) || feature.properties.type === 'taxlot');
+
+        this.set('popupFeatures', [...filteredFeatures, ...streetNameChanges]);
       });
   }
 
