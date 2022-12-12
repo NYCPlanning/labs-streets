@@ -206,17 +206,11 @@ export default class ApplicationController extends ParachuteController {
   @action
   @trackEvent('click', 'popup', 'popupLocation')
   handleMapClick(e) {
-    const citymapLayerDisabled = this.get('model').layerGroups.toArray().filter((layerGroup) => { // eslint-disable-line
-      return layerGroup.get('visible');
-    }).find(layer => layer.id === 'citymap') === undefined;
+    const citymapLayerDisabled = this.get('model').layerGroups.toArray().filter(layerGroup => layerGroup.get('visible')).find(layer => layer.id === 'citymap') === undefined;
 
-    const pendingAmendmentsLayerDisabled = this.get('model').layerGroups.toArray().filter((layerGroup) => { // eslint-disable-line
-      return layerGroup.get('visible');
-    }).find(layer => layer.id === 'amendments-pending') === undefined;
+    const pendingAmendmentsLayerDisabled = this.get('model').layerGroups.toArray().filter(layerGroup => layerGroup.get('visible')).find(layer => layer.id === 'amendments-pending') === undefined;
 
-    const amendmentsLayerDisabled = this.get('model').layerGroups.toArray().filter((layerGroup) => { // eslint-disable-line
-      return layerGroup.get('visible');
-    }).find(layer => layer.id === 'amendments') === undefined;
+    const amendmentsLayerDisabled = this.get('model').layerGroups.toArray().filter(layerGroup => layerGroup.get('visible')).find(layer => layer.id === 'amendments') === undefined;
 
     // Open the popup and clear its content (defaults to showing spinner)
     this.set('popupFeatures', null);
