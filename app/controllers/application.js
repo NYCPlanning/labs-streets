@@ -39,11 +39,11 @@ export const LayerVisibilityParams = new QueryParams({
     refresh: true,
   },
   lat: {
-    defaultValue: -73.92,
+    defaultValue: 40.7,
   },
 
   lng: {
-    defaultValue: 40.7,
+    defaultValue: -73.92,
   },
 
   zoom: {
@@ -114,6 +114,12 @@ export default class ApplicationController extends ParachuteController {
 
   loadStateTask = task(function* () {
     yield timeout(500);
+
+    const map = this.get('map');
+
+    if (map) {
+      map.setCenter([this.get('lng'), this.get('lat')]);
+    }
   }).restartable();
 
   @computed('lat', 'lng', 'zoom', 'pitch', 'bearing')
