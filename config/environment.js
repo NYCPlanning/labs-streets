@@ -58,6 +58,16 @@ module.exports = function(environment) {
           sendHitTask: environment !== 'development' && environment !== 'ga-development',
         },
       },
+      {
+        name: 'GoogleAnalyticsFour',
+        environments: ['development', 'production'],
+        config: {
+          id: 'G-MZLX2P6SNE',
+          options: {
+            debug_mode: environment === 'development',
+          },
+        },
+      },
     ],
   };
 
