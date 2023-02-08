@@ -39,11 +39,11 @@ export const LayerVisibilityParams = new QueryParams({
     refresh: true,
   },
   lat: {
-    defaultValue: -73.92,
+    defaultValue: 40.7,
   },
 
   lng: {
-    defaultValue: 40.7,
+    defaultValue: -73.92,
   },
 
   zoom: {
@@ -114,6 +114,12 @@ export default class ApplicationController extends ParachuteController {
 
   loadStateTask = task(function* () {
     yield timeout(500);
+
+    const map = this.get('map');
+
+    if (map) {
+      map.setCenter([this.get('lng'), this.get('lat')]);
+    }
   }).restartable();
 
   @computed('lat', 'lng', 'zoom', 'pitch', 'bearing')
@@ -130,7 +136,7 @@ export default class ApplicationController extends ParachuteController {
     const pitch = e.target.getPitch();
     const bearing = e.target.getBearing();
     let zoom = e.target.getZoom();
-    let { lat: lng, lng: lat } = e.target.getCenter();
+    let { lat, lng } = e.target.getCenter();
 
     lng = precisionRound(lng, 4);
     lat = precisionRound(lat, 4);
@@ -206,6 +212,12 @@ export default class ApplicationController extends ParachuteController {
   @action
   @trackEvent('click', 'popup', 'popupLocation')
   handleMapClick(e) {
+    const citymapLayerDisabled = this.get('model').layerGroups.toArray().filter(layerGroup => layerGroup.get('visible')).find(layer => layer.id === 'citymap') === undefined;
+
+    const pendingAmendmentsLayerDisabled = this.get('model').layerGroups.toArray().filter(layerGroup => layerGroup.get('visible')).find(layer => layer.id === 'amendments-pending') === undefined;
+
+    const amendmentsLayerDisabled = this.get('model').layerGroups.toArray().filter(layerGroup => layerGroup.get('visible')).find(layer => layer.id === 'amendments') === undefined;
+
     // Open the popup and clear its content (defaults to showing spinner)
     this.set('popupFeatures', null);
     this.set('popupLocation', e.lngLat);
@@ -256,7 +268,13 @@ export default class ApplicationController extends ParachuteController {
           return feature;
         });
 
-        this.set('popupFeatures', [...FC.features, ...streetNameChanges]);
+        let filteredFeatures = FC.features;
+
+        if (citymapLayerDisabled) filteredFeatures = filteredFeatures.filter(feature => feature.properties.type !== 'taxlot');
+        if (amendmentsLayerDisabled) filteredFeatures = filteredFeatures.filter(feature => (feature.properties.type === 'alteration' && feature.properties.effective === null) || feature.properties.type === 'taxlot');
+        if (pendingAmendmentsLayerDisabled) filteredFeatures = filteredFeatures.filter(feature => (feature.properties.type === 'alteration' && feature.properties.effective !== null) || feature.properties.type === 'taxlot');
+
+        this.set('popupFeatures', [...filteredFeatures, ...streetNameChanges]);
       });
   }
 
