@@ -34,6 +34,7 @@ module.exports = function(environment) {
     'labs-search': {
       host: (environment === 'devlocal') ? '//localhost:4000' : 'https://search-api-production.herokuapp.com',
       route: 'search',
+      helpers: ['geosearch-v2', 'city-map-street-search', 'city-map-alteration'],
     },
 
     fontawesome: {
@@ -55,6 +56,16 @@ module.exports = function(environment) {
           trace: environment === 'development',
           // Ensure development env hits aren't sent to GA
           sendHitTask: environment !== 'development' && environment !== 'ga-development',
+        },
+      },
+      {
+        name: 'GoogleAnalyticsFour',
+        environments: ['development', 'production'],
+        config: {
+          id: 'G-MZLX2P6SNE',
+          options: {
+            debug_mode: environment === 'development',
+          },
         },
       },
     ],
