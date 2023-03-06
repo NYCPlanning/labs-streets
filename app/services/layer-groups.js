@@ -69,6 +69,7 @@ export default class LayerGroupService extends Service {
   // translate param state object to model state
   _paramsToModels() {
     const layerGroups = this.get('layerGroupRegistry');
+    console.log('layerGroups', layerGroups)
     const params = this.get('visibleLayerGroups');
 
     if (Array.isArray(params) && layerGroups && params.length) {
