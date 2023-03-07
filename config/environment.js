@@ -5,6 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'city-map',
     environment,
     rootURL: '/',
+    'carto-username': 'planninglabs',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
@@ -100,6 +101,7 @@ module.exports = function(environment) {
   if (environment === 'staging') {
     // here you can enable a staging-specific feature
     ENV.host = process.env.LAYERS_API_URL || 'https://layers-api-staging.planninglabs.nyc';
+    ENV['carto-username'] = 'dcpadmin';
     ENV.namespace = 'v1';
   }
 
