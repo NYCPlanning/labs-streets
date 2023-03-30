@@ -225,9 +225,9 @@ export default class ApplicationController extends ParachuteController {
     // Query and set the popup content
     const { lng, lat } = e.lngLat;
     const SQL = `
-    SELECT the_geom, 'alteration' AS type, altmappdf, status, effective, NULL AS bbl, NULL AS address
-      FROM citymap_amendments_v3
-      WHERE (effective IS NOT NULL
+    SELECT the_geom, 'alteration' AS type, altmappdf, status, effect_dt AS effective, NULL AS bbl, NULL AS address
+      FROM dcp_dcm_city_map_alterations
+      WHERE (effect_dt IS NOT NULL
               OR status = '13')
         AND ST_Intersects(
           the_geom,
