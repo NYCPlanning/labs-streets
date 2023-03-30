@@ -14,14 +14,14 @@ export default class CustomControls extends Component {
   @argument boundsGeoJSON;
 
   datasets = [
-    { tableName: 'citymap_citymap_v1', displayName: 'City Street Features' },
-    { tableName: 'citymap_amendments_v3', displayName: 'City Map Amendments' },
-    { tableName: 'citymap_streetcenterlines_v1', displayName: 'Street Centerlines' },
-    { tableName: 'citymap_streetnamechanges_points_v0', displayName: 'Street Name Changes - Points' },
-    { tableName: 'citymap_streetnamechanges_streets_v0', displayName: 'Street Name Changes - Streets' },
-    { tableName: 'citymap_streetnamechanges_areas_v0', displayName: 'Street Name Changes - Areas' },
-    { tableName: 'citymap_pierheadlines_v1', displayName: 'Pierhead and Bulkhead Lines' },
-    { tableName: 'citymap_arterials_v0', displayName: 'Arterials' },
+    { tableName: 'dcp_dcm', displayName: 'City Street Features', queryModifier: "feat_type NOT IN ('Pierhead_line', 'Bulkhead_line', 'Rail')" },
+    { tableName: 'dcp_dcm_city_map_alterations', displayName: 'City Map Amendments' },
+    { tableName: 'dcp_dcm_street_centerline', displayName: 'Street Centerlines' },
+    { tableName: 'dcp_dcm_street_name_changes_points', displayName: 'Street Name Changes - Points' },
+    { tableName: 'dcp_dcm_street_name_changes_lines', displayName: 'Street Name Changes - Streets' },
+    { tableName: 'dcp_dcm_street_name_changes_areas', displayName: 'Street Name Changes - Areas' },
+    { tableName: 'dcp_dcm', displayName: 'Pierhead and Bulkhead Lines', queryModifier: "feat_type IN ('Pierhead_line', 'Bulkhead_line')" },
+    { tableName: 'dcp_dcm_arterials_major_streets', displayName: 'Arterials' },
   ]
 
   @computed('boundsGeoJSON')

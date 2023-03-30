@@ -43,9 +43,18 @@
             <li>
               <p>
                 {{fa-icon 'download'}} {{dataset.displayName}}:
-                <a href="https://planninglabs.carto.com/api/v2/sql?format=SHP&filename={{dataset.tableName}}&q=SELECT * FROM {{dataset.tableName}}"><strong>All</strong>&nbsp;<small>(SHP)</small></a>
+                {{#if dataset.queryModifier}}
+                  <a href="https://planninglabs.carto.com/api/v2/sql?format=SHP&filename={{dataset.tableName}}&q=SELECT * FROM {{dataset.tableName}} WHERE {{dataset.queryModifier}}"><strong>All</strong>&nbsp;<small>(SHP)</small></a>
+                {{else}}
+                  <a href="https://planninglabs.carto.com/api/v2/sql?format=SHP&filename={{dataset.tableName}}&q=SELECT * FROM {{dataset.tableName}}"><strong>All</strong>&nbsp;<small>(SHP)</small></a>
+                {{/if}}
                 <span class="medium-gray">|</span>
-                <a href="https://planninglabs.carto.com/api/v2/sql?format=SHP&filename={{dataset.tableName}}_clipped&q=SELECT * FROM {{dataset.tableName}} WHERE ST_Intersects(the_geom, ST_GeomFromGeoJSON('{{stringifiedBoundsGeoJSON}}'))"><strong>In View</strong>&nbsp;<small>(SHP)</small></a>
+                {{#if dataset.queryModifier}}
+                  <a href="https://planninglabs.carto.com/api/v2/sql?format=SHP&filename={{dataset.tableName}}_clipped&q=SELECT * FROM {{dataset.tableName}} WHERE ST_Intersects(the_geom, ST_GeomFromGeoJSON('{{stringifiedBoundsGeoJSON}}')) AND {{dataset.queryModifier}}"><strong>In View</strong>&nbsp;<small>(SHP)</small></a>
+                {{else}}
+                  <a href="https://planninglabs.carto.com/api/v2/sql?format=SHP&filename={{dataset.tableName}}_clipped&q=SELECT * FROM {{dataset.tableName}} WHERE ST_Intersects(the_geom, ST_GeomFromGeoJSON('{{stringifiedBoundsGeoJSON}}'))"><strong>In View</strong>&nbsp;<small>(SHP)</small></a>
+                {{/if}}
+                
               </p>
             </li>
           {{/each}}
