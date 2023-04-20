@@ -1,9 +1,10 @@
 import Service from '@ember/service';
 import { A } from '@ember/array';
+import cloneDeep from 'lodash.clonedeep';
 
 export default class LayerGroupService extends Service {
-  constructor(...args) {
-    super(...args);
+  init(...args) {
+    super.init(args);
     this.layerGroupRegistry = A([]);
     this.visibleLayerGroups = A([]);
   }
@@ -18,7 +19,10 @@ export default class LayerGroupService extends Service {
   */
   initializeObservers(layerGroups, controller) {
     // set initial state from QPs, grab init state from models
-    const defaultVisibleLayerGroups = layerGroups.filterBy('visible').mapBy('id').sort().copy();
+    // console.log('layergroups', layerGroups.filterBy('visible').mapBy('id').sort().copy());
+    // const defaultVisibleLayerGroups = layerGroups.filterBy('visible').mapBy('id').sort().copy();
+
+    const defaultVisibleLayerGroups = cloneDeep(layerGroups.filterBy('visible').mapBy('id').sort());
     const params = this.get('visibleLayerGroups');
 
     // set defaults through ember parachute

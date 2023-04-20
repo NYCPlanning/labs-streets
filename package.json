@@ -54,11 +54,11 @@
     "ember-fetch": "7.0.0",
     "ember-load-initializers": "^2.1.1",
     "ember-macro-helpers": "1.0.0",
-    "ember-mapbox-gl": "0.9.1",
+    "ember-mapbox-gl": "1.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-metrics": "^2.0.0-beta.2",
     "ember-moment": "^7.7.0",
-    "ember-parachute": "0.3.7",
+    "ember-parachute": "^1.0.2",
     "ember-power-select": "^1.9.6",
     "ember-promise-helpers": "1.0.6",
     "ember-resolver": "^7.0.0",
@@ -69,9 +69,9 @@
     "eslint-plugin-ember": "^7.7.1",
     "husky": "^7.0.4",
     "labs-ember-search": "^3.1.5",
-    "labs-ui": "^0.0.7",
+    "labs-ui": "^0.0.24",
     "loader.js": "^4.2.3",
-    "mapbox-gl": "^0.45.0"
+    "mapbox-gl": "1.0.0"
   },
   "engines": {
     "node": "12.*"
@@ -99,6 +99,7 @@
     "eslint-plugin-jsx-a11y": "6.0.3",
     "eslint-plugin-react": "7.7.0",
     "foundation-sites": "6.4.1",
+    "lodash.clonedeep": "^4.5.0",
     "typedarray": "0.0.6",
     "webpack": "^5.79.0"
   },

@@ -1,7 +1,9 @@
-import { hasMany, attr } from '@ember-decorators/data';
+import DS from 'ember-data';
 import { alias } from '@ember/object/computed';
 import LayerGroup from 'ember-mapbox-composer/models/layer-group';
 import { inject as service } from '@ember/service';
+
+const { attr, hasMany } = DS;
 
 export default class LayerGroupModel extends LayerGroup {
   init(...args) {

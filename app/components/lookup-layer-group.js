@@ -6,8 +6,8 @@ import { required } from '@ember-decorators/argument/validation';
 
 
 export default class LookupLayerGroupComponent extends Component {
-  constructor() {
-    super();
+  init(...args) {
+    super.init(...args);
 
     const recordIdentifier = this.get('for');
     const foundRecord = this.get('store').peekRecord('layer-group', recordIdentifier);
