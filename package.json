@@ -36,7 +36,6 @@
     "ember-cli-eslint": "^4.2.1",
     "ember-cli-foundation-6-sass": "^0.0.25",
     "ember-cli-htmlbars": "^4.2.0",
-    "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.4.1",
     "ember-cli-moment-shim": "^3.7.1",
     "ember-cli-netlify": "^0.1.0",
@@ -94,7 +93,7 @@
     "cartobox-promises-utility": "nycplanning/cartobox-promises-utility",
     "change-case": "3.0.2",
     "ember-auto-import": "^2.6.3",
-    "ember-mapbox-composer": "0.0.5",
+    "ember-mapbox-composer": "0.5.0",
     "eslint-config-airbnb": "16.1.0",
     "eslint-plugin-ember-best-practices": "1.1.1",
     "eslint-plugin-import": "2.10.0",
@@ -105,7 +104,8 @@
     "webpack": "^5.79.0"
   },
   "resolutions": {
-    "foundation-sites": "6.4.1"
+    "foundation-sites": "6.4.1",
+    "broccoli-templater": "2.0.2"
   },
   "ember-addon": {
     "paths": [
