@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { argument } from '@ember-decorators/argument';
-import { action, computed } from '@ember-decorators/object';
+import { action, computed } from '@ember/object';
 import { run } from '@ember/runloop';
 
 export default class CustomControls extends Component {

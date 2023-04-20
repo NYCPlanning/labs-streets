@@ -1,6 +1,5 @@
 import Component from '@ember/component';
-import { service } from '@ember-decorators/service';
-// import { computed } from '@ember-decorators/object';
+import { inject as service } from '@ember/service';
 import { argument } from '@ember-decorators/argument';
 import { type } from '@ember-decorators/argument/type';
 import { required } from '@ember-decorators/argument/validation';
