@@ -1,12 +1,14 @@
+'use strict';
+
 module.exports = {
+  globals: {
+    server: true,
+  },
   root: true,
   parser: 'babel-eslint',
   parserOptions: {
-    ecmaVersion: 2017,
+    ecmaVersion: 2018,
     sourceType: 'module',
-    ecmaFeatures: {
-      experimentalObjectRestSpread: true
-    }
   },
   plugins: [
     'ember'
@@ -34,20 +36,27 @@ module.exports = {
     'react/prefer-stateless-function': 0,
     'class-methods-use-this': 0,
     'ember-best-practices/require-dependent-keys': 0,
-    'react/sort-comp': 0
+    'react/sort-comp': 0,
+    'ember/no-jquery': 'warn'
   },
   overrides: [
     // node files
     {
       files: [
+        '.eslintrc.js',
+        '.template-lintrc.js',
         'testem.js',
         'ember-cli-build.js',
+        'blueprints/*/index.js',
         'config/**/*.js',
         'lib/*/index.js'
       ],
       parserOptions: {
         sourceType: 'script',
-        ecmaVersion: 2015
+        ecmaVersion: 2017,
+        ecmaFeatures: {
+          experimentalObjectRestSpread: true,
+        }
       },
       env: {
         browser: false,

@@ -19,8 +19,6 @@ export default class LayerGroupService extends Service {
   */
   initializeObservers(layerGroups, controller) {
     // set initial state from QPs, grab init state from models
-    // console.log('layergroups', layerGroups.filterBy('visible').mapBy('id').sort().copy());
-    // const defaultVisibleLayerGroups = layerGroups.filterBy('visible').mapBy('id').sort().copy();
 
     const defaultVisibleLayerGroups = cloneDeep(layerGroups.filterBy('visible').mapBy('id').sort());
     const params = this.get('visibleLayerGroups');

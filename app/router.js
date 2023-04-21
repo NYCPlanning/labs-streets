@@ -1,8 +1,7 @@
 import EmberRouter from '@ember/routing/router';
 import { inject as service } from '@ember/service';
 import { scheduleOnce } from '@ember/runloop';
-import { get } from '@ember/object';
-import config from './config/environment';
+import config from 'city-map/config/environment';
 
 export default class Router extends EmberRouter {
   @service metrics;
@@ -17,9 +16,9 @@ export default class Router extends EmberRouter {
 
   _trackPage() {
     scheduleOnce('afterRender', this, () => {
-      const page = this.get('url');
+      const page = this.url;
       const title = this.getWithDefault('currentRouteName', 'unknown');
-      get(this, 'metrics').trackPage({ page, title });
+      this.metrics.trackPage({ page, title });
     });
   }
 }
