@@ -29,19 +29,19 @@
     "broccoli-clean-css": "~1.1.0",
     "ember-cli": "3.16.0",
     "ember-cli-app-version": "^3.0.0",
-    "ember-cli-babel": "^7.17.2",
+    "ember-cli-babel": "^7.26.6",
     "ember-cli-clipboard": "^0.9.0",
     "ember-cli-code-coverage": "1.0.0-beta.7",
     "ember-cli-dependency-checker": "^3.2.0",
     "ember-cli-eslint": "^4.2.1",
-    "ember-cli-foundation-6-sass": "^0.0.25",
+    "ember-cli-foundation-6-sass": "^0.0.27",
     "ember-cli-htmlbars": "^4.2.2",
     "ember-cli-inject-live-reload": "2.0.2",
     "ember-cli-moment-shim": "^3.7.1",
     "ember-cli-netlify": "^0.1.0",
     "ember-cli-nouislider": "^0.14.1",
     "ember-cli-qunit": "^4.1.1",
-    "ember-cli-sass": "^6.0.0",
+    "ember-cli-sass": "^11.0.1",
     "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-template-lint": "0.7.5",
@@ -59,7 +59,7 @@
     "ember-metrics": "^2.0.0-beta.2",
     "ember-moment": "^7.7.0",
     "ember-parachute": "^1.0.2",
-    "ember-power-select": "^1.9.6",
+    "ember-power-select": "^5.0.4",
     "ember-promise-helpers": "1.0.6",
     "ember-resolver": "^7.0.0",
     "ember-source": "~3.16.0",
@@ -75,7 +75,7 @@
     "mapbox-gl": "1.0.0"
   },
   "engines": {
-    "node": "12.*"
+    "node": "14"
   },
   "ember": {
     "edition": "octane"
@@ -98,15 +98,20 @@
     "eslint-plugin-import": "2.10.0",
     "eslint-plugin-jsx-a11y": "6.0.3",
     "eslint-plugin-react": "7.7.0",
-    "foundation-sites": "6.4.1",
+    "foundation-sites": "6.7.5",
     "jquery": "3.4.0",
     "lodash.clonedeep": "^4.5.0",
+    "mustache": "^4.2.0",
     "typedarray": "0.0.6",
-    "webpack": "^5.79.0"
+    "webpack": "^5.79.0",
+    "sass":"^1.58.0"
   },
   "resolutions": {
+    "ember-cli-sass": "^11.0.1",
+    "ember-maybe-in-element": "2.0.3",
     "foundation-sites": "6.4.1",
-    "broccoli-templater": "2.0.2"
+    "broccoli-templater": "2.0.2",
+    "node-sass": "^7.0.0"
   },
   "ember-addon": {
     "paths": [
