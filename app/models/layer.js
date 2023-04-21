@@ -7,6 +7,6 @@ export default class LayerModel extends Layer {
       this.set('position', 1);
     }
 
-    this._super(...args);
+    this._super(args);
   }
 }

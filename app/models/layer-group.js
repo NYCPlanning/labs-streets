@@ -7,7 +7,7 @@ const { attr, hasMany } = DS;
 
 export default class LayerGroupModel extends LayerGroup {
   init(...args) {
-    this._super(...args);
+    this._super(args);
 
     // update registry for aggregate state service
     this.set('layerGroupService.layerGroupRegistry', this.get('layerGroupService.layerGroupRegistry').concat(this));
