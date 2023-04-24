@@ -2,8 +2,8 @@ import Service from '@ember/service';
 import { A } from '@ember/array';
 
 export default class LayerGroupService extends Service {
-  constructor(...args) {
-    super(...args);
+  init(...args) {
+    super.init(args);
     this.layerGroupRegistry = A([]);
     this.visibleLayerGroups = A([]);
   }
