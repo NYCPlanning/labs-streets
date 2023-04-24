@@ -5,7 +5,7 @@ import QueryParams from 'ember-parachute';
 import carto from 'cartobox-promises-utility/utils/carto';
 import mapboxgl from 'mapbox-gl';
 import fetch from 'fetch';
-import turfBbox from 'npm:@turf/bbox';
+import turfBbox from '@turf/bbox';
 import { service } from '@ember-decorators/service';
 import { alias } from '@ember-decorators/object/computed';
 import precisionRound from '../utils/precision-round';
