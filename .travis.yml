@@ -22,4 +22,6 @@ install:
   - yarn install --pure-lockfile
 
 script:
+  - yarn lint:hbs
+  - yarn lint:js
   - yarn test
