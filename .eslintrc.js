@@ -4,11 +4,8 @@ module.exports = {
   root: true,
   parser: 'babel-eslint',
   parserOptions: {
-    ecmaVersion: 2017,
-    sourceType: 'module',
-    ecmaFeatures: {
-      experimentalObjectRestSpread: true,
-    },
+    ecmaVersion: 2018,
+    sourceType: 'module'
   },
   plugins: [
     'ember',
@@ -53,7 +50,10 @@ module.exports = {
       ],
       parserOptions: {
         sourceType: 'script',
-        ecmaVersion: 2015,
+        ecmaVersion: 2017,
+        ecmaFeatures: {
+          experimentalObjectRestSpread: true,
+        }, 
       },
       env: {
         browser: false,
