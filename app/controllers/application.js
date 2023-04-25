@@ -1,13 +1,13 @@
 import Controller from '@ember/controller';
-import { action, computed } from '@ember-decorators/object';
+import { action, computed } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 import QueryParams from 'ember-parachute';
 import carto from 'cartobox-promises-utility/utils/carto';
 import mapboxgl from 'mapbox-gl';
 import fetch from 'fetch';
 import turfBbox from '@turf/bbox';
-import { service } from '@ember-decorators/service';
-import { alias } from '@ember-decorators/object/computed';
+import { inject as service } from '@ember/service';
+import { alias } from '@ember/object/computed';
 import precisionRound from '../utils/precision-round';
 import trackEvent from '../utils/track-event';
 
@@ -132,7 +132,7 @@ export default class ApplicationController extends ParachuteController {
     return `#${zoom}/${lng}/${lat}/${bearing}/${pitch}`;
   }
 
-  mapPositionDebounce = task(function* (e) {
+  @(task(function* (e) {
     yield timeout(500);
     const pitch = e.target.getPitch();
     const bearing = e.target.getBearing();
@@ -148,7 +148,8 @@ export default class ApplicationController extends ParachuteController {
     });
 
     this.set('boundsGeoJSON', getBoundsGeoJSON(this.map));
-  }).restartable();
+  }).restartable())
+  mapPositionDebounce;
 
   @action
   handleMapPositionChange(e) {

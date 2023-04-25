@@ -1,6 +1,6 @@
 import Component from '@ember/component';
+import { action } from '@ember/object';
 import { argument } from '@ember-decorators/argument';
-import { action } from '@ember-decorators/object';
 import { required } from '@ember-decorators/argument/validation';
 import moment from 'moment';
 
