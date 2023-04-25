@@ -112,7 +112,7 @@ export default class ApplicationController extends ParachuteController {
 
   boundsGeoJSON = null;
 
-  loadStateTask = task(function* () {
+  @(task(function* () {
     yield timeout(500);
 
     const map = this.get('map');
@@ -120,7 +120,8 @@ export default class ApplicationController extends ParachuteController {
     if (map) {
       map.setCenter([this.get('lng'), this.get('lat')]);
     }
-  }).restartable();
+  }).restartable())
+  loadStateTask;
 
   @computed('lat', 'lng', 'zoom', 'pitch', 'bearing')
   get mapLatLngZoomHash() {
