@@ -1,4 +1,4 @@
-import Layer from 'ember-mapbox-composer/models/layer';
+import Layer from '@nycplanning/ember/models/layer';
 
 export default class LayerModel extends Layer {
   init(...args) {

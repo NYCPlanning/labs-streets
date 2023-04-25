@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { action, computed } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 import QueryParams from 'ember-parachute';
-import carto from 'cartobox-promises-utility/utils/carto';
+import carto from '@nycplanning/ember/utils/carto';
 import mapboxgl from 'mapbox-gl';
 import fetch from 'fetch';
 import turfBbox from '@turf/bbox';

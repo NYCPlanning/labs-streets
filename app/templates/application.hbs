@@ -1,4 +1,4 @@
-{{#labs-ui/site-header
+{{#deprecated/site-header
   responsiveNav=true
   as |banner|
 }}
@@ -21,7 +21,7 @@
       </li>
     </ul>
   {{/banner.nav}}
-{{/labs-ui/site-header}}
+{{/deprecated/site-header}}
 
 <div class="site-main grid-x route-{{currentRouteName}}">
 
@@ -230,35 +230,35 @@
 
   <div class="layer-menu cell large-order-1 {{if (not-eq currentRouteName 'index') 'show-for-medium'}}">
     {{!-- City Map Layers --}}
-    {{#labs-ui/layer-groups-container title='Street Map Layers'
+    {{#deprecated/layer-groups-container title='Street Map Layers'
         mapIsLoading=loadStateTask.isRunning}}
       {{#lookup-layer-group for='citymap' as |layerGroup|}}
-        {{#labs-ui/layer-group-toggle
+        {{#deprecated/layer-group-toggle
           label=layerGroup.model.legend.label
           tooltip=layerGroup.model.legend.tooltip
           active=layerGroup.model.visible
         }}
-          {{labs-ui/legend-items items=layerGroup.model.legend.items}}
-        {{/labs-ui/layer-group-toggle}}
+          {{deprecated/legend-items items=layerGroup.model.legend.items}}
+        {{/deprecated/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='street-centerlines' as |layerGroup|}}
-        {{#labs-ui/layer-group-toggle
+        {{#deprecated/layer-group-toggle
           label=layerGroup.model.legend.label
           tooltip=layerGroup.model.legend.tooltip
           active=layerGroup.model.visible
         }}
-        {{/labs-ui/layer-group-toggle}}
+        {{/deprecated/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='pierhead-bulkhead-lines' as |layerGroup|}}
-        {{#labs-ui/layer-group-toggle
+        {{#deprecated/layer-group-toggle
           label=layerGroup.model.legend.label
           tooltip=layerGroup.model.legend.tooltip
           active=layerGroup.model.visible
         }}
-          {{labs-ui/legend-items items=layerGroup.model.legend.items}}
-        {{/labs-ui/layer-group-toggle}}
+          {{deprecated/legend-items items=layerGroup.model.legend.items}}
+        {{/deprecated/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='street-sections' as |layerGroup|}}
@@ -272,134 +272,134 @@
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='amendments' as |layerGroup|}}
-        {{#labs-ui/layer-group-toggle
+        {{#deprecated/layer-group-toggle
           label=layerGroup.model.legend.label
           tooltip=layerGroup.model.legend.tooltip
           icon=layerGroup.model.legend.icon
           active=layerGroup.model.visible
         }}
           {{slider-filter layer=model.amendmentsFill}}
-        {{/labs-ui/layer-group-toggle}}
+        {{/deprecated/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='amendments-pending' as |layerGroup|}}
-        {{#labs-ui/layer-group-toggle
+        {{#deprecated/layer-group-toggle
             label=layerGroup.model.legend.label
             tooltip=layerGroup.model.legend.tooltip
             icon=layerGroup.model.legend.icon
             active=layerGroup.model.visible
         }}
-        {{/labs-ui/layer-group-toggle}}
+        {{/deprecated/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='arterials' as |layerGroup|}}
-        {{#labs-ui/layer-group-toggle
+        {{#deprecated/layer-group-toggle
             label=layerGroup.model.legend.label
             tooltip=layerGroup.model.legend.tooltip
             active=layerGroup.model.visible
         }}
-          {{labs-ui/legend-items items=layerGroup.model.legend.items}}
-        {{/labs-ui/layer-group-toggle}}
+          {{deprecated/legend-items items=layerGroup.model.legend.items}}
+        {{/deprecated/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='name-changes' as |layerGroup|}}
-        {{#labs-ui/layer-group-toggle
+        {{#deprecated/layer-group-toggle
             label=layerGroup.model.legend.label
             tooltip=layerGroup.model.legend.tooltip
             active=layerGroup.model.visible
         }}
-          {{labs-ui/legend-items items=layerGroup.model.legend.items}}
-        {{/labs-ui/layer-group-toggle}}
+          {{deprecated/legend-items items=layerGroup.model.legend.items}}
+        {{/deprecated/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='paper-streets' as |layerGroup|}}
-        {{#labs-ui/layer-group-toggle
+        {{#deprecated/layer-group-toggle
           label=layerGroup.model.legend.label
           tooltip=layerGroup.model.legend.tooltip
           icon=layerGroup.model.legend.icon
           active=layerGroup.model.visible
         }}
-        {{/labs-ui/layer-group-toggle}}
+        {{/deprecated/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='stair-streets' as |layerGroup|}}
-        {{#labs-ui/layer-group-toggle
+        {{#deprecated/layer-group-toggle
           label=layerGroup.model.legend.label
           tooltip=layerGroup.model.legend.tooltip
           icon=layerGroup.model.legend.icon
           active=layerGroup.model.visible
         }}
-        {{/labs-ui/layer-group-toggle}}
+        {{/deprecated/layer-group-toggle}}
       {{/lookup-layer-group}}
-    {{/labs-ui/layer-groups-container}}
+    {{/deprecated/layer-groups-container}}
 
     {{!-- Supporting Layers --}}
-    {{#labs-ui/layer-groups-container title='Supporting Layers'
+    {{#deprecated/layer-groups-container title='Supporting Layers'
         open=true
         mapIsLoading=loadStateTask.isRunning}}
       {{#lookup-layer-group for='zoning-districts' as |layerGroup|}}
-        {{#labs-ui/layer-group-toggle
+        {{#deprecated/layer-group-toggle
           label=layerGroup.model.legend.label
           tooltip=layerGroup.model.legend.tooltip
           active=layerGroup.model.visible
         }}
           {{!-- TODO add legend items to the zoning-districts layerGroup --}}
-          {{!-- {{labs-ui/legend-items items=layerGroup.model.legend.items}} --}}
-        {{/labs-ui/layer-group-toggle}}
+          {{!-- {{deprecated/legend-items items=layerGroup.model.legend.items}} --}}
+        {{/deprecated/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='commercial-overlays' as |layerGroup|}}
-        {{#labs-ui/layer-group-toggle
+        {{#deprecated/layer-group-toggle
           label=layerGroup.model.legend.label
           tooltip=layerGroup.model.legend.tooltip
           icon=layerGroup.model.legend.icon
           active=layerGroup.model.visible
         }}
-        {{/labs-ui/layer-group-toggle}}
+        {{/deprecated/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='special-purpose-districts' as |layerGroup|}}
-        {{#labs-ui/layer-group-toggle
+        {{#deprecated/layer-group-toggle
           label=layerGroup.model.legend.label
           tooltip=layerGroup.model.legend.tooltip
           icon=layerGroup.model.legend.icon
           active=layerGroup.model.visible
         }}
-        {{/labs-ui/layer-group-toggle}}
+        {{/deprecated/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='tax-lots' as |layerGroup|}}
-        {{#labs-ui/layer-group-toggle
+        {{#deprecated/layer-group-toggle
           label=layerGroup.model.legend.label
           tooltip=layerGroup.model.legend.tooltip
           icon=layerGroup.model.legend.icon
           active=layerGroup.model.visible
         }}
-        {{/labs-ui/layer-group-toggle}}
+        {{/deprecated/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='floodplain-pfirm2015' as |layerGroup|}}
-        {{#labs-ui/layer-group-toggle
+        {{#deprecated/layer-group-toggle
           label=layerGroup.model.legend.label
           tooltip=layerGroup.model.legend.tooltip
           active=layerGroup.model.visible
         }}
-          {{labs-ui/legend-items items=layerGroup.model.legend.items}}
-        {{/labs-ui/layer-group-toggle}}
+          {{deprecated/legend-items items=layerGroup.model.legend.items}}
+        {{/deprecated/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='floodplain-efirm2007' as |layerGroup|}}
-        {{#labs-ui/layer-group-toggle
+        {{#deprecated/layer-group-toggle
           label=layerGroup.model.legend.label
           tooltip=layerGroup.model.legend.tooltip
           active=layerGroup.model.visible
         }}
-          {{labs-ui/legend-items items=layerGroup.model.legend.items}}
-        {{/labs-ui/layer-group-toggle}}
+          {{deprecated/legend-items items=layerGroup.model.legend.items}}
+        {{/deprecated/layer-group-toggle}}
       {{/lookup-layer-group}}
 
       {{#lookup-layer-group for='aerials' as |layerGroup|}}
-        {{#labs-ui/layer-group-toggle
+        {{#deprecated/layer-group-toggle
           label=layerGroup.model.legend.label
           tooltip=layerGroup.model.legend.tooltip
           active=layerGroup.model.visible
@@ -419,9 +419,9 @@
               </li>
             {{/each}}
           </ul>
-        {{/labs-ui/layer-group-toggle}}
+        {{/deprecated/layer-group-toggle}}
       {{/lookup-layer-group}}
-    {{/labs-ui/layer-groups-container}}
+    {{/deprecated/layer-groups-container}}
 
     <a {{action resetQueryParams}} role='button' class="button gray small reset-map-button" disabled={{isDefault}}>
       {{fa-icon "undo"}} Reset Map Layers
