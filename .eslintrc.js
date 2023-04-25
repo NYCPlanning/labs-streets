@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   root: true,
   parser: 'babel-eslint',
@@ -47,6 +49,7 @@ module.exports = {
         'blueprints/*/index.js',
         'config/**/*.js',
         'lib/*/index.js',
+        'server/**/*.js',
       ],
       parserOptions: {
         sourceType: 'script',
@@ -56,6 +59,8 @@ module.exports = {
         browser: false,
         node: true,
       },
+      plugins: ['node'],
+      rules: {},
     },
   ],
 };

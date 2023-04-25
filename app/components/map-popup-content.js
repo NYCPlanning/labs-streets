@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { argument } from '@ember-decorators/argument';
-import { computed, action } from '@ember-decorators/object';
+import { computed, action } from '@ember/object';
 import { Action } from '@ember-decorators/argument/types';
 import { type } from '@ember-decorators/argument/type';
 import moment from 'moment';
