@@ -5,7 +5,10 @@ module.exports = {
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: 'module'
+    sourceType: 'module',
+    ecmaFeatures: {
+      legacyDecorators: true
+    }
   },
   plugins: [
     'ember',
@@ -34,6 +37,7 @@ module.exports = {
     'class-methods-use-this': 0,
     'ember-best-practices/require-dependent-keys': 0,
     'react/sort-comp': 0,
+    'ember/no-jquery': 'warn'
   },
   overrides: [
     // node files
