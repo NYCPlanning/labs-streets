@@ -7,8 +7,8 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
     ecmaFeatures: {
-      legacyDecorators: true
-    }
+      legacyDecorators: true,
+    },
   },
   plugins: [
     'ember',
@@ -37,7 +37,7 @@ module.exports = {
     'class-methods-use-this': 0,
     'ember-best-practices/require-dependent-keys': 0,
     'react/sort-comp': 0,
-    'ember/no-jquery': 'warn'
+    'ember/no-jquery': 'warn',
   },
   overrides: [
     // node files
@@ -57,7 +57,7 @@ module.exports = {
         ecmaVersion: 2017,
         ecmaFeatures: {
           experimentalObjectRestSpread: true,
-        }, 
+        },
       },
       env: {
         browser: false,
@@ -68,8 +68,13 @@ module.exports = {
       rules: {
         // this can be removed once the following is fixed
         // https://github.com/mysticatea/eslint-plugin-node/issues/77
-        'node/no-unpublished-require': 'off'
-      }
-    }
-  ]
+        'node/no-unpublished-require': 'off',
+      },
+    },
+    {
+      // Test files:
+      files: ['tests/**/*-test.{js,ts}'],
+      extends: ['plugin:qunit/recommended'],
+    },
+  ],
 };

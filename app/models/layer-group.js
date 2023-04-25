@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 import { alias } from '@ember/object/computed';
-import LayerGroup from 'ember-mapbox-composer/models/layer-group';
+import LayerGroup from '@nycplanning/ember/models/layer-group';
 import { inject as service } from '@ember/service';
 
 const { hasMany, attr } = DS;

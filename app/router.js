@@ -2,7 +2,7 @@ import EmberRouter from '@ember/routing/router';
 import { inject as service } from '@ember/service';
 import { scheduleOnce } from '@ember/runloop';
 import { get } from '@ember/object';
-import config from './config/environment';
+import config from 'city-map/config/environment';
 
 export default class Router extends EmberRouter {
   @service() metrics;
@@ -22,7 +22,7 @@ export default class Router extends EmberRouter {
 
   location = config.locationType;
   rootURL = config.rootURL;
-};
+}
 
 Router.map(function() {
   this.route('about');
