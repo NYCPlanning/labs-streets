@@ -1,5 +1,5 @@
 <div class="content-close-button-container">
-  {{link-to '×' 'application' click=(action (mut closed) true) class="content-close-button"}}
+  {{link-to "×" "application" click=(action (mut closed) true) class="content-close-button"}}
 </div>
 <div class="content-area cell large-5 large-order-3 xxlarge-4">
 
@@ -30,7 +30,7 @@
           {{/if}}
           {{#if source.meta.url}}
             {{#each source.meta.url as |url|}}
-              <span style="display:block;" class="no-margin"><a href="{{url}}" target="_blank" rel="noopener">{{fa-icon 'external-link-alt'}} {{url}}</a></span>
+              <span style="display:block;" class="no-margin"><a href={{url}} target="_blank" rel="noopener">{{fa-icon "external-link-alt"}} {{url}}</a></span>
             {{/each}}
           {{/if}}
           {{#if source.meta.updated_at}}

@@ -2,28 +2,28 @@
 
   <div class="share-controls mapboxgl-ctrl mapboxgl-ctrl-group">
     {{#if shareClosed}}
-      <button {{action 'handleShareOpen'}} class="mapboxgl-ctrl-icon">{{fa-icon 'share-alt'}}</button>
+      <button {{action "handleShareOpen"}} class="mapboxgl-ctrl-icon">{{fa-icon "share-alt"}}</button>
     {{else}}
       <div class="custom-controls-content">
-        <button {{action 'handleClose'}} class="close-button" aria-label="Close alert" type="button"><span aria-hidden="true">&times;</span></button>
+        <button {{action "handleClose"}} class="close-button" aria-label="Close alert" type="button"><span aria-hidden="true">&times;</span></button>
         <h3 class="header-small">Share</h3>
         <p>Adjust the map's layers, center, and zoom. Then copy and paste the link wherever you want to share your exact map view.</p>
         <div class="input-group">
-          <input id="share-url" class="input-group-field" type="text" value="{{shareURL}}">
+          <input id="share-url" class="input-group-field" type="text" value={{shareURL}}>
           <div class="input-group-button">
             {{#copy-button
               clipboardTarget="#share-url"
-              success=(action 'handleShareSuccess')
-              error=(action 'handleClose')
+              success=(action "handleShareSuccess")
+              error=(action "handleClose")
               class="button"
             }}
-              {{fa-icon 'paste'}} Copy Link
+              {{fa-icon "paste"}} Copy Link
             {{/copy-button}}
           </div>
         </div>
         {{#if copySuccess}}
           <div class="share-controls-copy-success">
-            <div class="share-controls-copy-success-message">{{fa-icon 'check'}} Copied</div>
+            <div class="share-controls-copy-success-message">{{fa-icon "check"}} Copied</div>
           </div>
         {{/if}}
         {{boro-office-contact-callout class="text-tiny"}}
@@ -33,16 +33,16 @@
 
   <div class="data-controls mapboxgl-ctrl mapboxgl-ctrl-group">
     {{#if dataClosed}}
-      <button {{action 'handleDataOpen'}} class="mapboxgl-ctrl-icon">{{fa-icon 'download'}}</button>
+      <button {{action "handleDataOpen"}} class="mapboxgl-ctrl-icon">{{fa-icon "download"}}</button>
     {{else}}
       <div class="custom-controls-content">
-        <button {{action 'handleClose'}} class="close-button" aria-label="Close alert" type="button"><span aria-hidden="true">&times;</span></button>
+        <button {{action "handleClose"}} class="close-button" aria-label="Close alert" type="button"><span aria-hidden="true">&times;</span></button>
         <h3 class="header-small">Get the Data</h3>
         <ul class="no-bullet">
           {{#each datasets as |dataset|}}
             <li>
               <p>
-                {{fa-icon 'download'}} {{dataset.displayName}}:
+                {{fa-icon "download"}} {{dataset.displayName}}:
                 {{#if dataset.queryModifier}}
                   <a href="https://planninglabs.carto.com/api/v2/sql?format=SHP&filename={{dataset.tableName}}&q=SELECT * FROM {{dataset.tableName}} WHERE {{dataset.queryModifier}}"><strong>All</strong>&nbsp;<small>(SHP)</small></a>
                 {{else}}
