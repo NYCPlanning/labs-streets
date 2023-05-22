@@ -261,6 +261,16 @@
         {{/labs-ui/layer-group-toggle}}
       {{/lookup-layer-group}}
 
+      {{#lookup-layer-group for='street-sections' as |layerGroup|}}
+        {{#labs-ui/layer-group-toggle
+          label=layerGroup.model.legend.label
+          tooltip=layerGroup.model.legend.tooltip
+          active=layerGroup.model.visible
+          icon=layerGroup.model.legend.icon
+        }}
+        {{/labs-ui/layer-group-toggle}}
+      {{/lookup-layer-group}}
+
       {{#lookup-layer-group for='amendments' as |layerGroup|}}
         {{#labs-ui/layer-group-toggle
           label=layerGroup.model.legend.label
