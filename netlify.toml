@@ -2,6 +2,10 @@
 command = "yarn build"
 environment = { NODE_VERSION = "12.18.4" }
 
+[context.develop]
+command = "CARTO_USER=dcpadmin API_HOST=https://layers-api-staging.planninglabs.nyc yarn build --environment=staging"
+environment = {NODE_VERSION = "12.18.4"}
+
 [context.data-qa]
 command = "CARTO_USER=dcpadmin API_HOST=https://layers-api-data.planninglabs.nyc yarn build --environment=staging"
 environment = {NODE_VERSION = "12.18.4"}
