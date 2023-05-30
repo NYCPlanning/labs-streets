@@ -7,20 +7,20 @@ export default
 @tagName('svg')
 @classNames('legend-icon', 'line-array')
 class LabsMapLegendLineComponent extends Component {
-  layout = layout
+  // layout = layout
 
-  @attribute height = 10;
-  @attribute width = 17;
-  @attribute viewBox = '0 0 17 10';
-  @attribute preserveAspectRatio = 'xMinYMid';
+  // @attribute height = 10;
+  // @attribute width = 17;
+  // @attribute viewBox = '0 0 17 10';
+  // @attribute preserveAspectRatio = 'xMinYMid';
 
-  @argument style = {};
+  // @argument style = {};
 
-  didInsertElement() {
-    const groupElement = this.element.querySelector('.cross');
-    const style = this.get('style');
-    Object.entries(style).forEach(([attr, value]) => {
-      groupElement.setAttribute(attr, value);
-    });
-  }
+  // didInsertElement() {
+  //   const groupElement = this.element.querySelector('.cross');
+  //   const style = this.get('style');
+  //   Object.entries(style).forEach(([attr, value]) => {
+  //     groupElement.setAttribute(attr, value);
+  //   });
+  // }
 }
