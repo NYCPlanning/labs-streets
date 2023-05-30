@@ -14,7 +14,7 @@ export default class ApplicationRoute extends Route {
     }
   }
 
-  model = async function() {
+  async model() {
     const layers =
       await this.store.peekAll('layer');
     const layerGroups =
@@ -40,34 +40,35 @@ export default class ApplicationRoute extends Route {
         ],
       });
 
-    const amendmentsFill =
-      await this.store.peekRecord('layer', 'citymap-amendments-fill');
+    // const amendmentsFill =
+    //   await this.store.peekRecord('layer', 'citymap-amendments-fill');
 
     const { mapboxStyle: initialStyle } = layerGroups.get('meta');
+    console.info('initialStyle', initialStyle);
 
     return hash({
       layers,
       layerGroups,
-      amendmentsFill,
+      // amendmentsFill,
       initialStyle,
     });
   }
 
-  /**
-   * @override: ember lifecycle
-   */
-  setupController(controller, model) {
-    const { layerGroups } = model;
-    this.get('layerGroupService').initializeObservers(layerGroups, controller);
+  // /**
+  //  * @override: ember lifecycle
+  //  */
+  // setupController(controller, model) {
+  //   const { layerGroups } = model;
+  //   this.get('layerGroupService').initializeObservers(layerGroups, controller);
 
-    super.setupController(controller, model);
-  }
+  //   super.setupController(controller, model);
+  // }
 
-  @action
-  didTransition() {
-    next(function() {
-      // not supported in IE 11
-      window.dispatchEvent(new Event('resize'));
-    });
-  }
+  // @action
+  // didTransition() {
+  //   next(function() {
+  //     // not supported in IE 11
+  //     window.dispatchEvent(new Event('resize'));
+  //   });
+  // }
 }
