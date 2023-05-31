@@ -16,10 +16,7 @@ export default class LookupLayerGroupComponent extends Component {
     }
   }
 
-  // @service store;
+  @service store;
 
-  // @required
-  // @argument
-  // @type('string')
-  // for = '';
+  for = '';
 }

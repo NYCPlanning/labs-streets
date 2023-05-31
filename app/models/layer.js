@@ -1,12 +1,12 @@
 import Layer from '@nycplanning/ember/models/layer';
 
 export default class LayerModel extends Layer {
-  // init(...args) {
-  //   if (!this.get('layerGroup._firstOccurringLayer')) {
-  //     this.set('layerGroup._firstOccurringLayer', this.get('id'));
-  //     this.set('position', 1);
-  //   }
+  init(...args) {
+    if (!this.get('layerGroup._firstOccurringLayer')) {
+      this.set('layerGroup._firstOccurringLayer', this.get('id'));
+      this.set('position', 1);
+    }
 
-  //   this._super(...args);
-  // }
+    this._super(...args);
+  }
 }

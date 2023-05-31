@@ -79,7 +79,7 @@ export default class ApplicationController extends ParachuteController {
 
     return {
       ...mapOptions,
-      // style: this.get('model.initialStyle'),
+      style: this.get('model.initialStyle'),
       maxZoom: 19,
       minZoom: 9,
       maxBounds: [
@@ -160,6 +160,16 @@ export default class ApplicationController extends ParachuteController {
   handleMapLoad(map) {
     window.map = map; // for Maputnik Dev Server
     this.set('map', map);
+    const openMapTilesSource = map.getSource('openmaptiles');
+    const digitalCitymap = map.getSource('digital-citymap');
+    console.info('openMapTilesSource', openMapTilesSource);
+    console.info('digitalCitymap', digitalCitymap);
+    const streetsCenters = map.getLayer('street-centerlines');
+    const streetsLine = map.getLayer('citymap-mapped-streets-line');
+    const water = map.getLayer('water');
+    console.info('streetsLine', streetsLine);
+    console.info('streetCenterlines', streetsCenters)
+    console.info('water', water);
 
     // const navigationControl = new mapboxgl.NavigationControl();
     // map.addControl(navigationControl, 'top-left');
@@ -407,9 +417,9 @@ export default class ApplicationController extends ParachuteController {
   //   this.set('highlightedAmendmentSource', null);
   // }
 
-  // queryParamsDidChange() {
-  //   this.set('shareURL', window.location.href);
-  // }
+  queryParamsDidChange() {
+    this.set('shareURL', window.location.href);
+  }
 
   // @action
   // handlePrint() {
