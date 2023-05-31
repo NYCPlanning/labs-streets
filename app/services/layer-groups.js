@@ -3,8 +3,8 @@ import { A } from '@ember/array';
 import { copy } from 'ember-copy';
 
 export default class LayerGroupService extends Service {
-  init(...args) {
-    super.init(args);
+  constructor(...args) {
+    super(...args);
     this.layerGroupRegistry = A([]);
     this.visibleLayerGroups = A([]);
   }
@@ -18,6 +18,7 @@ export default class LayerGroupService extends Service {
     signature is a model directly from the route
   */
   initializeObservers(layerGroups, controller) {
+    console.info('layerGroups in initialObservers', layerGroups);
     // set initial state from QPs, grab init state from models
     const defaultVisibleLayerGroups = copy(layerGroups.filterBy('visible').mapBy('id').sort());
     const params = this.get('visibleLayerGroups');
