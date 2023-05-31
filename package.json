@@ -98,6 +98,7 @@
     "babelify": "8.0.0",
     "change-case": "3.0.2",
     "ember-auto-import": "1.12.0",
+    "ember-copy": "^2.0.1",
     "eslint-config-airbnb": "16.1.0",
     "eslint-plugin-ember-best-practices": "1.1.1",
     "eslint-plugin-import": "2.10.0",
