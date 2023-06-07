@@ -1,8 +1,5 @@
 import Component from '@ember/component';
-import { argument } from '@ember-decorators/argument';
 import { computed, action } from '@ember/object';
-import { Action } from '@ember-decorators/argument/types';
-import { type } from '@ember-decorators/argument/type';
 import moment from 'moment';
 
 function splitBBL(bbl) {
@@ -23,82 +20,82 @@ const boroLookup = {
 };
 
 export default class MapPopupContent extends Component {
-  // @computed('features')
-  // get cleanAlterations() {
-  //   const features = this.get('features');
-  //   if (features === null) return features;
+  @computed('features')
+  get cleanAlterations() {
+    const features = this.get('features');
+    if (features === null) return features;
 
-  //   // add a timestamp property to sort by
-  //   const cleanAlterations = features
-  //     .filter(d => d.properties.type === 'alteration')
-  //     .map((feature) => {
-  //       const { properties } = feature;
-  //       const { altmappdf, effective, status } = properties;
+    // add a timestamp property to sort by
+    const cleanAlterations = features
+      .filter(d => d.properties.type === 'alteration')
+      .map((feature) => {
+        const { properties } = feature;
+        const { altmappdf, effective, status } = properties;
 
-  //       const pdf = altmappdf.split('/').pop();
+        const pdf = altmappdf.split('/').pop();
 
-  //       return {
-  //         feature,
-  //         status,
-  //         timestamp: parseInt(moment(effective).format('X'), 10),
-  //         pdflink: `https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/${pdf}`,
-  //         pdf,
-  //         effective: moment(effective).format('MMM D, YYYY'),
-  //       };
-  //     });
+        return {
+          feature,
+          status,
+          timestamp: parseInt(moment(effective).format('X'), 10),
+          pdflink: `https://nycdcp-dcm-alteration-maps.nyc3.digitaloceanspaces.com/${pdf}`,
+          pdf,
+          effective: moment(effective).format('MMM D, YYYY'),
+        };
+      });
 
-  //   return cleanAlterations.sort((a, b) => a.timestamp < b.timestamp);
-  // }
+    return cleanAlterations.sort((a, b) => a.timestamp < b.timestamp);
+  }
 
-  // @computed('features')
-  // get cleanLots() {
-  //   const features = this.get('features');
-  //   if (features === null) return features;
+  @computed('features')
+  get cleanLots() {
+    const features = this.get('features');
+    if (features === null) return features;
 
-  //   // add a timestamp property to sort by
-  //   const cleanLots = features
-  //     .filter(d => d.properties.type === 'taxlot')
-  //     .map((feature) => {
-  //       const { properties } = feature;
-  //       const { bbl, address } = properties;
-  //       const BBLparts = splitBBL(bbl);
+    // add a timestamp property to sort by
+    const cleanLots = features
+      .filter(d => d.properties.type === 'taxlot')
+      .map((feature) => {
+        const { properties } = feature;
+        const { bbl, address } = properties;
+        const BBLparts = splitBBL(bbl);
 
-  //       return {
-  //         feature,
-  //         bbl,
-  //         address,
-  //         boro: BBLparts.boro,
-  //         boroName: boroLookup[BBLparts.boro],
-  //         block: BBLparts.block,
-  //         lot: BBLparts.lot,
-  //       };
-  //     });
+        return {
+          feature,
+          bbl,
+          address,
+          boro: BBLparts.boro,
+          boroName: boroLookup[BBLparts.boro],
+          block: BBLparts.block,
+          lot: BBLparts.lot,
+        };
+      });
 
-  //   return cleanLots;
-  // }
+    return cleanLots;
+  }
 
-  // @computed('features')
-  // get streetNameChanges() {
-  //   const features = this.get('features');
+  @computed('features')
+  get streetNameChanges() {
+    const features = this.get('features');
 
-  //   if (features === null) return features;
+    if (features === null) return features;
 
-  //   // add a timestamp property to sort by
-  //   const streetNameChanges = features
-  //     .filter(d => d.properties.type === 'streetnamechange');
+    // add a timestamp property to sort by
+    const streetNameChanges = features
+      .filter(d => d.properties.type === 'streetnamechange');
 
-  //   streetNameChanges.forEach((d) => {
-  //     d.properties.lleffectdt = moment(d.properties.lleffectdt, 'MM/DD/YYYY').format('MMM D, YYYY'); // eslint-disable-line
-  //     return d;
-  //   });
+    streetNameChanges.forEach((d) => {
+      d.properties.lleffectdt = moment(d.properties.lleffectdt, 'MM/DD/YYYY').format('MMM D, YYYY'); // eslint-disable-line
+      return d;
+    });
 
-  //   return streetNameChanges;
-  // }
+    return streetNameChanges;
+  }
 
-  // @computed('features')
-  // get sectionMapLink() {
-  //   const features = this.get('features');
-  //   if (features === null) return features;
+  @computed('features')
+  get sectionMapLink() {
+    const features = this.get('features');
+    if (features === null) return features;
 
     const sectionMapLink = features
       .filter(d => d.properties.type === 'streetsect')
@@ -116,27 +113,22 @@ export default class MapPopupContent extends Component {
         };
       });
 
-  //   return sectionMapLink;
-  // }
+    return sectionMapLink;
+  }
 
-  // @argument
-  // features = [];
+  features = [];
 
-  // @argument
-  // @type(Action)
-  // onHoverListItem = () => {};
+  onHoverListItem = () => {};
 
-  // @argument
-  // @type(Action)
-  // onMouseLeave = () => {};
+  onMouseLeave = () => {};
 
-  // @action
-  // handleHoverListItem(feature) {
-  //   this.get('onHoverListItem')(feature);
-  // }
+  @action
+  handleHoverListItem(feature) {
+    this.get('onHoverListItem')(feature);
+  }
 
-  // @action
-  // mouseLeave() {
-  //   this.get('onMouseLeave')();
-  // }
+  @action
+  mouseLeave() {
+    this.get('onMouseLeave')();
+  }
 }
