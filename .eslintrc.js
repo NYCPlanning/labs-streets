@@ -1,6 +1,9 @@
 'use strict';
 
 module.exports = {
+  globals: {
+    server: true,
+  },
   root: true,
   parser: 'babel-eslint',
   parserOptions: {
@@ -32,11 +35,10 @@ module.exports = {
     'no-underscore-dangle': 0,
     camelcase: 0,
     'max-len': 0,
-    'array-callback-return': 0,
-    'react/prefer-stateless-function': 0,
-    'class-methods-use-this': 0,
+    'no-param-reassign': 0,
+    'ember/avoid-leaking-state-in-ember-objects': 0,
     'ember-best-practices/require-dependent-keys': 0,
-    'react/sort-comp': 0,
+    'class-methods-use-this': 0,
     'ember/no-jquery': 'warn',
   },
   overrides: [
@@ -47,6 +49,8 @@ module.exports = {
         '.template-lintrc.js',
         'ember-cli-build.js',
         'testem.js',
+        'ember-cli-build.js',
+        '.template-lintrc.js',
         'blueprints/*/index.js',
         'config/**/*.js',
         'lib/*/index.js',
