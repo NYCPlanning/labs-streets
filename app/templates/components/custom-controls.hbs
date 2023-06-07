@@ -2,7 +2,7 @@
 
   <div class="share-controls mapboxgl-ctrl mapboxgl-ctrl-group">
     {{#if shareClosed}}
-      <button {{action 'handleShareOpen'}} class="mapboxgl-ctrl-icon">{{fa-icon 'share-alt'}}</button>
+      <button {{action 'handleShareOpen'}} class="mapboxgl-ctrl-icon"><FaIcon @icon='share-alt'/></button>
     {{else}}
       <div class="custom-controls-content">
         <button {{action 'handleClose'}} class="close-button" aria-label="Close alert" type="button"><span aria-hidden="true">&times;</span></button>
@@ -17,13 +17,13 @@
               error=(action 'handleClose')
               class="button"
             }}
-              {{fa-icon 'paste'}} Copy Link
+              <FaIcon @icon="paste" /> Copy Link
             {{/copy-button}}
           </div>
         </div>
         {{#if copySuccess}}
           <div class="share-controls-copy-success">
-            <div class="share-controls-copy-success-message">{{fa-icon 'check'}} Copied</div>
+            <div class="share-controls-copy-success-message"><FaIcon @icon="check"/> Copied</div>
           </div>
         {{/if}}
         {{boro-office-contact-callout class="text-tiny"}}
@@ -33,7 +33,7 @@
 
   <div class="data-controls mapboxgl-ctrl mapboxgl-ctrl-group">
     {{#if dataClosed}}
-      <button {{action 'handleDataOpen'}} class="mapboxgl-ctrl-icon">{{fa-icon 'download'}}</button>
+      <button {{action 'handleDataOpen'}} class="mapboxgl-ctrl-icon"><FaIcon @icon="download"/></button>
     {{else}}
       <div class="custom-controls-content">
         <button {{action 'handleClose'}} class="close-button" aria-label="Close alert" type="button"><span aria-hidden="true">&times;</span></button>
@@ -42,7 +42,7 @@
           {{#each datasets as |dataset|}}
             <li>
               <p>
-                {{fa-icon 'download'}} {{dataset.displayName}}:
+                <FaIcon @icon="download"/> {{dataset.displayName}}:
                 {{#if dataset.queryModifier}}
                   <a href="https://planninglabs.carto.com/api/v2/sql?format=SHP&filename={{dataset.tableName}}&q=SELECT * FROM {{dataset.tableName}} WHERE {{dataset.queryModifier}}"><strong>All</strong>&nbsp;<small>(SHP)</small></a>
                 {{else}}

@@ -7,7 +7,7 @@
           <li class="dark-gray" {{! template-lint-disable "nested-interactive" }}
             onmousemove={{action 'handleHoverListItem' alteration}} role="button">
             <a class="popup-button clearfix" href="{{alteration.pdflink}}" target="_blank" rel="noopener">
-              <strong class="link-name float-left">{{fa-icon 'external-link-alt'}} <span class="filename">{{alteration.pdf}}</span></strong>
+              <strong class="link-name float-left"><FaIcon @icon="external-link-alt"/><span class="filename">{{alteration.pdf}}</span></strong>
               {{#if (eq status '14')}}
                 <span class="date float-right">Effective {{alteration.effective}}</span>
               {{/if}}
@@ -26,7 +26,7 @@
     <ul class="popup-list no-bullet no-margin">
       {{#each streetNameChanges as |nameChange|}}
         <li class="popup-button clearfix">
-          <strong class="link-name float-left">{{fa-icon 'external-link'}} {{nameChange.properties.honor_name}}</strong>
+          <strong class="link-name float-left"><FaIcon @icon="external-link-alt" />{{nameChange.properties.honor_name}}</strong>
           <span class="date float-right">{{nameChange.properties.lleffectdt}}</span>
         </li>
       {{/each}}
@@ -41,7 +41,7 @@
         <li class="dark-gray" {{! template-lint-disable "nested-interactive" }}
           onmousemove={{action 'handleHoverListItem' sectionMap}} role="button">
           <a class="popup-button clearfix" href="{{sectionMap.do_path}}" target="_blank" rel="noopener">
-            <strong class="link-name float-left">{{fa-icon 'external-link-alt'}} <span class="filename">{{sectionMap.section_info}}</span></strong>
+            <strong class="link-name float-left"><FaIcon @icon="external-link-alt" /><span class="filename">{{sectionMap.section_info}}</span></strong>
             <span class="date float-right">Effective {{sectionMap.last_date}}</span>
           </a>
         </li>
@@ -58,7 +58,7 @@
           <a class="button--tax-lot button expanded gray text-orange no-margin" href="https://zola.planning.nyc.gov/lot/{{lot.boro}}/{{lot.block}}/{{lot.lot}}" target="_blank" rel="noopener">
             <span class="bbl">{{lot.boroName}}, Block {{lot.block}}, Lot {{lot.lot}}</span>
             <strong class="address">{{lot.address}}</strong>
-            <span class="prompt">{{fa-icon 'external-link'}} View this lot in ZoLa</span>
+            <span class="prompt"><FaIcon @icon="external-link-alt" />View this lot in ZoLa</span>
           </a>
         </li>
       {{/each}}
