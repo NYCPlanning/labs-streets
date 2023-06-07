@@ -30,7 +30,7 @@
           {{/if}}
           {{#if source.meta.url}}
             {{#each source.meta.url as |url|}}
-              <span style="display:block;" class="no-margin"><a href="{{url}}" target="_blank" rel="noopener">{{fa-icon 'external-link-alt'}} {{url}}</a></span>
+              <span style="display:block;" class="no-margin"><a href="{{url}}" target="_blank" rel="noopener"><FaIcon @icon="external-link-alt" />{{url}}</a></span>
             {{/each}}
           {{/if}}
           {{#if source.meta.updated_at}}
