@@ -13,7 +13,9 @@ export default class SliderFilterComponent extends Component {
   layer;
 
   start = defaultStart
+
   min = defaultStart[0]
+
   max = defaultStart[1]
 
   format = {

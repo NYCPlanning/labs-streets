@@ -1,42 +1,31 @@
-{{#deprecated/site-header
-  responsiveNav=true
-  as |banner|
-}}
-  {{#banner.title}}
-    {{#link-to 'application' classNames='site-title' }}Street Map <small class="site-subtitle show-for-medium"><span class="show-for-xlarge">The</span> Status &amp; History of N<span class="show-for-xlarge">ew </span>Y<span class="show-for-xlarge">ork </span>C<span class="show-for-xlarge">ity</span>&rsquo;s Streets</small>{{/link-to}}
-  {{/banner.title}}
-  {{#banner.nav}}
+<Deprecated::SiteHeader @responsiveNav={{true}} as |banner|>
+  <banner.title>
+    <LinkTo @route="application" class="site-title">Street Map <small class="site-subtitle show-for-medium"><span class="show-for-xlarge">The</span> Status &amp; History of N<span class="show-for-xlarge">ew </span>Y<span class="show-for-xlarge">ork </span>C<span class="show-for-xlarge">ity</span>&rsquo;s Streets</small></LinkTo>
+  </banner.title>
+  <banner.nav>
     <ul class="menu vertical large-horizontal">
       <li class="menu-list-item">
-        {{link-to 'About' 'about' class="menu-list-item-link"}}
+        <LinkTo @route="about" class="menu-list-item-link">About</LinkTo>
       </li>
       <li class="menu-list-item">
-        {{link-to 'City Map' 'city-map' class="menu-list-item-link"}}
+        <LinkTo @route="city-map" class="menu-list-item-link">City Map</LinkTo>
       </li>
       <li class="menu-list-item">
-        {{link-to 'Data' 'data' class="menu-list-item-link"}}
+        <LinkTo @route="data" class="menu-list-item-link">Data</LinkTo>
       </li>
       <li class="menu-list-item">
-        {{link-to 'Feedback' 'feedback' class="menu-list-item-link"}}
+        <LinkTo @route="feedback" class="menu-list-item-link">Feedback</LinkTo>
       </li>
     </ul>
-  {{/banner.nav}}
-{{/deprecated/site-header}}
+  </banner.nav>
+</Deprecated::SiteHeader>
 
-<div class="site-main grid-x route-{{currentRouteName}}">
+<div class="site-main grid-x route-{{this.currentRouteName}}">
 
   <div class="search-container">
-    {{#labs-search
-        onSelect=(action 'handleSearchSelect')
-        onHoverResult=(action 'handleSearchResultHover')
-        onHoverOut=(action 'handleSearchHoverOut')
-        onClear=(action 'handleSearchClear')
-        searchTerms=searchTerms
-        typeTitleLookup=(hash
-          lot='Addresses'
+    <LabsSearch @onSelect={{this.handleSearchSelect}} @onHoverResult={{this.handleSearchResultHover}} @onHoverOut={{this.handleSearchHoverOut}} @onClear={{this.handleSearchClear}} @searchTerms={{this.searchTerms}} @typeTitleLookup={{hash lot='Addresses'
           city-street='Streets'
-          city-map-alteration='Alterations and ULURP Numbers'
-        ) as |search|}}
+          city-map-alteration='Alterations and ULURP Numbers'}} as |search|>
       {{#if (eq search.result.type 'lot')}}
         <span class="icon tax-lot"></span> <span class="subdued">{{search.result.label}}, Block {{search.result.demuxedBbl.block}}, Lot {{search.result.demuxedBbl.lot}}</span>
       {{else if (eq search.result.type 'city-street')}}
@@ -44,34 +33,28 @@
       {{else if (eq search.result.type 'city-map-alteration')}}
         {{search.result.label}} ({{moment-format search.result.effective 'DD MMMM YYYY'}})
       {{/if}}
-    {{/labs-search}}
-    {{labs-bbl-lookup onSuccess=(action 'flyTo')}}
+    </LabsSearch>
+    {{labs-bbl-lookup onSuccess=(this.flyTo)}}
   </div>
   <div class="map-container cell medium-auto large-order-2">
-    {{#labs-map
-      id='main-map'
-      initOptions=initMapOptions
-      mapLoaded=(action 'handleMapLoad') as |map|}}
+    <LabsMap @id="main-map" @initOptions={{this.initMapOptions}} @mapLoaded={{this.handleMapLoad}} as |map|>
 
-      {{#map.labs-layers
-        onLayerMouseMove=(action 'handleLayerMouseMove')
-        layerGroups=model.layerGroups as |layers|}}
-        {{#layers.tooltip as |tooltip|}}
+      <map.labs-layers @onLayerMouseMove={{this.handleLayerMouseMove}} @layerGroups={{this.model.layerGroups}} as |layers|>
+        <layers.tooltip as |tooltip|>
           {{tooltip-renderer feature=tooltip.feature template=tooltip.layer.tooltipTemplate}}
-        {{/layers.tooltip}}
-      {{/map.labs-layers}}
+        </layers.tooltip>
+      </map.labs-layers>
 
-      {{#if (not-eq popupFeatures null)}}
-        {{#map.popup
-          lngLat=popupLocation}}
+      {{#if (not-eq this.popupFeatures null)}}
+        <map.popup @lngLat={{this.popupLocation}}>
           {{map-popup-content
-            onHoverListItem=(action 'handlePopupLinkOver')
-            onMouseLeave=(action 'clearAmendmentHover')
-            features=popupFeatures}}
-        {{/map.popup}}
+            onHoverListItem=(this.handlePopupLinkOver)
+            onMouseLeave=(this.clearAmendmentHover)
+            features=this.popupFeatures}}
+        </map.popup>
 
-        {{#if highlightedAmendmentSource}}
-          {{#map.source options=highlightedAmendmentSource as |source|}}
+        {{#if this.highlightedAmendmentSource}}
+          <map.source @options={{this.highlightedAmendmentSource}} as |source|>
             {{source.layer layer=(hash
                 type='line'
                 paint=(hash
@@ -103,16 +86,16 @@
               )
               before='boundary_country'
             }}
-          {{/map.source}}
+          </map.source>
         {{/if}}
       {{else}}
-        {{#map.popup lngLat=popupLocation}}
+        <map.popup @lngLat={{this.popupLocation}}>
           <FaIcon @icon="spinner" class='fa-spin medium-gray fa-3x fa-fw' />
-        {{/map.popup}}
+        </map.popup>
       {{/if}}
 
-      {{#if highlightedStreetSource}}
-        {{#map.source options=highlightedStreetSource as |source|}}
+      {{#if this.highlightedStreetSource}}
+        <map.source @options={{this.highlightedStreetSource}} as |source|>
           {{source.layer layer=(hash
               type='line'
               paint=(hash
@@ -144,11 +127,11 @@
             )
             before='boundary_country'
           }}
-        {{/map.source}}
+        </map.source>
       {{/if}}
 
-      {{#if highlightedAmendmentSource}}
-        {{#map.source options=highlightedAmendmentSource as |source|}}
+      {{#if this.highlightedAmendmentSource}}
+        <map.source @options={{this.highlightedAmendmentSource}} as |source|>
           {{source.layer layer=(hash
               type='line'
               paint=(hash
@@ -180,11 +163,11 @@
             )
             before='boundary_country'
           }}
-        {{/map.source}}
+        </map.source>
       {{/if}}
 
-      {{#if searchedAddressSource}}
-        {{#map.source options=searchedAddressSource as |source|}}
+      {{#if this.searchedAddressSource}}
+        <map.source @options={{this.searchedAddressSource}} as |source|>
           {{source.layer layer=(hash
               type='circle'
               paint=(hash
@@ -196,222 +179,141 @@
             )
             before='boundary_country'
           }}
-        {{/map.source}}
+        </map.source>
       {{/if}}
 
-      {{map.on 'render' (action 'handleMapLoading')}}
-      {{map.on 'data' (action 'handleMapLoading')}}
-      {{map.on 'sourcedata' (action 'handleMapLoading')}}
-      {{map.on 'click' (action 'handleMapClick')}}
-      {{map.on 'move' (action 'handleMapPositionChange')}}
-      {{map.on 'mousemove' (action 'handleLayerMouseMove')}}
-      {{map.on 'drag' (action 'handleMapMouseDrag')}}
-      {{map.on 'zoomend' (action 'handleMapPositionChange')}}
+      {{map.on 'render' this.handleMapLoading}}
+      {{map.on 'data' this.handleMapLoading}}
+      {{map.on 'sourcedata' this.handleMapLoading}}
+      {{map.on 'click' this.handleMapClick}}
+      {{map.on 'move' this.handleMapPositionChange}}
+      {{map.on 'mousemove' this.handleLayerMouseMove}}
+      {{map.on 'drag' this.handleMapMouseDrag}}
+      {{map.on 'zoomend' this.handleMapPositionChange}}
 
-      {{#if loadStateTask.isRunning}}
+      {{#if this.loadStateTask.isRunning}}
         <FaIcon @icon="spinner" class='fa-spin fa-3x map-loading-spinner'/>
       {{/if}}
 
-      <a class="zola-map-area-button" href="https://zola.planning.nyc.gov/{{mapLatLngZoomHash}}" target="_blank" rel="noopener">
+      <a class="zola-map-area-button" href="https://zola.planning.nyc.gov/{{this.mapLatLngZoomHash}}" target="_blank" rel="noopener noreferrer">
         <strong>View <span class="show-for-medium">this area</span> in ZoLa</strong>
         <small class="show-for-medium">NYC’s Zoning &amp; Land Use Map</small>
       </a>
-      {{#custom-controls
-        shareURL=shareURL
-        boundsGeoJSON=boundsGeoJSON}}
+      <CustomControls @shareURL={{this.shareURL}} @boundsGeoJSON={{this.boundsGeoJSON}}>
         <div class="print-controls mapboxgl-ctrl mapboxgl-ctrl-group">
-          <button {{action 'handlePrint'}} class="mapboxgl-ctrl-icon"><FaIcon @icon='print' /></button>
+          <button class="mapboxgl-ctrl-icon" type="button" {{this.handlePrint}}><FaIcon @icon='print' /></button>
         </div>
-      {{/custom-controls}}
+      </CustomControls>
 
-    {{/labs-map}}
+    </LabsMap>
 
   </div>
 
-  <div class="layer-menu cell large-order-1 {{if (not-eq currentRouteName 'index') 'show-for-medium'}}">
+  <div class="layer-menu cell large-order-1 {{if (not-eq this.currentRouteName 'index') 'show-for-medium'}}">
     {{!-- City Map Layers --}}
-    {{#deprecated/layer-groups-container title='Street Map Layers'
-        mapIsLoading=loadStateTask.isRunning}}
-      {{#lookup-layer-group for='citymap' as |layerGroup|}}
-        {{#deprecated/layer-group-toggle
-          label=layerGroup.model.legend.label
-          tooltip=layerGroup.model.legend.tooltip
-          active=layerGroup.model.visible
-        }}
+    <Deprecated::LayerGroupsContainer @title="Street Map Layers" @mapIsLoading={{this.loadStateTask.isRunning}}>
+      <LookupLayerGroup @for="citymap" as |layerGroup|>
+        <Deprecated::LayerGroupToggle @label={{layerGroup.model.legend.label}} @tooltip={{layerGroup.model.legend.tooltip}} @active={{layerGroup.model.visible}}>
           {{deprecated/legend-items items=layerGroup.model.legend.items}}
-        {{/deprecated/layer-group-toggle}}
-      {{/lookup-layer-group}}
+        </Deprecated::LayerGroupToggle>
+      </LookupLayerGroup>
 
-      {{#lookup-layer-group for='street-centerlines' as |layerGroup|}}
-        {{#deprecated/layer-group-toggle
-          label=layerGroup.model.legend.label
-          tooltip=layerGroup.model.legend.tooltip
-          active=layerGroup.model.visible
-        }}
-        {{/deprecated/layer-group-toggle}}
-      {{/lookup-layer-group}}
+      <LookupLayerGroup @for="street-centerlines" as |layerGroup|>
+        <Deprecated::LayerGroupToggle @label={{layerGroup.model.legend.label}} @tooltip={{layerGroup.model.legend.tooltip}} @active={{layerGroup.model.visible}}>
+        </Deprecated::LayerGroupToggle>
+      </LookupLayerGroup>
 
-      {{#lookup-layer-group for='pierhead-bulkhead-lines' as |layerGroup|}}
-        {{#deprecated/layer-group-toggle
-          label=layerGroup.model.legend.label
-          tooltip=layerGroup.model.legend.tooltip
-          active=layerGroup.model.visible
-        }}
+      <LookupLayerGroup @for="pierhead-bulkhead-lines" as |layerGroup|>
+        <Deprecated::LayerGroupToggle @label={{layerGroup.model.legend.label}} @tooltip={{layerGroup.model.legend.tooltip}} @active={{layerGroup.model.visible}}>
           {{deprecated/legend-items items=layerGroup.model.legend.items}}
-        {{/deprecated/layer-group-toggle}}
-      {{/lookup-layer-group}}
+        </Deprecated::LayerGroupToggle>
+      </LookupLayerGroup>
 
-      {{#lookup-layer-group for='street-sections' as |layerGroup|}}
-        {{#deprecated/layer-group-toggle
-          label=layerGroup.model.legend.label
-          tooltip=layerGroup.model.legend.tooltip
-          active=layerGroup.model.visible
-          icon=layerGroup.model.legend.icon
-        }}
-        {{/deprecated/layer-group-toggle}}
-      {{/lookup-layer-group}}
+      <LookupLayerGroup @for="street-sections" as |layerGroup|>
+        <Deprecated::LayerGroupToggle @label={{layerGroup.model.legend.label}} @tooltip={{layerGroup.model.legend.tooltip}} @active={{layerGroup.model.visible}} @icon={{layerGroup.model.legend.icon}}>
+        </Deprecated::LayerGroupToggle>
+      </LookupLayerGroup>
 
-      {{#lookup-layer-group for='amendments' as |layerGroup|}}
-        {{#deprecated/layer-group-toggle
-          label=layerGroup.model.legend.label
-          tooltip=layerGroup.model.legend.tooltip
-          icon=layerGroup.model.legend.icon
-          active=layerGroup.model.visible
-        }}
-          {{slider-filter layer=model.amendmentsFill}}
-        {{/deprecated/layer-group-toggle}}
-      {{/lookup-layer-group}}
+      <LookupLayerGroup @for="amendments" as |layerGroup|>
+        <Deprecated::LayerGroupToggle @label={{layerGroup.model.legend.label}} @tooltip={{layerGroup.model.legend.tooltip}} @icon={{layerGroup.model.legend.icon}} @active={{layerGroup.model.visible}}>
+          {{slider-filter layer=this.model.amendmentsFill}}
+        </Deprecated::LayerGroupToggle>
+      </LookupLayerGroup>
 
-      {{#lookup-layer-group for='amendments-pending' as |layerGroup|}}
-        {{#deprecated/layer-group-toggle
-            label=layerGroup.model.legend.label
-            tooltip=layerGroup.model.legend.tooltip
-            icon=layerGroup.model.legend.icon
-            active=layerGroup.model.visible
-        }}
-        {{/deprecated/layer-group-toggle}}
-      {{/lookup-layer-group}}
+      <LookupLayerGroup @for="amendments-pending" as |layerGroup|>
+        <Deprecated::LayerGroupToggle @label={{layerGroup.model.legend.label}} @tooltip={{layerGroup.model.legend.tooltip}} @icon={{layerGroup.model.legend.icon}} @active={{layerGroup.model.visible}}>
+        </Deprecated::LayerGroupToggle>
+      </LookupLayerGroup>
 
-      {{#lookup-layer-group for='arterials' as |layerGroup|}}
-        {{#deprecated/layer-group-toggle
-            label=layerGroup.model.legend.label
-            tooltip=layerGroup.model.legend.tooltip
-            active=layerGroup.model.visible
-        }}
+      <LookupLayerGroup @for="arterials" as |layerGroup|>
+        <Deprecated::LayerGroupToggle @label={{layerGroup.model.legend.label}} @tooltip={{layerGroup.model.legend.tooltip}} @active={{layerGroup.model.visible}}>
           {{deprecated/legend-items items=layerGroup.model.legend.items}}
-        {{/deprecated/layer-group-toggle}}
-      {{/lookup-layer-group}}
+        </Deprecated::LayerGroupToggle>
+      </LookupLayerGroup>
 
-      {{#lookup-layer-group for='name-changes' as |layerGroup|}}
-        {{#deprecated/layer-group-toggle
-            label=layerGroup.model.legend.label
-            tooltip=layerGroup.model.legend.tooltip
-            active=layerGroup.model.visible
-        }}
+      <LookupLayerGroup @for="name-changes" as |layerGroup|>
+        <Deprecated::LayerGroupToggle @label={{layerGroup.model.legend.label}} @tooltip={{layerGroup.model.legend.tooltip}} @active={{layerGroup.model.visible}}>
           {{deprecated/legend-items items=layerGroup.model.legend.items}}
-        {{/deprecated/layer-group-toggle}}
-      {{/lookup-layer-group}}
+        </Deprecated::LayerGroupToggle>
+      </LookupLayerGroup>
 
-      {{#lookup-layer-group for='paper-streets' as |layerGroup|}}
-        {{#deprecated/layer-group-toggle
-          label=layerGroup.model.legend.label
-          tooltip=layerGroup.model.legend.tooltip
-          icon=layerGroup.model.legend.icon
-          active=layerGroup.model.visible
-        }}
-        {{/deprecated/layer-group-toggle}}
-      {{/lookup-layer-group}}
+      <LookupLayerGroup @for="paper-streets" as |layerGroup|>
+        <Deprecated::LayerGroupToggle @label={{layerGroup.model.legend.label}} @tooltip={{layerGroup.model.legend.tooltip}} @icon={{layerGroup.model.legend.icon}} @active={{layerGroup.model.visible}}>
+        </Deprecated::LayerGroupToggle>
+      </LookupLayerGroup>
 
-      {{#lookup-layer-group for='stair-streets' as |layerGroup|}}
-        {{#deprecated/layer-group-toggle
-          label=layerGroup.model.legend.label
-          tooltip=layerGroup.model.legend.tooltip
-          icon=layerGroup.model.legend.icon
-          active=layerGroup.model.visible
-        }}
-        {{/deprecated/layer-group-toggle}}
-      {{/lookup-layer-group}}
-    {{/deprecated/layer-groups-container}}
+      <LookupLayerGroup @for="stair-streets" as |layerGroup|>
+        <Deprecated::LayerGroupToggle @label={{layerGroup.model.legend.label}} @tooltip={{layerGroup.model.legend.tooltip}} @icon={{layerGroup.model.legend.icon}} @active={{layerGroup.model.visible}}>
+        </Deprecated::LayerGroupToggle>
+      </LookupLayerGroup>
+    </Deprecated::LayerGroupsContainer>
 
     {{!-- Supporting Layers --}}
-    {{#deprecated/layer-groups-container title='Supporting Layers'
-        open=true
-        mapIsLoading=loadStateTask.isRunning}}
-      {{#lookup-layer-group for='zoning-districts' as |layerGroup|}}
-        {{#deprecated/layer-group-toggle
-          label=layerGroup.model.legend.label
-          tooltip=layerGroup.model.legend.tooltip
-          active=layerGroup.model.visible
-        }}
+    <Deprecated::LayerGroupsContainer @title="Supporting Layers" @open={{true}} @mapIsLoading={{this.loadStateTask.isRunning}}>
+      <LookupLayerGroup @for="zoning-districts" as |layerGroup|>
+        <Deprecated::LayerGroupToggle @label={{layerGroup.model.legend.label}} @tooltip={{layerGroup.model.legend.tooltip}} @active={{layerGroup.model.visible}}>
           {{!-- TODO add legend items to the zoning-districts layerGroup --}}
           {{!-- {{deprecated/legend-items items=layerGroup.model.legend.items}} --}}
-        {{/deprecated/layer-group-toggle}}
-      {{/lookup-layer-group}}
+        </Deprecated::LayerGroupToggle>
+      </LookupLayerGroup>
 
-      {{#lookup-layer-group for='commercial-overlays' as |layerGroup|}}
-        {{#deprecated/layer-group-toggle
-          label=layerGroup.model.legend.label
-          tooltip=layerGroup.model.legend.tooltip
-          icon=layerGroup.model.legend.icon
-          active=layerGroup.model.visible
-        }}
-        {{/deprecated/layer-group-toggle}}
-      {{/lookup-layer-group}}
+      <LookupLayerGroup @for="commercial-overlays" as |layerGroup|>
+        <Deprecated::LayerGroupToggle @label={{layerGroup.model.legend.label}} @tooltip={{layerGroup.model.legend.tooltip}} @icon={{layerGroup.model.legend.icon}} @active={{layerGroup.model.visible}}>
+        </Deprecated::LayerGroupToggle>
+      </LookupLayerGroup>
 
-      {{#lookup-layer-group for='special-purpose-districts' as |layerGroup|}}
-        {{#deprecated/layer-group-toggle
-          label=layerGroup.model.legend.label
-          tooltip=layerGroup.model.legend.tooltip
-          icon=layerGroup.model.legend.icon
-          active=layerGroup.model.visible
-        }}
-        {{/deprecated/layer-group-toggle}}
-      {{/lookup-layer-group}}
+      <LookupLayerGroup @for="special-purpose-districts" as |layerGroup|>
+        <Deprecated::LayerGroupToggle @label={{layerGroup.model.legend.label}} @tooltip={{layerGroup.model.legend.tooltip}} @icon={{layerGroup.model.legend.icon}} @active={{layerGroup.model.visible}}>
+        </Deprecated::LayerGroupToggle>
+      </LookupLayerGroup>
 
-      {{#lookup-layer-group for='tax-lots' as |layerGroup|}}
-        {{#deprecated/layer-group-toggle
-          label=layerGroup.model.legend.label
-          tooltip=layerGroup.model.legend.tooltip
-          icon=layerGroup.model.legend.icon
-          active=layerGroup.model.visible
-        }}
-        {{/deprecated/layer-group-toggle}}
-      {{/lookup-layer-group}}
+      <LookupLayerGroup @for="tax-lots" as |layerGroup|>
+        <Deprecated::LayerGroupToggle @label={{layerGroup.model.legend.label}} @tooltip={{layerGroup.model.legend.tooltip}} @icon={{layerGroup.model.legend.icon}} @active={{layerGroup.model.visible}}>
+        </Deprecated::LayerGroupToggle>
+      </LookupLayerGroup>
 
-      {{#lookup-layer-group for='floodplain-pfirm2015' as |layerGroup|}}
-        {{#deprecated/layer-group-toggle
-          label=layerGroup.model.legend.label
-          tooltip=layerGroup.model.legend.tooltip
-          active=layerGroup.model.visible
-        }}
+      <LookupLayerGroup @for="floodplain-pfirm2015" as |layerGroup|>
+        <Deprecated::LayerGroupToggle @label={{layerGroup.model.legend.label}} @tooltip={{layerGroup.model.legend.tooltip}} @active={{layerGroup.model.visible}}>
           {{deprecated/legend-items items=layerGroup.model.legend.items}}
-        {{/deprecated/layer-group-toggle}}
-      {{/lookup-layer-group}}
+        </Deprecated::LayerGroupToggle>
+      </LookupLayerGroup>
 
-      {{#lookup-layer-group for='floodplain-efirm2007' as |layerGroup|}}
-        {{#deprecated/layer-group-toggle
-          label=layerGroup.model.legend.label
-          tooltip=layerGroup.model.legend.tooltip
-          active=layerGroup.model.visible
-        }}
+      <LookupLayerGroup @for="floodplain-efirm2007" as |layerGroup|>
+        <Deprecated::LayerGroupToggle @label={{layerGroup.model.legend.label}} @tooltip={{layerGroup.model.legend.tooltip}} @active={{layerGroup.model.visible}}>
           {{deprecated/legend-items items=layerGroup.model.legend.items}}
-        {{/deprecated/layer-group-toggle}}
-      {{/lookup-layer-group}}
+        </Deprecated::LayerGroupToggle>
+      </LookupLayerGroup>
 
-      {{#lookup-layer-group for='aerials' as |layerGroup|}}
-        {{#deprecated/layer-group-toggle
-          label=layerGroup.model.legend.label
-          tooltip=layerGroup.model.legend.tooltip
-          active=layerGroup.model.visible
-        }}
+      <LookupLayerGroup @for="aerials" as |layerGroup|>
+        <Deprecated::LayerGroupToggle @label={{layerGroup.model.legend.label}} @tooltip={{layerGroup.model.legend.tooltip}} @active={{layerGroup.model.visible}}>
           <ul class="layer-menu-item--group-checkboxes no-bullet list-float-3">
             {{#each layerGroup.model.layers as |layer|}}
-              <li onclick={{action (mut layerGroup.model.selected) layer.id}} role='button'>
-                <label {{!template-lint-disable "nested-interactive"}}>
+              <li onclick={{fn (mut layerGroup.model.selected) layer.id}} role='button'>
+                <label {{!template-lint-disable "no-nested-interactive"}}>
                   <span class="layer-group-radio-{{layer.id}} silver">
                     <span class="fa-layers">
                       {{#if layer.visibility}}<FaIcon @icon="circle" class="a11y-orange" @transform="shrink-5"/>{{/if}}
-                      <FaIcon @icon="circle" @prefix="far" class={{(if layer.visibility '')}}/>
+                      <FaIcon @icon="circle" @prefix="far" class={{if layer.visibility ''}}/>
                     </span>
                   </span>
                   {{layer.displayName}}
@@ -419,13 +321,13 @@
               </li>
             {{/each}}
           </ul>
-        {{/deprecated/layer-group-toggle}}
-      {{/lookup-layer-group}}
-    {{/deprecated/layer-groups-container}}
+        </Deprecated::LayerGroupToggle>
+      </LookupLayerGroup>
+    </Deprecated::LayerGroupsContainer>
 
-    <a {{action setModelsToDefault }} role='button' class="button gray small reset-map-button" disabled={{isDefault}}>
+    <button class="button gray small reset-map-button" disabled={{this.isDefault}} type="button" {{ this.setModelsToDefault }}>
       <FaIcon @icon="undo" /> Reset Map Layers
-    </a>
+    </button>
   </div>
 
   {{outlet}}

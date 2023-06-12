@@ -5,11 +5,14 @@ import { run } from '@ember/runloop';
 export default class CustomControls extends Component {
   // // Share Control properties
   shareURL;
+
   shareClosed = true;
+
   copySuccess = false;
 
   // // Data Control properties
   dataClosed = true;
+
   boundsGeoJSON;
 
   datasets = [
