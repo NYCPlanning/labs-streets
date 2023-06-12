@@ -68,6 +68,7 @@ export const LayerVisibilityParams = new QueryParams({
 const ParachuteController = Controller.extend(LayerVisibilityParams.Mixin);
 
 export default class ApplicationController extends ParachuteController {
+  @service metrics
   @service('layerGroups') layerGroupService
 
   @alias('layerGroupService.visibleLayerGroups')
@@ -212,7 +213,7 @@ export default class ApplicationController extends ParachuteController {
   }
 
   @action
-  // @trackEvent('click', 'popup', 'popupLocation')
+  @trackEvent('click', 'popup', 'popupLocation')
   handleMapClick(e) {
     const citymapLayerDisabled = this.get('model').layerGroups.toArray().filter(layerGroup => layerGroup.get('visible')).find(layer => layer.id === 'citymap') === undefined;
 

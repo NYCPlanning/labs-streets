@@ -9,10 +9,6 @@ export default function trackEvent(eventCategory, incAction, incLabel, incValue)
     descriptor.value = function(...args) {
       originalValue.call(this, ...args);
 
-      if (!this.get('metrics')) {
-        this.set('metrics', service());
-      }
-
       let eventAction = incAction;
       let eventLabel = incLabel;
       let eventValue = incValue;
