@@ -11,7 +11,7 @@ export default class Router extends EmberRouter {
   rootURL = config.rootURL;
 
   didTransition(...args) {
-    this._super(...args);
+    super.didTransition(...args);
     this._trackPage();
 
     next(function() {
