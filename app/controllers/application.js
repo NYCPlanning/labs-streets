@@ -69,6 +69,7 @@ const ParachuteController = Controller.extend(LayerVisibilityParams.Mixin);
 
 export default class ApplicationController extends ParachuteController {
   @service metrics
+
   @service('layerGroups') layerGroupService
 
   @alias('layerGroupService.visibleLayerGroups')
@@ -107,6 +108,7 @@ export default class ApplicationController extends ParachuteController {
   searchTerms = '';
 
   highlightedStreetSource = null;
+
   highlightedAmendmentSource = null;
 
   searchedAddressSource = null;
