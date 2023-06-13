@@ -34,7 +34,7 @@
         {{search.result.label}} ({{moment-format search.result.effective 'DD MMMM YYYY'}})
       {{/if}}
     </LabsSearch>
-    {{labs-bbl-lookup onSuccess=(this.flyTo)}}
+    {{labs-bbl-lookup onSuccess=this.flyTo}}
   </div>
   <div class="map-container cell medium-auto large-order-2">
     <LabsMap @id="main-map" @initOptions={{this.initMapOptions}} @mapLoaded={{this.handleMapLoad}} as |map|>
@@ -201,7 +201,7 @@
       </a>
       <CustomControls @shareURL={{this.shareURL}} @boundsGeoJSON={{this.boundsGeoJSON}}>
         <div class="print-controls mapboxgl-ctrl mapboxgl-ctrl-group">
-          <button class="mapboxgl-ctrl-icon" type="button" {{this.handlePrint}}><FaIcon @icon='print' /></button>
+          <button class="mapboxgl-ctrl-icon" type="button" {{on 'click' this.handlePrint}}><FaIcon @icon='print' /></button>
         </div>
       </CustomControls>
 
@@ -325,7 +325,7 @@
       </LookupLayerGroup>
     </Deprecated::LayerGroupsContainer>
 
-    <button class="button gray small reset-map-button" disabled={{this.isDefault}} type="button" {{ this.setModelsToDefault }}>
+    <button class="button gray small reset-map-button" disabled={{this.isDefault}} type="button" {{on 'click' this.setModelsToDefault }}>
       <FaIcon @icon="undo" /> Reset Map Layers
     </button>
   </div>
