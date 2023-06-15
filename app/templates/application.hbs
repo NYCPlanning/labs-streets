@@ -48,8 +48,8 @@
       {{#if (not-eq this.popupFeatures null)}}
         <map.popup @lngLat={{this.popupLocation}}>
           {{map-popup-content
-            onHoverListItem=(this.handlePopupLinkOver)
-            onMouseLeave=(this.clearAmendmentHover)
+            onHoverListItem=this.handlePopupLinkOver
+            onMouseLeave=this.clearAmendmentHover
             features=this.popupFeatures}}
         </map.popup>
 
