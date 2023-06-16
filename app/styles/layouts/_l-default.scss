@@ -283,6 +283,13 @@ hr.small-margin {
   }
 }
 
+.null-section-map{
+  display: flex;
+  flex-wrap: wrap;
+  max-height: min-content;
+  max-width: 15rem;
+}
+
 // Multi-column lists
 .list-float-3 {
   @include clearfix;

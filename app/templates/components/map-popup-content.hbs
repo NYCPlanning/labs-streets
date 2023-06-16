@@ -38,13 +38,19 @@
     <h4 class="popup-header">Street Section Map</h4>
     <ul class="popup-list no-bullet">
       {{#each sectionMapLink as |sectionMap|}}
-        <li class="dark-gray" {{! template-lint-disable "nested-interactive" }}
-          onmousemove={{action 'handleHoverListItem' sectionMap}} role="button">
-          <a class="popup-button clearfix" href="{{sectionMap.do_path}}" target="_blank" rel="noopener">
-            <strong class="link-name float-left">{{fa-icon 'external-link-alt'}} <span class="filename">{{sectionMap.section_info}}</span></strong>
-            <span class="date float-right">Effective {{sectionMap.last_date}}</span>
-          </a>
-        </li>
+        {{#if sectionMap.do_path}}
+          <li class="dark-gray" {{! template-lint-disable "nested-interactive" }}
+            onmousemove={{action 'handleHoverListItem' sectionMap}} role="button">
+            <a class="popup-button clearfix" href="{{sectionMap.do_path}}" target="_blank" rel="noopener">
+              <strong class="link-name float-left">{{fa-icon 'external-link-alt'}} <span class="filename">{{sectionMap.section_info}}</span></strong>
+              <span class="date float-right">Effective {{sectionMap.last_date}}</span>
+            </a>
+          </li>
+        {{else}}
+          <span class="null-section-map">
+            There is no available digitized street section map for this location. For more information please contact the {{sectionMap.boroname}} Borough President's Topographical Bureau.
+          </span>
+        {{/if}}
       {{/each}}
     </ul>
   {{/if}}

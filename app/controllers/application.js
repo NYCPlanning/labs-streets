@@ -227,7 +227,7 @@ export default class ApplicationController extends ParachuteController {
     // Query and set the popup content
     const { lng, lat } = e.lngLat;
     const SQL = `
-    SELECT the_geom, 'alteration' AS type, altmappdf, status, effect_dt as effective, NULL as bbl, NULL as address, NULL::timestamp as last_date, NULL as do_path
+    SELECT the_geom, 'alteration' AS type, altmappdf, status, effect_dt AS effective, NULL AS bbl, NULL AS address, NULL::timestamp AS last_date, NULL AS do_path, NULL AS boro
       FROM dcp_dcm_city_map_alterations
       WHERE (effect_dt IS NOT NULL
               OR status = '13')
@@ -241,7 +241,7 @@ export default class ApplicationController extends ParachuteController {
           )
         )
     UNION ALL
-    SELECT the_geom, 'taxlot' AS type, NULL as altmappdf, NULL as status, NULL as effective, bbl, address, NULL::timestamp as last_date, NULL as do_path
+    SELECT the_geom, 'taxlot' AS type, NULL AS altmappdf, NULL AS status, NULL AS effective, bbl, address, NULL::timestamp AS last_date, NULL AS do_path, NULL AS boro
       FROM dcp_mappluto
         WHERE ST_Intersects(
           the_geom,
@@ -253,7 +253,7 @@ export default class ApplicationController extends ParachuteController {
           )
         )
     UNION ALL
-    SELECT the_geom, 'streetsect' AS type, NULL as altmappdf, NULL as status, NULL as effective, NULL as bbl, NULL as address, last_date, do_path 
+    SELECT the_geom, 'streetsect' AS type, NULL AS altmappdf, NULL AS status, NULL AS effective, NULL AS bbl, NULL AS address, last_date, do_path, boro 
       FROM dcp_final_section_map_index
         WHERE ST_Intersects(
           the_geom,
