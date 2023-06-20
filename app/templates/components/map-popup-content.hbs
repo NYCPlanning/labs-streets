@@ -40,8 +40,8 @@
       {{#each this.sectionMapLink as |sectionMap|}}
         {{#if sectionMap.do_path}}
           <li class="dark-gray" {{! template-lint-disable "no-nested-interactive" }}
-            onmousemove={{action 'handleHoverListItem' sectionMap}} role="button">
-            <a class="popup-button clearfix" href="{{sectionMap.do_path}}" target="_blank" rel="noopener" "noreferrer">
+            {{on 'mousemove' (fn this.handleHoverListItem this.sectionMap)}} role="button">
+            <a class="popup-button clearfix" href="{{sectionMap.do_path}}" target="_blank" rel="noopener noreferrer">
               <strong class="link-name float-left">{{fa-icon 'external-link-alt'}} <span class="filename">{{sectionMap.section_info}}</span></strong>
               <span class="date float-right">Effective {{sectionMap.last_date}}</span>
             </a>
