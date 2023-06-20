@@ -104,11 +104,13 @@ export default class MapPopupContent extends Component {
       .filter(d => d.properties.type === 'streetsect')
       .map((feature) => {
         const { properties } = feature;
-        const { do_path, last_date } = properties;
+        const { do_path, last_date, boro } = properties;
 
         return {
           feature,
           do_path,
+          boro,
+          boroname: boroLookup[boro],
           last_date: moment(last_date).format('MMM D, YYYY'),
           section_info: do_path.split('.com/')[1],
         };
