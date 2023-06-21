@@ -1,6 +1,9 @@
-/* eslint-env node */
 'use strict';
 
 module.exports = {
-  extends: 'recommended'
+  extends: 'recommended',
+  rules: {
+    'no-curly-component-invocation': 'warn',
+    'no-inline-styles': 'warn',
+  },
 };

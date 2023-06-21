@@ -1,34 +1,40 @@
 import EmberRouter from '@ember/routing/router';
+import { next, scheduleOnce } from '@ember/runloop';
 import { inject as service } from '@ember/service';
-import { scheduleOnce } from '@ember/runloop';
-import { get } from '@ember/object';
-import config from './config/environment';
+import config from 'city-map/config/environment';
 
-const Router = EmberRouter.extend({
-  metrics: service(),
+export default class Router extends EmberRouter {
+  @service metrics;
+
+  location = config.locationType;
+
+  rootURL = config.rootURL;
 
   didTransition(...args) {
-    this._super(...args);
+    super.didTransition(...args);
     this._trackPage();
-  },
+
+    next(function() {
+      // window.dispatchEvent(new Event('resize'));
+      // ^ not supported in IE 11, so we do this:
+      const resizeEvent = window.document.createEvent('UIEvents');
+      resizeEvent.initUIEvent('resize', true, false, window, 0);
+      window.dispatchEvent(resizeEvent);
+    });
+  }
 
   _trackPage() {
     scheduleOnce('afterRender', this, () => {
-      const page = this.get('url');
+      const page = this.url;
       const title = this.getWithDefault('currentRouteName', 'unknown');
-      get(this, 'metrics').trackPage({ page, title });
+      this.metrics.trackPage({ page, title });
     });
-  },
+  }
+}
 
-  location: config.locationType,
-  rootURL: config.rootURL,
-});
-
-Router.map(function() {
+Router.map(function() { // eslint-disable-line array-callback-return
   this.route('about');
   this.route('city-map');
   this.route('data');
   this.route('feedback');
 });
-
-export default Router;
