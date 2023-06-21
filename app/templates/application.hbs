@@ -214,7 +214,7 @@
     <Deprecated::LayerGroupsContainer @title="Street Map Layers" @mapIsLoading={{this.loadStateTask.isRunning}}>
       <LookupLayerGroup @for="citymap" as |layerGroup|>
         <Deprecated::LayerGroupToggle @label={{layerGroup.model.legend.label}} @tooltip={{layerGroup.model.legend.tooltip}} @active={{layerGroup.model.visible}}>
-          {{deprecated/legend-items items=layerGroup.model.legend.items}}
+          <Deprecated::LegendItems @items={{layerGroup.model.legend.items}} />
         </Deprecated::LayerGroupToggle>
       </LookupLayerGroup>
 
