@@ -1,5 +1,5 @@
 <div class="content-close-button-container">
-  {{link-to '×' 'application' click=(action (mut closed) true) class="content-close-button"}}
+  <LinkTo @route="application" class="content-close-button" {{on "click" (fn (mut this.closed) true)}}>x</LinkTo>
 </div>
 <div class="content-area cell large-5 large-order-3 xxlarge-4">
 
@@ -22,7 +22,7 @@
   <h2 class="header-xlarge">Data Sources</h2>
 
   <ul>
-    {{#each model as |source|}}
+    {{#each this.model as |source|}}
       <li>
         <p>
           {{#if source.meta.description}}
@@ -30,7 +30,7 @@
           {{/if}}
           {{#if source.meta.url}}
             {{#each source.meta.url as |url|}}
-              <span style="display:block;" class="no-margin"><a href="{{url}}" target="_blank" rel="noopener">{{fa-icon 'external-link-alt'}} {{url}}</a></span>
+              <span style="display:block;" class="no-margin"><a href="{{url}}" target="_blank" rel="noopener noreferrer"><FaIcon @icon="external-link-alt" />{{url}}</a></span>
             {{/each}}
           {{/if}}
           {{#if source.meta.updated_at}}
