@@ -112,7 +112,7 @@ export default class MapPopupContent extends Component {
           boro,
           boroname: boroLookup[boro],
           last_date: moment(last_date).format('MMM D, YYYY'),
-          section_info: do_path.split('.com/')[1],
+          section_info: do_path === null ? null : do_path.split('.com/')[1],
         };
       });
 
