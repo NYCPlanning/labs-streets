@@ -1,21 +1,15 @@
 [build]
 command = "yarn build"
+environment = {}
 
 [context.develop]
-command = "yarn build --environment=development"
-
-[context.develop.environment]
-API_HOST="https://layers-api-staging.planninglabs.nyc"
-CARTO_USER="dcpadmin"
+command = "CARTO_USER=dcpadmin API_HOST=https://layers-api-staging.planninglabs.nyc yarn build --environment=staging"
+environment = {}
 
 [context.data-qa]
+command = "CARTO_USER=dcpadmin API_HOST=https://layers-api-data.planninglabs.nyc yarn build --environment=staging"
+environment = {}
 
-[context.data-qa.environment]
-API_HOST="https://layers-api-data.planninglabs.nyc"
-CARTO_USER="dcpadmin"
-
-[context.production]
-
-[context.production.environment]
-API_HOST="https://layers-api.planninglabs.nyc"
-CARTO_USER="planninglabs"
+[context.master]
+command = "CARTO_USER=planninglabs API_HOST=https://layers-api.planninglabs.nyc yarn build --environment=production"
+environment = {}
