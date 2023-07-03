@@ -218,6 +218,8 @@ export default class ApplicationController extends ParachuteController {
 
     const amendmentsLayerDisabled = this.get('model').layerGroups.toArray().filter(layerGroup => layerGroup.get('visible')).find(layer => layer.id === 'amendments') === undefined;
 
+    const streetSectionLayerDisabled = this.get('model').layerGroups.toArray().filter(layerGroup => layerGroup.get('visible')).find(layer => layer.id === 'street-sections') === undefined;
+
     // Open the popup and clear its content (defaults to showing spinner)
     this.set('popupFeatures', null);
     this.set('popupLocation', e.lngLat);
@@ -225,9 +227,9 @@ export default class ApplicationController extends ParachuteController {
     // Query and set the popup content
     const { lng, lat } = e.lngLat;
     const SQL = `
-    SELECT the_geom, 'alteration' AS type, altmappdf, status, effective, NULL AS bbl, NULL AS address
-      FROM citymap_amendments_v3
-      WHERE (effective IS NOT NULL
+    SELECT the_geom, 'alteration' AS type, altmappdf, status, effect_dt AS effective, NULL AS bbl, NULL AS address, NULL::timestamp AS last_date, NULL AS do_path, NULL AS boro
+      FROM dcp_dcm_city_map_alterations
+      WHERE (effect_dt IS NOT NULL
               OR status = '13')
         AND ST_Intersects(
           the_geom,
@@ -239,8 +241,20 @@ export default class ApplicationController extends ParachuteController {
           )
         )
     UNION ALL
-    SELECT the_geom, 'taxlot' AS type, NULL as altmappdf, NULL as status, NULL as effective, bbl, address
+    SELECT the_geom, 'taxlot' AS type, NULL AS altmappdf, NULL AS status, NULL AS effective, bbl, address, NULL::timestamp AS last_date, NULL AS do_path, NULL AS boro
       FROM dcp_mappluto
+        WHERE ST_Intersects(
+          the_geom,
+          ST_SetSRID(
+            ST_MakePoint(
+              ${lng},
+              ${lat}
+            ),4326
+          )
+        )
+    UNION ALL
+    SELECT the_geom, 'streetsect' AS type, NULL AS altmappdf, NULL AS status, NULL AS effective, NULL AS bbl, NULL AS address, last_date, do_path, boro 
+      FROM dcp_final_section_map_index
         WHERE ST_Intersects(
           the_geom,
           ST_SetSRID(
@@ -271,8 +285,9 @@ export default class ApplicationController extends ParachuteController {
         let filteredFeatures = FC.features;
 
         if (citymapLayerDisabled) filteredFeatures = filteredFeatures.filter(feature => feature.properties.type !== 'taxlot');
-        if (amendmentsLayerDisabled) filteredFeatures = filteredFeatures.filter(feature => (feature.properties.type === 'alteration' && feature.properties.effective === null) || feature.properties.type === 'taxlot');
-        if (pendingAmendmentsLayerDisabled) filteredFeatures = filteredFeatures.filter(feature => (feature.properties.type === 'alteration' && feature.properties.effective !== null) || feature.properties.type === 'taxlot');
+        if (amendmentsLayerDisabled) filteredFeatures = filteredFeatures.filter(feature => (feature.properties.type === 'alteration' && feature.properties.effective === null) || feature.properties.type === 'taxlot' || feature.properties.type === 'streetsect');
+        if (pendingAmendmentsLayerDisabled) filteredFeatures = filteredFeatures.filter(feature => (feature.properties.type === 'alteration' && feature.properties.effective !== null) || feature.properties.type === 'taxlot' || feature.properties.type === 'streetsect');
+        if (streetSectionLayerDisabled) filteredFeatures = filteredFeatures.filter(feature => (feature.properties.type !== 'streetsect'));
 
         this.set('popupFeatures', [...filteredFeatures, ...streetNameChanges]);
       });

@@ -95,6 +95,30 @@ export default class MapPopupContent extends Component {
     return streetNameChanges;
   }
 
+  @computed('features')
+  get sectionMapLink() {
+    const features = this.get('features');
+    if (features === null) return features;
+
+    const sectionMapLink = features
+      .filter(d => d.properties.type === 'streetsect')
+      .map((feature) => {
+        const { properties } = feature;
+        const { do_path, last_date, boro } = properties;
+
+        return {
+          feature,
+          do_path,
+          boro,
+          boroname: boroLookup[boro],
+          last_date: moment(last_date).format('MMM D, YYYY'),
+          section_info: do_path === null ? null : do_path.split('.com/')[1],
+        };
+      });
+
+    return sectionMapLink;
+  }
+
   @argument
   features = [];
 

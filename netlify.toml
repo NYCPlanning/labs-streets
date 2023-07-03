@@ -1,11 +1,15 @@
 [build]
-command = "yarn build --environment=staging"
+command = "yarn build"
 environment = { NODE_VERSION = "12.18.4" }
 
+[context.develop]
+command = "CARTO_USER=dcpadmin API_HOST=https://layers-api-staging.planninglabs.nyc yarn build --environment=staging"
+environment = {NODE_VERSION = "12.18.4"}
+
 [context.data-qa]
-command = "yarn build --environment=staging"
-environment = {NODE_VERSION = "12.18.4", LAYERS_API_URL = "https://layers-api-data.planninglabs.nyc"}
+command = "CARTO_USER=dcpadmin API_HOST=https://layers-api-data.planninglabs.nyc yarn build --environment=staging"
+environment = {NODE_VERSION = "12.18.4"}
 
 [context.master]
-command = "yarn build --environment=production"
+command = "CARTO_USER=planninglabs API_HOST=https://layers-api.planninglabs.nyc yarn build --environment=production"
 environment = { NODE_VERSION = "12.18.4" }

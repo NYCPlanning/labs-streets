@@ -1,10 +1,15 @@
 'use strict';
 
+const HOST = process.env.API_HOST || 'https://layers-api.planninglabs.nyc';
+const CARTO_USER = process.env.CARTO_USER || 'planninglabs';
+
 module.exports = function(environment) {
   const ENV = {
     modulePrefix: 'city-map',
     environment,
     rootURL: '/',
+    host: HOST,
+    'carto-username': CARTO_USER,
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
@@ -34,7 +39,7 @@ module.exports = function(environment) {
     'labs-search': {
       host: (environment === 'devlocal') ? '//localhost:4000' : 'https://search-api-production.herokuapp.com',
       route: 'search',
-      helpers: ['geosearch-v2', 'city-map-street-search', 'city-map-alteration'],
+      helpers: ['geosearch-v2'],
     },
 
     fontawesome: {
@@ -99,13 +104,12 @@ module.exports = function(environment) {
 
   if (environment === 'staging') {
     // here you can enable a staging-specific feature
-    ENV.host = process.env.LAYERS_API_URL || 'https://layers-api-staging.planninglabs.nyc';
+    ENV['carto-username'] = 'dcpadmin';
     ENV.namespace = 'v1';
   }
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
-    ENV.host = process.env.LAYERS_API_URL || 'https://layers-api.planninglabs.nyc';
     ENV.namespace = 'v1';
   }
 

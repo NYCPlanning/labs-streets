@@ -23,6 +23,7 @@ export default class ApplicationRoute extends Route {
           { id: 'citymap', visible: true },
           { id: 'street-centerlines', visible: true },
           { id: 'pierhead-bulkhead-lines', visible: true },
+          { id: 'street-sections', visible: false },
           { id: 'amendments', visible: true },
           { id: 'amendments-pending', visible: false },
           { id: 'arterials', visible: false },
