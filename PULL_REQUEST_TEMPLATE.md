@@ -9,6 +9,3 @@ Changes Proposed:
 - Refactor of existing code
 
 Closes #{issue number(s)}
-
-- [ ] Documentation has been created/updated to reflect changes in this PR
-- [ ] Tests have been written to prevent regressions or breaking changes

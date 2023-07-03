@@ -1,5 +1,7 @@
 import Component from '@ember/component';
-import { action } from '@ember/object';
+import { argument } from '@ember-decorators/argument';
+import { action } from '@ember-decorators/object';
+import { required } from '@ember-decorators/argument/validation';
 import moment from 'moment';
 
 const fromEpoch = function(number, format) {
@@ -10,12 +12,12 @@ const fromEpoch = function(number, format) {
 const defaultStart = [-2114380799, parseInt(moment().utc().endOf('year').format('X'), 10)];
 
 export default class SliderFilterComponent extends Component {
+  @required
+  @argument
   layer;
 
   start = defaultStart
-
   min = defaultStart[0]
-
   max = defaultStart[1]
 
   format = {
