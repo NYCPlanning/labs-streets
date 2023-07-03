@@ -35,7 +35,7 @@
 
   {{#if sectionMapLink}}
     <hr class="small-margin">
-    <h4 class="popup-header">Street Section Map</h4>
+    <h4 class="popup-header">Final Section Map</h4>
     <ul class="popup-list no-bullet">
       {{#each sectionMapLink as |sectionMap|}}
         {{#if sectionMap.do_path}}
@@ -48,7 +48,7 @@
           </li>
         {{else}}
           <span class="null-section-map">
-            There is no available digitized street section map for this location. For more information please contact the {{sectionMap.boroname}} Borough President's Topographical Bureau.
+            There is no available final section map for this location. For more information please contact the {{sectionMap.boroname}} Borough President's Topographical Bureau.
           </span>
         {{/if}}
       {{/each}}
