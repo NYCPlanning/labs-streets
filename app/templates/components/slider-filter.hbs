@@ -1,11 +1,11 @@
-{{range-slider start=this.start
-  min=this.min
-  max=this.max
+{{range-slider start=start
+  min=min
+  max=max
   connect=true
-  tooltips=(array this.format this.format)
+  tooltips=(array format format)
   step=1
   behaviour="drag"
-  on-slide="sliderChanged"
+                on-slide="sliderChanged"
 }}
 
 {{yield}}

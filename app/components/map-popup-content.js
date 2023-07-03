@@ -1,5 +1,8 @@
 import Component from '@ember/component';
-import { computed, action } from '@ember/object';
+import { argument } from '@ember-decorators/argument';
+import { computed, action } from '@ember-decorators/object';
+import { Action } from '@ember-decorators/argument/types';
+import { type } from '@ember-decorators/argument/type';
 import moment from 'moment';
 
 function splitBBL(bbl) {
@@ -116,10 +119,15 @@ export default class MapPopupContent extends Component {
     return sectionMapLink;
   }
 
+  @argument
   features = [];
 
+  @argument
+  @type(Action)
   onHoverListItem = () => {};
 
+  @argument
+  @type(Action)
   onMouseLeave = () => {};
 
   @action
