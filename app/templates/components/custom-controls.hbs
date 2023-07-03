@@ -1,24 +1,29 @@
 <div class="custom-controls">
 
   <div class="share-controls mapboxgl-ctrl mapboxgl-ctrl-group">
-    {{#if this.shareClosed}}
-      <button class="mapboxgl-ctrl-icon" type="button" {{on 'click' this.handleShareOpen}}><FaIcon @icon='share-alt'/></button>
+    {{#if shareClosed}}
+      <button {{action 'handleShareOpen'}} class="mapboxgl-ctrl-icon">{{fa-icon 'share-alt'}}</button>
     {{else}}
       <div class="custom-controls-content">
-        <button {{on 'click' this.handleClose}} class="close-button" aria-label="Close alert" type="button"><span aria-hidden="true">&times;</span></button>
+        <button {{action 'handleClose'}} class="close-button" aria-label="Close alert" type="button"><span aria-hidden="true">&times;</span></button>
         <h3 class="header-small">Share</h3>
         <p>Adjust the map's layers, center, and zoom. Then copy and paste the link wherever you want to share your exact map view.</p>
         <div class="input-group">
-          <input id="share-url" class="input-group-field" type="text" value="{{this.shareURL}}">
+          <input id="share-url" class="input-group-field" type="text" value="{{shareURL}}">
           <div class="input-group-button">
-            <CopyButton @clipboardTarget="#share-url" @success={{this.handleShareSuccess}} @error={{this.handleClose}} @class="button">
-              <FaIcon @icon="paste" /> Copy Link
-            </CopyButton>
+            {{#copy-button
+              clipboardTarget="#share-url"
+              success=(action 'handleShareSuccess')
+              error=(action 'handleClose')
+              class="button"
+            }}
+              {{fa-icon 'paste'}} Copy Link
+            {{/copy-button}}
           </div>
         </div>
-        {{#if this.copySuccess}}
+        {{#if copySuccess}}
           <div class="share-controls-copy-success">
-            <div class="share-controls-copy-success-message"><FaIcon @icon="check"/> Copied</div>
+            <div class="share-controls-copy-success-message">{{fa-icon 'check'}} Copied</div>
           </div>
         {{/if}}
         {{boro-office-contact-callout class="text-tiny"}}
@@ -27,17 +32,17 @@
   </div>
 
   <div class="data-controls mapboxgl-ctrl mapboxgl-ctrl-group">
-    {{#if this.dataClosed}}
-      <button class="mapboxgl-ctrl-icon" type="button" {{on 'click' this.handleDataOpen}}><FaIcon @icon="download"/></button>
+    {{#if dataClosed}}
+      <button {{action 'handleDataOpen'}} class="mapboxgl-ctrl-icon">{{fa-icon 'download'}}</button>
     {{else}}
       <div class="custom-controls-content">
-        <button {{on 'click' this.handleClose}} class="close-button" aria-label="Close alert" type="button"><span aria-hidden="true">&times;</span></button>
+        <button {{action 'handleClose'}} class="close-button" aria-label="Close alert" type="button"><span aria-hidden="true">&times;</span></button>
         <h3 class="header-small">Get the Data</h3>
         <ul class="no-bullet">
-          {{#each this.datasets as |dataset|}}
+          {{#each datasets as |dataset|}}
             <li>
               <p>
-                <FaIcon @icon="download"/> {{dataset.displayName}}:
+                {{fa-icon 'download'}} {{dataset.displayName}}:
                 {{#if dataset.queryModifier}}
                   <a href="https://planninglabs.carto.com/api/v2/sql?format=SHP&filename={{dataset.tableName}}&q=SELECT * FROM {{dataset.tableName}} WHERE {{dataset.queryModifier}}"><strong>All</strong>&nbsp;<small>(SHP)</small></a>
                 {{else}}
@@ -45,9 +50,9 @@
                 {{/if}}
                 <span class="medium-gray">|</span>
                 {{#if dataset.queryModifier}}
-                  <a href="https://planninglabs.carto.com/api/v2/sql?format=SHP&filename={{dataset.tableName}}_clipped&q=SELECT * FROM {{dataset.tableName}} WHERE ST_Intersects(the_geom, ST_GeomFromGeoJSON('{{this.stringifiedBoundsGeoJSON}}')) AND {{dataset.queryModifier}}"><strong>In View</strong>&nbsp;<small>(SHP)</small></a>
+                  <a href="https://planninglabs.carto.com/api/v2/sql?format=SHP&filename={{dataset.tableName}}_clipped&q=SELECT * FROM {{dataset.tableName}} WHERE ST_Intersects(the_geom, ST_GeomFromGeoJSON('{{stringifiedBoundsGeoJSON}}')) AND {{dataset.queryModifier}}"><strong>In View</strong>&nbsp;<small>(SHP)</small></a>
                 {{else}}
-                  <a href="https://planninglabs.carto.com/api/v2/sql?format=SHP&filename={{dataset.tableName}}_clipped&q=SELECT * FROM {{dataset.tableName}} WHERE ST_Intersects(the_geom, ST_GeomFromGeoJSON('{{this.stringifiedBoundsGeoJSON}}'))"><strong>In View</strong>&nbsp;<small>(SHP)</small></a>
+                  <a href="https://planninglabs.carto.com/api/v2/sql?format=SHP&filename={{dataset.tableName}}_clipped&q=SELECT * FROM {{dataset.tableName}} WHERE ST_Intersects(the_geom, ST_GeomFromGeoJSON('{{stringifiedBoundsGeoJSON}}'))"><strong>In View</strong>&nbsp;<small>(SHP)</small></a>
                 {{/if}}
                 
               </p>
