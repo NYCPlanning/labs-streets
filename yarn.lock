@@ -1826,10 +1826,10 @@
     read-package-json-fast "^2.0.3"
     which "^2.0.2"
 
-"@nycplanning/ember@^2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@nycplanning/ember/-/ember-2.2.1.tgz#fdcf75e5968ef300c8baa8d8629b15d4fa58d6c6"
-  integrity sha512-vXY8P4B1lyJesy+y3skELoEEGYKikx/QB5fHMtCdVRr0LjPhqbB02pnTVNjQdnPJOcyrOy1Tqx0z3sQPsBb4Zg==
+"@nycplanning/ember@^2.1.1":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@nycplanning/ember/-/ember-2.2.0.tgz#ac1f8f24d616b8dae546f0d3b3c136acdd020dd1"
+  integrity sha512-N5/0rbiuU+f5FRC+dJqAeSYBIxH8R1zUd7J6De4BmWpotE/Khq/sD6jdCQE3U/Zrt3kd6R32SillndvdhTp0YA==
   dependencies:
     "@turf/union" "^6.0.0"
     ember-auto-import "^1.11.3"
