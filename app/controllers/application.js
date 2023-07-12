@@ -1,13 +1,13 @@
 import Controller from '@ember/controller';
-import { action, computed } from '@ember-decorators/object';
+import { action, computed } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 import QueryParams from 'ember-parachute';
-import carto from 'cartobox-promises-utility/utils/carto';
+import carto from '@nycplanning/ember/utils/carto';
 import mapboxgl from 'mapbox-gl';
 import fetch from 'fetch';
-import turfBbox from 'npm:@turf/bbox';
-import { service } from '@ember-decorators/service';
-import { alias } from '@ember-decorators/object/computed';
+import turfBbox from '@turf/bbox';
+import { inject as service } from '@ember/service';
+import { alias } from '@ember/object/computed';
 import precisionRound from '../utils/precision-round';
 import trackEvent from '../utils/track-event';
 
@@ -68,10 +68,12 @@ export const LayerVisibilityParams = new QueryParams({
 const ParachuteController = Controller.extend(LayerVisibilityParams.Mixin);
 
 export default class ApplicationController extends ParachuteController {
+  @service metrics
+
   @service('layerGroups') layerGroupService
 
   @alias('layerGroupService.visibleLayerGroups')
-  layerGroups
+  layerGroups;
 
   @computed()
   get initMapOptions() {
@@ -91,7 +93,7 @@ export default class ApplicationController extends ParachuteController {
 
   @computed('lat', 'lng')
   get center() {
-    return [this.get('lat'), this.get('lng')];
+    return [this.get('lng'), this.get('lat')];
   }
 
   shareURL = window.location.href;
@@ -106,21 +108,23 @@ export default class ApplicationController extends ParachuteController {
   searchTerms = '';
 
   highlightedStreetSource = null;
+
   highlightedAmendmentSource = null;
 
   searchedAddressSource = null;
 
   boundsGeoJSON = null;
 
-  loadStateTask = task(function* () {
+  @(task(function* () {
     yield timeout(500);
 
-    const map = this.get('map');
+    const map = this.get('mapInstance');
 
     if (map) {
       map.setCenter([this.get('lng'), this.get('lat')]);
     }
-  }).restartable();
+  }).restartable())
+  loadStateTask;
 
   @computed('lat', 'lng', 'zoom', 'pitch', 'bearing')
   get mapLatLngZoomHash() {
@@ -131,7 +135,7 @@ export default class ApplicationController extends ParachuteController {
     return `#${zoom}/${lng}/${lat}/${bearing}/${pitch}`;
   }
 
-  mapPositionDebounce = task(function* (e) {
+  @(task(function* (e) {
     yield timeout(500);
     const pitch = e.target.getPitch();
     const bearing = e.target.getBearing();
@@ -146,8 +150,9 @@ export default class ApplicationController extends ParachuteController {
       zoom, lat, lng, pitch, bearing,
     });
 
-    this.set('boundsGeoJSON', getBoundsGeoJSON(this.map));
-  }).restartable();
+    this.set('boundsGeoJSON', getBoundsGeoJSON(this.mapInstance));
+  }).restartable())
+  mapPositionDebounce;
 
   @action
   handleMapPositionChange(e) {
@@ -157,7 +162,7 @@ export default class ApplicationController extends ParachuteController {
   @action
   handleMapLoad(map) {
     window.map = map; // for Maputnik Dev Server
-    this.set('map', map);
+    this.set('mapInstance', map);
 
     const navigationControl = new mapboxgl.NavigationControl();
     map.addControl(navigationControl, 'top-left');
@@ -206,7 +211,7 @@ export default class ApplicationController extends ParachuteController {
 
     basemapLayersToHide.forEach(layer => map.removeLayer(layer));
 
-    this.set('boundsGeoJSON', getBoundsGeoJSON(this.map));
+    this.set('boundsGeoJSON', getBoundsGeoJSON(this.mapInstance));
   }
 
   @action
@@ -269,7 +274,7 @@ export default class ApplicationController extends ParachuteController {
     carto.SQL(SQL, 'geojson')
       .then((FC) => {
         // sigh... queryRenderedFeatures() for street name changes and append the results to the Features returned from Carto
-        const map = this.get('map');
+        const map = this.get('mapInstance');
         const layers = ['citymap-name-changes-circle', 'citymap-name-changes-line', 'citymap-name-changes-fill'];
         const streetNameChanges = map.queryRenderedFeatures(
           e.point,
@@ -295,7 +300,7 @@ export default class ApplicationController extends ParachuteController {
 
   @action
   handleSearchSelect(result) {
-    const map = this.get('map');
+    const map = this.get('mapInstance');
 
     // handle address search results
     if (result.type === 'lot') {
@@ -390,13 +395,13 @@ export default class ApplicationController extends ParachuteController {
 
   @action
   handleLayerMouseMove() {
-    const map = this.get('map');
+    const map = this.get('mapInstance');
     map.getCanvas().style.cursor = 'pointer';
   }
 
   @action
   handleMapMouseDrag() {
-    const map = this.get('map');
+    const map = this.get('mapInstance');
     map.getCanvas().style.cssText += 'cursor:-webkit-grabbing; cursor:-moz-grabbing; cursor:grabbing;';
   }
 
@@ -460,10 +465,29 @@ export default class ApplicationController extends ParachuteController {
       });
   }
 
+  // this action extracts query-param-friendly state of layer groups
+  // for various paramable layers
+  @action
+  handleLayerGroupChange() {
+    // handle visibility state
+    const visibleLayerGroups = this.model.layerGroups
+      .filter(({ visible }) => visible)
+      .map(({ id }) => id)
+      .sort();
+
+    this.set('layerGroups', visibleLayerGroups);
+  }
+
+  @action
+  setModelsToDefault() {
+    this.model.layerGroups.forEach(model => model.rollbackAttributes());
+    this.handleLayerGroupChange();
+  }
+
   @action
   flyTo(center, zoom) {
     // Fly to the lot
-    this.get('map').flyTo({ center, zoom });
+    this.get('mapInstance').flyTo({ center, zoom });
 
     // Turn on the Tax Lots layer group
     this.set('tax-lots', true);
