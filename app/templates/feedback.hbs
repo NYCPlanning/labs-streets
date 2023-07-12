@@ -1,5 +1,5 @@
 <div class="content-close-button-container">
-  {{link-to '×' 'application' click=(action (mut closed) true) class="content-close-button"}}
+  <LinkTo @route="application" class="content-close-button" {{on "click" (fn (mut this.closed) true)}}>x</LinkTo>
 </div>
 <div class="content-area cell large-5 large-order-3 xxlarge-4">
 
@@ -13,7 +13,7 @@
 
   <h3 class="header-medium small-margin-bottom">NYC Street Map Application Feedback</h3>
 
-  <p>To let <a href="https://twitter.com/nycplanninglabs" target="_blank" rel="noopener"><strong>Planning Labs</strong></a> know how this app could be better, <a href="https://github.com/NYCPlanning/labs-citymap/issues/" target="_blank" rel="noopener"><strong>add a GitHub Issue</strong></a>, or email <a href="mailto:streetmap@planning.nyc.gov"><strong>streetmap@planning.nyc.gov</strong></a>.</p>
+  <p>To let <a href="https://twitter.com/nycplanninglabs" target="_blank" rel="noopener noreferrer"><strong>Planning Labs</strong></a> know how this app could be better, <a href="https://github.com/NYCPlanning/labs-citymap/issues/" target="_blank" rel="noopener noreferrer"><strong>add a GitHub Issue</strong></a>, or email <a href="mailto:streetmap@planning.nyc.gov"><strong>streetmap@planning.nyc.gov</strong></a>.</p>
 
   {{outlet}}
 </div>

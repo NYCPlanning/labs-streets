@@ -1,17 +1,19 @@
 import Component from '@ember/component';
-import { argument } from '@ember-decorators/argument';
-import { action, computed } from '@ember-decorators/object';
+import { action, computed } from '@ember/object';
 import { run } from '@ember/runloop';
 
 export default class CustomControls extends Component {
-  // Share Control properties
-  @argument shareURL;
-  @argument shareClosed = true;
-  @argument copySuccess = false;
+  // // Share Control properties
+  shareURL;
 
-  // Data Control properties
-  @argument dataClosed = true;
-  @argument boundsGeoJSON;
+  shareClosed = true;
+
+  copySuccess = false;
+
+  // // Data Control properties
+  dataClosed = true;
+
+  boundsGeoJSON;
 
   datasets = [
     { tableName: 'dcp_dcm', displayName: 'City Street Features', queryModifier: "feat_type NOT IN ('Pierhead_line', 'Bulkhead_line', 'Rail')" },
