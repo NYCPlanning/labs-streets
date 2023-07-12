@@ -3,7 +3,7 @@
 //
 // Labs UI variables
 // --------------------------------------------------
-@import 'labs-ui/variables';
+@import '@nycplanning/ember/deprecated/variables';
 
 
 //
@@ -56,7 +56,7 @@
 //
 // Labs UI modules (import all or some)
 // --------------------------------------------------
-@import 'labs-ui/all-modules';
+@import '@nycplanning/ember/deprecated/all-modules';
 
 
 //

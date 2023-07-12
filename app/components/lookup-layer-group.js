@@ -1,14 +1,10 @@
 import Component from '@ember/component';
-import { service } from '@ember-decorators/service';
-// import { computed } from '@ember-decorators/object';
-import { argument } from '@ember-decorators/argument';
-import { type } from '@ember-decorators/argument/type';
-import { required } from '@ember-decorators/argument/validation';
+import { inject as service } from '@ember/service';
 
 
 export default class LookupLayerGroupComponent extends Component {
-  constructor() {
-    super();
+  init(...args) {
+    super.init(args);
 
     const recordIdentifier = this.get('for');
     const foundRecord = this.get('store').peekRecord('layer-group', recordIdentifier);
@@ -19,8 +15,5 @@ export default class LookupLayerGroupComponent extends Component {
 
   @service store;
 
-  @required
-  @argument
-  @type('string')
   for = '';
 }
