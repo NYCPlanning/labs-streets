@@ -26,7 +26,7 @@
     <ul class="popup-list no-bullet no-margin">
       {{#each this.streetNameChanges as |nameChange|}}
         <li class="popup-button clearfix">
-          <strong class="link-name float-left"><FaIcon @icon="external-link-alt" />{{nameChange.properties.honor_name}}</strong>
+          <strong class="float-left">{{nameChange.properties.honor_name}}</strong>
           <span class="date float-right">{{nameChange.properties.lleffectdt}}</span>
         </li>
       {{/each}}
