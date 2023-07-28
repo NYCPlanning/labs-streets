@@ -14,7 +14,7 @@ module.exports = function(environment) {
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
-        // e.g. 'with-controller': true
+        // e.g. EMBER_NATIVE_DECORATOR_SUPPORT: true
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
@@ -27,12 +27,15 @@ module.exports = function(environment) {
       // when it is created
     },
 
-    namespace: 'v1',
+    'ember-mapbox-composer': {
+      host: 'https://layers-api-staging.planninglabs.nyc',
+      namespace: 'v1',
+    },
 
     'mapbox-gl': {
-      accessToken: 'peanut-butter',
+      accessToken: '',
       map: {
-        style: '//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json',
+        style: 'https://layers-api-staging.planninglabs.nyc/v1/base/style.json',
       },
     },
 
@@ -77,8 +80,6 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
-    ENV.namespace = 'v1';
-
     // Enable this line to specify the address for a locally run Layers API
     // ENV.host = 'http://localhost:3000';
 
@@ -99,18 +100,25 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
-    ENV.namespace = 'v1';
   }
 
   if (environment === 'staging') {
     // here you can enable a staging-specific feature
     ENV['carto-username'] = 'dcpadmin';
-    ENV.namespace = 'v1';
   }
 
   if (environment === 'production') {
-    // here you can enable a production-specific feature
-    ENV.namespace = 'v1';
+    ENV.host = 'https://layers-api.planninglabs.nyc';
+    ENV['mapbox-gl'].map.style = 'https://layers-api.planninglabs.nyc/v1/base/style.json';
+    ENV['ember-mapbox-composer'] = {
+      host: 'https://layers-api.planninglabs.nyc',
+    };
+  }
+
+  if (environment === 'devlocal') {
+    ENV.host = 'http://localhost:3000';
+    ENV['mapbox-gl'].map.style = 'http://localhost:3000/v1/base/style.json';
+    ENV['ember-mapbox-composer'].host = 'http://localhost:3000';
   }
 
   return ENV;
