@@ -2,10 +2,10 @@
 command = "yarn build"
 
 [context.develop]
-command = "CARTO_USER=dcpadmin API_HOST=https://layers-api-staging.planninglabs.nyc yarn build --environment=staging"
+command = "CARTO_USER=dcpadmin API_HOST=https://layers-api-staging.planninglabs.nyc yarn build --environment=development"
 
 [context.data-qa]
-command = "CARTO_USER=dcpadmin API_HOST=https://layers-api-data.planninglabs.nyc yarn build --environment=staging"
+command = "CARTO_USER=dcpadmin API_HOST=https://layers-api-data.planninglabs.nyc yarn build --environment=production"
 
 [context.master]
 command = "CARTO_USER=planninglabs API_HOST=https://layers-api.planninglabs.nyc yarn build --environment=production"
