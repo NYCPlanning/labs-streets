@@ -28,14 +28,14 @@ module.exports = function(environment) {
     },
 
     'ember-mapbox-composer': {
-      host: 'https://layers-api-staging.planninglabs.nyc',
+      host: HOST,
       namespace: 'v1',
     },
 
     'mapbox-gl': {
       accessToken: '',
       map: {
-        style: 'https://layers-api-staging.planninglabs.nyc/v1/base/style.json',
+        style: `${HOST}/style.json`,
       },
     },
 
@@ -102,18 +102,6 @@ module.exports = function(environment) {
     ENV.APP.autoboot = false;
   }
 
-  if (environment === 'staging') {
-    // here you can enable a staging-specific feature
-    ENV['carto-username'] = 'dcpadmin';
-  }
-
-  if (environment === 'production') {
-    ENV.host = 'https://layers-api.planninglabs.nyc';
-    ENV['mapbox-gl'].map.style = 'https://layers-api.planninglabs.nyc/v1/base/style.json';
-    ENV['ember-mapbox-composer'] = {
-      host: 'https://layers-api.planninglabs.nyc',
-    };
-  }
 
   if (environment === 'devlocal') {
     ENV.host = 'http://localhost:3000';
