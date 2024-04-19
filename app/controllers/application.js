@@ -35,7 +35,7 @@ const getBoundsGeoJSON = (map) => {
 
 export const LayerVisibilityParams = new QueryParams({
   'selected-aerial': {
-    defaultValue: 'aerials-2016',
+    defaultValue: 'aerials-2022',
     refresh: true,
   },
   lat: {
